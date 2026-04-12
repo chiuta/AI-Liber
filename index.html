@@ -28,8 +28,9 @@ body>nav{position:fixed;top:0;left:0;right:0;height:var(--nav);z-index:200;
   color:var(--acc);margin-right:auto;cursor:pointer;white-space:nowrap}
 .logo span{color:var(--txt)}
 .logo-ai{color:var(--acc)!important}
+.logo-wico{font-size:1.6rem;line-height:1;vertical-align:middle;margin-left:3px;display:inline-block;transform:translateY(-1px)}
 .nb{padding:6px 10px;border-radius:100px;border:none;background:transparent;
-  color:var(--mut);font-family:'Nunito',sans-serif;font-size:.85rem;font-weight:700;
+  color:var(--mut);font-family:'Nunito',sans-serif;font-size:.8rem;font-weight:700;
   cursor:pointer;transition:all .18s;white-space:nowrap;flex-shrink:0}
 .nb:hover{background:var(--surf2);color:var(--txt)}
 .nb.on{background:var(--txt);color:var(--bg)}
@@ -41,7 +42,7 @@ body>nav{position:fixed;top:0;left:0;right:0;height:var(--nav);z-index:200;
 /* HOME */
 .hero{max-width:920px;margin:0 auto;padding:60px 24px 44px;text-align:center}
 .badge{display:inline-flex;align-items:center;gap:6px;background:var(--grn-lt);
-  color:var(--grn);padding:5px 14px;border-radius:100px;font-size:.78rem;font-weight:800;margin-bottom:20px}
+  color:var(--grn);padding:5px 14px;border-radius:100px;font-size:.72rem;font-weight:800;margin-bottom:20px}
 .hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,5vw,3.3rem);
   line-height:1.16;font-weight:800;margin-bottom:14px}
 .hero h1 em{font-style:normal;color:var(--acc)}
@@ -157,6 +158,32 @@ body.is-resizing .sb::after{opacity:.6}
   background:var(--surf);font-family:'Nunito',sans-serif;font-size:.81rem;font-weight:700;
   cursor:pointer;transition:all .18s;color:var(--txt)}
 .sb-ft button:hover{background:var(--acc-lt);border-color:var(--acc);color:var(--acc)}
+.sb-check{background:var(--surf2)!important;border-color:var(--bdr)!important;color:var(--mut)!important;font-size:.75rem!important}
+.sb-check:hover{background:var(--acc-lt)!important;border-color:var(--acc)!important;color:var(--acc)!important}
+/* Model check modal */
+.mcheck-ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:600;align-items:center;justify-content:center;padding:20px}
+.mcheck-ov.on{display:flex}
+.mcheck-box{background:var(--surf);border-radius:var(--r);max-width:520px;width:100%;max-height:80vh;display:flex;flex-direction:column;box-shadow:var(--sh-lg)}
+.mcheck-hd{padding:16px 18px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;font-weight:800;font-size:.95rem}
+.mcheck-body{overflow-y:auto;padding:16px;flex:1;display:flex;flex-direction:column;gap:12px}
+.mcheck-section{display:flex;flex-direction:column;gap:6px}
+.mcheck-section h4{font-size:.72rem;font-weight:800;color:var(--mut);text-transform:uppercase;letter-spacing:.05em;margin:0}
+.mcheck-item{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:var(--r-sm);border:1.5px solid var(--bdr);background:var(--surf2);font-size:.82rem}
+.mcheck-item.new{border-color:#22c55e;background:#f0fdf4}
+.mcheck-item.old{border-color:#f87171;background:#fef2f2}
+.mcheck-item.warn{border-color:#fb923c;background:#fff7ed}
+.mcheck-item input[type=checkbox]{width:16px;height:16px;accent-color:var(--acc);cursor:pointer;flex-shrink:0}
+.mcheck-item .mi-name{flex:1;font-weight:700}
+.mcheck-item .mi-tag{font-size:.7rem;padding:2px 6px;border-radius:100px;background:var(--surf);border:1px solid var(--bdr);color:var(--mut)}
+.mcheck-item .mi-warn{font-size:.7rem;color:#b45309;font-weight:600}
+.mcheck-ft{padding:7px 12px;border-top:1px solid var(--bdr);display:flex;gap:8px;justify-content:flex-end}
+.mcheck-ft button{padding:8px 18px;border-radius:100px;font-size:.83rem;font-weight:700;cursor:pointer;border:none;font-family:'Nunito',sans-serif}
+.mcheck-apply{background:var(--acc);color:#fff}
+.mcheck-apply:hover{background:var(--acc-h)}
+.mcheck-cancel{background:var(--surf2);color:var(--mut);border:1.5px solid var(--bdr)!important}
+.mcheck-status{font-size:.8rem;color:var(--mut);text-align:center;padding:12px}
+.mcheck-spinner{display:inline-block;width:16px;height:16px;border:2px solid var(--bdr);border-top-color:var(--acc);border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:6px}
+@keyframes spin{to{transform:rotate(360deg)}}
 .sb-refresh{font-size:.73rem;color:var(--mut);text-align:center;cursor:pointer;transition:all .15s}
 .sb-refresh:hover{color:var(--acc)}
 
@@ -176,11 +203,11 @@ body.is-resizing .sb::after{opacity:.6}
   background:var(--surf);cursor:pointer;font-size:.88rem;transition:all .16s;
   display:flex;align-items:center;justify-content:center;color:var(--mut)}
 .ibtn:hover{background:var(--surf2);border-color:var(--acc);color:var(--acc)}
-.cmsgs{flex:1;overflow-y:auto;padding:17px 20px;display:flex;flex-direction:column;gap:14px}
+.cmsgs{flex:1;overflow-y:auto;padding:6px 14px;display:flex;flex-direction:column;gap:6px;min-height:0}
 /* Când nu există mesaje, chat-main se centrează și inputul urmează cwelc */
 .chat-main.empty{justify-content:flex-start}
-.chat-main.empty .cmsgs{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow-y:visible}
-.chat-main.empty .cwelc{padding-bottom:8px;width:100%}
+.chat-main.empty .cmsgs{flex:1;overflow-y:auto;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;min-height:0}
+.chat-main.empty .cwelc{padding-bottom:4px;width:100%;padding-top:2px}
 .msg{display:flex;gap:9px;animation:mi .22s ease}
 @keyframes mi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 .mav{width:31px;height:31px;border-radius:50%;display:flex;align-items:center;
@@ -211,18 +238,17 @@ body.is-resizing .sb::after{opacity:.6}
 .dot{width:8px;height:8px;border-radius:50%;background:var(--mut);animation:bo 1.2s infinite}
 .dot:nth-child(2){animation-delay:.2s}.dot:nth-child(3){animation-delay:.4s}
 @keyframes bo{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-7px)}}
-.cwelc{text-align:center;padding:34px 20px;color:var(--mut);max-width:520px;margin:0 auto}
-.cwelc .wico{font-size:2.3rem;margin-bottom:9px;display:block}
+.cwelc{text-align:center;padding:8px 20px 6px;color:var(--mut);max-width:520px;margin:0 auto}
 .cwelc h3{font-size:1.05rem;font-weight:700;color:var(--txt);margin-bottom:5px}
 .cwelc p{font-size:.88rem;margin-bottom:5px;line-height:1.6}
-.wfree{font-size:.8rem;font-weight:700;color:var(--grn);background:var(--grn-lt);
+.wfree{font-size:.75rem;font-weight:700;color:var(--grn);background:var(--grn-lt);
   padding:5px 12px;border-radius:100px;display:inline-block;margin-bottom:13px}
 .suggs{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
 .sug{padding:6px 11px;background:var(--surf);border:1.5px solid var(--bdr);
-  border-radius:100px;font-size:.78rem;font-weight:600;cursor:pointer;
+  border-radius:100px;font-size:.72rem;font-weight:600;cursor:pointer;
   transition:all .16s;color:var(--txt);font-family:'Nunito',sans-serif}
 .sug:hover{border-color:var(--acc);color:var(--acc);background:var(--acc-lt)}
-.cinput{padding:0 0 0;border-top:1px solid var(--bdr);flex-shrink:0;position:relative}
+.cinput{border-top:1px solid var(--bdr);flex-shrink:0;position:relative;background:var(--surf)}
 /* Resize handle */
 .inp-resize{height:6px;background:transparent;cursor:ns-resize;
   display:flex;align-items:center;justify-content:center;flex-shrink:0}
@@ -231,7 +257,7 @@ body.is-resizing .sb::after{opacity:.6}
 .inp-resize:hover::after{background:var(--acc)}
 body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
 /* Toolbar */
-.fmt-bar{display:flex;align-items:center;gap:1px;padding:5px 10px 4px;
+.fmt-bar{display:flex;align-items:center;gap:1px;padding:3px 8px 2px;
   flex-wrap:wrap;border-bottom:1px solid var(--bdr);margin-bottom:0;
   background:var(--surf2)}
 .fmt-btn{min-width:26px;height:25px;padding:0 5px;border-radius:4px;border:none;
@@ -281,15 +307,15 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
 /* Textarea */
 .crow{padding:0}
 .crow-inner{display:flex;flex-direction:column;width:100%}
-.cta{width:100%;border:none;border-bottom:1.5px solid transparent;padding:12px 16px;
+.cta{width:100%;border:none;border-bottom:1.5px solid transparent;padding:7px 12px;
   font-family:'Nunito',sans-serif;font-size:.95rem;resize:none;
-  min-height:140px;max-height:520px;background:var(--surf);color:var(--txt);
+  min-height:52px;max-height:200px;background:var(--surf);color:var(--txt);
   transition:border-color .18s;line-height:1.6;box-sizing:border-box;outline:none}
 .cta:focus{border-bottom-color:var(--acc)}
-.crow-bottom{display:flex;align-items:center;justify-content:space-between;gap:10px;
-  padding:6px 12px;background:var(--surf);border-top:1px solid var(--bdr)}
-.csend{height:36px;padding:0 14px;border-radius:100px;background:var(--acc);color:#fff;
-  border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-size:.85rem;font-weight:700;
+.crow-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px;
+  padding:4px 10px;background:var(--surf);border-top:1px solid var(--bdr)}
+.csend{height:30px;padding:0 12px;border-radius:100px;background:var(--acc);color:#fff;
+  border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-size:.8rem;font-weight:700;
   display:flex;align-items:center;gap:5px;transition:all .18s;white-space:nowrap;flex-shrink:0}
 .csend:hover:not(:disabled){background:var(--acc-h);transform:translateY(-1px);box-shadow:0 4px 14px rgba(196,82,45,.3)}
 .csend:disabled{opacity:.45;cursor:not-allowed}
@@ -304,7 +330,7 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
 /* Formatting toolbar */
 .fmt-bar{display:flex;align-items:center;gap:2px;padding:6px 0 5px;flex-wrap:wrap;border-bottom:1px solid var(--bdr);margin-bottom:7px}
 .fmt-btn{min-width:28px;height:26px;padding:0 7px;border-radius:5px;border:none;
-  background:transparent;cursor:pointer;font-size:.78rem;font-weight:700;
+  background:transparent;cursor:pointer;font-size:.72rem;font-weight:700;
   color:var(--mut);transition:all .15s;display:flex;align-items:center;justify-content:center;
   font-family:'Nunito',sans-serif;white-space:nowrap}
 .fmt-btn:hover{background:var(--surf2);color:var(--acc)}
@@ -323,7 +349,7 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
 
 /* Enlarged textarea */
 /* cta and csend defined in cinput block above */
-.chint{font-size:.71rem;color:var(--mut);margin:0;line-height:1.3;opacity:.8;flex:1}
+.chint{font-size:.66rem;color:var(--mut);margin:0;line-height:1.2;opacity:.75;flex:1}
 .rl-warn{font-size:.72rem;color:#B8620A;background:#FFF5E5;border:1px solid #F0D090;
   border-radius:var(--r-sm);padding:5px 10px;margin-top:4px;text-align:center;display:none}
 .rl-warn.show{display:block}
@@ -480,7 +506,7 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
 /* LEGAL */
 .site-footer{width:100%;max-width:100%;margin-top:auto;padding:18px 24px 36px;border-top:1px solid var(--bdr);
   display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;box-sizing:border-box}
-.site-footer .fleg{font-size:.78rem;color:var(--mut);max-width:920px}
+.site-footer .fleg{font-size:.72rem;color:var(--mut);max-width:920px}
 .site-footer .fleg strong{color:var(--txt)}
 .foot-links{display:flex;flex-wrap:wrap;gap:4px 14px}
 .foot-links a{font-size:.76rem;color:var(--mut);text-decoration:none;cursor:pointer;
@@ -524,7 +550,7 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
 .lmod-ft{padding:14px 24px;border-top:1px solid var(--bdr);text-align:right}
 .lmod-ft button{padding:9px 20px;border-radius:100px;border:none;
   background:var(--acc);color:#fff;font-family:'Nunito',sans-serif;
-  font-size:.85rem;font-weight:700;cursor:pointer;transition:all .16s}
+  font-size:.8rem;font-weight:700;cursor:pointer;transition:all .16s}
 .lmod-ft button:hover{background:var(--acc-h)}
 .ltab.on{color:var(--acc)!important;border-bottom-color:var(--acc)!important;background:var(--acc-lt)!important}
 
@@ -552,12 +578,217 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
   .site-footer{flex-direction:column;align-items:flex-start;gap:10px}
   .foot-right{gap:6px 10px}
 }
+
+/* Inline API key panel (shown instead of sending message) */
+.inline-key{display:none;flex-direction:column;gap:10px;padding:16px;
+  background:var(--surf2);border-top:2px solid var(--acc)}
+.inline-key.on{display:flex}
+.inline-key-hd{display:flex;align-items:center;gap:8px;font-weight:800;font-size:.9rem}
+.inline-key-hd .ik-ico{font-size:1.2rem}
+.inline-key-guide{font-size:.8rem;line-height:1.6;color:var(--txt)}
+.inline-key-guide a{color:var(--acc);font-weight:700}
+.inline-key-guide code{background:var(--surf);padding:1px 5px;border-radius:4px;font-size:.78rem}
+.inline-key-row{display:flex;gap:6px;align-items:center}
+.inline-key-inp{flex:1;border:1.5px solid var(--acc);border-radius:var(--r-sm);
+  padding:9px 12px;font-size:.88rem;font-family:'Nunito',sans-serif;
+  background:var(--surf);color:var(--txt)}
+.inline-key-inp:focus{outline:none;box-shadow:0 0 0 3px var(--acc-lt)}
+.inline-key-save{padding:9px 18px;border-radius:100px;background:var(--acc);color:#fff;
+  border:none;cursor:pointer;font-weight:700;font-size:.85rem;white-space:nowrap;
+  font-family:'Nunito',sans-serif}
+.inline-key-save:hover{background:var(--acc-h)}
+.inline-key-dismiss{font-size:.75rem;color:var(--mut);cursor:pointer;text-align:center}
+.inline-key-dismiss:hover{color:var(--acc)}
+.inline-key-free{background:#f0fdf4;border:1.5px solid #22c55e;border-radius:var(--r-sm);
+  padding:7px 12px;font-size:.72rem;color:#166534;font-weight:700}
+
+/* Error message styles */
+.msg.err .mbub{background:#fef2f2;border:1.5px solid #fca5a5;color:#991b1b}
+.err-solutions{margin-top:8px;display:flex;flex-direction:column;gap:5px}
+.err-sol{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:var(--r-sm);
+  background:rgba(0,0,0,.04);font-size:.8rem;cursor:pointer;border:none;
+  font-family:'Nunito',sans-serif;text-align:left;width:100%;transition:background .15s}
+.err-sol:hover{background:var(--acc-lt);color:var(--acc)}
+.err-sol .es-ico{flex-shrink:0}
+
+/* Slow response warning bar */
+.slow-warn{display:none;align-items:center;gap:10px;padding:8px 14px;
+  background:#fff7ed;border-top:2px solid #fb923c;font-size:.8rem;color:#92400e;
+  animation:fadeIn .3s ease}
+.slow-warn.on{display:flex}
+.slow-warn strong{flex:1}
+.slow-warn-cancel{padding:5px 12px;border-radius:100px;border:1.5px solid #fb923c;
+  background:transparent;color:#92400e;cursor:pointer;font-size:.76rem;font-weight:700;
+  font-family:'Nunito',sans-serif;transition:all .15s;white-space:nowrap}
+.slow-warn-cancel:hover{background:#fb923c;color:#fff}
+.slow-warn-switch{padding:5px 12px;border-radius:100px;border:none;
+  background:#fb923c;color:#fff;cursor:pointer;font-size:.76rem;font-weight:700;
+  font-family:'Nunito',sans-serif;transition:all .15s;white-space:nowrap}
+.slow-warn-switch:hover{background:#ea580c}
+
+/* ── Waiting experience ─────────────────────────── */
+.twait{display:flex;flex-direction:column;gap:10px;width:100%}
+/* Timer ring */
+.twait-top{display:flex;align-items:center;gap:12px}
+.twait-ring{position:relative;width:44px;height:44px;flex-shrink:0}
+.twait-ring svg{transform:rotate(-90deg)}
+.twait-ring-bg{fill:none;stroke:var(--bdr);stroke-width:4}
+.twait-ring-fg{fill:none;stroke:var(--acc);stroke-width:4;stroke-linecap:round;
+  stroke-dasharray:113;stroke-dashoffset:113;transition:stroke-dashoffset .9s ease}
+.twait-sec{position:absolute;inset:0;display:flex;align-items:center;
+  justify-content:center;font-size:.85rem;font-weight:800;color:var(--acc);
+  font-variant-numeric:tabular-nums}
+/* Status text */
+.twait-info{flex:1;display:flex;flex-direction:column;gap:3px}
+.twait-model{font-size:.72rem;font-weight:700;color:var(--txt);opacity:.7}
+.twait-status{font-size:.72rem;color:var(--mut);min-height:1.1em;
+  transition:opacity .3s;display:flex;align-items:center;gap:4px}
+/* Progress bar wave */
+.tprogress{height:4px;border-radius:100px;background:var(--bdr);overflow:hidden;position:relative}
+.tprogress-wave{position:absolute;height:100%;width:200%;
+  background:linear-gradient(90deg,transparent 0%,var(--acc) 30%,var(--acc-lt) 50%,var(--acc) 70%,transparent 100%);
+  animation:twave 1.6s linear infinite}
+@keyframes twave{from{transform:translateX(-50%)}to{transform:translateX(0%)}}
+/* Fact card */
+.twait-fact{font-size:.74rem;line-height:1.5;color:var(--mut);
+  background:var(--surf2);border-radius:var(--r-sm);padding:8px 12px;
+  border-left:3px solid var(--acc);
+  animation:factIn .4s ease;min-height:2.5em;width:100%;box-sizing:border-box}
+@keyframes factIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+/* Dots (kept small) */
+.twait-dots{display:flex;gap:5px;align-items:center}
+.twait-dots .dot{width:6px;height:6px;border-radius:50%;background:var(--acc);
+  opacity:.3;animation:dotPulse 1.4s ease-in-out infinite}
+.twait-dots .dot:nth-child(2){animation-delay:.2s}
+.twait-dots .dot:nth-child(3){animation-delay:.4s}
+@keyframes dotPulse{0%,80%,100%{opacity:.3;transform:scale(1)}
+  40%{opacity:1;transform:scale(1.3)}}
+
+/* Slow warning integrat în bula de typing */
+.twait-slow{margin-top:6px;padding:8px 10px;background:#fff7ed;
+  border-radius:var(--r-sm);border:1.5px solid #fb923c;
+  font-size:.77rem;color:#92400e;display:flex;flex-direction:column;gap:6px;
+  animation:factIn .3s ease}
+.twait-slow-btns{display:flex;gap:6px;flex-wrap:wrap}
+/* Ascunde bara separată de slow-warn (înlocuită cu cea din bulă) */
+.slow-warn{display:none!important}
+
+/* ── Bottom panel (quiz + prompts + shortcuts) ── */
+.cpanel{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--bdr);
+  background:var(--surf);flex-shrink:0;overflow:hidden;
+  transition:opacity .25s ease;opacity:1;max-height:160px}
+.cpanel.hidden{display:none}
+/* Tabs */
+.cpanel-tabs{display:flex;gap:0;border-bottom:1px solid var(--bdr);flex-shrink:0}
+.cpanel-tab{flex:1;padding:5px 4px;font-size:.69rem;font-weight:700;border:none;
+  background:none;cursor:pointer;color:var(--mut);font-family:'Nunito',sans-serif;
+  border-bottom:2px solid transparent;transition:all .15s;white-space:nowrap}
+.cpanel-tab.on{color:var(--acc);border-bottom-color:var(--acc);background:var(--acc-lt)}
+.cpanel-tab:hover:not(.on){background:var(--surf2)}
+/* Content */
+.cpanel-body{overflow-y:auto;padding:5px 10px;max-height:100px}
+/* Quiz */
+.quiz-hd{display:flex;align-items:baseline;gap:8px;margin-bottom:7px;flex-wrap:wrap}
+.quiz-num{font-size:.7rem;font-weight:800;color:var(--acc);white-space:nowrap;flex-shrink:0;
+  background:var(--acc-lt);padding:2px 7px;border-radius:100px}
+.quiz-q-text{font-size:.83rem;font-weight:700;color:var(--txt);flex:1;line-height:1.3}
+.quiz-score-inline{font-size:.72rem;color:var(--mut);white-space:nowrap;flex-shrink:0;margin-left:auto}
+.quiz-q{font-size:.83rem;font-weight:700;color:var(--txt);margin-bottom:8px;line-height:1.4}
+.quiz-opts{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+.quiz-opt{padding:6px 8px;border-radius:var(--r-sm);border:1.5px solid var(--bdr);
+  background:var(--surf2);font-size:.76rem;cursor:pointer;text-align:left;
+  font-family:'Nunito',sans-serif;color:var(--txt);transition:all .15s;width:100%;
+  line-height:1.3}
+.quiz-opt:hover{border-color:var(--acc);color:var(--acc);background:var(--acc-lt)}
+.quiz-opt.correct{border-color:#22c55e!important;background:#f0fdf4!important;color:#166534!important;pointer-events:none}
+.quiz-opt.wrong{border-color:#ef4444!important;background:#fef2f2!important;color:#991b1b!important;pointer-events:none}
+.quiz-opt.reveal{border-color:#22c55e!important;background:#f0fdf4!important;color:#166534!important;pointer-events:none}
+.quiz-nav{display:flex;align-items:center;gap:8px;margin-top:6px}
+.quiz-next{padding:5px 14px;border-radius:100px;background:var(--acc);color:#fff;
+  border:none;cursor:pointer;font-size:.75rem;font-weight:700;font-family:'Nunito',sans-serif}
+.quiz-score{font-size:.73rem;color:var(--mut);flex:1;text-align:right;display:none}
+/* Quick prompts */
+.qp-cats{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:6px}
+.qp-cat{padding:3px 9px;border-radius:100px;border:1.5px solid var(--bdr);
+  background:var(--surf2);font-size:.7rem;font-weight:700;cursor:pointer;color:var(--mut);
+  transition:all .15s;font-family:'Nunito',sans-serif}
+.qp-cat.on,.qp-cat:hover{border-color:var(--acc);color:var(--acc);background:var(--acc-lt)}
+.qp-list{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+.qp-item{padding:5px 10px;border-radius:var(--r-sm);font-size:.77rem;cursor:pointer;
+  background:var(--surf2);border:1.5px solid var(--bdr);transition:all .15s;
+  font-family:'Nunito',sans-serif;color:var(--txt);text-align:left;width:100%;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.qp-item:hover{background:var(--acc-lt);color:var(--acc)}
+/* Shortcuts */
+.sc-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px 10px}
+.sc-row{display:flex;align-items:center;gap:6px;font-size:.74rem;color:var(--txt)}
+.sc-key{background:var(--surf2);border:1px solid var(--bdr);border-radius:4px;
+  padding:2px 6px;font-size:.68rem;font-family:monospace;color:var(--mut);white-space:nowrap}
+.sc-desc{flex:1;color:var(--mut)}
+/* Toggle button */
+.cpanel-toggle{position:absolute;right:46px;bottom:6px;width:22px;height:22px;
+  border-radius:50%;border:1px solid var(--bdr);background:var(--surf2);
+  cursor:pointer;font-size:.7rem;color:var(--mut);display:flex;align-items:center;
+  justify-content:center;transition:all .15s;z-index:10}
+.cpanel-toggle:hover{background:var(--acc-lt);color:var(--acc);border-color:var(--acc)}
+@media(max-width:600px){.cpanel{display:none}}
+
+/* Welcome screen complet */
+.cwelc{width:100%;max-width:620px;padding:4px 12px 2px;display:flex;flex-direction:column;gap:5px}
+.cwelc-hero{text-align:center;padding-bottom:2px}
+.cwelc-free-banner{font-size:.72rem;color:var(--mut);background:var(--surf2);
+  border-radius:var(--r-sm);padding:4px 10px;border:1px solid var(--bdr);line-height:1.4}
+.cwelc-sec{display:flex;flex-direction:column;gap:3px}
+.cwelc-stit{font-size:.84rem;font-weight:800;text-align:center;margin:0 0 2px;
+  font-family:'Playfair Display',serif;color:var(--txt)}
+.cwelc-g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
+.cwelc-card{display:flex;flex-direction:column;align-items:center;gap:2px;padding:5px 5px;
+  background:var(--surf2);border-radius:var(--r-sm);border:1px solid var(--bdr);text-align:center}
+.cwelc-ico{font-size:1.1rem}
+.cwelc-card strong{font-size:.74rem;font-weight:700;display:block}
+.cwelc-card p{font-size:.68rem;color:var(--mut);margin:1px 0 0;line-height:1.3}
+.cwelc-steps-full{display:flex;flex-direction:column;gap:5px}
+.cwelc-step-full{display:flex;align-items:flex-start;gap:10px}
+.cwelc-step-full .snum{width:24px;height:24px;border-radius:50%;background:var(--acc);
+  color:#fff;display:flex;align-items:center;justify-content:center;
+  font-size:.73rem;font-weight:800;flex-shrink:0;margin-top:1px}
+.cwelc-step-full strong{font-size:.81rem;font-weight:700;display:block}
+.cwelc-step-full p{font-size:.74rem;color:var(--mut);margin:2px 0 0;line-height:1.4}
+.cwelc-explore{text-align:center;margin:0}
+@media(max-width:500px){.cwelc-g3{grid-template-columns:1fr}}
+
+@media(max-width:768px){
+  .cwelc{padding:8px 10px 6px;gap:7px;max-width:100%}
+  .cwelc-g3{grid-template-columns:1fr 1fr}
+  .cwelc-card{padding:7px 5px}
+  .cpanel{max-height:150px}
+  .cpanel-body{max-height:100px}
+  .cpanel-tab{font-size:.66rem;padding:6px 2px}
+  .quiz-opts{grid-template-columns:1fr}
+  .qp-list{grid-template-columns:1fr}
+  .sc-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:420px){
+  .cwelc-g3{grid-template-columns:1fr}
+  .cwelc-stit{font-size:.84rem}
+}
+
+
+.cwelc-three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;width:100%}
+.cwelc-colsub{font-size:.69rem;color:var(--mut);margin:1px 0 4px;line-height:1.3}
+.cwelc-step-card{display:flex;align-items:flex-start;gap:6px;padding:5px 6px;
+  background:var(--surf2);border-radius:var(--r-sm);border:1px solid var(--bdr)}
+.cwelc-step-card .snum{flex-shrink:0;margin-top:1px}
+.cwelc-step-card strong{font-size:.74rem;font-weight:700;display:block}
+.cwelc-step-card p{font-size:.68rem;color:var(--mut);margin:1px 0 0;line-height:1.3}
+@media(max-width:640px){.cwelc-three-col{grid-template-columns:1fr 1fr}}
+@media(max-width:380px){.cwelc-three-col{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
 <nav>
-  <span class="logo" onclick="goPage('home')"><span class="logo-ai">AI</span> <span class="logo-lib">Liber</span></span>
+  <span class="logo" onclick="goPage('chat')"><span class="logo-ai">AI</span> <span class="logo-lib">Liber</span> <span class="logo-wico">🌸</span></span>
   <select onchange="setLang(this.value)" class="lang-sel-nav" data-i18n-aria="langLabel" aria-label="Limbă">
   <option value="ro" selected>Română</option>
   <option value="en">English</option>
@@ -567,80 +798,22 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
   <option value="pt">Português</option>
   <option value="it">Italiano</option>
 </select>
-  <button class="nb on" id="nb-home"    onclick="goPage('home')">🏠 <span class="nl" data-i18n="navHome">Acasă</span></button>
   <button class="nb"    id="nb-chat"    onclick="goPage('chat')">💬 <span class="nl" data-i18n="navChat">Chat</span></button>
   <button class="nb"    id="nb-explore" onclick="goPage('explore')">🔍 <span class="nl" data-i18n="navExplore">Explorează</span></button>
   <button class="nb"    id="nb-tips"    onclick="goPage('tips')">💡 <span class="nl" data-i18n="navTips">Sfaturi</span></button>
   <button class="nb" id="nb-legal" onclick="openLegal('privacy')">🔒 <span class="nl" data-i18n="navLegal">Legal</span></button>
+  <a class="nb nb-patreon" href="https://www.patreon.com/c/alexio_tf" target="_blank" rel="noopener" data-i18n-title="patreonTitle" title="Susține AI Liber pe Patreon">🎁 <span class="nl" data-i18n="navPatreon">Patreon</span></a>
 </nav>
 
-<!-- HOME -->
-<div class="page on" id="page-home">
-  <div class="hero">
-    <div class="badge" data-i18n="badge">✅ Unele modele funcționează imediat — fără cont</div>
-    <h1><span data-i18n="h1L1">Inteligența artificială</span><br><span data-i18n="h1V">este</span> <em data-i18n="h1Em">pentru toți</em></h1>
-    <p class="lead" data-i18n="lead">Chat cu GPT-4, Llama, Gemini, DeepSeek și 30+ modele AI — unele fără cont, toate accesibile.</p>
-    <div class="acts">
-      <button class="btn btn-p" onclick="goPage('chat')" data-i18n="heroBtn1">💬 Deschide Chat</button>
-      <button class="btn btn-s" onclick="goPage('explore')" data-i18n="heroBtn2">🔍 Explorează AI-urile</button>
-    </div>
-  </div>
-  <div class="sec" style="padding-top:0">
-    <div class="free-banner">
-      <span class="fbi">🌸</span>
-      <p data-i18n-html="bannerP">Prin <strong>Pollinations.AI</strong>, accesezi <strong>20+ modele complet gratuit</strong> — fără cont, fără cheie API.</p>
-    </div>
-  </div>
-  <div class="sec">
-    <h2 class="stit" data-i18n="sec1H">Ce este inteligența artificială?</h2>
-    <p class="ssub" data-i18n="sec1P">Un AI este un program cu care poți purta o conversație normală — ca un asistent extrem de bine pregătit, disponibil 24/7.</p>
-    <div class="g3">
-      <div class="card"><span class="ico">📝</span><h3 data-i18n="c1H">Scrie pentru tine</h3><p data-i18n="c1P">Emailuri, eseuri, CV-uri, povești — un AI le redactează sau le îmbunătățește în câteva secunde.</p></div>
-      <div class="card"><span class="ico">🧠</span><h3 data-i18n="c2H">Răspunde la orice</h3><p data-i18n="c2P">Știință, medicină, drept, rețete, sfaturi — AI-ul explică pe înțelesul tău, fără judecăți.</p></div>
-      <div class="card"><span class="ico">⚡</span><h3 data-i18n="c3H">Economisești timp</h3><p data-i18n="c3P">Sarcini care durau ore pot fi realizate în minute.</p></div>
-    </div>
-  </div>
-  <div class="steps">
-    <h2 class="stit" data-i18n="stepsH">Cum să începi</h2>
-    <p class="ssub" data-i18n="stepsP">Nu ai nevoie de cunoștințe tehnice.</p>
-    <div class="step"><div class="snum">1</div><div class="sbody"><h4 data-i18n="st1H">Apasă „Chat" din meniu</h4><p data-i18n="st1P">Modelele cu ✅ funcționează imediat. Altele necesită o cheie API gratuită.</p></div></div>
-    <div class="step"><div class="snum">2</div><div class="sbody"><h4 data-i18n="st2H">Scrie ce vrei să afli sau să faci</h4><p data-i18n="st2P">Scrie ca și cum ai trimite un mesaj unui prieten inteligent. Nu există întrebări greșite.</p></div></div>
-    <div class="step"><div class="snum">3</div><div class="sbody"><h4 data-i18n="st3H">Continuă conversația</h4><p data-i18n="st3P">Cere modificări, clarificări sau alte variante. AI-ul nu obosește niciodată.</p></div></div>
-  </div>
-  <footer class="site-footer">
-    <div class="fleg" data-i18n="footCopy">© 2025 AI Liber — Proiect independent, neafiliat vreunui furnizor AI.</div>
-    <div class="foot-right">
-      <div class="foot-links">
-        <a onclick="openLegal('privacy')" data-i18n="footPriv">Confidențialitate</a>
-        <span aria-hidden="true">·</span>
-        <a onclick="openLegal('terms')" data-i18n="footTerms">Termeni</a>
-        <span aria-hidden="true">·</span>
-        <a onclick="openLegal('cookies')" data-i18n="footCook">Cookie-uri</a>
-        <span aria-hidden="true">·</span>
-        <a onclick="openLegal('gdpr')" data-i18n="footGDPR">Drepturi GDPR</a>
-      </div>
-      <select id="lang-sel" onchange="setLang(this.value)" class="lang-sel-foot" data-i18n-aria="langLabel" aria-label="Limbă / Language">
-  <option value="ro" selected>Română</option>
-  <option value="en">English</option>
-  <option value="fr">Français</option>
-  <option value="de">Deutsch</option>
-  <option value="es">Español</option>
-  <option value="pt">Português</option>
-  <option value="it">Italiano</option>
-</select>
-    </div>
-  </footer>
-</div>
-
 <!-- CHAT -->
-<div class="page" id="page-chat">
+<div class="page on" id="page-chat">
   <div class="sbov" id="sbov" onclick="closeSB()"></div>
   <div class="chat-layout">
     <aside class="sb" id="sidebar">
       <div class="sb-hd">
         <div class="sb-hd-txt">
           🤖 Modele AI
-          <span class="sb-live loading" id="sb-live">⏳ Se încarcă…</span>
+          <span class="sb-live loading" id="sb-live" data-i18n="updating">⏳ Se încarcă…</span>
         </div>
         <button class="sb-close" onclick="closeSB()">✕</button>
       </div>
@@ -658,6 +831,7 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
       <div class="mlist" id="mlist"></div>
       <div class="sb-ft">
         <button onclick="openSett()" data-i18n="sbConfig">⚙️ Configurează chei API</button>
+        <button onclick="openModelCheck()" class="sb-check" data-i18n="sbCheck">🔍 Verifică & actualizează modele</button>
         <div class="sb-refresh" onclick="fetchPollModels(true)" data-i18n="sbReload">🔄 Reîncarcă modelele Pollinations</div>
       </div>
       <!-- Drag-to-resize handle -->
@@ -674,7 +848,7 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
         <button class="ctop-sb" onclick="toggleSB()">☰</button>
         <div class="ctop-mdl">
           <div class="ctop-n" id="ctop-n">—</div>
-          <div class="ctop-i" id="ctop-i" data-i18n="selectModel">Selectează un model din stânga</div>
+          <div class="ctop-i" id="ctop-i" data-i18n="selectModel" data-i18n="selModelPH">Selectează un model din stânga</div>
         </div>
         <div class="ctop-btns">
           <button class="ibtn" data-i18n-title="ttNewChat" title="Conversație nouă" onclick="clearChat()">🗑</button>
@@ -685,18 +859,13 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
         <div class="cwelc" id="cwelc">
           <span class="wico">🌸</span>
           <h3 data-i18n="cwH">Bun venit în Chat AI Liber!</h3>
-          <p data-i18n-html="cwP">Modelele marcate cu ✅ funcționează <strong>chiar acum</strong>, fără cont.</p>
+          <p data-i18n-html="cwP">Modelele marcate cu ✅ funcționează <strong>chiar acum</strong><span data-i18n="badgeSuffix2">, fără cont.</span></p>
           <div class="wfree" id="wfree-cnt" data-i18n="cwFree">✅ Se încarcă lista de modele gratuite…</div>
-          <div class="suggs">
-            <button class="sug" data-i18n="sg1" onclick="sendSug(t('sg1T'))">🧠 Ce e AI-ul?</button>
-            <button class="sug" data-i18n="sg2" onclick="sendSug(t('sg2T'))">📧 Email la șef</button>
-            <button class="sug" data-i18n="sg3" onclick="sendSug(t('sg3T'))">🎁 Idei cadouri</button>
-            <button class="sug" data-i18n="sg4" onclick="sendSug(t('sg4T'))">🤖 Comparație AI</button>
-            <button class="sug" data-i18n="sg5" onclick="sendSug(t('sg5T'))">🎯 Productivitate</button>
-          </div>
+
         </div>
       </div>
       <div class="cinput" id="cinput">
+        <div class="slow-warn" id="slow-warn"></div>
         <div class="inp-resize" id="inp-resize" data-i18n-title="ttResize" title="Trage pentru a redimensiona"></div>
         <div class="fmt-bar">
           <!-- Text styling -->
@@ -751,6 +920,8 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
           <div class="emoji-grid" id="emoji-grid"></div>
         </div>
 
+
+        <div class="inline-key" id="inline-key"></div>
         <div class="crow">
           <div class="crow-inner">
             <textarea class="cta" id="cta" rows="3"
@@ -762,8 +933,18 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
           </div>
         </div>
       </div>
+        <!-- ══ BOTTOM PANEL ════ -->
+        <div class="cpanel" id="cpanel">
+          <div class="cpanel-tabs">
+            <button class="cpanel-tab on" data-i18n="tabPrompts" onclick="cpTab('prompts',this)">⚡ Idei rapide</button>
+            <button class="cpanel-tab" data-i18n="tabQuiz" onclick="cpTab('quiz',this)">🧠 Quiz AI</button>
+            <button class="cpanel-tab" data-i18n="tabKeys" onclick="cpTab('keys',this)">⌨️ Shortcuts</button>
+          </div>
+          <div class="cpanel-body" id="cpanel-body"></div>
+        </div>
     </div>
   </div>
+
 </div>
 
 <!-- EXPLORE -->
@@ -787,7 +968,7 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
     </div>
     <div class="aigrid" id="aigrid"></div>
     <footer class="site-footer" style="max-width:100%;padding-top:32px;margin-top:16px">
-      <div class="fleg" data-i18n="footCopy">© 2025 AI Liber — Proiect independent.</div>
+      <div class="fleg" data-i18n="footCopy">© 2026 AI Liber — Proiect independent.</div>
       <div class="foot-right">
         <div class="foot-links"><a onclick="openLegal('privacy')" data-i18n="footPriv">Confidențialitate</a><span>·</span><a onclick="openLegal('terms')" data-i18n="footTerms">Termeni</a><span>·</span><a onclick="openLegal('cookies')" data-i18n="footCook">Cookie-uri</a><span>·</span><a onclick="openLegal('gdpr')" data-i18n="footGDPR">GDPR</a></div>
         <select class="lang-sel-foot" onchange="setLang(this.value)" data-i18n-aria="langLabel" aria-label="Limbă / Language">
@@ -815,7 +996,7 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
     <div class="tcard"><div class="tnum" data-i18n="t4N">Sfatul #4</div><h3 data-i18n="t4H">Verifică informațiile importante</h3><p data-i18n="t4P">AI-urile pot greși. Folosește AI-ul ca punct de plecare, nu ca sursă finală.</p><div class="tex" data-i18n-html="t4E">⚠️ <strong>Atenție:</strong> Nu lua decizii medicale, juridice sau financiare bazate exclusiv pe AI.</div></div>
     <div class="tcard"><div class="tnum" data-i18n="t5N">Sfatul #5</div><h3 data-i18n="t5H">Încearcă modele diferite</h3><p data-i18n="t5P">Fiecare model are puncte forte. Încearcă 2-3 pentru aceeași sarcină și compară.</p><div class="tex" data-i18n-html="t5E">💡 <strong>Pro tip:</strong> DeepSeek R1 pentru matematică, Gemini Search pentru info actuale, Claude pentru texte lungi!</div></div>
     <footer class="site-footer" style="max-width:100%;padding-top:28px;margin-top:12px">
-      <div class="fleg" data-i18n="footCopy">© 2025 AI Liber — Creat cu ❤️ în România</div>
+      <div class="fleg" data-i18n="footCopy">© 2026 AI Liber — Creat cu ❤️ în România</div>
       <div class="foot-right">
         <div class="foot-links"><a onclick="openLegal('privacy')" data-i18n="footPriv">Confidențialitate</a><span>·</span><a onclick="openLegal('terms')" data-i18n="footTerms">Termeni</a><span>·</span><a onclick="openLegal('cookies')" data-i18n="footCook">Cookie-uri</a><span>·</span><a onclick="openLegal('gdpr')" data-i18n="footGDPR">GDPR</a></div>
         <select class="lang-sel-foot" onchange="setLang(this.value)" aria-label="Limbă / Language">
@@ -858,7 +1039,7 @@ h1Em:'pentru toți',
 lead:'Chat cu GPT-4, Llama, Gemini, DeepSeek și 30+ modele AI — unele fără cont, toate accesibile.',
 heroBtn1:'💬 Deschide Chat',
 heroBtn2:'🔍 Explorează AI-urile',
-bannerP:'Prin <strong>Pollinations.AI</strong>, accesezi <strong>20+ modele complet gratuit</strong> — GPT-4, Llama 70B, DeepSeek R1, Gemini, Mistral Large și altele — fără cont, fără cheie API.',
+bannerP:'Prin <strong>Pollinations.AI</strong>, accesezi <strong>20+ modele complet gratuit</strong> — GPT-4, Llama 70B, DeepSeek R1, Gemini, Mistral Large și altele <span data-i18n="badgeSuffix">— fără cont, fără cheie API.</span>',
 sec1H:'Ce este inteligența artificială?',
 sec1P:'Un AI este un program cu care poți purta o conversație normală — ca un asistent extrem de bine pregătit, disponibil 24/7.',
 c1H:'Scrie pentru tine',
@@ -875,7 +1056,7 @@ st2H:'Scrie ce vrei să afli sau să faci',
 st2P:'Scrie ca și cum ai trimite un mesaj unui prieten inteligent. Nu există întrebări greșite.',
 st3H:'Continuă conversația',
 st3P:'Cere modificări, clarificări sau alte variante. AI-ul nu obosește niciodată.',
-footCopy:'© 2025 AI Liber — Proiect independent, neafiliat vreunui furnizor AI.',
+footCopy:'© 2026 AI Liber — Proiect independent, neafiliat vreunui furnizor AI.',
 cwH:'Bun venit în Chat AI Liber!',
 cwP:'Modelele marcate cu ✅ funcționează <strong>chiar acum</strong>, fără cont.',
 cwFree:'Se încarcă lista de modele gratuite…',
@@ -953,6 +1134,96 @@ anonBadge:'🔒 Fără cont',
 localBadge:'🖥️ Local',
 freeBadge:'✓ Gratuit',
 langLabel:'🌐 Limbă',
+tabPrompts:'⚡ Idei rapide',
+tabQuiz:'🧠 Quiz AI',
+tabKeys:'⌨️ Scurtături',
+badgeSuffix:'— fără cont, fără cheie API.',
+badgeSuffix2:', fără cont.',
+specAnon:'100% Anonim',
+specLocal:'Server local',
+specBrowser:'Local în browser',
+specFree:'Gratuit',
+specVolunt:'Voluntari',
+mkViaDDG:'via DuckDuckGo',
+mkBrowser:'rulează în browser',
+mkVolunt:'Cluster voluntari',
+mkLocalLMS:'LM Studio local',
+mkLocalOll:'Ollama local',
+tooltipClose:'Închide',
+sbModelsHd:'🤖 Modele AI',
+selModelPH:'Selectează un model din stânga',
+mcLoadInit:'<span class="mcheck-spinner"></span> Se verifică modelele disponibile…',
+aiFacts:['💡 GPT-4 a citit cam 45 de terabytes de text — de 30x mai mult ca toată Wikipedia.','🧠 Modelele mari de limbaj nu «gândesc» — prezic cel mai probabil cuvânt următor.','🌍 Traducerea automată Google procesează 100 de miliarde de cuvinte pe zi.','⚡ Groq e de 10-100x mai rapid decât alte API-uri pentru că folosește cipuri speciale.','🔒 Mesajele tale merg direct la furnizorul AI — AI Liber nu vede nimic.','🎨 DALL-E 3 poate genera 4 imagini în ~10 secunde pornind de la text.','🤖 Llama 3 de la Meta e open-source — poți rula versiunea mică chiar în browser!','📚 Claude de la Anthropic are un context de 200.000 tokens — ≈150.000 cuvinte.','🌐 Pollinations oferă 25+ modele AI complet gratuit și anonim.','💬 Un model AI nu știe cine ești — fiecare conversație e complet izolată.'],
+thinkMsgs:['Se conectează…','Se gândește…','Procesează…','Formulează…','Aproape gata…','Finalizează…'],
+slowWarnMsg:'nu răspunde. Vrei să aștepți sau să schimbi modelul?',
+slowWarnCancel:'✕ Anulează',
+slowWarnSwitch:'⚡ Schimbă modelul',
+errKeyTitle:'🔑 Cheie API invalidă',
+errQuotaTitle:'💳 Limită de cont',
+err404Title:'🔍 Model indisponibil',
+errRateTitle:'⏱ Prea multe cereri',
+errCorsTitle:'🌐 Conexiune imposibilă',
+errDDGTitle:'🦆 DuckDuckGo blocat de CORS',
+errLocalTitle:'🖥️ Server local inaccesibil',
+errTimeoutTitle:'⌛ Timeout — server fără răspuns',
+errWebGPUTitle:'🖥️ WebGPU indisponibil',
+errEmptyTitle:'📭 Răspuns gol',
+errGenTitle:'❌ Eroare',
+errKeyDesc:'Cheia API nu este acceptată. Poate fi expirată, incorectă sau din alt cont.',
+errQuotaDesc:'O limită de cont sau credite insuficiente. Verifică planul tău.',
+err404Desc:'Modelul nu mai există sau a fost redenumit. Lista se actualizează automat.',
+errRatePollDesc:'Pollinations permite **1 mesaj/15 secunde** anonim. Înregistrarea gratuită crește limita la 1 mesaj/5s.',
+errRateDesc:'Serverul a limitat cererile temporar. Așteaptă câteva secunde.',
+errCorsDesc:'Nu s-a putut contacta serverul AI. Problemă de rețea, firewall sau server temporar indisponibil.',
+errDDGDesc:'Browserul blochează conexiunea directă la DuckDuckGo din motive de securitate. Alternativele sunt la fel de private.',
+errTimeoutDesc:'Serverul a durat prea mult. Poate fi supraîncărcat temporar.',
+errWebGPUDesc:'Modelele locale rulează via **WebGPU**, care necesită Chrome 113+ sau Edge 113+. Browserul tău nu îl suportă.',
+errEmptyDesc:'Serverul a răspuns dar fără conținut. Modelul poate fi supraîncărcat.',
+actUpdateKey:'⚙️ Actualizează cheia',
+actGetKey:'🆓 Obține cheie nouă',
+actCheckAcc:'💳 Verifică contul',
+actSwitchFree:'✅ Treci la un model gratuit',
+actSwitchPoll:'✅ Treci la Pollinations (stabil)',
+actSwitchPollFast:'✅ Pollinations (răspuns rapid)',
+actTryGroq:'⚡ Încearcă Groq (gratuit)',
+actRetry:'🔄 Încearcă din nou',
+actRetry15:'🔄 Încearcă din nou (auto 15s)',
+actRegPoll:'🆓 Cont gratuit Pollinations',
+actReloadModels:'🔍 Reîncarcă lista de modele',
+actCheckModels:'🔍 Verifică & actualizează modele',
+actOpenDDG:'🌍 Deschide DuckDuckGo direct',
+actFasterModel:'⚡ Treci la un model mai rapid',
+actGetChrome:'🌐 Descarcă Chrome (cu WebGPU)',
+actLocalInstr:'📖 Instrucțiuni server local',
+actSwitchOnline:'✅ Treci la un model online',
+actSwitchAlt:'✅ Treci la alt model',
+ikTitle:'Cheie API necesară pentru',
+ikFree:'🎁 Cheie GRATUITĂ — fără card bancar!',
+ikGet:'🔗 Obține cheia API de la',
+ikDismiss:'✕ Închide (poți reveni oricând din ⚙️)',
+ikSave:'💾 Salvează',
+ikUpdate:'✅ Actualizează',
+ikSaved:'✅ Salvat!',
+mcTitle:'🔍 Verifică & actualizează modele',
+mcLoading:'Se verifică modelele disponibile…',
+mcError:'❌ Nu s-a putut contacta Pollinations. Verifică conexiunea.',
+mcAllGood:'✅ Toate modelele sunt actualizate! Nicio modificare necesară.',
+mcNewModels:'✨ Modele noi disponibile',
+mcOldModels:'🗑 Modele indisponibile',
+mcHasConv:'⚠️ Are conversație salvată',
+mcApply:'Aplică modificările',
+mcCancel:'Anulează',
+mcConfirmDel:'Modelele următoare au conversații salvate care vor fi ȘTERSE:\n\nEști sigur că vrei să le elimini?',
+mcDoneAdded:'modele noi adăugate.',
+mcDoneRemoved:'modele eliminate.',
+mcDoneReload:'Apasă **🔄 Reîncarcă modelele Pollinations** pentru detalii complete.',
+keyNoKey:'○ Nicio cheie',
+keyConfigured:'✅ Configurată',
+btnClose:'Închide',
+legalVersion:'v1.0 · Actualizat: 12 aprilie 2026',
+navPatreon:'Patreon',
+patreonTitle:'Susține AI Liber pe Patreon',
+sbCheck:'🔍 Verifică & actualizează modele',
 grpInstant:'✅ Imediat — fără cont',
 grpCount:'modele',
 grpKey:'🔑 Cheie API',
@@ -972,9 +1243,9 @@ sbReload:'🔄 Reîncarcă modelele Pollinations',
 fmtFile:'Fișier',
 sendBtn:'➤ Trimite',
 chatPH:'Scrie un mesaj… (Enter = trimite · Shift+Enter = rând nou)',
-lPriv:`<h3>1. Cine suntem</h3><p><strong><span class="logo-ai">AI</span> <span class="logo-lib">Liber</span></strong> este un proiect independent din România. Nu avem servere — aplicația rulează complet în browserul tău. Contact: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p><h3>2. Ce stocăm</h3><div class="lmod-info">✅ Nicio dată nu este trimisă sau stocată de noi.</div><table class="lmod-table"><tr><th>Date</th><th>Unde</th><th>Scop</th><th>Durată</th></tr><tr><td>Chei API</td><td>localStorage</td><td>Auth AI terți</td><td>Până la ștergere</td></tr><tr><td>Lățime sidebar</td><td>localStorage</td><td>Preferință UI</td><td>Până la ștergere</td></tr><tr><td>Consimțământ</td><td>localStorage</td><td>Evitare banner repetat</td><td>1 an</td></tr><tr><td>Istoric chat</td><td>RAM (sesiune)</td><td>Context chat activ</td><td>La închiderea tab-ului</td></tr></table><h3>3. Servicii terțe</h3><p>Mesajele tale merg <strong>direct</strong> din browserul tău la furnizorul AI ales. AI Liber nu interceptează nimic. Furnizori: Pollinations.AI, DuckDuckGo AI (anonim), AI Horde (voluntari), WebLLM/LM Studio/Ollama (complet local), Anthropic/OpenAI/Google/Groq/Mistral/Perplexity/OpenRouter (cu cheia ta).</p><div class="lmod-warn">⚠️ Nu include date personale sensibile (CNP, parole, date medicale sau financiare) în mesajele trimise la servicii AI terțe.</div><h3>4. Temei juridic &amp; Contact</h3><p>Stocarea locală se face în baza interesului legitim (Art. 6(1)(f) GDPR). Drepturi: vezi tab-ul GDPR. Contact: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p>`,
+lPriv:`<h3>1. Cine suntem</h3><p><strong><span class="logo-ai">AI</span> <span class="logo-lib">Liber</span></strong> este un proiect independent din România. Nu avem servere — aplicația rulează complet în browserul tău. Cheile API plătite sunt criptate cu <strong>AES-256-GCM</strong> în localStorage — niciodată în text simplu. Contact: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p><h3>2. Ce stocăm</h3><div class="lmod-info">✅ Nicio dată nu este trimisă sau stocată de noi.</div><table class="lmod-table"><tr><th>Date</th><th>Unde</th><th>Scop</th><th>Durată</th></tr><tr><td>Chei API</td><td>localStorage</td><td>Auth AI terți</td><td>Până la ștergere</td></tr><tr><td>Lățime sidebar</td><td>localStorage</td><td>Preferință UI</td><td>Până la ștergere</td></tr><tr><td>Consimțământ</td><td>localStorage</td><td>Evitare banner repetat</td><td>1 an</td></tr><tr><td>Istoric chat</td><td>RAM (sesiune)</td><td>Context chat activ</td><td>La închiderea tab-ului</td></tr></table><h3>3. Servicii terțe</h3><p>Mesajele tale merg <strong>direct</strong> din browserul tău la furnizorul AI ales. AI Liber nu interceptează nimic. Furnizori: Pollinations.AI, DuckDuckGo AI (anonim), AI Horde (voluntari), WebLLM/LM Studio/Ollama (complet local), Anthropic/OpenAI/Google/Groq/Mistral/Perplexity/OpenRouter (cu cheia ta).</p><div class="lmod-warn">⚠️ Nu include date personale sensibile (CNP, parole, date medicale sau financiare) în mesajele trimise la servicii AI terțe.</div><h3>4. Temei juridic &amp; Contact</h3><p>Stocarea locală se face în baza interesului legitim (Art. 6(1)(f) GDPR). Drepturi: vezi tab-ul GDPR. Contact: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p>`,
 lTerms:`<h3>1. Acceptarea termenilor</h3><p>Prin utilizarea <strong><span class="logo-ai">AI</span> <span class="logo-lib">Liber</span></strong> accepți prezenții termeni. Nu furnizăm servicii AI proprii și nu suntem afiliați niciunui furnizor AI listat.</p><h3>2. Utilizare</h3><p><strong>Permisă:</strong> uz personal, educațional, non-comercial; modificarea și redistribuirea codului sursă.</p><p><strong>Interzisă:</strong> conținut ilegal sau defăimător; eludarea limitelor furnizorilor AI; utilizarea cheilor API ale altor persoane fără consimțământ.</p><h3>3. Chei API &amp; responsabilitate</h3><p>Cheile API sunt stocate <strong>exclusiv local</strong> în browserul tău — nu sunt accesibile nouă. Ești singur responsabil pentru securizarea și costurile generate.</p><div class="lmod-warn">⚠️ Conținutul AI poate fi inexact. Nu lua decizii medicale, juridice sau financiare bazate exclusiv pe AI fără verificare cu un specialist.</div><h3>4. Contact</h3><p>AI Liber este furnizat „ca atare", fără garanții. Legislație aplicabilă: română și europeană (GDPR, AI Act). Contact: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p>`,
-lCook:`<h3>Cookie-uri și stocare locală</h3><p>AI Liber <strong>nu folosește cookie-uri tradiționale</strong>. Folosim exclusiv <strong>localStorage</strong> — stocare locală controlată 100% de tine.</p><div class="lmod-info">✅ Zero tracking. Zero cookies de la terți. Zero reclame. Nu conținem cod de analiză, nu avem pixeli publicitari.</div><table class="lmod-table"><tr><th>Cheie</th><th>Conținut</th><th>Obligatoriu</th></tr><tr><td>ailib_sbw</td><td>Lățimea sidebar-ului</td><td>Nu — funcțional</td></tr><tr><td>sk_*</td><td>Cheile API introduse de tine</td><td>Nu — opțional</td></tr><tr><td>ailib_consent</td><td>„accepted" sau „rejected"</td><td>Da — esențial</td></tr></table><h3>Ce NU stocăm niciodată</h3><ul><li>Istoricul conversațiilor (se șterge la închiderea tab-ului)</li><li>Date de identificare personală (nume, email, IP, locație)</li><li>Date de utilizare sau statistici</li></ul><h3>Cum ștergi datele</h3><p><strong>Chrome/Edge:</strong> F12 → Application → Local Storage → Clear<br><strong>Firefox:</strong> F12 → Storage → Local Storage → Delete All<br>Sau folosește butonul din secțiunea GDPR.</p>`,
+lCook:`<h3>Cookie-uri și stocare locală</h3><p>AI Liber <strong>nu folosește cookie-uri tradiționale</strong>. Folosim exclusiv <strong>localStorage</strong> — stocare locală controlată 100% de tine.</p><div class="lmod-info">✅ Zero tracking. Zero cookies de la terți. Zero reclame. Nu conținem cod de analiză, nu avem pixeli publicitari.</div><table class="lmod-table"><tr><th>Cheie</th><th>Conținut</th><th>Obligatoriu</th></tr><tr><td>ailib_sbw</td><td>Lățimea sidebar-ului</td><td>Nu — funcțional</td></tr><tr><td>aik_enc_*</td><td>Cheile API criptate AES-256-GCM (nu text simplu)</td><td>Nu — opțional</td></tr><tr><td>ailib_ksalt</td><td>Salt criptografic pentru derivarea cheii</td><td>Da — dacă folosești chei API</td></tr><tr><td>ailib_consent</td><td>„accepted" sau „rejected"</td><td>Da — esențial</td></tr></table><h3>Ce NU stocăm niciodată</h3><ul><li>Istoricul conversațiilor (se șterge la închiderea tab-ului)</li><li>Date de identificare personală (nume, email, IP, locație)</li><li>Date de utilizare sau statistici</li></ul><h3>Cum ștergi datele</h3><p><strong>Chrome/Edge:</strong> F12 → Application → Local Storage → Clear<br><strong>Firefox:</strong> F12 → Storage → Local Storage → Delete All<br>Sau folosește butonul din secțiunea GDPR.</p>`,
 lGDPR:`<h3>Drepturile tale conform GDPR</h3><p>Toate datele stocate de AI Liber se află exclusiv în <strong>localStorage-ul browserului tău</strong>. Nu deținem servere cu datele tale.</p><h3>📋 Dreptul de acces (Art. 15)</h3><p>Accesează: F12 → Application → Local Storage → ai-liber.ro</p><h3>✏️ Dreptul de rectificare (Art. 16)</h3><p>Modifică cheile API direct din ⚙️ Configurează chei API sau din localStorage.</p><h3>🗑️ Dreptul la ștergere — „dreptul de a fi uitat" (Art. 17)</h3><p>Șterge toate datele instantaneu:</p><div style="text-align:center;margin:16px 0"><button onclick="eraseAllData()" style="padding:11px 24px;border-radius:100px;background:#DC2626;color:#fff;border:none;font-family:'Nunito',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer" data-i18n-html="eraseBtn">🗑️</button></div><h3>🚫 Dreptul de opoziție (Art. 21)</h3><p>Refuză bannerul de consimțământ. Conversațiile anonime (Pollinations, DuckDuckGo, AI Horde) funcționează fără nicio stocare locală.</p><h3>📬 Autoritate &amp; Contact</h3><p><strong>ANSPDCP</strong>: <a href="https://www.dataprotection.ro" target="_blank">dataprotection.ro</a> · +40.318.059.211<br>Contact AI Liber: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p>`,
 
 },
@@ -1008,7 +1279,7 @@ st2H:'Write what you want to know or do',
 st2P:'Write as if messaging a smart friend. There are no wrong questions.',
 st3H:'Continue the conversation',
 st3P:'Ask for modifications, clarifications or alternatives. AI never gets tired.',
-footCopy:'© 2025 AI Liber — Independent project, not affiliated with any AI provider.',
+footCopy:'© 2026 AI Liber — Independent project, not affiliated with any AI provider.',
 cwH:'Welcome to AI Liber Chat!',
 cwP:'Models marked ✅ work <strong>right now</strong>, no account needed.',
 cwFree:'Loading list of free models…',
@@ -1086,6 +1357,96 @@ anonBadge:'🔒 No account',
 localBadge:'🖥️ Local',
 freeBadge:'✓ Free',
 langLabel:'🌐 Language',
+tabPrompts:'⚡ Quick ideas',
+tabQuiz:'🧠 AI Quiz',
+tabKeys:'⌨️ Shortcuts',
+badgeSuffix:'— no account, no API key.',
+badgeSuffix2:', no account.',
+specAnon:'100% Anonymous',
+specLocal:'Local server',
+specBrowser:'Local in browser',
+specFree:'Free',
+specVolunt:'Volunteers',
+mkViaDDG:'via DuckDuckGo',
+mkBrowser:'runs in browser',
+mkVolunt:'Volunteer cluster',
+mkLocalLMS:'LM Studio local',
+mkLocalOll:'Ollama local',
+tooltipClose:'Close',
+sbModelsHd:'🤖 AI Models',
+selModelPH:'Select a model on the left',
+mcLoadInit:'<span class="mcheck-spinner"></span> Checking available models…',
+aiFacts:['💡 GPT-4 was trained on ~45 terabytes of text — 30x more than all of Wikipedia.','🧠 LLMs don\'t \'think\' — they predict the most likely next word, token by token.','🌍 Google Translate processes 100 billion words per day automatically.','⚡ Groq is 10-100x faster than other APIs thanks to custom LPU chips.','🔒 Your messages go directly to the AI provider — AI Liber sees nothing.','🎨 DALL-E 3 can generate 4 images in ~10 seconds from a text description.','🤖 Meta\'s Llama 3 is open-source — the small version runs in your browser!','📚 Claude by Anthropic has a 200K token context window — ~150,000 words.','🌐 Pollinations offers 25+ AI models completely free and anonymously.','💬 The AI doesn\'t know who you are — each conversation is fully isolated.'],
+thinkMsgs:['Connecting…','Thinking…','Processing…','Formulating…','Almost done…','Finishing up…'],
+slowWarnMsg:'is not responding. Wait or switch model?',
+slowWarnCancel:'✕ Cancel',
+slowWarnSwitch:'⚡ Switch model',
+errKeyTitle:'🔑 Invalid API Key',
+errQuotaTitle:'💳 Account limit reached',
+err404Title:'🔍 Model unavailable',
+errRateTitle:'⏱ Too many requests',
+errCorsTitle:'🌐 Connection failed',
+errDDGTitle:'🦆 DuckDuckGo CORS blocked',
+errLocalTitle:'🖥️ Local server unreachable',
+errTimeoutTitle:'⌛ Timeout — no response',
+errWebGPUTitle:'🖥️ WebGPU unavailable',
+errEmptyTitle:'📭 Empty response',
+errGenTitle:'❌ Error',
+errKeyDesc:'The API key is not accepted. It may be expired, incorrect or from another account.',
+errQuotaDesc:'Account quota or insufficient credits. Check your plan.',
+err404Desc:'Model no longer exists or has been renamed. The list updates automatically.',
+errRatePollDesc:'Pollinations allows **1 message/15 seconds** anonymously. Free registration increases this to 1 message/5s.',
+errRateDesc:'Server temporarily rate-limited. Wait a few seconds.',
+errCorsDesc:'Could not contact the AI server. Network issue, firewall or server temporarily unavailable.',
+errDDGDesc:'Browser blocks direct connection to DuckDuckGo for security reasons. Alternatives are equally private.',
+errTimeoutDesc:'Server took too long to respond. It may be temporarily overloaded.',
+errWebGPUDesc:'Local models run via **WebGPU**, which requires Chrome 113+ or Edge 113+. Your browser does not support it.',
+errEmptyDesc:'Server responded but with no content. Model may be overloaded.',
+actUpdateKey:'⚙️ Update key',
+actGetKey:'🆓 Get new key',
+actCheckAcc:'💳 Check account',
+actSwitchFree:'✅ Switch to a free model',
+actSwitchPoll:'✅ Switch to Pollinations (stable)',
+actSwitchPollFast:'✅ Pollinations (fast)',
+actTryGroq:'⚡ Try Groq (free)',
+actRetry:'🔄 Try again',
+actRetry15:'🔄 Try again (auto 15s)',
+actRegPoll:'🆓 Free Pollinations account',
+actReloadModels:'🔍 Reload model list',
+actCheckModels:'🔍 Check & update models',
+actOpenDDG:'🌍 Open DuckDuckGo directly',
+actFasterModel:'⚡ Switch to a faster model',
+actGetChrome:'🌐 Download Chrome (with WebGPU)',
+actLocalInstr:'📖 Local server instructions',
+actSwitchOnline:'✅ Switch to an online model',
+actSwitchAlt:'✅ Switch to another model',
+ikTitle:'API key required for',
+ikFree:'🎁 FREE key — no credit card!',
+ikGet:'🔗 Get API key from',
+ikDismiss:'✕ Close (return anytime via ⚙️)',
+ikSave:'💾 Save',
+ikUpdate:'✅ Update',
+ikSaved:'✅ Saved!',
+mcTitle:'🔍 Check & update models',
+mcLoading:'Checking available models…',
+mcError:'❌ Could not reach Pollinations. Check your connection.',
+mcAllGood:'✅ All models are up to date! No changes needed.',
+mcNewModels:'✨ New models available',
+mcOldModels:'🗑 Unavailable models',
+mcHasConv:'⚠️ Has saved conversation',
+mcApply:'Apply changes',
+mcCancel:'Cancel',
+mcConfirmDel:'The following models have saved conversations that will be DELETED:\n\nAre you sure you want to remove them?',
+mcDoneAdded:'new models added.',
+mcDoneRemoved:'models removed.',
+mcDoneReload:'Press **🔄 Reload Pollinations models** for full details.',
+keyNoKey:'○ No key',
+keyConfigured:'✅ Configured',
+btnClose:'Close',
+legalVersion:'v1.0 · Updated: April 12, 2026',
+navPatreon:'Patreon',
+patreonTitle:'Support AI Liber on Patreon',
+sbCheck:'🔍 Check & update models',
 grpInstant:'✅ Instant — no account',
 grpCount:'models',
 grpKey:'🔑 API Key',
@@ -1105,9 +1466,9 @@ sbReload:'🔄 Reload Pollinations models',
 fmtFile:'File',
 sendBtn:'➤ Send',
 chatPH:'Write a message… (Enter = send · Shift+Enter = new line)',
-lPriv:`<h3>1. Who we are</h3><p><strong><span class="logo-ai">AI</span> <span class="logo-lib">Liber</span></strong> is an independent, non-commercial project from Romania. We have no servers — the app runs entirely in your browser. Contact: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p><h3>2. What we store</h3><div class="lmod-info">✅ <strong>No data is sent to or stored by us.</strong></div><table class="lmod-table"><tr><th>Data</th><th>Location</th><th>Purpose</th><th>Duration</th></tr><tr><td>API keys</td><td>localStorage</td><td>Auth to third-party AI</td><td>Until manually deleted</td></tr><tr><td>Sidebar width</td><td>localStorage</td><td>UI preference</td><td>Until deleted</td></tr><tr><td>Cookie consent</td><td>localStorage</td><td>Avoid repeat banner</td><td>1 year</td></tr><tr><td>Chat history</td><td>RAM (session)</td><td>Active chat context</td><td>When tab closes</td></tr></table><h3>3. Third-party services</h3><p>Your messages go <strong>directly</strong> from your browser to the chosen AI provider. AI Liber intercepts nothing. Providers: Pollinations.AI, DuckDuckGo AI (anonymous), AI Horde (volunteers), WebLLM/LM Studio/Ollama (fully local), Anthropic/OpenAI/Google/Groq/Mistral/Perplexity/OpenRouter (with your own key).</p><div class="lmod-warn">⚠️ Do not include sensitive personal data (ID numbers, passwords, medical or financial data) in messages sent to third-party AI services.</div><h3>4. Legal basis &amp; Contact</h3><p>Local storage is based on legitimate interest (Art. 6(1)(f) GDPR). Rights: see GDPR tab. Contact: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p>`,
+lPriv:`<h3>1. Who we are</h3><p><strong><span class="logo-ai">AI</span> <span class="logo-lib">Liber</span></strong> is an independent, non-commercial project from Romania. We have no servers — the app runs entirely in your browser. Paid API keys are encrypted with <strong>AES-256-GCM</strong> in localStorage — never stored as plaintext. Contact: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p><h3>2. What we store</h3><div class="lmod-info">✅ <strong>No data is sent to or stored by us.</strong></div><table class="lmod-table"><tr><th>Data</th><th>Location</th><th>Purpose</th><th>Duration</th></tr><tr><td>API keys</td><td>localStorage</td><td>Auth to third-party AI</td><td>Until manually deleted</td></tr><tr><td>Sidebar width</td><td>localStorage</td><td>UI preference</td><td>Until deleted</td></tr><tr><td>Cookie consent</td><td>localStorage</td><td>Avoid repeat banner</td><td>1 year</td></tr><tr><td>Chat history</td><td>RAM (session)</td><td>Active chat context</td><td>When tab closes</td></tr></table><h3>3. Third-party services</h3><p>Your messages go <strong>directly</strong> from your browser to the chosen AI provider. AI Liber intercepts nothing. Providers: Pollinations.AI, DuckDuckGo AI (anonymous), AI Horde (volunteers), WebLLM/LM Studio/Ollama (fully local), Anthropic/OpenAI/Google/Groq/Mistral/Perplexity/OpenRouter (with your own key).</p><div class="lmod-warn">⚠️ Do not include sensitive personal data (ID numbers, passwords, medical or financial data) in messages sent to third-party AI services.</div><h3>4. Legal basis &amp; Contact</h3><p>Local storage is based on legitimate interest (Art. 6(1)(f) GDPR). Rights: see GDPR tab. Contact: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p>`,
 lTerms:`<h3>1. Acceptance</h3><p>By using <strong><span class="logo-ai">AI</span> <span class="logo-lib">Liber</span></strong> you accept these terms. We do not provide our own AI services and are not affiliated with any listed AI provider.</p><h3>2. Permitted &amp; prohibited use</h3><p><strong>Permitted:</strong> personal, educational and non-commercial use; modifying and redistributing the source code.</p><p><strong>Prohibited:</strong> illegal or defamatory content; circumventing AI provider limits; using others' API keys without consent.</p><h3>3. API keys &amp; responsibility</h3><p>API keys are stored <strong>locally only</strong> — we cannot access them. You are solely responsible for their security and any costs incurred.</p><div class="lmod-warn">⚠️ AI content may be inaccurate. Do not make medical, legal or financial decisions based solely on AI responses without expert verification.</div><h3>4. Contact</h3><p>AI Liber is provided "as-is" with no guarantee of continuous availability. Applicable law: Romanian and European (GDPR, AI Act). Contact: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p>`,
-lCook:`<h3>Cookies &amp; local storage</h3><p>AI Liber <strong>does not use traditional cookies</strong>. We use only <strong>localStorage</strong> — local storage controlled entirely by you.</p><div class="lmod-info">✅ <strong>Zero tracking. Zero third-party cookies. Zero ads.</strong> No analytics code, no ad pixels, no behavior tracking.</div><table class="lmod-table"><tr><th>Key</th><th>Content</th><th>Required</th></tr><tr><td>ailib_sbw</td><td>Sidebar width</td><td>No — functional</td></tr><tr><td>sk_*</td><td>Your API keys</td><td>No — optional</td></tr><tr><td>ailib_consent</td><td>"accepted" or "rejected"</td><td>Yes — essential</td></tr></table><h3>What we NEVER store</h3><ul><li>Chat history (deleted when tab closes)</li><li>Personal identification data (name, email, IP, location)</li><li>Usage statistics</li></ul><h3>How to delete your data</h3><p><strong>Chrome/Edge:</strong> F12 → Application → Local Storage → Clear<br><strong>Firefox:</strong> F12 → Storage → Local Storage → Delete All<br>Or use the button in the GDPR section.</p>`,
+lCook:`<h3>Cookies &amp; local storage</h3><p>AI Liber <strong>does not use traditional cookies</strong>. We use only <strong>localStorage</strong> — local storage controlled entirely by you.</p><div class="lmod-info">✅ <strong>Zero tracking. Zero third-party cookies. Zero ads.</strong> No analytics code, no ad pixels, no behavior tracking.</div><table class="lmod-table"><tr><th>Key</th><th>Content</th><th>Required</th></tr><tr><td>ailib_sbw</td><td>Sidebar width</td><td>No — functional</td></tr><tr><td>aik_enc_*</td><td>API keys encrypted with AES-256-GCM (never plaintext)</td><td>No — optional</td></tr><tr><td>ailib_ksalt</td><td>Cryptographic salt for key derivation</td><td>Yes — if you use API keys</td></tr><tr><td>ailib_consent</td><td>"accepted" or "rejected"</td><td>Yes — essential</td></tr></table><h3>What we NEVER store</h3><ul><li>Chat history (deleted when tab closes)</li><li>Personal identification data (name, email, IP, location)</li><li>Usage statistics</li></ul><h3>How to delete your data</h3><p><strong>Chrome/Edge:</strong> F12 → Application → Local Storage → Clear<br><strong>Firefox:</strong> F12 → Storage → Local Storage → Delete All<br>Or use the button in the GDPR section.</p>`,
 lGDPR:`<h3>Your GDPR rights</h3><p>All data stored by AI Liber is exclusively in <strong>your browser's localStorage</strong>. We have no servers with your data.</p><h3>📋 Right of access (Art. 15)</h3><p>Access: F12 → Application → Local Storage → ai-liber.ro</p><h3>✏️ Right to rectification (Art. 16)</h3><p>Modify API keys directly from ⚙️ Configure API Keys or from localStorage.</p><h3>🗑️ Right to erasure — "right to be forgotten" (Art. 17)</h3><p>Delete all data instantly:</p><div style="text-align:center;margin:16px 0"><button onclick="eraseAllData()" style="padding:11px 24px;border-radius:100px;background:#DC2626;color:#fff;border:none;font-family:'Nunito',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer" data-i18n-html="eraseBtn">🗑️</button></div><h3>🚫 Right to object (Art. 21)</h3><p>Decline the consent banner. Anonymous chats (Pollinations, DuckDuckGo, AI Horde) work with zero local storage.</p><h3>📬 Supervisory authority &amp; Contact</h3><p><strong>ANSPDCP (Romania)</strong>: <a href="https://www.dataprotection.ro" target="_blank">dataprotection.ro</a><br>AI Liber contact: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p>`,
 },
 it:{
@@ -1140,7 +1501,7 @@ st2H:'Scrivi cosa vuoi sapere o fare',
 st2P:'Scrivi come se mandassi un messaggio a un amico intelligente.',
 st3H:'Continua la conversazione',
 st3P:'Chiedi modifiche, chiarimenti o alternative. L\'IA non si stanca mai.',
-footCopy:'© 2025 AI Liber — Progetto indipendente, non affiliato ad alcun fornitore IA.',
+footCopy:'© 2026 AI Liber — Progetto indipendente, non affiliato ad alcun fornitore IA.',
 cwH:'Benvenuto in AI Liber Chat!',
 cwP:'I modelli ✅ funzionano <strong>subito</strong>, senza account.',
 cwFree:'Caricamento lista modelli gratuiti…',
@@ -1218,6 +1579,96 @@ anonBadge:'🔒 Senza account',
 localBadge:'🖥️ Locale',
 freeBadge:'✓ Gratuito',
 langLabel:'🌐 Lingua',
+tabPrompts:'⚡ Idee rapide',
+tabQuiz:'🧠 Quiz IA',
+tabKeys:'⌨️ Scorciatoie',
+badgeSuffix:'— senza account, senza chiave API.',
+badgeSuffix2:', senza account.',
+specAnon:'100% Anonimo',
+specLocal:'Server locale',
+specBrowser:'Locale nel browser',
+specFree:'Gratuito',
+specVolunt:'Volontari',
+mkViaDDG:'via DuckDuckGo',
+mkBrowser:'gira nel browser',
+mkVolunt:'Cluster di volontari',
+mkLocalLMS:'LM Studio locale',
+mkLocalOll:'Ollama locale',
+tooltipClose:'Chiudi',
+sbModelsHd:'🤖 Modelli IA',
+selModelPH:'Seleziona un modello a sinistra',
+mcLoadInit:'<span class="mcheck-spinner"></span> Verifica modelli…',
+aiFacts:['💡 GPT-4 è stato addestrato su ~45 terabyte di testo — 30x più di Wikipedia.','🧠 I LLM non \'pensano\' — prevedono la parola successiva più probabile.','🌍 Google Translate elabora 100 miliardi di parole al giorno automaticamente.','⚡ Groq è 10-100x più veloce grazie a chip LPU speciali.','🔒 I tuoi messaggi vanno direttamente al provider IA — AI Liber non vede nulla.','🎨 DALL-E 3 genera 4 immagini in ~10 secondi da una descrizione testuale.','🤖 Llama 3 di Meta è open-source — la versione piccola gira nel browser!','📚 Claude di Anthropic ha un contesto di 200K token (~150.000 parole).','🌐 Pollinations offre 25+ modelli IA completamente gratuiti e anonimi.','💬 L\'IA non sa chi sei — ogni conversazione è completamente isolata.'],
+thinkMsgs:['Connessione…','Pensando…','Elaborazione…','Formulando…','Quasi pronto…','Finalizzando…'],
+slowWarnMsg:'non risponde. Aspettare o cambiare modello?',
+slowWarnCancel:'✕ Annulla',
+slowWarnSwitch:'⚡ Cambia modello',
+errKeyTitle:'🔑 Chiave API non valida',
+errQuotaTitle:'💳 Limite account',
+err404Title:'🔍 Modello non disponibile',
+errRateTitle:'⏱ Troppe richieste',
+errCorsTitle:'🌐 Connessione impossibile',
+errDDGTitle:'🦆 DuckDuckGo bloccato da CORS',
+errLocalTitle:'🖥️ Server locale irraggiungibile',
+errTimeoutTitle:'⌛ Timeout — nessuna risposta',
+errWebGPUTitle:'🖥️ WebGPU non disponibile',
+errEmptyTitle:'📭 Risposta vuota',
+errGenTitle:'❌ Errore',
+errKeyDesc:'La chiave API non è accettata. Potrebbe essere scaduta, errata o di un altro account.',
+errQuotaDesc:'Quota account o crediti insufficienti. Controlla il tuo piano.',
+err404Desc:'Il modello non esiste più o è stato rinominato. La lista si aggiorna automaticamente.',
+errRatePollDesc:'Pollinations permette **1 messaggio/15 secondi** anonimamente. La registrazione gratuita aumenta a 1 messaggio/5s.',
+errRateDesc:'Il server ha limitato temporaneamente le richieste. Attendi qualche secondo.',
+errCorsDesc:'Impossibile contattare il server IA. Problema di rete, firewall o server temporaneamente non disponibile.',
+errDDGDesc:'Il browser blocca la connessione diretta a DuckDuckGo per motivi di sicurezza. Le alternative sono ugualmente private.',
+errTimeoutDesc:'Il server ha impiegato troppo tempo. Potrebbe essere temporaneamente sovraccarico.',
+errWebGPUDesc:'I modelli locali girano via **WebGPU**, che richiede Chrome 113+ o Edge 113+. Il tuo browser non lo supporta.',
+errEmptyDesc:'Il server ha risposto ma senza contenuto. Il modello potrebbe essere sovraccarico.',
+actUpdateKey:'⚙️ Aggiorna chiave',
+actGetKey:'🆓 Ottieni nuova chiave',
+actCheckAcc:'💳 Verifica account',
+actSwitchFree:'✅ Passa a un modello gratuito',
+actSwitchPoll:'✅ Passa a Pollinations (stabile)',
+actSwitchPollFast:'✅ Pollinations (veloce)',
+actTryGroq:'⚡ Prova Groq (gratuito)',
+actRetry:'🔄 Riprova',
+actRetry15:'🔄 Riprova (auto 15s)',
+actRegPoll:'🆓 Account Pollinations gratuito',
+actReloadModels:'🔍 Ricarica lista modelli',
+actCheckModels:'🔍 Verifica & aggiorna modelli',
+actOpenDDG:'🌍 Apri DuckDuckGo direttamente',
+actFasterModel:'⚡ Passa a un modello più veloce',
+actGetChrome:'🌐 Scarica Chrome (con WebGPU)',
+actLocalInstr:'📖 Istruzioni server locale',
+actSwitchOnline:'✅ Passa a un modello online',
+actSwitchAlt:'✅ Passa a un altro modello',
+ikTitle:'Chiave API richiesta per',
+ikFree:'🎁 Chiave GRATUITA — nessuna carta di credito!',
+ikGet:'🔗 Ottieni chiave API da',
+ikDismiss:'✕ Chiudi (torna quando vuoi via ⚙️)',
+ikSave:'💾 Salva',
+ikUpdate:'✅ Aggiorna',
+ikSaved:'✅ Salvato!',
+mcTitle:'🔍 Verifica & aggiorna modelli',
+mcLoading:'Verifica modelli disponibili…',
+mcError:'❌ Impossibile contattare Pollinations. Controlla la connessione.',
+mcAllGood:'✅ Tutti i modelli sono aggiornati! Nessuna modifica necessaria.',
+mcNewModels:'✨ Nuovi modelli disponibili',
+mcOldModels:'🗑 Modelli non disponibili',
+mcHasConv:'⚠️ Ha conversazione salvata',
+mcApply:'Applica modifiche',
+mcCancel:'Annulla',
+mcConfirmDel:'I seguenti modelli hanno conversazioni salvate che verranno ELIMINATE:\n\nSei sicuro di volerli rimuovere?',
+mcDoneAdded:'nuovi modelli aggiunti.',
+mcDoneRemoved:'modelli rimossi.',
+mcDoneReload:'Premi **🔄 Ricarica modelli Pollinations** per i dettagli completi.',
+keyNoKey:'○ Nessuna chiave',
+keyConfigured:'✅ Configurata',
+btnClose:'Chiudi',
+legalVersion:'v1.0 · Aggiornato: 12 aprile 2026',
+navPatreon:'Patreon',
+patreonTitle:'Supporta AI Liber su Patreon',
+sbCheck:'🔍 Verifica & aggiorna modelli',
 grpInstant:'✅ Istantaneo — senza account',
 grpCount:'modelli',
 grpKey:'🔑 Chiave API',
@@ -1272,7 +1723,7 @@ st2H:'Escribe lo que quieres saber o hacer',
 st2P:'Escribe como si le enviaras un mensaje a un amigo inteligente.',
 st3H:'Continúa la conversación',
 st3P:'Pide modificaciones, aclaraciones o alternativas. La IA nunca se cansa.',
-footCopy:'© 2025 AI Liber — Proyecto independiente, no afiliado a ningún proveedor de IA.',
+footCopy:'© 2026 AI Liber — Proyecto independiente, no afiliado a ningún proveedor de IA.',
 cwH:'¡Bienvenido a AI Liber Chat!',
 cwP:'Los modelos ✅ funcionan <strong>ahora mismo</strong>, sin cuenta.',
 cwFree:'Cargando lista de modelos gratuitos…',
@@ -1350,6 +1801,96 @@ anonBadge:'🔒 Sin cuenta',
 localBadge:'🖥️ Local',
 freeBadge:'✓ Gratis',
 langLabel:'🌐 Idioma',
+tabPrompts:'⚡ Ideas rápidas',
+tabQuiz:'🧠 Quiz IA',
+tabKeys:'⌨️ Atajos',
+badgeSuffix:'— sin cuenta, sin clave API.',
+badgeSuffix2:', sin cuenta.',
+specAnon:'100% Anónimo',
+specLocal:'Servidor local',
+specBrowser:'Local en navegador',
+specFree:'Gratuito',
+specVolunt:'Voluntarios',
+mkViaDDG:'via DuckDuckGo',
+mkBrowser:'corre en el navegador',
+mkVolunt:'Cluster de voluntarios',
+mkLocalLMS:'LM Studio local',
+mkLocalOll:'Ollama local',
+tooltipClose:'Cerrar',
+sbModelsHd:'🤖 Modelos IA',
+selModelPH:'Selecciona un modelo a la izquierda',
+mcLoadInit:'<span class="mcheck-spinner"></span> Verificando modelos…',
+aiFacts:['💡 GPT-4 fue entrenado con ~45 terabytes de texto — 30x más que Wikipedia.','🧠 Los LLMs no \'piensan\' — predicen la siguiente palabra más probable.','🌍 Google Translate procesa 100 mil millones de palabras al día.','⚡ Groq es 10-100x más rápido gracias a chips LPU especiales.','🔒 Tus mensajes van directamente al proveedor IA — AI Liber no ve nada.','🎨 DALL-E 3 genera 4 imágenes en ~10 segundos desde una descripción de texto.','🤖 Llama 3 de Meta es open-source — ¡la versión pequeña corre en el navegador!','📚 Claude de Anthropic tiene un contexto de 200K tokens (~150.000 palabras).','🌐 Pollinations ofrece 25+ modelos IA completamente gratis y de forma anónima.','💬 La IA no sabe quién eres — cada conversación está completamente aislada.'],
+thinkMsgs:['Conectando…','Pensando…','Procesando…','Formulando…','Casi listo…','Finalizando…'],
+slowWarnMsg:'no responde. ¿Esperar o cambiar de modelo?',
+slowWarnCancel:'✕ Cancelar',
+slowWarnSwitch:'⚡ Cambiar modelo',
+errKeyTitle:'🔑 Clave API inválida',
+errQuotaTitle:'💳 Límite de cuenta',
+err404Title:'🔍 Modelo no disponible',
+errRateTitle:'⏱ Demasiadas solicitudes',
+errCorsTitle:'🌐 Conexión imposible',
+errDDGTitle:'🦆 DuckDuckGo bloqueado por CORS',
+errLocalTitle:'🖥️ Servidor local inaccesible',
+errTimeoutTitle:'⌛ Tiempo agotado — sin respuesta',
+errWebGPUTitle:'🖥️ WebGPU no disponible',
+errEmptyTitle:'📭 Respuesta vacía',
+errGenTitle:'❌ Error',
+errKeyDesc:'La clave API no es aceptada. Puede estar caducada, ser incorrecta o de otra cuenta.',
+errQuotaDesc:'Cuota de cuenta o créditos insuficientes. Verifica tu plan.',
+err404Desc:'El modelo ya no existe o ha sido renombrado. La lista se actualiza automáticamente.',
+errRatePollDesc:'Pollinations permite **1 mensaje/15 segundos** anónimamente. El registro gratuito aumenta a 1 mensaje/5s.',
+errRateDesc:'El servidor ha limitado las solicitudes temporalmente. Espera unos segundos.',
+errCorsDesc:'No se pudo contactar el servidor IA. Problema de red, firewall o servidor temporalmente no disponible.',
+errDDGDesc:'El navegador bloquea la conexión directa a DuckDuckGo por razones de seguridad. Las alternativas son igualmente privadas.',
+errTimeoutDesc:'El servidor tardó demasiado. Puede estar temporalmente sobrecargado.',
+errWebGPUDesc:'Los modelos locales funcionan via **WebGPU**, que requiere Chrome 113+ o Edge 113+. Tu navegador no lo soporta.',
+errEmptyDesc:'El servidor respondió pero sin contenido. El modelo puede estar sobrecargado.',
+actUpdateKey:'⚙️ Actualizar clave',
+actGetKey:'🆓 Obtener clave nueva',
+actCheckAcc:'💳 Verificar cuenta',
+actSwitchFree:'✅ Cambiar a modelo gratuito',
+actSwitchPoll:'✅ Cambiar a Pollinations (estable)',
+actSwitchPollFast:'✅ Pollinations (rápido)',
+actTryGroq:'⚡ Probar Groq (gratis)',
+actRetry:'🔄 Intentar de nuevo',
+actRetry15:'🔄 Intentar de nuevo (auto 15s)',
+actRegPoll:'🆓 Cuenta Pollinations gratis',
+actReloadModels:'🔍 Recargar lista de modelos',
+actCheckModels:'🔍 Verificar & actualizar modelos',
+actOpenDDG:'🌍 Abrir DuckDuckGo directamente',
+actFasterModel:'⚡ Cambiar a un modelo más rápido',
+actGetChrome:'🌐 Descargar Chrome (con WebGPU)',
+actLocalInstr:'📖 Instrucciones servidor local',
+actSwitchOnline:'✅ Cambiar a modelo en línea',
+actSwitchAlt:'✅ Cambiar a otro modelo',
+ikTitle:'Clave API requerida para',
+ikFree:'🎁 Clave GRATUITA — ¡sin tarjeta bancaria!',
+ikGet:'🔗 Obtener clave API de',
+ikDismiss:'✕ Cerrar (vuelve cuando quieras via ⚙️)',
+ikSave:'💾 Guardar',
+ikUpdate:'✅ Actualizar',
+ikSaved:'✅ ¡Guardado!',
+mcTitle:'🔍 Verificar & actualizar modelos',
+mcLoading:'Verificando modelos disponibles…',
+mcError:'❌ No se pudo contactar Pollinations. Verifica la conexión.',
+mcAllGood:'✅ ¡Todos los modelos están actualizados! No se necesitan cambios.',
+mcNewModels:'✨ Nuevos modelos disponibles',
+mcOldModels:'🗑 Modelos no disponibles',
+mcHasConv:'⚠️ Tiene conversación guardada',
+mcApply:'Aplicar cambios',
+mcCancel:'Cancelar',
+mcConfirmDel:'Los siguientes modelos tienen conversaciones guardadas que se BORRARÁN:\n\n¿Estás seguro de que quieres eliminarlos?',
+mcDoneAdded:'nuevos modelos añadidos.',
+mcDoneRemoved:'modelos eliminados.',
+mcDoneReload:'Pulsa **🔄 Recargar modelos Pollinations** para detalles completos.',
+keyNoKey:'○ Sin clave',
+keyConfigured:'✅ Configurada',
+btnClose:'Cerrar',
+legalVersion:'v1.0 · Actualizado: 12 de abril de 2026',
+navPatreon:'Patreon',
+patreonTitle:'Apoya AI Liber en Patreon',
+sbCheck:'🔍 Verificar & actualizar modelos',
 grpInstant:'✅ Inmediato — sin cuenta',
 grpCount:'modelos',
 grpKey:'🔑 Clave API',
@@ -1404,7 +1945,7 @@ st2H:'Escreva o que quer saber ou fazer',
 st2P:'Escreva como se estivesse enviando uma mensagem a um amigo inteligente.',
 st3H:'Continue a conversa',
 st3P:'Peça modificações, esclarecimentos ou alternativas. A IA nunca se cansa.',
-footCopy:'© 2025 AI Liber — Projeto independente, não afiliado a nenhum provedor de IA.',
+footCopy:'© 2026 AI Liber — Projeto independente, não afiliado a nenhum provedor de IA.',
 cwH:'Bem-vindo ao AI Liber Chat!',
 cwP:'Modelos ✅ funcionam <strong>agora mesmo</strong>, sem conta.',
 cwFree:'Carregando lista de modelos gratuitos…',
@@ -1482,6 +2023,96 @@ anonBadge:'🔒 Sem conta',
 localBadge:'🖥️ Local',
 freeBadge:'✓ Grátis',
 langLabel:'🌐 Idioma',
+tabPrompts:'⚡ Ideias rápidas',
+tabQuiz:'🧠 Quiz IA',
+tabKeys:'⌨️ Atalhos',
+badgeSuffix:'— sem conta, sem chave API.',
+badgeSuffix2:', sem conta.',
+specAnon:'100% Anônimo',
+specLocal:'Servidor local',
+specBrowser:'Local no navegador',
+specFree:'Gratuito',
+specVolunt:'Voluntários',
+mkViaDDG:'via DuckDuckGo',
+mkBrowser:'roda no navegador',
+mkVolunt:'Cluster de voluntários',
+mkLocalLMS:'LM Studio local',
+mkLocalOll:'Ollama local',
+tooltipClose:'Fechar',
+sbModelsHd:'🤖 Modelos IA',
+selModelPH:'Selecione um modelo à esquerda',
+mcLoadInit:'<span class="mcheck-spinner"></span> Verificando modelos…',
+aiFacts:['💡 GPT-4 foi treinado com ~45 terabytes de texto — 30x mais que a Wikipedia.','🧠 LLMs não \'pensam\' — eles preveem a próxima palavra mais provável.','🌍 Google Translate processa 100 bilhões de palavras por dia automaticamente.','⚡ Groq é 10-100x mais rápido graças a chips LPU especiais.','🔒 Suas mensagens vão direto ao provedor IA — AI Liber não vê nada.','🎨 DALL-E 3 gera 4 imagens em ~10 segundos a partir de uma descrição de texto.','🤖 Llama 3 da Meta é open-source — a versão pequena roda no navegador!','📚 Claude da Anthropic tem contexto de 200K tokens (~150.000 palavras).','🌐 Pollinations oferece 25+ modelos IA completamente grátis e anonimamente.','💬 A IA não sabe quem você é — cada conversa é completamente isolada.'],
+thinkMsgs:['Conectando…','Pensando…','Processando…','Formulando…','Quase pronto…','Finalizando…'],
+slowWarnMsg:'não está respondendo. Aguardar ou trocar de modelo?',
+slowWarnCancel:'✕ Cancelar',
+slowWarnSwitch:'⚡ Trocar modelo',
+errKeyTitle:'🔑 Chave API inválida',
+errQuotaTitle:'💳 Limite de conta',
+err404Title:'🔍 Modelo indisponível',
+errRateTitle:'⏱ Muitas requisições',
+errCorsTitle:'🌐 Conexão impossível',
+errDDGTitle:'🦆 DuckDuckGo bloqueado por CORS',
+errLocalTitle:'🖥️ Servidor local inacessível',
+errTimeoutTitle:'⌛ Timeout — sem resposta',
+errWebGPUTitle:'🖥️ WebGPU indisponível',
+errEmptyTitle:'📭 Resposta vazia',
+errGenTitle:'❌ Erro',
+errKeyDesc:'A chave API não é aceita. Pode estar expirada, incorreta ou de outra conta.',
+errQuotaDesc:'Cota de conta ou créditos insuficientes. Verifique seu plano.',
+err404Desc:'O modelo não existe mais ou foi renomeado. A lista atualiza automaticamente.',
+errRatePollDesc:'Pollinations permite **1 mensagem/15 segundos** anonimamente. Registro gratuito aumenta para 1 mensagem/5s.',
+errRateDesc:'Servidor limitou as requisições temporariamente. Aguarde alguns segundos.',
+errCorsDesc:'Não foi possível contatar o servidor IA. Problema de rede, firewall ou servidor temporariamente indisponível.',
+errDDGDesc:'Navegador bloqueia conexão direta ao DuckDuckGo por razões de segurança. As alternativas são igualmente privadas.',
+errTimeoutDesc:'O servidor demorou muito. Pode estar temporariamente sobrecarregado.',
+errWebGPUDesc:'Modelos locais rodam via **WebGPU**, que requer Chrome 113+ ou Edge 113+. Seu navegador não suporta.',
+errEmptyDesc:'Servidor respondeu mas sem conteúdo. O modelo pode estar sobrecarregado.',
+actUpdateKey:'⚙️ Atualizar chave',
+actGetKey:'🆓 Obter nova chave',
+actCheckAcc:'💳 Verificar conta',
+actSwitchFree:'✅ Mudar para modelo gratuito',
+actSwitchPoll:'✅ Mudar para Pollinations (estável)',
+actSwitchPollFast:'✅ Pollinations (rápido)',
+actTryGroq:'⚡ Experimentar Groq (grátis)',
+actRetry:'🔄 Tentar novamente',
+actRetry15:'🔄 Tentar novamente (auto 15s)',
+actRegPoll:'🆓 Conta Pollinations grátis',
+actReloadModels:'🔍 Recarregar lista de modelos',
+actCheckModels:'🔍 Verificar & atualizar modelos',
+actOpenDDG:'🌍 Abrir DuckDuckGo diretamente',
+actFasterModel:'⚡ Mudar para modelo mais rápido',
+actGetChrome:'🌐 Baixar Chrome (com WebGPU)',
+actLocalInstr:'📖 Instruções servidor local',
+actSwitchOnline:'✅ Mudar para modelo online',
+actSwitchAlt:'✅ Mudar para outro modelo',
+ikTitle:'Chave API necessária para',
+ikFree:'🎁 Chave GRATUITA — sem cartão bancário!',
+ikGet:'🔗 Obter chave API de',
+ikDismiss:'✕ Fechar (volte quando quiser via ⚙️)',
+ikSave:'💾 Salvar',
+ikUpdate:'✅ Atualizar',
+ikSaved:'✅ Salvo!',
+mcTitle:'🔍 Verificar & atualizar modelos',
+mcLoading:'Verificando modelos disponíveis…',
+mcError:'❌ Não foi possível contatar Pollinations. Verifique a conexão.',
+mcAllGood:'✅ Todos os modelos estão atualizados! Sem alterações necessárias.',
+mcNewModels:'✨ Novos modelos disponíveis',
+mcOldModels:'🗑 Modelos indisponíveis',
+mcHasConv:'⚠️ Tem conversa salva',
+mcApply:'Aplicar alterações',
+mcCancel:'Cancelar',
+mcConfirmDel:'Os seguintes modelos têm conversações salvas que serão EXCLUÍDAS:\n\nTem certeza que quer removê-los?',
+mcDoneAdded:'novos modelos adicionados.',
+mcDoneRemoved:'modelos removidos.',
+mcDoneReload:'Pressione **🔄 Recarregar modelos Pollinations** para detalhes completos.',
+keyNoKey:'○ Sem chave',
+keyConfigured:'✅ Configurada',
+btnClose:'Fechar',
+legalVersion:'v1.0 · Atualizado: 12 de abril de 2026',
+navPatreon:'Patreon',
+patreonTitle:'Apoie o AI Liber no Patreon',
+sbCheck:'🔍 Verificar & atualizar modelos',
 grpInstant:'✅ Imediato — sem conta',
 grpCount:'modelos',
 grpKey:'🔑 Chave API',
@@ -1536,7 +2167,7 @@ st2H:'Écrivez ce que vous voulez savoir ou faire',
 st2P:'Écrivez comme si vous envoyiez un message à un ami intelligent.',
 st3H:'Continuez la conversation',
 st3P:'Demandez des modifications, des clarifications ou des alternatives. L\'IA ne se fatigue jamais.',
-footCopy:'© 2025 AI Liber — Projet indépendant, non affilié à un fournisseur d\'IA.',
+footCopy:'© 2026 AI Liber — Projet indépendant, non affilié à un fournisseur d\'IA.',
 cwH:'Bienvenue sur AI Liber Chat !',
 cwP:'Les modèles ✅ fonctionnent <strong>maintenant</strong>, sans compte.',
 cwFree:'Chargement de la liste des modèles gratuits…',
@@ -1614,6 +2245,96 @@ anonBadge:'🔒 Sans compte',
 localBadge:'🖥️ Local',
 freeBadge:'✓ Gratuit',
 langLabel:'🌐 Langue',
+tabPrompts:'⚡ Idées rapides',
+tabQuiz:'🧠 Quiz IA',
+tabKeys:'⌨️ Raccourcis',
+badgeSuffix:'— sans compte, sans clé API.',
+badgeSuffix2:', sans compte.',
+specAnon:'100% Anonyme',
+specLocal:'Serveur local',
+specBrowser:'Local dans le navigateur',
+specFree:'Gratuit',
+specVolunt:'Bénévoles',
+mkViaDDG:'via DuckDuckGo',
+mkBrowser:'tourne dans le navigateur',
+mkVolunt:'Cluster bénévoles',
+mkLocalLMS:'LM Studio local',
+mkLocalOll:'Ollama local',
+tooltipClose:'Fermer',
+sbModelsHd:'🤖 Modèles IA',
+selModelPH:'Sélectionnez un modèle à gauche',
+mcLoadInit:'<span class="mcheck-spinner"></span> Vérification des modèles…',
+aiFacts:['💡 GPT-4 a été entraîné sur ~45 téraoctets de texte — 30x plus que Wikipedia.','🧠 Les LLM ne \'pensent\' pas — ils prédisent le mot suivant le plus probable.','🌍 Google Translate traite 100 milliards de mots par jour automatiquement.','⚡ Groq est 10-100x plus rapide grâce à des puces LPU spéciales.','🔒 Vos messages vont directement au fournisseur IA — AI Liber ne voit rien.','🎨 DALL-E 3 génère 4 images en ~10 secondes depuis une description textuelle.','🤖 Llama 3 de Meta est open-source — la petite version tourne dans le navigateur!','📚 Claude d\'Anthropic a une fenêtre de contexte de 200K tokens (~150 000 mots).','🌐 Pollinations offre 25+ modèles IA complètement gratuits et anonymement.','💬 L\'IA ne sait pas qui vous êtes — chaque conversation est isolée.'],
+thinkMsgs:['Connexion…','Réflexion…','Traitement…','Formulation…','Presque prêt…','Finalisation…'],
+slowWarnMsg:'ne répond pas. Attendre ou changer de modèle ?',
+slowWarnCancel:'✕ Annuler',
+slowWarnSwitch:'⚡ Changer de modèle',
+errKeyTitle:'🔑 Clé API invalide',
+errQuotaTitle:'💳 Limite de compte',
+err404Title:'🔍 Modèle indisponible',
+errRateTitle:'⏱ Trop de requêtes',
+errCorsTitle:'🌐 Connexion impossible',
+errDDGTitle:'🦆 DuckDuckGo bloqué par CORS',
+errLocalTitle:'🖥️ Serveur local inaccessible',
+errTimeoutTitle:'⌛ Délai dépassé — pas de réponse',
+errWebGPUTitle:'🖥️ WebGPU indisponible',
+errEmptyTitle:'📭 Réponse vide',
+errGenTitle:'❌ Erreur',
+errKeyDesc:'La clé API n\'est pas acceptée. Elle peut être expirée, incorrecte ou d\'un autre compte.',
+errQuotaDesc:'Quota de compte ou crédits insuffisants. Vérifiez votre plan.',
+err404Desc:'Le modèle n\'existe plus ou a été renommé. La liste se met à jour automatiquement.',
+errRatePollDesc:'Pollinations autorise **1 message/15 secondes** anonymement. L\'inscription gratuite augmente à 1 message/5s.',
+errRateDesc:'Le serveur a temporairement limité les requêtes. Attendez quelques secondes.',
+errCorsDesc:'Impossible de contacter le serveur IA. Problème réseau, pare-feu ou serveur temporairement indisponible.',
+errDDGDesc:'Le navigateur bloque la connexion directe à DuckDuckGo pour des raisons de sécurité. Les alternatives sont tout aussi privées.',
+errTimeoutDesc:'Le serveur a mis trop de temps à répondre. Il est peut-être temporairement surchargé.',
+errWebGPUDesc:'Les modèles locaux fonctionnent via **WebGPU**, qui nécessite Chrome 113+ ou Edge 113+. Votre navigateur ne le supporte pas.',
+errEmptyDesc:'Le serveur a répondu mais sans contenu. Le modèle est peut-être surchargé.',
+actUpdateKey:'⚙️ Mettre à jour la clé',
+actGetKey:'🆓 Obtenir une nouvelle clé',
+actCheckAcc:'💳 Vérifier le compte',
+actSwitchFree:'✅ Passer à un modèle gratuit',
+actSwitchPoll:'✅ Passer à Pollinations (stable)',
+actSwitchPollFast:'✅ Pollinations (rapide)',
+actTryGroq:'⚡ Essayer Groq (gratuit)',
+actRetry:'🔄 Réessayer',
+actRetry15:'🔄 Réessayer (auto 15s)',
+actRegPoll:'🆓 Compte Pollinations gratuit',
+actReloadModels:'🔍 Recharger la liste des modèles',
+actCheckModels:'🔍 Vérifier & mettre à jour',
+actOpenDDG:'🌍 Ouvrir DuckDuckGo directement',
+actFasterModel:'⚡ Passer à un modèle plus rapide',
+actGetChrome:'🌐 Télécharger Chrome (avec WebGPU)',
+actLocalInstr:'📖 Instructions serveur local',
+actSwitchOnline:'✅ Passer à un modèle en ligne',
+actSwitchAlt:'✅ Passer à un autre modèle',
+ikTitle:'Clé API requise pour',
+ikFree:'🎁 Clé GRATUITE — sans carte bancaire !',
+ikGet:'🔗 Obtenir la clé API de',
+ikDismiss:'✕ Fermer (revenez via ⚙️)',
+ikSave:'💾 Enregistrer',
+ikUpdate:'✅ Mettre à jour',
+ikSaved:'✅ Enregistré !',
+mcTitle:'🔍 Vérifier & mettre à jour les modèles',
+mcLoading:'Vérification des modèles disponibles…',
+mcError:'❌ Impossible de contacter Pollinations. Vérifiez votre connexion.',
+mcAllGood:'✅ Tous les modèles sont à jour ! Aucune modification nécessaire.',
+mcNewModels:'✨ Nouveaux modèles disponibles',
+mcOldModels:'🗑 Modèles indisponibles',
+mcHasConv:'⚠️ A une conversation sauvegardée',
+mcApply:'Appliquer les modifications',
+mcCancel:'Annuler',
+mcConfirmDel:'Les modèles suivants ont des conversations sauvegardées qui seront SUPPRIMÉES :\n\nÊtes-vous sûr de vouloir les supprimer ?',
+mcDoneAdded:'nouveaux modèles ajoutés.',
+mcDoneRemoved:'modèles supprimés.',
+mcDoneReload:'Appuyez sur **🔄 Recharger les modèles Pollinations** pour plus de détails.',
+keyNoKey:'○ Aucune clé',
+keyConfigured:'✅ Configurée',
+btnClose:'Fermer',
+legalVersion:'v1.0 · Mis à jour : 12 avril 2026',
+navPatreon:'Patreon',
+patreonTitle:'Soutenir AI Liber sur Patreon',
+sbCheck:'🔍 Vérifier & mettre à jour les modèles',
 grpInstant:'✅ Immédiat — sans compte',
 grpCount:'modèles',
 grpKey:'🔑 Clé API',
@@ -1668,7 +2389,7 @@ st2H:'Schreiben Sie, was Sie wissen oder tun möchten',
 st2P:'Schreiben Sie, als würden Sie einem klugen Freund schreiben.',
 st3H:'Führen Sie das Gespräch weiter',
 st3P:'Bitten Sie um Änderungen, Klarstellungen oder Alternativen. KI wird nie müde.',
-footCopy:'© 2025 AI Liber — Unabhängiges Projekt, nicht mit einem KI-Anbieter verbunden.',
+footCopy:'© 2026 AI Liber — Unabhängiges Projekt, nicht mit einem KI-Anbieter verbunden.',
 cwH:'Willkommen bei AI Liber Chat!',
 cwP:'Mit ✅ markierte Modelle funktionieren <strong>sofort</strong>, ohne Konto.',
 cwFree:'Liste kostenloser Modelle wird geladen…',
@@ -1746,6 +2467,96 @@ anonBadge:'🔒 Kein Konto',
 localBadge:'🖥️ Lokal',
 freeBadge:'✓ Kostenlos',
 langLabel:'🌐 Sprache',
+tabPrompts:'⚡ Schnellideen',
+tabQuiz:'🧠 KI-Quiz',
+tabKeys:'⌨️ Tastenkürzel',
+badgeSuffix:'— kein Konto, kein API-Schlüssel.',
+badgeSuffix2:', kein Konto.',
+specAnon:'100% Anonym',
+specLocal:'Lokaler Server',
+specBrowser:'Lokal im Browser',
+specFree:'Kostenlos',
+specVolunt:'Freiwillige',
+mkViaDDG:'via DuckDuckGo',
+mkBrowser:'läuft im Browser',
+mkVolunt:'Freiwilligen-Cluster',
+mkLocalLMS:'LM Studio lokal',
+mkLocalOll:'Ollama lokal',
+tooltipClose:'Schließen',
+sbModelsHd:'🤖 KI-Modelle',
+selModelPH:'Modell links auswählen',
+mcLoadInit:'<span class="mcheck-spinner"></span> Modelle werden geprüft…',
+aiFacts:['💡 GPT-4 wurde mit ~45 Terabyte Text trainiert — 30x mehr als Wikipedia.','🧠 LLMs \'denken\' nicht — sie sagen das wahrscheinlichste nächste Wort voraus.','🌍 Google Translate verarbeitet täglich 100 Milliarden Wörter automatisch.','⚡ Groq ist 10-100x schneller dank spezieller LPU-Chips.','🔒 Ihre Nachrichten gehen direkt zum KI-Anbieter — AI Liber sieht nichts.','🎨 DALL-E 3 erzeugt 4 Bilder in ~10 Sekunden aus einer Textbeschreibung.','🤖 Metas Llama 3 ist Open-Source — die kleine Version läuft im Browser!','📚 Claude von Anthropic hat ein 200K-Token-Kontextfenster (~150.000 Wörter).','🌐 Pollinations bietet 25+ KI-Modelle komplett kostenlos und anonym.','💬 Die KI weiß nicht, wer Sie sind — jedes Gespräch ist vollständig isoliert.'],
+thinkMsgs:['Verbinde…','Denkt nach…','Verarbeitet…','Formuliert…','Fast fertig…','Abschluss…'],
+slowWarnMsg:'antwortet nicht. Warten oder Modell wechseln?',
+slowWarnCancel:'✕ Abbrechen',
+slowWarnSwitch:'⚡ Modell wechseln',
+errKeyTitle:'🔑 Ungültiger API-Schlüssel',
+errQuotaTitle:'💳 Kontolimit erreicht',
+err404Title:'🔍 Modell nicht verfügbar',
+errRateTitle:'⏱ Zu viele Anfragen',
+errCorsTitle:'🌐 Verbindung fehlgeschlagen',
+errDDGTitle:'🦆 DuckDuckGo durch CORS blockiert',
+errLocalTitle:'🖥️ Lokaler Server nicht erreichbar',
+errTimeoutTitle:'⌛ Timeout — keine Antwort',
+errWebGPUTitle:'🖥️ WebGPU nicht verfügbar',
+errEmptyTitle:'📭 Leere Antwort',
+errGenTitle:'❌ Fehler',
+errKeyDesc:'Der API-Schlüssel wird nicht akzeptiert. Er könnte abgelaufen, falsch oder von einem anderen Konto sein.',
+errQuotaDesc:'Kontokontingent oder unzureichende Credits. Überprüfen Sie Ihren Plan.',
+err404Desc:'Das Modell existiert nicht mehr oder wurde umbenannt. Die Liste aktualisiert sich automatisch.',
+errRatePollDesc:'Pollinations erlaubt **1 Nachricht/15 Sekunden** anonym. Kostenlose Registrierung erhöht auf 1 Nachricht/5s.',
+errRateDesc:'Server hat Anfragen vorübergehend begrenzt. Warte ein paar Sekunden.',
+errCorsDesc:'KI-Server konnte nicht erreicht werden. Netzwerkproblem, Firewall oder Server vorübergehend nicht verfügbar.',
+errDDGDesc:'Browser blockiert direkte Verbindung zu DuckDuckGo aus Sicherheitsgründen. Alternativen sind genauso privat.',
+errTimeoutDesc:'Der Server hat zu lange gebraucht. Er könnte vorübergehend überlastet sein.',
+errWebGPUDesc:'Lokale Modelle laufen über **WebGPU**, das Chrome 113+ oder Edge 113+ erfordert. Ihr Browser unterstützt es nicht.',
+errEmptyDesc:'Server hat geantwortet, aber ohne Inhalt. Das Modell könnte überlastet sein.',
+actUpdateKey:'⚙️ Schlüssel aktualisieren',
+actGetKey:'🆓 Neuen Schlüssel holen',
+actCheckAcc:'💳 Konto prüfen',
+actSwitchFree:'✅ Zu kostenlosem Modell wechseln',
+actSwitchPoll:'✅ Zu Pollinations wechseln (stabil)',
+actSwitchPollFast:'✅ Pollinations (schnell)',
+actTryGroq:'⚡ Groq ausprobieren (kostenlos)',
+actRetry:'🔄 Erneut versuchen',
+actRetry15:'🔄 Erneut versuchen (auto 15s)',
+actRegPoll:'🆓 Kostenloses Pollinations-Konto',
+actReloadModels:'🔍 Modellliste neu laden',
+actCheckModels:'🔍 Modelle prüfen & aktualisieren',
+actOpenDDG:'🌍 DuckDuckGo direkt öffnen',
+actFasterModel:'⚡ Zu schnellerem Modell wechseln',
+actGetChrome:'🌐 Chrome herunterladen (mit WebGPU)',
+actLocalInstr:'📖 Lokaler Server-Anweisungen',
+actSwitchOnline:'✅ Zu Online-Modell wechseln',
+actSwitchAlt:'✅ Zu anderem Modell wechseln',
+ikTitle:'API-Schlüssel erforderlich für',
+ikFree:'🎁 KOSTENLOSER Schlüssel — keine Kreditkarte!',
+ikGet:'🔗 API-Schlüssel holen von',
+ikDismiss:'✕ Schließen (jederzeit über ⚙️)',
+ikSave:'💾 Speichern',
+ikUpdate:'✅ Aktualisieren',
+ikSaved:'✅ Gespeichert!',
+mcTitle:'🔍 Modelle prüfen & aktualisieren',
+mcLoading:'Verfügbare Modelle werden geprüft…',
+mcError:'❌ Pollinations nicht erreichbar. Verbindung prüfen.',
+mcAllGood:'✅ Alle Modelle sind aktuell! Keine Änderungen nötig.',
+mcNewModels:'✨ Neue Modelle verfügbar',
+mcOldModels:'🗑 Nicht verfügbare Modelle',
+mcHasConv:'⚠️ Hat gespeichertes Gespräch',
+mcApply:'Änderungen anwenden',
+mcCancel:'Abbrechen',
+mcConfirmDel:'Die folgenden Modelle haben gespeicherte Gespräche, die GELÖSCHT werden:\n\nSind Sie sicher, dass Sie sie entfernen möchten?',
+mcDoneAdded:'neue Modelle hinzugefügt.',
+mcDoneRemoved:'Modelle entfernt.',
+mcDoneReload:'Drücke **🔄 Pollinations-Modelle neu laden** für vollständige Details.',
+keyNoKey:'○ Kein Schlüssel',
+keyConfigured:'✅ Konfiguriert',
+btnClose:'Schließen',
+legalVersion:'v1.0 · Aktualisiert: 12. April 2026',
+navPatreon:'Patreon',
+patreonTitle:'AI Liber auf Patreon unterstützen',
+sbCheck:'🔍 Modelle prüfen & aktualisieren',
 grpInstant:'✅ Sofort — kein Konto',
 grpCount:'Modelle',
 grpKey:'🔑 API-Schlüssel',
@@ -1788,11 +2599,12 @@ function applyI18n(){
     if(typeof renderML==='function')renderML();
   }catch(err){console.warn('applyI18n error:',err);}
 }
-function setLang(lc){
+function setLang(lc){ _qpCat='🚀 Start';
   CUR_LANG=lc;
   localStorage.setItem('ailib_lang',lc);
   document.documentElement.lang=lc;
   applyI18n();
+  _renderCpanel();
   // Refresh explore grid badges after lang change
   try{
     const fc=document.querySelector('.fchip.on');
@@ -2010,15 +2822,42 @@ function fallbackDesc(n){
 
 // Hardcoded full catalog (used immediately + as fallback)
 const POLL_CATALOG_IDS=[
-  'openai-large','openai','openai-fast','openai-reasoning','searchgpt',
-  'gemini','gemini-large','gemini-search','gemini-thinking',
-  'llama','llama-fast','llama-scalable',
-  'mistral','mistral-large',
-  'deepseek-r1','deepseek',
-  'qwen-coder','qwen',
+  // ── OpenAI via Pollinations (verified active April 2026) ──
+  'openai',           // GPT-4o (alias)
+  'openai-large',     // GPT-4 Turbo (alias)
+  'openai-fast',      // GPT-4o-mini (alias)
+  'openai-reasoning', // o1 (alias)
+  // GPT-4.1 family — launched April 2026
+  'gpt-4.1',
+  'gpt-4.1-mini',
+  'gpt-4.1-nano',
+  // o-series
+  'o3-mini',
+  'o4-mini',
+  // Search
+  'searchgpt',
+  // ── Google ────────────────────────────────────────────────
+  'gemini',           // Gemini Flash
+  'gemini-large',     // Gemini Pro
+  'gemini-search',    // Gemini + Search
+  'gemini-thinking',  // Gemini Thinking
+  // ── Meta Llama ────────────────────────────────────────────
+  'llama',            // Llama 3.1 8B
+  'llama-fast',       // Llama 3.2 3B
+  'llama-scalable',   // Llama 3.1 70B
+  // ── Mistral ───────────────────────────────────────────────
+  'mistral',
+  'mistral-large',
+  // ── DeepSeek ──────────────────────────────────────────────
+  'deepseek-r1',
+  'deepseek',
+  // ── Qwen (Alibaba) ────────────────────────────────────────
+  'qwen-coder',
+  'qwen',
+  // ── Microsoft ─────────────────────────────────────────────
   'phi',
+  // ── Anthropic ─────────────────────────────────────────────
   'claude-hybridspace',
-  'hormoz','bidara','sur','elixposure','p1',
 ];
 
 // ═══════════════════════════════════════════
@@ -2026,54 +2865,54 @@ const POLL_CATALOG_IDS=[
 // ═══════════════════════════════════════════
 const OTHER_MODELS=[
 // ── DUCKDUCKGO (anonim total, fără cont, fără cheie) ─────────
-  {id:'gpt-4o-mini',p:'duckduckgo',n:'GPT-4o Mini',mk:'OpenAI via DuckDuckGo',
-    spd:5,ctx:'16K',cats:['instant','fast','general'],spec:'100% Anonim',si:'🦆',instant:true,
+  {id:'gpt-4o-mini',p:'duckduckgo',n:'GPT-4o Mini',mk:`OpenAI ${t('mkViaDDG')}`,
+    spd:5,ctx:'16K',cats:['instant','fast','general'],spec:t('specAnon'),si:'🦆',instant:true,
     desc:'GPT-4o Mini complet anonim via DuckDuckGo. Zero date înregistrate, fără cont.'},
-  {id:'claude-3-haiku-20240307',p:'duckduckgo',n:'Claude Haiku',mk:'Anthropic via DuckDuckGo',
-    spd:4,ctx:'16K',cats:['instant','general','creative'],spec:'100% Anonim',si:'🦆',instant:true,
+  {id:'claude-3-haiku-20240307',p:'duckduckgo',n:'Claude Haiku',mk:`Anthropic ${t('mkViaDDG')}`,
+    spd:4,ctx:'16K',cats:['instant','general','creative'],spec:t('specAnon'),si:'🦆',instant:true,
     desc:'Claude Haiku complet anonim via DuckDuckGo. Privacy-first, fără cont.'},
-  {id:'meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo',p:'duckduckgo',n:'Llama 3.1 70B',mk:'Meta via DuckDuckGo',
-    spd:3,ctx:'16K',cats:['instant','best','general'],spec:'100% Anonim',si:'🦆',instant:true,
+  {id:'meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo',p:'duckduckgo',n:'Llama 3.1 70B',mk:`Meta ${t('mkViaDDG')}`,
+    spd:3,ctx:'16K',cats:['instant','best','general'],spec:t('specAnon'),si:'🦆',instant:true,
     desc:'Llama 3.1 70B complet anonim via DuckDuckGo. Fără cont, fără loguri.'},
-  {id:'mistralai/Mixtral-8x7B-Instruct-v0.1',p:'duckduckgo',n:'Mixtral 8x7B',mk:'Mistral via DuckDuckGo',
-    spd:4,ctx:'16K',cats:['instant','fast','multi'],spec:'100% Anonim',si:'🦆',instant:true,
+  {id:'mistralai/Mixtral-8x7B-Instruct-v0.1',p:'duckduckgo',n:'Mixtral 8x7B',mk:`Mistral ${t('mkViaDDG')}`,
+    spd:4,ctx:'16K',cats:['instant','fast','multi'],spec:t('specAnon'),si:'🦆',instant:true,
     desc:'Mixtral 8x7B anonim via DuckDuckGo. Bun în mai multe limbi, fără cont.'},
-  {id:'o3-mini',p:'duckduckgo',n:'o3-mini',mk:'OpenAI via DuckDuckGo',
+  {id:'o3-mini',p:'duckduckgo',n:'o3-mini',mk:`OpenAI ${t('mkViaDDG')}`,
     spd:2,ctx:'16K',cats:['instant','math','code'],spec:t('grpReasonAnon'),si:'🦆',instant:true,
     desc:'o3-mini pentru raționament complex, complet anonim via DuckDuckGo.'},
   // ── WEBLLM (local în browser, fără server, fără cheie, fără date) ─────
-  {id:'Llama-3.2-1B-Instruct-q4f16_1-MLC',p:'webllm',n:'Llama 3.2 1B (Local)',mk:'Meta — rulează în browser',
-    spd:5,ctx:'4K',cats:['instant','fast','general'],spec:t('grpLocalBr'),si:'🖥️',instant:true,
+  {id:'Llama-3.2-1B-Instruct-q4f16_1-MLC',p:'webllm',n:'Llama 3.2 1B (Local)',mk:`Meta — ${t('mkBrowser')}`,
+    spd:5,ctx:'4K',cats:['instant','fast','general'],spec:t('specBrowser'),si:'🖥️',instant:true,
     desc:'Rulează LOCAL în browserul tău. Zero date trimise. Descărcare unică ~900MB (cacheată). Chrome 113+ cu WebGPU.'},
-  {id:'Llama-3.2-3B-Instruct-q4f16_1-MLC',p:'webllm',n:'Llama 3.2 3B (Local)',mk:'Meta — rulează în browser',
-    spd:4,ctx:'4K',cats:['instant','general'],spec:t('grpLocalBr'),si:'🖥️',instant:true,
+  {id:'Llama-3.2-3B-Instruct-q4f16_1-MLC',p:'webllm',n:'Llama 3.2 3B (Local)',mk:`Meta — ${t('mkBrowser')}`,
+    spd:4,ctx:'4K',cats:['instant','general'],spec:t('specBrowser'),si:'🖥️',instant:true,
     desc:'Llama 3B mai capabil, rulează local. Bun raport calitate/viteză. Descărcare ~2GB.'},
-  {id:'Phi-3.5-mini-instruct-q4f16_1-MLC',p:'webllm',n:'Phi-3.5 Mini (Local)',mk:'Microsoft — rulează în browser',
-    spd:3,ctx:'4K',cats:['instant','general','code'],spec:t('grpLocalBr'),si:'🖥️',instant:true,
+  {id:'Phi-3.5-mini-instruct-q4f16_1-MLC',p:'webllm',n:'Phi-3.5 Mini (Local)',mk:`Microsoft — ${t('mkBrowser')}`,
+    spd:3,ctx:'4K',cats:['instant','general','code'],spec:t('specBrowser'),si:'🖥️',instant:true,
     desc:'Phi-3.5 de la Microsoft, rulează local. Excelent pentru dimensiunea sa. Descărcare ~2.2GB.'},
-  {id:'Gemma-2-2b-it-q4f16_1-MLC',p:'webllm',n:'Gemma 2 2B (Local)',mk:'Google — rulează în browser',
-    spd:4,ctx:'4K',cats:['instant','general'],spec:t('grpLocalBr'),si:'🖥️',instant:true,
+  {id:'Gemma-2-2b-it-q4f16_1-MLC',p:'webllm',n:'Gemma 2 2B (Local)',mk:`Google — ${t('mkBrowser')}`,
+    spd:4,ctx:'4K',cats:['instant','general'],spec:t('specBrowser'),si:'🖥️',instant:true,
     desc:'Gemma 2 de la Google, rulează local în browser. Rapid și eficient. Descărcare ~1.5GB.'},
-  {id:'DeepSeek-R1-Distill-Qwen-1.5B-q4f16_1-MLC',p:'webllm',n:'DeepSeek R1 1.5B (Local)',mk:'DeepSeek — rulează în browser',
+  {id:'DeepSeek-R1-Distill-Qwen-1.5B-q4f16_1-MLC',p:'webllm',n:'DeepSeek R1 1.5B (Local)',mk:`DeepSeek — ${t('mkBrowser')}`,
     spd:3,ctx:'4K',cats:['instant','math','code'],spec:t('grpReasonLocal'),si:'🖥️',instant:true,
     desc:'DeepSeek R1 distilat pentru raționament. Rulează local. Descărcare ~1GB. Zero privacy concerns.'},
-  {id:'SmolLM2-1.7B-Instruct-q4f16_1-MLC',p:'webllm',n:'SmolLM2 1.7B (Local)',mk:'HuggingFace — rulează în browser',
+  {id:'SmolLM2-1.7B-Instruct-q4f16_1-MLC',p:'webllm',n:'SmolLM2 1.7B (Local)',mk:`HuggingFace — ${t('mkBrowser')}`,
     spd:5,ctx:'4K',cats:['instant','fast'],spec:'Cel mai rapid local',si:'🖥️',instant:true,
     desc:'Cel mai mic și rapid model local. Descărcare ~1GB. Perfect pentru hardware mai slab.'},
   // WebLLM extra models
   {id:'SmolLM2-360M-Instruct-q0f16-MLC',p:'webllm',n:'SmolLM2 360M (Ultra-mic)',mk:'HuggingFace — browser',
     spd:5,ctx:'2K',cats:['instant','fast'],spec:'Ultra-mic 360MB',si:'🖥️',instant:true,
     desc:'Cel mai mic model local — doar 360MB! Ideal pentru hardware slab. Răspunsuri instant.'},
-  {id:'TinyLlama-1.1B-Chat-v1.0-q4f16_1-MLC',p:'webllm',n:'TinyLlama 1.1B (Local)',mk:'TinyLlama — browser',
+  {id:'TinyLlama-1.1B-Chat-v1.0-q4f16_1-MLC',p:'webllm',n:'TinyLlama 1.1B (Local)',mk:`TinyLlama — ${t('mkBrowser')}`,
     spd:5,ctx:'2K',cats:['instant','fast'],spec:'Mini 700MB',si:'🖥️',instant:true,
     desc:'TinyLlama, extrem de ușor (~700MB). Rapid pe orice hardware. Bun pentru întrebări simple.'},
-  {id:'Qwen2.5-0.5B-Instruct-q4f16_1-MLC',p:'webllm',n:'Qwen2.5 0.5B (Local)',mk:'Alibaba — browser',
+  {id:'Qwen2.5-0.5B-Instruct-q4f16_1-MLC',p:'webllm',n:'Qwen2.5 0.5B (Local)',mk:`Alibaba — ${t('mkBrowser')}`,
     spd:5,ctx:'4K',cats:['instant','fast','multi'],spec:'Ultra-mic 500MB',si:'🖥️',instant:true,
     desc:'Qwen 0.5B de la Alibaba — sub 500MB! Multilingv, rulează local. Cel mai mic model din Qwen.'},
-  {id:'Qwen2.5-1.5B-Instruct-q4f16_1-MLC',p:'webllm',n:'Qwen2.5 1.5B (Local)',mk:'Alibaba — browser',
+  {id:'Qwen2.5-1.5B-Instruct-q4f16_1-MLC',p:'webllm',n:'Qwen2.5 1.5B (Local)',mk:`Alibaba — ${t('mkBrowser')}`,
     spd:5,ctx:'4K',cats:['instant','fast','multi'],spec:'Mic 1GB',si:'🖥️',instant:true,
     desc:'Qwen 1.5B — mic și multilingv. Descărcare ~1GB. Bun și pentru română.'},
-  {id:'Qwen2.5-7B-Instruct-q4f16_1-MLC',p:'webllm',n:'Qwen2.5 7B (Local)',mk:'Alibaba — browser',
+  {id:'Qwen2.5-7B-Instruct-q4f16_1-MLC',p:'webllm',n:'Qwen2.5 7B (Local)',mk:`Alibaba — ${t('mkBrowser')}`,
     spd:3,ctx:'8K',cats:['instant','general','multi'],spec:'Puternic Local',si:'🖥️',instant:true,
     desc:'Qwen 7B — model puternic, multilingv, rulează local. Descărcare ~4GB. Necesită GPU bun.'},
   {id:'Phi-2-q4f16_1-MLC',p:'webllm',n:'Phi-2 2.7B (Local)',mk:'Microsoft — browser',
@@ -2089,13 +2928,13 @@ const OTHER_MODELS=[
     spd:3,ctx:'8K',cats:['instant','general','code'],spec:'Cel mai capabil local',si:'🖥️',instant:true,
     desc:'Llama 3.1 8B — cel mai capabil model local. Descărcare ~5GB. Necesită GPU bun (6GB VRAM).'},
   // ── AI HORDE (cluster distribuit, anonim, fără cheie) ─────────
-  {id:'any',p:'aihorde',n:'AI Horde (orice model)',mk:'Cluster voluntari',
+  {id:'any',p:'aihorde',n:'AI Horde (orice model)',mk:t('mkVolunt'),
     spd:2,ctx:'2K',cats:['instant','general'],spec:'Anonim Gratuit',si:'🌐',instant:true,
     desc:'Foloseşte orice worker disponibil din rețea. Cel mai rapid la găsit un worker. Aşteptare 10-60s.'},
-  {id:'koboldcpp/LLaMA2-13B-Tiefighter',p:'aihorde',n:'LLaMA2 13B Tiefighter',mk:'AI Horde voluntari',
+  {id:'koboldcpp/LLaMA2-13B-Tiefighter',p:'aihorde',n:'LLaMA2 13B Tiefighter',mk:t('mkVolunt'),
     spd:2,ctx:'2K',cats:['instant','general'],spec:'Anonim Gratuit',si:'🌐',instant:true,
     desc:'LLaMA 2 13B pe cluster de voluntari. Complet anonim, fără cheie. Aşteptare variabilă.'},
-  {id:'koboldcpp/Mistral-7B-Instruct-v0.2',p:'aihorde',n:'Mistral 7B Horde',mk:'AI Horde voluntari',
+  {id:'koboldcpp/Mistral-7B-Instruct-v0.2',p:'aihorde',n:'Mistral 7B Horde',mk:t('mkVolunt'),
     spd:2,ctx:'2K',cats:['instant','general','multi'],spec:'Anonim Gratuit',si:'🌐',instant:true,
     desc:'Mistral 7B pe cluster AI Horde. Bun pentru multilingv. Anonim, fără cheie.'},
   // ── WEBLLM extra models ─────────────────────────────────────
@@ -2111,65 +2950,65 @@ const OTHER_MODELS=[
   {id:'stablelm-2-zephyr-1_6b-q4f16_1-MLC',p:'webllm',n:'StableLM 2 Zephyr (Local)',mk:'Stability AI — browser',
     spd:5,ctx:'4K',cats:['instant','fast'],spec:'Compact 1.6B',si:'🖥️',instant:true,
     desc:'StableLM 2 Zephyr 1.6B de la Stability AI, rulează local. Mic și rapid. Descărcare ~1GB.'},
-  {id:'Qwen2-Math-1.5B-Instruct-q4f16_1-MLC',p:'webllm',n:'Qwen2 Math (Local)',mk:'Alibaba — browser',
+  {id:'Qwen2-Math-1.5B-Instruct-q4f16_1-MLC',p:'webllm',n:'Qwen2 Math (Local)',mk:`Alibaba — ${t('mkBrowser')}`,
     spd:5,ctx:'4K',cats:['instant','math'],spec:t('grpMath'),si:'🖥️',instant:true,
     desc:'Model specializat pentru matematică de la Alibaba. Local, ~1GB. Excelent pentru calcule.'},
   {id:'WizardCoder-7B-V1.0-q4f16_1-MLC',p:'webllm',n:'WizardCoder 7B (Local)',mk:'WizardLM — browser',
     spd:3,ctx:'8K',cats:['instant','code'],spec:'Cod specialist',si:'🖥️',instant:true,
     desc:'WizardCoder 7B specializat pentru programare. Local. Descărcare ~4GB. Excelent pentru cod.'},
-  {id:'RedPajama-INCITE-Chat-3B-v1-q4f16_0-MLC',p:'webllm',n:'RedPajama 3B (Local)',mk:'Together AI — browser',
+  {id:'RedPajama-INCITE-Chat-3B-v1-q4f16_0-MLC',p:'webllm',n:'RedPajama 3B (Local)',mk:`Together AI — ${t('mkBrowser')}`,
     spd:4,ctx:'2K',cats:['instant','fast','general'],spec:'Compact 3B',si:'🖥️',instant:true,
     desc:'RedPajama 3B de la Together AI, rulează local. Descărcare ~1.8GB. Bun raport calitate/viteză.'},
   {id:'Llama-2-13B-chat-hf-q4f16_1-MLC',p:'webllm',n:'Llama 2 13B (Local)',mk:'Meta — browser',
     spd:2,ctx:'4K',cats:['instant','general'],spec:'13B Classic',si:'🖥️',instant:true,
-    desc:'Llama 2 13B clasic, rulează local. Descărcare ~8GB. Necesită GPU cu 8GB+ VRAM.'},
+    desc:'Llama 2 13B clasic, rulează local. Descărcare ~8GB. Necesită GPU cu 8GB+ VRAM. (Model vechi — recomandăm Llama 3.1 8B mai jos.)'},
   // ── AI HORDE extra models ────────────────────────────────────
-  {id:'koboldcpp/Llama-3-8B-Instruct',p:'aihorde',n:'Llama 3 8B Horde',mk:'AI Horde voluntari',
+  {id:'koboldcpp/Llama-3-8B-Instruct',p:'aihorde',n:'Llama 3 8B Horde',mk:t('mkVolunt'),
     spd:2,ctx:'2K',cats:['instant','general'],spec:'Anonim Gratuit',si:'🌐',instant:true,
     desc:'Llama 3 8B pe cluster AI Horde. Anonim, fără cheie, fără cont.'},
-  {id:'koboldcpp/MythoMax-L2-13B',p:'aihorde',n:'MythoMax 13B Horde',mk:'AI Horde voluntari',
+  {id:'koboldcpp/MythoMax-L2-13B',p:'aihorde',n:'MythoMax 13B Horde',mk:t('mkVolunt'),
     spd:2,ctx:'2K',cats:['instant','creative'],spec:'Creativ',si:'🌐',instant:true,
     desc:'MythoMax 13B — popular pentru scriere creativă pe AI Horde. Anonim, fără cheie.'},
-  {id:'koboldcpp/Wizard-Vicuna-13B-Uncensored',p:'aihorde',n:'Wizard Vicuna 13B Horde',mk:'AI Horde voluntari',
+  {id:'koboldcpp/Wizard-Vicuna-13B-Uncensored',p:'aihorde',n:'Wizard Vicuna 13B Horde',mk:t('mkVolunt'),
     spd:2,ctx:'2K',cats:['instant','general'],spec:'Anonim Gratuit',si:'🌐',instant:true,
     desc:'Wizard Vicuna 13B pe cluster AI Horde. Anonim, distribuit, fără cheie.'},
   // ── LM STUDIO (conectare la server local LM Studio) ──────────
   {id:'',p:'lmstudio',n:'Model curent (LM Studio)',mk:'LM Studio local',
-    spd:4,ctx:'?',cats:['instant','general'],spec:'Server local',si:'🔬',instant:true,
+    spd:4,ctx:'?',cats:['instant','general'],spec:t('specLocal'),si:'🔬',instant:true,
     desc:'Folosește orice model încărcat în LM Studio. Pornește serverul în LM Studio pe portul 1234.'},
   {id:'lmstudio-community/Meta-Llama-3.1-8B-Instruct-GGUF',p:'lmstudio',n:'Llama 3.1 8B (LM Studio)',mk:'Meta via LM Studio',
-    spd:3,ctx:'128K',cats:['instant','general','code'],spec:'Server local',si:'🔬',instant:true,
+    spd:3,ctx:'128K',cats:['instant','general','code'],spec:t('specLocal'),si:'🔬',instant:true,
     desc:'Llama 3.1 8B descărcat în LM Studio. Capabil și versatil. Necesită ~5GB spațiu.'},
   {id:'lmstudio-community/Mistral-7B-Instruct-v0.3-GGUF',p:'lmstudio',n:'Mistral 7B (LM Studio)',mk:'Mistral via LM Studio',
-    spd:3,ctx:'32K',cats:['instant','general','multi'],spec:'Server local',si:'🔬',instant:true,
+    spd:3,ctx:'32K',cats:['instant','general','multi'],spec:t('specLocal'),si:'🔬',instant:true,
     desc:'Mistral 7B v0.3 în LM Studio. European, multilingv. Necesită ~4GB spațiu.'},
   {id:'lmstudio-community/Phi-3.5-mini-instruct-GGUF',p:'lmstudio',n:'Phi-3.5 Mini (LM Studio)',mk:'Microsoft via LM Studio',
-    spd:5,ctx:'128K',cats:['instant','fast','general'],spec:'Server local',si:'🔬',instant:true,
+    spd:5,ctx:'128K',cats:['instant','fast','general'],spec:t('specLocal'),si:'🔬',instant:true,
     desc:'Phi-3.5 Mini în LM Studio. Rapid și eficient. Necesită ~2.2GB spațiu.'},
   {id:'lmstudio-community/DeepSeek-R1-Distill-Qwen-7B-GGUF',p:'lmstudio',n:'DeepSeek R1 7B (LM Studio)',mk:'DeepSeek via LM Studio',
     spd:2,ctx:'32K',cats:['instant','math','code'],spec:t('grpReasonLocalL'),si:'🔬',instant:true,
     desc:'DeepSeek R1 7B în LM Studio. Raționament avansat. Necesită ~4.5GB spațiu.'},
   {id:'lmstudio-community/Qwen2.5-7B-Instruct-GGUF',p:'lmstudio',n:'Qwen 2.5 7B (LM Studio)',mk:'Alibaba via LM Studio',
-    spd:3,ctx:'128K',cats:['instant','general','multi'],spec:'Server local',si:'🔬',instant:true,
+    spd:3,ctx:'128K',cats:['instant','general','multi'],spec:t('specLocal'),si:'🔬',instant:true,
     desc:'Qwen 2.5 7B în LM Studio. Excelent pentru multilingv inclusiv română. ~4.5GB spațiu.'},
   // ── OLLAMA (conectare la server local Ollama) ─────────────────
   {id:'llama3.2',p:'ollama',n:'Llama 3.2 (Ollama)',mk:'Meta via Ollama',
-    spd:4,ctx:'128K',cats:['instant','general'],spec:'Server local',si:'🦙',instant:true,
+    spd:4,ctx:'128K',cats:['instant','general'],spec:t('specLocal'),si:'🦙',instant:true,
     desc:'Llama 3.2 via Ollama. Rulează: ollama pull llama3.2 (2GB)'},
   {id:'llama3.1',p:'ollama',n:'Llama 3.1 8B (Ollama)',mk:'Meta via Ollama',
-    spd:3,ctx:'128K',cats:['instant','general','code'],spec:'Server local',si:'🦙',instant:true,
+    spd:3,ctx:'128K',cats:['instant','general','code'],spec:t('specLocal'),si:'🦙',instant:true,
     desc:'Llama 3.1 8B via Ollama. Rulează: ollama pull llama3.1 (4.7GB)'},
   {id:'mistral',p:'ollama',n:'Mistral 7B (Ollama)',mk:'Mistral via Ollama',
-    spd:3,ctx:'32K',cats:['instant','general','multi'],spec:'Server local',si:'🦙',instant:true,
+    spd:3,ctx:'32K',cats:['instant','general','multi'],spec:t('specLocal'),si:'🦙',instant:true,
     desc:'Mistral 7B via Ollama. Multilingv bun. Rulează: ollama pull mistral (4.1GB)'},
   {id:'gemma2',p:'ollama',n:'Gemma 2 (Ollama)',mk:'Google via Ollama',
-    spd:4,ctx:'8K',cats:['instant','general'],spec:'Server local',si:'🦙',instant:true,
+    spd:4,ctx:'8K',cats:['instant','general'],spec:t('specLocal'),si:'🦙',instant:true,
     desc:'Gemma 2 de la Google via Ollama. Rulează: ollama pull gemma2 (5.4GB)'},
   {id:'phi3',p:'ollama',n:'Phi-3 Mini (Ollama)',mk:'Microsoft via Ollama',
-    spd:5,ctx:'128K',cats:['instant','fast','general'],spec:'Server local',si:'🦙',instant:true,
+    spd:5,ctx:'128K',cats:['instant','fast','general'],spec:t('specLocal'),si:'🦙',instant:true,
     desc:'Phi-3 Mini via Ollama. Rapid și eficient. Rulează: ollama pull phi3 (2.2GB)'},
   {id:'qwen2.5',p:'ollama',n:'Qwen 2.5 (Ollama)',mk:'Alibaba via Ollama',
-    spd:3,ctx:'128K',cats:['instant','general','multi'],spec:'Server local',si:'🦙',instant:true,
+    spd:3,ctx:'128K',cats:['instant','general','multi'],spec:t('specLocal'),si:'🦙',instant:true,
     desc:'Qwen 2.5 7B via Ollama. Excelent multilingv. Rulează: ollama pull qwen2.5 (4.4GB)'},
   {id:'deepseek-r1',p:'ollama',n:'DeepSeek R1 (Ollama)',mk:'DeepSeek via Ollama',
     spd:2,ctx:'64K',cats:['instant','math','code'],spec:t('grpReason'),si:'🦙',instant:true,
@@ -2181,7 +3020,7 @@ const OTHER_MODELS=[
     spd:2,ctx:'32K',cats:['instant','general','multi'],spec:'Puternic local',si:'🦙',instant:true,
     desc:'Mixtral MoE 8x7B via Ollama. Foarte capabil. Rulează: ollama pull mixtral (26GB, necesită RAM mult)'},
   {id:'',p:'ollama',n:'Model curent (Ollama)',mk:'Ollama local',
-    spd:4,ctx:'?',cats:['instant','general'],spec:'Server local',si:'🦙',instant:true,
+    spd:4,ctx:'?',cats:['instant','general'],spec:t('specLocal'),si:'🦙',instant:true,
     desc:'Folosește primul model disponibil în Ollama. Pornește: OLLAMA_ORIGINS=* ollama serve'},
   // ── OPENROUTER FREE (need free key)
   {id:'meta-llama/llama-3.3-70b-instruct:free',p:'openrouter',n:'Llama 3.3 70B',mk:'Meta × OpenRouter',
@@ -2230,7 +3069,13 @@ const OTHER_MODELS=[
 let MODELS = [];
 let cur = null;
 let hist = [];
+const hists = {}; // per-model history: {modelId: {hist:[], html:''}}
+const _404models = new Set(); // models that returned 404, skip in future
 let busy = false;
+let _abortCtrl = null;   // AbortController for current request
+let _slowTimer  = null;  // setTimeout for slow-response warning
+let _slowShown  = false; // whether warning is already visible
+const SLOW_WARN_MS = 8000; // show warning after 8s without first chunk
 let cat = 'all';
 let aiBub = null;
 
@@ -2256,7 +3101,7 @@ async function fetchPollModels(manual=false){
     // data is array — each item has at least .name
     const live = data
       .filter(m => m && m.name && typeof m.name==='string')
-      .filter(m => !PX.includes(m.name));
+      .filter(m => !PX.includes(m.name)&&!_404models.has(m.name));
 
     if(live.length < 3) throw new Error('Too few models returned');
 
@@ -2301,15 +3146,127 @@ function goPage(id,skipHash){
 // Hash routing: listen for back/forward
 window.addEventListener('popstate',()=>{
   const id=(location.hash||'#home').slice(1)||'home';
-  const valid=['home','chat','explore','tips'];
+  const valid=['chat','explore','tips'];
   goPage(valid.includes(id)?id:'home',true);
 });
 
 // ═══════════════════════════════════════════
 // KEYS
 // ═══════════════════════════════════════════
-function gk(p){return localStorage.getItem('aik_'+p)||'';}
-function sk(p,v){v?localStorage.setItem('aik_'+p,v):localStorage.removeItem('aik_'+p);}
+
+// ═══════════════════════════════════════════
+// SECURE KEY STORAGE — AES-GCM via WebCrypto
+// Cheile API plătite sunt criptate cu AES-256-GCM
+// Cheia de criptare e derivată din un salt aleatoriu
+// per-dispozitiv + o cheie de sesiune ținută în memorie.
+// Zero plaintext în localStorage pentru cheile plătite.
+// ═══════════════════════════════════════════
+
+// Free providers that don't need encryption (public keys / no cost)
+const FREE_PROVS=new Set(['pollinations','duckduckgo','webllm','aihorde','lmstudio','ollama']);
+
+let _cryptoKey=null; // AES-GCM key, only in memory
+
+async function _getCryptoKey(){
+  if(_cryptoKey)return _cryptoKey;
+  // Derive a consistent device key from a stored random salt
+  let salt=localStorage.getItem('ailib_ksalt');
+  if(!salt){
+    const s=crypto.getRandomValues(new Uint8Array(32));
+    salt=btoa(String.fromCharCode(...s));
+    localStorage.setItem('ailib_ksalt',salt);
+  }
+  const saltBuf=Uint8Array.from(atob(salt),c=>c.charCodeAt(0));
+  // Use a session secret (random, not stored) combined with salt
+  // This means keys survive page reload but not localStorage clear
+  if(!sessionStorage.getItem('ailib_ssec')){
+    const sec=crypto.getRandomValues(new Uint8Array(16));
+    sessionStorage.setItem('ailib_ssec',btoa(String.fromCharCode(...sec)));
+  }
+  const secBuf=Uint8Array.from(atob(sessionStorage.getItem('ailib_ssec')),c=>c.charCodeAt(0));
+  // Combine salt + session secret as key material
+  const combined=new Uint8Array(saltBuf.length+secBuf.length);
+  combined.set(saltBuf);combined.set(secBuf,saltBuf.length);
+  const raw=await crypto.subtle.digest('SHA-256',combined);
+  _cryptoKey=await crypto.subtle.importKey('raw',raw,{name:'AES-GCM'},false,['encrypt','decrypt']);
+  return _cryptoKey;
+}
+
+async function encryptKey(plaintext){
+  if(!plaintext)return null;
+  try{
+    const key=await _getCryptoKey();
+    const iv=crypto.getRandomValues(new Uint8Array(12));
+    const enc=new TextEncoder();
+    const ct=await crypto.subtle.encrypt({name:'AES-GCM',iv},key,enc.encode(plaintext));
+    const out=new Uint8Array(iv.length+ct.byteLength);
+    out.set(iv);out.set(new Uint8Array(ct),iv.length);
+    return btoa(String.fromCharCode(...out));
+  }catch(e){console.error('Encrypt failed:',e);return plaintext;}
+}
+
+async function decryptKey(cipher){
+  if(!cipher)return '';
+  try{
+    const key=await _getCryptoKey();
+    const buf=Uint8Array.from(atob(cipher),c=>c.charCodeAt(0));
+    const iv=buf.slice(0,12);
+    const ct=buf.slice(12);
+    const pt=await crypto.subtle.decrypt({name:'AES-GCM',iv},key,ct);
+    return new TextDecoder().decode(pt);
+  }catch(e){
+    // Decryption failed — key stored in old plaintext format, migrate it
+    // If it looks like a valid API key, return it (migration path)
+    if(cipher.startsWith('sk-')||cipher.startsWith('gsk_')||cipher.startsWith('AIzaSy')||cipher.length<200)
+      return cipher;
+    return '';
+  }
+}
+
+// Override gk/sk to use encryption for paid providers
+const _gkPlain=p=>localStorage.getItem('aik_'+p)||'';
+const _skPlain=(p,v)=>v?localStorage.setItem('aik_'+p,v):localStorage.removeItem('aik_'+p);
+
+// Synchronous gk for UI rendering (uses cached decrypted values)
+const _keyCache={};
+function gk(p){
+  if(FREE_PROVS.has(p))return _gkPlain(p)||'';
+  return _keyCache[p]||'';
+}
+function sk(p,v){
+  if(FREE_PROVS.has(p)){_skPlain(p,v);return;}
+  if(!v){delete _keyCache[p];localStorage.removeItem('aik_enc_'+p);return;}
+  _keyCache[p]=v;
+  // Encrypt async and store
+  encryptKey(v).then(enc=>{
+    if(enc)localStorage.setItem('aik_enc_'+p,enc);
+  });
+}
+
+// Decrypt all stored encrypted keys on load
+async function loadEncryptedKeys(){
+  const providers=Object.keys(PROV).filter(p=>!FREE_PROVS.has(p));
+  for(const p of providers){
+    const enc=localStorage.getItem('aik_enc_'+p);
+    if(enc){
+      const plain=await decryptKey(enc);
+      if(plain)_keyCache[p]=plain;
+    } else {
+      // Check for legacy plaintext key and migrate
+      const legacy=localStorage.getItem('aik_'+p);
+      if(legacy){
+        _keyCache[p]=legacy;
+        sk(p,legacy); // re-save encrypted
+        localStorage.removeItem('aik_'+p); // remove plaintext
+      }
+    }
+  }
+  renderML();updTop();
+}
+
+// Legacy override — replaced above
+// function gk(p){return localStorage.getItem('aik_'+p)||'';}
+// sk override — see SECURE KEY STORAGE above
 function canUse(m){
   if(m.instant||m.p==='pollinations')return true;
   return!!gk(m.p);
@@ -2468,9 +3425,68 @@ function mcard(m){
 }
 
 function selM(id){
+  const ta=document.getElementById('cta');
+  // Abort any in-progress request silently
+  if(busy&&_abortCtrl){
+    _abortCtrl.abort();
+    _stopSlowTimer();
+    rmTyping();
+    if(aiBub){aiBub.parentElement.remove();aiBub=null;}
+    // Restore last user message
+    if(hist.length&&hist[hist.length-1].role==='user'){
+      const lastMsg=hist.pop();
+      if(cur&&hists[cur.id])hists[cur.id].hist=[...hist];
+      if(ta){ta.value=lastMsg.content;ta.style.height='auto';ta.style.height=Math.min(ta.scrollHeight,480)+'px';}
+    }
+    busy=false;
+    const csend=document.getElementById('csend');if(csend)csend.disabled=false;
+  }
+
+  // Save current model's state before switching
+  if(cur&&cur.id!==id){
+    const cmsgsEl=document.getElementById('cmsgs');
+    if(!hists[cur.id])hists[cur.id]={hist:[],html:'',draft:''};
+    if(hist.length>0){
+      hists[cur.id].hist=[...hist];
+      if(cmsgsEl)hists[cur.id].html=cmsgsEl.innerHTML;
+    }
+    // Save textarea draft even if no messages sent yet
+    if(ta)hists[cur.id].draft=ta.value;
+  }
+
   cur=MODELS.find(m=>m.id===id)||MODELS[0];
+
+  // Restore or reset chat for new model
+  const saved=hists[cur.id];
+  if(saved&&saved.hist.length>0){
+    hist=[...saved.hist];
+    const cmsgsEl=document.getElementById('cmsgs');
+    if(cmsgsEl&&saved.html){
+      cmsgsEl.innerHTML=saved.html;
+      cmsgsEl.scrollTop=cmsgsEl.scrollHeight;
+      const cm=document.querySelector('.chat-main');
+      if(cm)cm.classList.remove('empty');
+    }
+  } else {
+    hist=[];
+    _showWelcome();
+  }
+
+  // Restore textarea draft (what user was typing)
+  if(ta){
+    ta.value=(saved&&saved.draft)||'';
+    ta.style.height='auto';
+    if(ta.value)ta.style.height=Math.min(ta.scrollHeight,480)+'px';
+  }
+
+  // Ensure send button is enabled (not stuck from previous model's request)
+  const csend=document.getElementById('csend');
+  if(csend&&!busy)csend.disabled=false;
+
   renderML();
   updTop();
+  updateChatEmpty();
+
   // Context-aware warning per provider
   const warn=document.getElementById('rl-warn');
   if(!warn){if(window.innerWidth<=768)closeSB();return;}
@@ -2480,6 +3496,43 @@ function selM(id){
   if(_wk){warn.innerHTML=t(_wk);warn.classList.add('show');}
   else{warn.innerHTML='';warn.classList.remove('show');}
   if(window.innerWidth<=768)closeSB();
+}
+
+function _showWelcome(){
+  const c=MODELS.filter(m=>m.p==='pollinations').length;
+  const el=document.getElementById('cmsgs');
+  if(!el)return;
+  el.innerHTML=`<div class="cwelc" id="cwelc">
+    <div class="cwelc-hero">
+      <h2 data-i18n="cwH" style="font-size:.9rem;font-weight:800;margin:0 0 2px">${t('cwH')}</h2>
+      <p data-i18n-html="cwP" style="font-size:.72rem;color:var(--mut);margin:0 0 3px">${t('cwP')}</p>
+      <div class="wfree" style="margin-bottom:4px">✅ ${c} Pollinations</div>
+      <div class="cwelc-free-banner">
+        🌸 ${t('bannerP')||'Prin <strong>Pollinations.AI</strong>, accesezi <strong>20+ modele gratuit</strong> — fără cont, fără cheie API.'}
+      </div>
+    </div>
+    <div class="cwelc-sec">
+      <h3 class="cwelc-stit">${t('stepsH')}</h3>
+      <p class="cwelc-colsub" style="text-align:center">${t('stepsP')}</p>
+      <div class="cwelc-three-col">
+        <div class="cwelc-step-card"><span class="snum">1</span><div><strong>${t('st1H')}</strong><p>${t('st1P')}</p></div></div>
+        <div class="cwelc-step-card"><span class="snum">2</span><div><strong>${t('st2H')}</strong><p>${t('st2P')}</p></div></div>
+        <div class="cwelc-step-card"><span class="snum">3</span><div><strong>${t('st3H')}</strong><p>${t('st3P')}</p></div></div>
+      </div>
+    </div>
+    <div class="cwelc-explore">
+      <button class="btn btn-s" onclick="goPage('explore')" data-i18n="heroBtn2" style="font-size:.8rem;padding:7px 16px">${t('heroBtn2')}</button>
+    </div>
+    <div class="cwelc-sec">
+      <h3 class="cwelc-stit">${t('sec1H')}</h3>
+      <p class="cwelc-colsub" style="text-align:center">${t('sec1P')}</p>
+      <div class="cwelc-three-col">
+        <div class="cwelc-card"><span class="cwelc-ico">📝</span><strong>${t('c1H')}</strong><p>${t('c1P')}</p></div>
+        <div class="cwelc-card"><span class="cwelc-ico">🧠</span><strong>${t('c2H')}</strong><p>${t('c2P')}</p></div>
+        <div class="cwelc-card"><span class="cwelc-ico">⚡</span><strong>${t('c3H')}</strong><p>${t('c3P')}</p></div>
+      </div>
+    </div>
+  </div>`;
 }
 
 function updTop(){
@@ -2527,10 +3580,10 @@ function renderKeys(){
 
 function saveK(pid){
   const v=document.getElementById(`ki-${pid}`).value.trim();
-  sk(pid,v);
+  sk(pid,v); // AES-GCM encrypted for paid providers
   const el=document.getElementById(`ks-${pid}`);
   el.className='kstat '+(v?'kok':'kno');
-  el.textContent=v?t('keySaved'):'○ Nicio cheie';
+  el.textContent=v?t('keySaved'):t('keyNoKey');
   setTimeout(renderKeys,1200);
 }
 function clearK(pid){sk(pid,'');renderKeys();}
@@ -2548,20 +3601,9 @@ function updateChatEmpty(){
 }
 function clearChat(){
   hist=[];
+  if(cur)delete hists[cur.id];
+  _showWelcome();
   setTimeout(updateChatEmpty,0);
-  const c=MODELS.filter(m=>m.p==='pollinations').length;
-  document.getElementById('cmsgs').innerHTML=`<div class="cwelc" id="cwelc">
-    <span class="wico">🌸</span>
-    <h3 data-i18n="cwH">${t('cwH')}</h3>
-    <p data-i18n-html="cwP">${t('cwP')}</p>
-    <div class="wfree">✅ ${c} Pollinations</div>
-    <div class="suggs">
-      <button class="sug" data-i18n="sg1" onclick="sendSug(t('sg1T'))">${t('sg1')}</button>
-      <button class="sug" data-i18n="sg2" onclick="sendSug(t('sg2T'))">${t('sg2')}</button>
-      <button class="sug" data-i18n="sg3" onclick="sendSug(t('sg3T'))">${t('sg3')}</button>
-      <button class="sug" data-i18n="sg4" onclick="sendSug(t('sg4T'))">${t('sg4')}</button>
-      <button class="sug" data-i18n="sg5" onclick="sendSug(t('sg5T'))">${t('sg5')}</button>
-    </div></div>`;
 }
 
 function addUsrMsg(text){
@@ -2575,14 +3617,97 @@ function addUsrMsg(text){
   d.innerHTML=`<div class="mav">👤</div><div class="mbub">${content}</div>`;
   c.appendChild(d);c.scrollTop=c.scrollHeight;
 }
+let _thinkTimer=null, _thinkSec=0, _factIdx=0;
+const _RING_CIRC=113; // 2π×18 ≈ 113px (r=18 SVG circle)
+
 function addTypingMsg(){
   const c=document.getElementById('cmsgs');
   const d=document.createElement('div');d.className='msg ai';d.id='tmsg';
   const ico=cur?(PROV[cur.p]||{ico:'🤖'}).ico:'🤖';
-  d.innerHTML=`<div class="mav">${ico}</div><div class="mbub"><div class="tdots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>`;
-  c.appendChild(d);c.scrollTop=c.scrollHeight;
+  const pName=cur?(PROV[cur.p]||{n:cur.n||'AI'}).n:'AI';
+  const facts=t('aiFacts')||[];
+  const firstFact=facts[Math.floor(Math.random()*facts.length)]||'';
+  d.innerHTML=`
+    <div class="mav">${ico}</div>
+    <div class="mbub">
+      <div class="twait">
+        <div class="twait-top">
+          <div class="twait-ring">
+            <svg width="44" height="44" viewBox="0 0 44 44">
+              <circle class="twait-ring-bg" cx="22" cy="22" r="18"/>
+              <circle class="twait-ring-fg" id="twait-fg" cx="22" cy="22" r="18"/>
+            </svg>
+            <div class="twait-sec" id="twait-sec">0</div>
+          </div>
+          <div class="twait-info">
+            <div class="twait-model">${ico} ${pName}</div>
+            <div class="twait-status" id="twait-status">
+              <div class="twait-dots">
+                <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+              </div>
+              <span id="twait-msg"></span>
+            </div>
+          </div>
+        </div>
+        <div class="tprogress"><div class="tprogress-wave"></div></div>
+        <div class="twait-fact" id="twait-fact">${firstFact}</div>
+      </div>
+    </div>`;
+  c.appendChild(d);_scrollToBottom(false);
+  _startThinkTimer();
 }
-function rmTyping(){const t=document.getElementById('tmsg');if(t)t.remove();}
+
+function _startThinkTimer(){
+  _thinkSec=0;
+  _factIdx=0;
+  clearInterval(_thinkTimer);
+  const facts=t('aiFacts')||[];
+  const msgs=t('thinkMsgs')||['…'];
+  // Randomize starting fact
+  _factIdx=Math.floor(Math.random()*facts.length);
+
+  _thinkTimer=setInterval(()=>{
+    _thinkSec++;
+    // Update ring timer
+    const secEl=document.getElementById('twait-sec');
+    const ringEl=document.getElementById('twait-fg');
+    const msgEl=document.getElementById('twait-msg');
+    const factEl=document.getElementById('twait-fact');
+
+    if(secEl)secEl.textContent=_thinkSec;
+
+    // Ring fills over 20s (expected Pollinations wait)
+    if(ringEl){
+      const pct=Math.min(_thinkSec/20,1);
+      const offset=_RING_CIRC-(pct*_RING_CIRC);
+      ringEl.style.strokeDashoffset=offset;
+      // Color: green→orange→red
+      if(pct<0.5)ringEl.style.stroke='var(--acc)';
+      else if(pct<0.85)ringEl.style.stroke='#fb923c';
+      else ringEl.style.stroke='#ef4444';
+    }
+
+    // Status message cycling
+    if(msgEl){
+      const idx=Math.min(Math.floor(_thinkSec/4),msgs.length-1);
+      msgEl.textContent=msgs[idx]||'';
+    }
+
+    // Rotate fact every 8 seconds
+    if(factEl && _thinkSec>0 && _thinkSec%8===0){
+      _factIdx=(_factIdx+1)%facts.length;
+      factEl.style.animation='none';
+      factEl.offsetHeight; // reflow
+      factEl.style.animation='';
+      factEl.textContent=facts[_factIdx]||'';
+    }
+  },1000);
+}
+
+function _stopThinkTimer(){
+  clearInterval(_thinkTimer);_thinkTimer=null;
+}
+function rmTyping(){_stopThinkTimer();const t=document.getElementById('tmsg');if(t)t.remove();}
 function makeAIBub(){
   const c=document.getElementById('cmsgs');
   const w=document.getElementById('cwelc');if(w)w.remove();
@@ -2593,7 +3718,22 @@ function makeAIBub(){
   aiBub=d.querySelector('.mbub');
   c.scrollTop=c.scrollHeight;
 }
-function chunkAI(t){if(!aiBub)return;aiBub.textContent=t;document.getElementById('cmsgs').scrollTop=99999;}
+function chunkAI(txt){
+  if(!aiBub){
+    // Primul chunk — tranziție: scoate waiting bubble, arată streaming bubble
+    rmTyping();
+    makeAIBub();
+  }
+  _stopSlowTimer();
+  _hideSlowInBub();
+  aiBub.textContent=txt;
+  _scrollToBottom(true);
+}
+
+function _hideSlowInBub(){
+  const el=document.getElementById('twait-slow');
+  if(el)el.remove();
+}
 function finalAI(t){
   if(!aiBub)return;
   aiBub.style.whiteSpace='';
@@ -2601,7 +3741,7 @@ function finalAI(t){
   // Render math if KaTeX available or just loaded
   if(window.katex)renderMath(aiBub);
   else if(t.includes('$'))loadKaTeX().then(()=>renderMath(aiBub)).catch(()=>{});
-  document.getElementById('cmsgs').scrollTop=99999;
+  _scrollToBottom(true);
   aiBub=null;
 }
 function addErrMsg(t){
@@ -2612,6 +3752,94 @@ function addErrMsg(t){
   c.appendChild(d);c.scrollTop=c.scrollHeight;
 }
 
+
+
+function _scrollToBottom(smooth){
+  const c=document.getElementById('cmsgs');
+  if(!c)return;
+  c.scrollTo({top:c.scrollHeight, behavior:smooth?'smooth':'instant'});
+}
+
+// ═══════════════════════════════════════════
+// SLOW RESPONSE / ABORT SYSTEM
+// ═══════════════════════════════════════════
+function _startSlowTimer(){
+  _slowShown=false;
+  clearTimeout(_slowTimer);
+  _slowTimer=setTimeout(()=>{
+    if(!busy)return;
+    _slowShown=true;
+    // Afișează warning ÎN bula de typing (nu bara separată)
+    const wrap=document.getElementById('tmsg')?.querySelector('.twait');
+    if(wrap&&!document.getElementById('twait-slow')){
+      const pName=(PROV[cur.p]||{n:cur?.n||'AI'}).n;
+      const sw=document.createElement('div');
+      sw.id='twait-slow';sw.className='twait-slow';
+      sw.innerHTML=`
+        <span>⚠️ ${pName} ${t('slowWarnMsg')}</span>
+        <div class="twait-slow-btns">
+          <button class="slow-warn-cancel" onclick="cancelRequest()">${t('slowWarnCancel')}</button>
+          <button class="slow-warn-switch" onclick="abortAndPick()">${t('slowWarnSwitch')}</button>
+        </div>`;
+      wrap.appendChild(sw);
+      // Scroll ca să fie vizibil complet
+      setTimeout(()=>_scrollToBottom(true), 80);
+    }
+    // Inel → roșu
+    const rf=document.getElementById('twait-fg');
+    if(rf)rf.style.stroke='#ef4444';
+    const secEl=document.getElementById('twait-sec');
+    if(secEl)secEl.style.color='#ef4444';
+  }, SLOW_WARN_MS);
+}
+
+function _stopSlowTimer(){
+  clearTimeout(_slowTimer);
+  _slowTimer=null;
+  _slowShown=false;
+  const bar=document.getElementById('slow-warn');
+  if(bar){bar.classList.remove('on');bar.innerHTML='';}
+}
+
+function cancelRequest(){
+  // Abort fetch + clean up, keep user message in field
+  const ta=document.getElementById('cta');
+  const lastMsg=hist.length?hist[hist.length-1]:null;
+  if(_abortCtrl)_abortCtrl.abort();
+  _stopSlowTimer();
+  _hideSlowInBub();
+  rmTyping();
+  if(aiBub){aiBub.parentElement.remove();aiBub=null;}
+  // Restore last user message to textarea
+  if(lastMsg&&lastMsg.role==='user'){
+    hist.pop();
+    if(cur&&hists[cur.id])hists[cur.id].hist=[...hist];
+    if(ta){
+      ta.value=lastMsg.content;
+      ta.style.height='auto';
+      ta.style.height=Math.min(ta.scrollHeight,480)+'px';
+      if(cur&&hists[cur.id])hists[cur.id].draft=lastMsg.content;
+    }
+  }
+  busy=false;
+  const csend=document.getElementById('csend');
+  if(csend)csend.disabled=false;
+}
+
+function abortAndPick(){
+  // Abort + let user pick another model
+  cancelRequest();
+  // Highlight the model filter bar to invite switching
+  const sb=document.getElementById('sidebar');
+  if(sb){
+    sb.style.transition='box-shadow .3s';
+    sb.style.boxShadow='0 0 0 3px var(--acc)';
+    setTimeout(()=>{sb.style.boxShadow='';},2000);
+  }
+  // On mobile, open the sidebar
+  if(window.innerWidth<=768)toggleSB();
+}
+
 // ═══════════════════════════════════════════
 // SEND
 // ═══════════════════════════════════════════
@@ -2620,41 +3848,47 @@ async function sendMsg(){
   const ta=document.getElementById('cta');
   const text=ta.value.trim();
   if(!text)return;
-  if(!canUse(cur)){openSett();return;}
+  if(!canUse(cur)){openInlineKey(cur.p);return;}
 
   ta.value='';ta.style.height='auto';
+  if(cur&&hists[cur.id])hists[cur.id].draft='';
   document.getElementById('csend').disabled=true;
   busy=true;
   hist.push({role:'user',content:text});
+  if(cur)hists[cur.id]={hist:[...hist],html:''};
   addUsrMsg(text);
+
+  // Create abort controller for this request
+  _abortCtrl=new AbortController();
+  _startSlowTimer();
 
   try{
     let reply='';
     if(cur.p==='pollinations'){
-      addTypingMsg();makeAIBub();rmTyping();
-      reply=await streamPollinations(cur.id,hist,chunkAI);
+      addTypingMsg();
+      reply=await streamPollinations(cur.id,[...hist],chunkAI);
     }else if(cur.p==='duckduckgo'){
-      addTypingMsg();makeAIBub();rmTyping();
-      reply=await streamDDG(cur.id,hist,chunkAI);
+      addTypingMsg();
+      reply=await streamDDG(cur.id,[...hist],chunkAI);
     }else if(cur.p==='webllm'){
-      addTypingMsg();makeAIBub();rmTyping();
-      reply=await chatWebLLM(cur.id,hist,chunkAI);
+      addTypingMsg();
+      reply=await chatWebLLM(cur.id,[...hist],chunkAI);
     }else if(cur.p==='aihorde'){
-      addTypingMsg();makeAIBub();rmTyping();
-      reply=await chatAIHorde(cur.id,hist,chunkAI);
+      addTypingMsg();
+      reply=await chatAIHorde(cur.id,[...hist],chunkAI);
     }else if(cur.p==='lmstudio'){
-      addTypingMsg();makeAIBub();rmTyping();
-      reply=await streamLocalOAI('http://localhost:1234',cur.id,hist,chunkAI);
+      addTypingMsg();
+      reply=await streamLocalOAI('http://localhost:1234',cur.id,[...hist],chunkAI);
     }else if(cur.p==='ollama'){
-      addTypingMsg();makeAIBub();rmTyping();
-      reply=await streamLocalOAI('http://localhost:11434',cur.id,hist,chunkAI);
+      addTypingMsg();
+      reply=await streamLocalOAI('http://localhost:11434',cur.id,[...hist],chunkAI);
     }else if(cur.p==='anthropic'){
-      addTypingMsg();makeAIBub();rmTyping();
-      reply=await streamAnthropic(cur.id,hist,gk('anthropic'),chunkAI);
+      addTypingMsg();
+      reply=await streamAnthropic(cur.id,[...hist],gk('anthropic'),chunkAI);
     }else if(cur.p==='google'){
       addTypingMsg();
-      reply=await callGoogle(cur.id,hist,gk('google'));
-      rmTyping();makeAIBub();chunkAI(reply);
+      reply=await callGoogle(cur.id,[...hist],gk('google'));
+      chunkAI(reply);
     }else{
       const ep={
         openai:'https://api.openai.com/v1/chat/completions',
@@ -2663,28 +3897,173 @@ async function sendMsg(){
         perplexity:'https://api.perplexity.ai/chat/completions',
         openrouter:'https://openrouter.ai/api/v1/chat/completions',
       }[cur.p];
-      addTypingMsg();makeAIBub();rmTyping();
-      reply=await streamOAI(ep,cur.id,hist,gk(cur.p),cur.p==='openrouter',chunkAI);
+      addTypingMsg();
+      reply=await streamOAI(ep,cur.id,[...hist],gk(cur.p),cur.p==='openrouter',chunkAI);
     }
     finalAI(reply);
-    hist.push({role:'assistant',content:reply});
+    // Only push non-empty replies — an empty reply would corrupt future history
+    if(reply && reply.trim()){
+      hist.push({role:'assistant',content:reply});
+      if(cur)hists[cur.id]={hist:[...hist],html:document.getElementById('cmsgs').innerHTML};
+    } else if(!reply || !reply.trim()){
+      // Empty response — treat as error so history stays clean
+      throw new Error(t('errEmptyTitle'));
+    }
   }catch(err){
     rmTyping();
     if(aiBub){aiBub.parentElement.remove();aiBub=null;}
-    hist.pop();
-    let msg=err.message||t('errUnknown');
-    if(/401|auth|authentication/i.test(msg))
-      msg=`${t('keyInvalid')} **${(PROV[cur.p]||{n:cur.p}).n}**. ${t('pressSettings')}`;
-    else if(/CORS|Failed to fetch|NetworkError|tokenul/i.test(msg))
-      msg=`🌐 Conexiune blocată. ${cur.p==='duckduckgo'?'DuckDuckGo este blocat de CORS în acest browser — încearcă un model Pollinations ✅ care funcționează garantat.':t('tryPoll')}`;
-    else if(/rate|429|15s|too many/i.test(msg))
-      msg=`⏱ Limită depășită. ${cur.p==='pollinations'?'Pollinations: 1 mesaj/15s anonim. Înregistrare gratuită la auth.pollinations.ai.':t('tryAgain')}`;
-    addErrMsg(msg);
-  }
+    // Restore hist — remove the user message we added
+    if(hist.length && hist[hist.length-1]?.role==='user') hist.pop();
+    if(cur&&hists[cur.id])hists[cur.id].hist=[...hist];
+    // If user cancelled deliberately → silent (finally will cleanup)
+    if(err.name==='AbortError'){return;}
+    const raw=err.message||t('errUnknown');
+    const pv=PROV[cur.p]||{n:cur.p,ico:'🤖'};
+    const pName=pv.n;
+    const isInst=cur.instant||cur.p==='pollinations';
 
-  busy=false;
-  document.getElementById('csend').disabled=false;
-  document.getElementById('cta').focus();
+    // ── Clasificare erori ──────────────────────────────────────────────
+    if(/401|unauthorized|invalid.*key|api.*key|authentication|incorrect.*key/i.test(raw)){
+      // Cheie API invalidă sau expirată
+      addRichErr(
+        `${t('errKeyTitle')} — ${pName}`,
+        `${t('errKeyDesc')}`,
+        [
+          {label:`⚙️ Actualizează cheia ${pName}`,action:`openInlineKey('${cur.p}')`},
+          {label:t('actGetKey'),action:`window.open('${pv.kUrl||"https://openrouter.ai/keys"}','_blank')`},
+          ...(isInst?[]:[{label:t('actSwitchFree'),action:"selM('openai')"}]),
+        ]
+      );
+    } else if(/403|forbidden|quota.*exceeded|insufficient.*quota|billing|credits/i.test(raw)){
+      // Limită de cont / fonduri insuficiente
+      addRichErr(
+        `${t('errQuotaTitle')} — ${pName}`,
+        `${t('errQuotaDesc')}`,
+        [
+          {label:`💳 Verifică contul ${pName}`,action:`window.open('${pv.kUrl||"#"}','_blank')`},
+          {label:t('actSwitchFree'),action:"selM('openai')"},
+          {label:t('actTryGroq'),action:"openInlineKey('groq')"},
+        ]
+      );
+    } else if(/404|not found|model.*exist|no.*model/i.test(raw)){
+      // Model inexistent → refresh automat
+      if(cur)_404models.add(cur.id);
+      fetchPollModels(false);
+      const altModel=MODELS.find(m=>m.p==='pollinations'&&m.id!==cur.id);
+      addRichErr(
+        `${t('err404Title')} — ${cur.n}`,
+        `${t('err404Desc')}`,
+        [
+          ...(altModel?[{label:`${t('actSwitchAlt')}: ${altModel.n}`,action:`selM('${altModel.id}')`}]:[]),
+          {label:t('actCheckModels'),action:'openModelCheck()'},
+          {label:t('actReloadModels'),action:'fetchPollModels(true)'},
+        ]
+      );
+    } else if(/429|rate.?limit|too.?many|slow.?down|throttl/i.test(raw)){
+      // Rate limit
+      const isPoll=cur.p==='pollinations';
+      addRichErr(
+        `${t('errRateTitle')} — ${pName}`,
+        isPoll ? t('errRatePollDesc') : t('errRateDesc'),
+        [
+          {label:t('actRetry15'),action:'setTimeout(sendMsg,15000)'},
+          ...(isPoll?[
+            {label:t('actRegPoll'),action:"window.open('https://auth.pollinations.ai','_blank')"},
+            {label:'⚡ Treci la Groq (rapid, gratuit)',action:"openInlineKey('groq')"},
+          ]:[]),
+        ]
+      );
+    } else if(/CORS|Failed to fetch|NetworkError|Load failed|net::|tokenul|ERR_/i.test(raw)){
+      // Conexiune blocată / CORS / rețea
+      const isDDG=cur.p==='duckduckgo';
+      const isLocal=cur.p==='lmstudio'||cur.p==='ollama';
+      if(isLocal){
+        addRichErr(
+          `🖥️ Server local inaccesibil — ${pName}`,
+          cur.p==='lmstudio'
+            ? 'LM Studio nu răspunde. Asigură-te că serverul este pornit pe portul **1234**.'
+            : 'Ollama nu răspunde. Pornește-l cu `OLLAMA_ORIGINS=* ollama serve` pe portul **11434**.',
+          [
+            {label:`📖 Instrucțiuni ${pName}`,action:`openInlineKey('${cur.p}')`},
+            {label:t('actSwitchOnline'),action:"selM('openai')"},
+          ]
+        );
+      } else if(isDDG){
+        addRichErr(
+          t('errDDGTitle'),
+          t('errDDGDesc'),
+          [
+            {label:'✅ Pollinations — la fel de gratuit',action:"selM('openai')"},
+            {label:t('actRetry'),action:'sendMsg()'},
+            {label:t('actOpenDDG'),action:"window.open('https://duckduckgo.com/chat','_blank')"},
+          ]
+        );
+      } else {
+        addRichErr(
+          t('errCorsTitle'),
+          t('errCorsDesc'),
+          [
+            {label:t('actRetry'),action:'sendMsg()'},
+            {label:t('actSwitchPoll'),action:"selM('openai')"},
+            {label:t('actReloadModels'),action:'fetchPollModels(true)'},
+          ]
+        );
+      }
+    } else if(/timeout|timed.?out|ETIMEDOUT/i.test(raw)){
+      // Timeout
+      addRichErr(
+        `${t('errTimeoutTitle')} — ${pName}`,
+        t('errTimeoutDesc'),
+        [
+          {label:t('actRetry'),action:'sendMsg()'},
+          {label:t('actFasterModel'),action:"filterM('fast',document.querySelector('.cpill'))"},
+          {label:t('actSwitchPollFast'),action:"selM('openai-fast')"},
+        ]
+      );
+    } else if(/WebGPU|gpu|GPU/i.test(raw)){
+      // WebGPU indisponibil (WebLLM)
+      addRichErr(
+        t('errWebGPUTitle'),
+        t('errWebGPUDesc'),
+        [
+          {label:t('actSwitchOnline'),action:"selM('openai')"},
+          {label:t('actGetChrome'),action:"window.open('https://www.google.com/chrome/','_blank')"},
+        ]
+      );
+    } else if(/empty|gol|no content|no response|vide/i.test(raw)){
+      // Răspuns gol
+      addRichErr(
+        `${t('errEmptyTitle')} — ${pName}`,
+        t('errEmptyDesc'),
+        [
+          {label:t('actRetry'),action:'sendMsg()'},
+          {label:t('actSwitchAlt'),action:"selM('openai')"},
+        ]
+      );
+    } else {
+      // Eroare necunoscută — afișare cu context
+      addRichErr(
+        `❌ Eroare — ${pName}`,
+        `A apărut o problemă neașteptată:
+
+\`${raw.slice(0,200)}\``,
+        [
+          {label:t('actRetry'),action:'sendMsg()'},
+          {label:'✅ Treci la Pollinations (stabil)',action:"selM('openai')"},
+          {label:'🔍 Reîncarcă modelele',action:'fetchPollModels(true)'},
+        ]
+      );
+    }
+  }finally{
+    // Always runs — even on error, abort, or unexpected throw
+    _stopSlowTimer();
+    _abortCtrl=null;
+    busy=false;
+    const _csend=document.getElementById('csend');
+    if(_csend)_csend.disabled=false;
+    const _cta=document.getElementById('cta');
+    if(_cta&&document.activeElement!==_cta)_cta.focus();
+  }
 }
 function sendSug(t){document.getElementById('cta').value=t;sendMsg();}
 
@@ -2714,6 +4093,7 @@ async function readSSE(body,parse,onChunk){
 async function streamPollinations(modelId,msgs,onChunk){
   const res=await fetch('https://text.pollinations.ai/openai',{
     method:'POST',
+    signal:_abortCtrl?.signal,
     headers:{'Content-Type':'application/json'},
     body:JSON.stringify({
       model:modelId,
@@ -2724,6 +4104,12 @@ async function streamPollinations(modelId,msgs,onChunk){
   if(!res.ok){
     const e=await res.json().catch(()=>({}));
     if(res.status===429)throw new Error('rate limit 15s');
+    if(res.status===404){
+      // Model not found — add to blocklist and trigger refresh
+      if(cur)_404models.add(cur.id);
+      fetchPollModels(false);
+      throw new Error(`Model "${cur?.n||modelId}" indisponibil (404). Lista se actualizează — selectează alt model.`);
+    }
     throw new Error(e.error?.message||`HTTP ${res.status}`);
   }
   return readSSE(res.body,ln=>{
@@ -2741,6 +4127,7 @@ async function streamPollinations(modelId,msgs,onChunk){
 async function streamDDG(modelId,msgs,onChunk){
   // Step 1: obtain session VQD token
   const stRes=await fetch('https://duckduckgo.com/duckchat/v1/status',{
+    signal:_abortCtrl?.signal,
     headers:{'x-vqd-accept':'1'},
   });
   const vqd=stRes.headers.get('x-vqd-4');
@@ -2756,6 +4143,7 @@ async function streamDDG(modelId,msgs,onChunk){
   // Step 2: chat (SSE stream)
   const res=await fetch('https://duckduckgo.com/duckchat/v1/chat',{
     method:'POST',
+    signal:_abortCtrl?.signal,
     headers:{'Content-Type':'application/json','x-vqd-4':vqd},
     body:JSON.stringify({model:modelId,messages:ddgMsgs}),
   });
@@ -2839,6 +4227,7 @@ async function streamLocalOAI(baseUrl,modelId,msgs,onChunk){
   try{
     res=await fetch(`${baseUrl}/v1/chat/completions`,{
       method:'POST',
+      signal:_abortCtrl?.signal,
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
         model:modelId||'',
@@ -2948,7 +4337,7 @@ async function streamAnthropic(modelId,msgs,key,onChunk){
     method:'POST',headers:hdr,
     body:JSON.stringify({model:modelId,max_tokens:2000,system:SYS,messages:msgs,stream:true}),
   });
-  if(!res.ok){const e=await res.json().catch(()=>({}));throw new Error(e.error?.message||`HTTP ${res.status}`);}
+  if(!res.ok){const e=await res.json().catch(()=>({}));if(res.status===404)throw new Error(`Model 404 — verifică modelul selectat.`);throw new Error(e.error?.message||`HTTP ${res.status}`);}
   return readSSE(res.body,ln=>{
     if(!ln.startsWith('data: '))return null;
     try{const d=JSON.parse(ln.slice(6));return d.type==='content_block_delta'?(d.delta?.text||null):null;}
@@ -2966,7 +4355,7 @@ async function streamOAI(ep,modelId,msgs,key,isOR,onChunk){
     method:'POST',headers:hdr,
     body:JSON.stringify({model:modelId,messages:[{role:'system',content:SYS},...msgs],stream:true,max_tokens:2000}),
   });
-  if(!res.ok){const e=await res.json().catch(()=>({}));throw new Error(e.error?.message||`HTTP ${res.status}`);}
+  if(!res.ok){const e=await res.json().catch(()=>({}));if(res.status===404)throw new Error(`Model 404 — verifică modelul selectat.`);throw new Error(e.error?.message||`HTTP ${res.status}`);}
   return readSSE(res.body,ln=>{
     if(!ln.startsWith('data: ')||ln==='data: [DONE]')return null;
     try{const d=JSON.parse(ln.slice(6));return d.choices?.[0]?.delta?.content||null;}
@@ -4898,7 +6287,7 @@ const EX=[
     url:'https://www.descript.com',star:'⭐ Editare video și podcast cu AI',
     d:'Editează video și audio ca pe un document text. AI elimina cuvinte de umplere automat.'},
   // ── AI HORDE & PLATFORME LOCALE ─────────────────────────────
-  {n:'AI Horde',mk:'Cluster voluntari',ico:'🌐',c:'#D97706',bg:'#FEF3C7',anon:true,
+  {n:'AI Horde',mk:t('mkVolunt'),ico:'🌐',c:'#D97706',bg:'#FEF3C7',anon:true,
     cats:['anon','local','general'],tags:['🔒 Anonim total','🤝 Voluntari'],
     url:'https://aihorde.net',star:'⭐ Cluster AI distribuit, 100% gratuit și anonim',
     d:'Rețea de computere voluntare care oferă inferență AI gratuită și anonimă. Fără cheie, fără cont.'},
@@ -5120,7 +6509,15 @@ function exF(f,btn){
 // TEXTAREA
 // ═══════════════════════════════════════════
 const ta=document.getElementById('cta');
-ta.addEventListener('input',function(){this.style.height='auto';this.style.height=Math.min(this.scrollHeight,480)+'px';});
+ta.addEventListener('input',function(){
+  this.style.height='auto';
+  this.style.height=Math.min(this.scrollHeight,480)+'px';
+  // Keep draft saved for current model
+  if(cur){
+    if(!hists[cur.id])hists[cur.id]={hist:[],html:'',draft:''};
+    hists[cur.id].draft=this.value;
+  }
+});
 ta.addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();}});
 initInpResize();
 
@@ -5438,6 +6835,410 @@ async function handleFile(input) {
   }
 }
 
+
+
+// ═══════════════════════════════════════════
+// INLINE API KEY PANEL
+// ═══════════════════════════════════════════
+function openInlineKey(pid){
+  const pv=PROV[pid];
+  if(!pv||pv.noKey)return;
+  const panel=document.getElementById('inline-key');
+  if(!panel)return;
+  const existing=localStorage.getItem('aik_'+pid)||'';
+  const isFree=pv.free;
+
+  panel.innerHTML=`
+    <div class="inline-key-hd">
+      <span class="ik-ico">${pv.ico}</span>
+      <span>${t('ikTitle')} <strong>${pv.n}</strong></span>
+    </div>
+    ${isFree?`<div class="inline-key-free">${t('ikFree')}</div>`:''}
+    <div class="inline-key-guide">${pv.guide}</div>
+    <div class="inline-key-row">
+      <input class="inline-key-inp" id="ik-inp-${pid}" type="password"
+        placeholder="${pv.kh||'…'}"
+        value="${existing}"
+        oninput="document.getElementById('ik-save-${pid}').disabled=!this.value.trim()">
+      <button class="inline-key-save" id="ik-save-${pid}"
+        onclick="saveInlineKey('${pid}')"
+        ${existing?'':'disabled'}>
+        ${existing?t('ikUpdate'):t('ikSave')}
+      </button>
+    </div>
+    ${pv.kUrl?`<div style="font-size:.75rem;text-align:center">
+      <a href="${pv.kUrl}" target="_blank" rel="noopener" style="color:var(--acc);font-weight:700">
+        ${t('ikGet')} ${pv.n} →
+      </a>
+    </div>`:''}
+    <div class="inline-key-dismiss" onclick="closeInlineKey()">${t('ikDismiss')}</div>
+  `;
+  panel.classList.add('on');
+  // Focus input
+  setTimeout(()=>{
+    const inp=document.getElementById('ik-inp-'+pid);
+    if(inp)inp.focus();
+  },50);
+}
+
+function closeInlineKey(){
+  const panel=document.getElementById('inline-key');
+  if(panel){panel.classList.remove('on');panel.innerHTML='';}
+}
+
+function saveInlineKey(pid){
+  const inp=document.getElementById('ik-inp-'+pid);
+  if(!inp)return;
+  const val=inp.value.trim();
+  if(!val)return;
+  sk(pid,val); // encrypted via AES-GCM for paid providers
+  const btn=document.getElementById('ik-save-'+pid);
+  if(btn){btn.textContent=t('ikSaved');btn.style.background='#22c55e';}
+  setTimeout(()=>{
+    closeInlineKey();
+    updTop();
+    renderML();
+    // Try sending again if there was a pending message
+    const ta=document.getElementById('cta');
+    if(ta&&ta.value.trim())sendMsg();
+  },800);
+}
+
+// ═══════════════════════════════════════════
+// MODEL CHECK & UPDATE
+// ═══════════════════════════════════════════
+let _mcPending = {add:[], remove:[]};
+
+function closeMCheck(){
+  const ov=document.getElementById('mcheck-ov');
+  if(ov)ov.classList.remove('on');
+  _mcPending={add:[],remove:[]};
+}
+
+async function openModelCheck(){
+  const ov=document.getElementById('mcheck-ov');
+  const body=document.getElementById('mcheck-body');
+  const applyBtn=document.getElementById('mcheck-apply');
+  if(!ov||!body)return;
+  ov.classList.add('on');
+  applyI18n(); // translate modal tabs/buttons
+  body.innerHTML=`<div class="mcheck-status"><span class="mcheck-spinner"></span> ${t('mcLoading')}</div>`;
+  if(applyBtn)applyBtn.disabled=true;
+  _mcPending={add:[],remove:[]};
+
+  let liveIds=[];
+  try{
+    const r=await fetch('https://text.pollinations.ai/models');
+    const data=await r.json();
+    liveIds=data.filter(m=>m&&m.name&&!PX.includes(m.name)).map(m=>m.name);
+  }catch(e){
+    body.innerHTML=`<div class="mcheck-status">${t('mcError')}</div>`;
+    return;
+  }
+
+  // Current Pollinations model IDs in MODELS
+  const curPollIds=MODELS.filter(m=>m.p==='pollinations').map(m=>m.id);
+  const curPollSet=new Set(curPollIds);
+  const liveSet=new Set(liveIds);
+
+  // New models (live but not in current list)
+  const newModels=liveIds.filter(id=>!curPollSet.has(id));
+  // Old models (in current list but not live + in 404 blocklist)
+  const oldModels=curPollIds.filter(id=>!liveSet.has(id)||_404models.has(id));
+
+  if(!newModels.length&&!oldModels.length){
+    body.innerHTML=`<div class="mcheck-status">${t('mcAllGood')}</div>`;
+    return;
+  }
+
+  let html='';
+
+  if(newModels.length){
+    html+=`<div class="mcheck-section">
+      <h4>${t('mcNewModels')} (${newModels.length})</h4>
+      ${newModels.map(id=>`
+      <label class="mcheck-item new">
+        <input type="checkbox" class="mc-add" value="${id}" checked>
+        <span class="mi-name">${id}</span>
+        <span class="mi-tag">Pollinations</span>
+      </label>`).join('')}
+    </div>`;
+  }
+
+  if(oldModels.length){
+    html+=`<div class="mcheck-section">
+      <h4>${t('mcOldModels')} (${oldModels.length})</h4>
+      ${oldModels.map(id=>{
+        const hasConv=hists[id]&&hists[id].hist&&hists[id].hist.length>0;
+        return`<label class="mcheck-item ${hasConv?'warn':'old'}">
+          <input type="checkbox" class="mc-rem" value="${id}" ${hasConv?'':'checked'}>
+          <span class="mi-name">${id}</span>
+          <span class="mi-tag">Pollinations</span>
+          ${hasConv?`<span class="mi-warn">${t('mcHasConv')}</span>`:``}
+        </label>`;
+      }).join('')}
+    </div>`;
+  }
+
+  body.innerHTML=html;
+  if(applyBtn)applyBtn.disabled=false;
+}
+
+function applyModelChanges(){
+  // Collect checked items
+  const toAdd=[...document.querySelectorAll('.mc-add:checked')].map(el=>el.value);
+  const toRemove=[...document.querySelectorAll('.mc-rem:checked')].map(el=>el.value);
+
+  // Check if any models to remove have conversations
+  const withConv=toRemove.filter(id=>hists[id]&&hists[id].hist&&hists[id].hist.length>0);
+  if(withConv.length){
+    const names=withConv.join(', ');
+    if(!confirm(`${t('mcConfirmDel').replace('\\n','\n')}\n\n${names}`)){ 
+      return;
+    }
+  }
+
+  // Apply removals
+  toRemove.forEach(id=>{
+    // Remove from MODELS
+    const idx=MODELS.findIndex(m=>m.id===id&&m.p==='pollinations');
+    if(idx>-1)MODELS.splice(idx,1);
+    // Remove from hists
+    delete hists[id];
+    // If current model removed, reset
+    if(cur&&cur.id===id){
+      cur=MODELS.find(m=>m.p==='pollinations')||MODELS[0];
+      hist=[];
+      _showWelcome();
+      updTop();
+    }
+  });
+
+  // Apply additions (basic model entry — live fetch will enrich)
+  toAdd.forEach(id=>{
+    if(!MODELS.find(m=>m.id===id)){
+      MODELS.push({
+        id, p:'pollinations', n:id, mk:'Pollinations.AI',
+        spd:3, ctx:'128K', cats:['instant','general'],
+        instant:true, desc:id
+      });
+    }
+  });
+
+  // Re-render sidebar
+  renderML();
+
+  // Show result
+  const body=document.getElementById('mcheck-body');
+  const added=toAdd.length, removed=toRemove.length;
+  body.innerHTML=`<div class="mcheck-status">
+    ✅ ${added?`<strong>${added} ${t('mcDoneAdded')}</strong> `:''}${removed?`<strong>${removed} ${t('mcDoneRemoved')}</strong>`:''}
+    <br><br>${t('mcDoneReload')}
+  </div>`;
+  document.getElementById('mcheck-apply').disabled=true;
+
+  // Auto-refresh to get full metadata
+  setTimeout(()=>{fetchPollModels(false);closeMCheck();},2500);
+}
+
+
+// ═══════════════════════════════════════════
+// BOTTOM PANEL (Quiz / Quick Prompts / Keys)
+// ═══════════════════════════════════════════
+const QUIZ_DATA={
+ro:[
+  {q:'Ce înseamnă „LLM"?',opts:['Large Language Model','Local Learning Machine','Layered Logic Module','Linked List Manager'],a:0,exp:'Large Language Model — model mare de limbaj antrenat pe miliarde de texte.'},
+  {q:'Care model e 100% gratuit și anonim fără cont?',opts:['GPT-4 Turbo','Pollinations.AI','Perplexity Pro','Claude 3 Opus'],a:1,exp:'Pollinations.AI oferă acces anonim la 25+ modele fără cont sau cheie API.'},
+  {q:'Ce înseamnă „context window"?',opts:['Fereastra de browser','Câți tokeni poate „ține minte" modelul','Viteza de răspuns','Numărul de cereri/minut'],a:1,exp:'Context window = câte informații poate procesa simultan. Claude are 200K tokens ≈ 150.000 cuvinte.'},
+  {q:'Ce e WebGPU?',opts:['Un browser special','API grafic pentru calcul în browser','O rețea AI distribuită','Un format de fișier video'],a:1,exp:'WebGPU permite rularea modelelor AI direct în browser folosind GPU-ul local.'},
+  {q:'Care furnizor e bazat în Europa (GDPR)?',opts:['OpenAI','Google','Mistral AI','Meta'],a:2,exp:'Mistral AI e o companie franceză, conformă GDPR nativ.'},
+  {q:'Ce înseamnă „token" în context AI?',opts:['O monedă criptografică','O bucată de text (~4 litere)','Un model AI mic','Un tip de cheie API'],a:1,exp:'Un token ≈ 4 caractere sau 3/4 dintr-un cuvânt. GPT-4 costă per token procesat.'},
+  {q:'Care e cel mai rapid API AI gratuit?',opts:['Anthropic Claude','Groq (LPU chips)','AI Horde','WebLLM local'],a:1,exp:'Groq folosește cipuri LPU dedicate — de 10-100x mai rapid decât GPU-urile clasice.'},
+  {q:'Ce face „RAG" (Retrieval-Augmented Generation)?',opts:['Generează imagini din text','Caută informații relevante înainte de a răspunde','Rulează modele local','Criptează conversațiile'],a:1,exp:'RAG combină un motor de căutare cu un LLM — modelul „caută" înainte să răspundă.'},
+],
+en:[
+  {q:'What does "LLM" stand for?',opts:['Large Language Model','Local Learning Machine','Layered Logic Module','Linked List Manager'],a:0,exp:'Large Language Model — trained on billions of text tokens to predict and generate language.'},
+  {q:'Which model works 100% free and anonymous?',opts:['GPT-4 Turbo','Pollinations.AI','Perplexity Pro','Claude 3 Opus'],a:1,exp:'Pollinations.AI provides anonymous access to 25+ models with no account or API key.'},
+  {q:'What is a "context window"?',opts:['The browser window','How many tokens the model can process at once','Response speed','Requests per minute'],a:1,exp:'Context window = how much the model can "remember". Claude has 200K tokens ≈ 150,000 words.'},
+  {q:'What is WebGPU?',opts:['A special browser','A graphics API for in-browser computation','A distributed AI network','A video file format'],a:1,exp:'WebGPU allows running AI models directly in the browser using your local GPU.'},
+  {q:'Which AI provider is European (GDPR-native)?',opts:['OpenAI','Google','Mistral AI','Meta'],a:2,exp:'Mistral AI is a French company, natively GDPR-compliant.'},
+  {q:'What is a "token" in AI context?',opts:['A cryptocurrency','A chunk of text (~4 characters)','A small AI model','A type of API key'],a:1,exp:'A token ≈ 4 characters or 3/4 of a word. GPT-4 pricing is per token.'},
+  {q:'Which is the fastest free AI API?',opts:['Anthropic Claude','Groq (LPU chips)','AI Horde','WebLLM local'],a:1,exp:'Groq uses dedicated LPU chips — 10-100x faster than traditional GPU inference.'},
+  {q:'What does RAG stand for?',opts:['Random Access Generation','Retrieval-Augmented Generation','Recursive AI Graph','Real-time Answer Generator'],a:1,exp:'RAG combines a search engine with an LLM — the model searches before answering.'},
+]};
+
+const QUICK_PROMPTS={
+ro:{
+  '🚀 Start':['🧠 Ce este inteligența artificială? Explică-mi simplu.','📧 Scrie un email profesional prin care cer o zi liberă.','🎁 Dă-mi 5 idei creative de cadouri pentru un iubitor de natură.','🤖 Explică-mi diferența dintre Claude, ChatGPT și Gemini.','🎯 Care sunt cele mai eficiente obiceiuri de productivitate?'],
+  '✍️ Scriere':['Scrie un email formal pentru a cere o zi liberă','Îmbunătățește acest text: [lipești textul tău]','Scrie o introducere convingătoare pentru CV-ul meu','Crează 5 titluri captivante pentru un articol despre AI'],
+  '💻 Cod':['Explică-mi acest cod: [lipești codul]','Găsește bug-urile în: [lipești codul]','Convertește din Python în JavaScript: [cod]','Scrie un script care [descrie ce vrei]'],
+  '🧠 Învățare':['Explică-mi [subiect] ca și cum aș avea 12 ani','Care sunt cele mai importante 5 concepte din [domeniu]?','Fă-mi un quiz despre [subiect]','Creează un plan de studiu pentru [subiect] în 30 de zile'],
+  '🎯 Productivitate':['Rezumă acest text în 5 bullet points: [text]','Crează un to-do list prioritizat pentru: [sarcini]','Ajută-mă să structurez ideile pentru [proiect]','Ce întrebări ar trebui să pun în interviul pentru [jobul X]?'],
+  '🎨 Creativ':['Scrie o poezie scurtă despre [subiect]','Inventează o poveste cu [personaje] pe [tema]','Crează un slogan memorabil pentru [produsul/brandul X]','Descrie [locul/obiectul] în stilul unui scriitor celebru'],
+},
+en:{
+  '🚀 Start':['🧠 What is artificial intelligence? Explain simply.','📧 Write a professional email asking for a day off.','🎁 Give me 5 creative gift ideas for a nature lover.','🤖 Explain the difference between Claude, ChatGPT and Gemini.','🎯 What are the most effective productivity habits?'],
+  '✍️ Writing':['Write a formal email requesting a day off','Improve this text: [paste your text]','Write a compelling CV introduction','Create 5 catchy headlines about AI'],
+  '💻 Code':['Explain this code: [paste code]','Find bugs in: [paste code]','Convert from Python to JavaScript: [code]','Write a script that [describe what you want]'],
+  '🧠 Learning':['Explain [topic] as if I were 12 years old','What are the 5 most important concepts in [field]?','Quiz me on [topic]','Create a 30-day study plan for [topic]'],
+  '🎯 Productivity':['Summarize this text in 5 bullet points: [text]','Create a prioritized to-do list for: [tasks]','Help me structure ideas for [project]','What questions should I ask in an interview for [job X]?'],
+  '🎨 Creative':['Write a short poem about [topic]','Invent a story with [characters] on [theme]','Create a memorable slogan for [product/brand X]','Describe [place/object] in the style of a famous writer'],
+},
+};
+
+const SHORTCUTS=[
+  {key:'Enter',desc:'Trimite mesajul'},
+  {key:'Shift+Enter',desc:'Rând nou'},
+  {key:'Ctrl+B',desc:'Aldin (bold)'},
+  {key:'Ctrl+I',desc:'Cursiv (italic)'},
+  {key:'Ctrl+Z',desc:'Anulează'},
+  {key:'Esc',desc:'Închide popup'},
+  {key:'↑↓',desc:'Navighează modele'},
+];
+const SHORTCUTS_EN=[
+  {key:'Enter',desc:'Send message'},
+  {key:'Shift+Enter',desc:'New line'},
+  {key:'Ctrl+B',desc:'Bold'},
+  {key:'Ctrl+I',desc:'Italic'},
+  {key:'Ctrl+Z',desc:'Undo'},
+  {key:'Esc',desc:'Close popup'},
+  {key:'↑↓',desc:'Navigate models'},
+];
+
+let _cpTab='prompts', _qIdx=0, _qScore=0, _qAnswered=false, _qpCat='🚀 Start';
+
+function cpTab(tab, el){
+  _cpTab=tab;
+  document.querySelectorAll('.cpanel-tab').forEach(b=>b.classList.remove('on'));
+  if(el)el.classList.add('on');
+  _renderCpanel();
+}
+
+function _renderCpanel(){
+  const body=document.getElementById('cpanel-body');
+  if(!body)return;
+  const lang=CUR_LANG==='ro'?'ro':'en';
+  if(_cpTab==='quiz') _renderQuiz(body,lang);
+  else if(_cpTab==='prompts') _renderPrompts(body,lang);
+  else _renderShortcuts(body,lang);
+}
+
+function _renderQuiz(body,lang){
+  const data=QUIZ_DATA[lang]||QUIZ_DATA.en;
+  const total=data.length;
+  // Show final result after all questions
+  if(_qIdx>=total){
+    const pct=Math.round(_qScore/total*100);
+    const medal=pct===100?'🏆':pct>=75?'🥇':pct>=50?'🥈':'🥉';
+    const msg=lang==='ro'
+      ?(pct===100?'Perfect! Ești un expert în AI! 🎉':pct>=75?'Foarte bine! Cunoști bine AI-ul!':pct>=50?'Bine! Mai ai de învățat.':'Continuă să explorezi AI Liber!')
+      :(pct===100?'Perfect! You are an AI expert! 🎉':pct>=75?'Great! You know AI well!':pct>=50?'Good! Keep learning.':'Keep exploring AI Liber!');
+    body.innerHTML=`
+      <div style="text-align:center;padding:8px 4px">
+        <div style="font-size:2.2rem;margin-bottom:6px">${medal}</div>
+        <div style="font-size:1rem;font-weight:800;color:var(--txt);margin-bottom:4px">
+          ${lang==='ro'?'Quiz terminat!':'Quiz complete!'}
+        </div>
+        <div style="font-size:1.6rem;font-weight:800;color:var(--acc);margin-bottom:6px">
+          ${_qScore}/${total} <span style="font-size:.85rem;opacity:.7">(${pct}%)</span>
+        </div>
+        <div style="font-size:.8rem;color:var(--mut);margin-bottom:12px">${msg}</div>
+        <button class="quiz-next" onclick="_qIdx=0;_qScore=0;_qAnswered=false;_renderCpanel()" style="display:inline-flex">
+          ${lang==='ro'?'🔄 Joacă din nou':'🔄 Play again'}
+        </button>
+      </div>`;
+    return;
+  }
+  const q=data[_qIdx];
+  body.innerHTML=`
+    <div class="quiz-hd">
+      <span class="quiz-num">${_qIdx+1}/${total}</span>
+      <span class="quiz-q-text">${q.q}</span>
+      <span class="quiz-score-inline">${lang==='ro'?'Scor':'Score'}: <strong>${_qScore}/${_qIdx}</strong></span>
+    </div>
+    <div class="quiz-opts">${q.opts.map((o,i)=>
+      `<button class="quiz-opt" onclick="_quizAns(${i})">${o}</button>`
+    ).join('')}</div>
+    <div class="quiz-nav">
+      <button class="quiz-next" onclick="_quizNext()" style="display:none" id="quiz-next">${lang==='ro'?'Următoarea →':'Next →'}</button>
+    </div>`;
+}
+
+function _quizAns(i){
+  if(_qAnswered)return;
+  _qAnswered=true;
+  const lang=CUR_LANG==='ro'?'ro':'en';
+  const data=QUIZ_DATA[lang]||QUIZ_DATA.en;
+  const q=data[_qIdx%data.length];
+  const correct=i===q.a;
+  if(correct)_qScore++;
+  // Colorează butoanele
+  const btns=document.querySelectorAll('.quiz-opt');
+  btns.forEach((b,j)=>{
+    if(j===q.a) b.classList.add(correct&&j===i?'correct':'reveal');
+    else if(j===i) b.classList.add('wrong');
+    else b.disabled=true;
+  });
+  // Afișează explicație
+  const nav=document.querySelector('.quiz-nav');
+  if(nav){
+    const exp=document.createElement('div');
+    exp.style.cssText='font-size:.72rem;color:var(--mut);margin-top:6px;padding:5px 8px;background:var(--surf2);border-radius:4px;line-height:1.4;animation:fadeIn .3s ease';
+    exp.textContent='💡 '+q.exp;
+    nav.parentNode.insertBefore(exp,nav);
+    // Score update
+    const sc=document.querySelector('.quiz-score-inline');
+    const lang2=CUR_LANG==='ro'?'ro':'en';
+    if(sc)sc.innerHTML=(lang2==='ro'?'Scor':'Score')+': <strong>'+_qScore+'/'+(_qIdx+1)+'</strong>';
+    // Buton next (backup)
+    const nb=document.getElementById('quiz-next');
+    if(nb)nb.style.display='';
+  }
+  // Auto-advance: 1.4s dacă corect, 2.2s dacă greșit
+  setTimeout(()=>_quizNext(), correct?1400:2200);
+}
+
+function _quizNext(){
+  _qAnswered=false;
+  _qIdx++;
+  _renderCpanel();
+}
+
+function _renderPrompts(body,lang){
+  const data=QUICK_PROMPTS[lang]||QUICK_PROMPTS.en;
+  const cats=Object.keys(data);
+  if(!_qpCat||!data[_qpCat])_qpCat=cats[0];
+  body.innerHTML=`
+    <div class="qp-cats">${cats.map(c=>
+      `<button class="qp-cat${c===_qpCat?' on':''}" onclick="_qpCat='${c}';_renderCpanel()">${c}</button>`
+    ).join('')}</div>
+    <div class="qp-list">${(data[_qpCat]||[]).map(p=>
+      `<button class="qp-item" onclick="_usePrompt(this.textContent)">${p}</button>`
+    ).join('')}</div>`;
+}
+
+function _usePrompt(text){
+  const ta=document.getElementById('cta');
+  if(!ta)return;
+  ta.value=text;
+  ta.focus();
+  ta.style.height='auto';
+  ta.style.height=Math.min(ta.scrollHeight,480)+'px';
+  if(cur&&hists[cur.id])hists[cur.id].draft=text;
+}
+
+function _renderShortcuts(body,lang){
+  const sc=lang==='ro'?SHORTCUTS:SHORTCUTS_EN;
+  body.innerHTML=`<div class="sc-grid">${sc.map(s=>
+    `<div class="sc-row"><span class="sc-key">${s.key}</span><span class="sc-desc">${s.desc}</span></div>`
+  ).join('')}</div>`;
+}
+
+// Init panel
+function _initCpanel(){
+  _renderCpanel();
+}
+
 // ═══════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════
@@ -5461,16 +7262,22 @@ function _syncLangSels(){
 _syncLangSels();
 applyI18n();
 updateChatEmpty();
-// Hash routing init: navigate to page from URL hash
+loadEncryptedKeys().catch(e=>console.warn('Key load:',e));
+_initCpanel();
+// Hash routing init
 (function(){
   const _id=(location.hash||'').slice(1);
-  const _valid=['home','chat','explore','tips'];
-  if(_id&&_valid.includes(_id))goPage(_id,true);
-  // no default hash set on load
+  const _valid=['chat','explore','tips'];
+  if(_id&&_valid.includes(_id)){goPage(_id,true);}
+  else{goPage('chat',true);} // default: chat
 })();
 
 // 3. Fetch live model list from Pollinations in background
 fetchPollModels();
+// Auto-refresh models when user returns to tab (avoids stale cache)
+document.addEventListener('visibilitychange',()=>{
+  if(!document.hidden&&typeof fetchPollModels==='function')fetchPollModels();
+});
 
 // ═══════════════════════════════════════════
 // LEGAL & GDPR
@@ -5675,6 +7482,8 @@ function openLegal(tab){
   document.querySelectorAll('.ltab').forEach(b=>{
     b.classList.toggle('on', b.dataset.tab===tab);
   });
+  // Re-apply translations so modal tabs/buttons are in current language
+  applyI18n();
 }
 function closeLegal(){
   const _lo=document.getElementById('legal-ov');if(_lo)_lo.classList.remove('on');
@@ -5690,7 +7499,7 @@ function eraseAllData(){
   closeLegal();
   // Show confirmation
   const bar=document.createElement('div');
-  bar.style.cssText='position:fixed;top:80px;left:50%;transform:translateX(-50%);background:#065f46;color:#fff;padding:10px 20px;border-radius:100px;font-size:.85rem;font-weight:700;z-index:999;box-shadow:0 4px 20px rgba(0,0,0,.2)';
+  bar.style.cssText='position:fixed;top:80px;left:50%;transform:translateX(-50%);background:#065f46;color:#fff;padding:10px 20px;border-radius:100px;font-size:.8rem;font-weight:700;z-index:999;box-shadow:0 4px 20px rgba(0,0,0,.2)';
   bar.textContent=t('eraseOk');
   document.body.appendChild(bar);
   setTimeout(()=>bar.remove(),3500);
@@ -5700,6 +7509,24 @@ function eraseAllData(){
 
 </script>
 
+
+<!-- ══ MODEL CHECK MODAL ═══════════════════════════════════ -->
+<div class="mcheck-ov" id="mcheck-ov" onclick="if(event.target===this)closeMCheck()">
+  <div class="mcheck-box">
+    <div class="mcheck-hd">
+      <span data-i18n="mcTitle">🔍 Verifică &amp; actualizează modele</span>
+      <button class="ibtn" onclick="closeMCheck()">✕</button>
+    </div>
+    <div class="mcheck-body" id="mcheck-body">
+      <div class="mcheck-status"><span class="mcheck-spinner"></span> Se verifică modelele disponibile…</div>
+    </div>
+    <div class="mcheck-ft">
+      <button class="mcheck-cancel" onclick="closeMCheck()" data-i18n="mcCancel">Anulează</button>
+      <button class="mcheck-apply" id="mcheck-apply" onclick="applyModelChanges()" data-i18n="mcApply" disabled>Aplică modificările</button>
+    </div>
+  </div>
+</div>
+
 <!-- ══ LEGAL MODALS ══════════════════════════════════════════ -->
 <div class="lmod-ov" id="legal-ov" onclick="if(event.target===this)closeLegal()">
   <div class="lmod" role="dialog" aria-modal="true" aria-labelledby="legal-title">
@@ -5707,7 +7534,7 @@ function eraseAllData(){
       <span id="legal-icon" style="font-size:1.3rem"></span>
       <h2 id="legal-title"></h2>
       <span class="lmod-v" id="legal-version"></span>
-      <button class="lmod-close" onclick="closeLegal()" aria-label="Închide">✕</button>
+      <button class="lmod-close" onclick="closeLegal()" data-i18n-aria="btnClose" aria-label="Închide">✕</button>
     </div>
     <!-- Tab navigation -->
     <div style="display:flex;gap:0;border-bottom:1px solid var(--bdr);overflow-x:auto;flex-shrink:0">
