@@ -288,9 +288,9 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
 .cta:focus{border-bottom-color:var(--acc)}
 .crow-bottom{display:flex;align-items:center;justify-content:space-between;gap:10px;
   padding:6px 12px;background:var(--surf);border-top:1px solid var(--bdr)}
-.csend{height:36px;padding:0 18px;border-radius:100px;background:var(--acc);color:#fff;
-  border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-size:.88rem;font-weight:700;
-  display:flex;align-items:center;gap:6px;transition:all .18s;white-space:nowrap}
+.csend{height:36px;padding:0 14px;border-radius:100px;background:var(--acc);color:#fff;
+  border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-size:.85rem;font-weight:700;
+  display:flex;align-items:center;gap:5px;transition:all .18s;white-space:nowrap;flex-shrink:0}
 .csend:hover:not(:disabled){background:var(--acc-h);transform:translateY(-1px);box-shadow:0 4px 14px rgba(196,82,45,.3)}
 .csend:disabled{opacity:.45;cursor:not-allowed}
 /* Math rendering */
@@ -953,6 +953,22 @@ anonBadge:'🔒 Fără cont',
 localBadge:'🖥️ Local',
 freeBadge:'✓ Gratuit',
 langLabel:'🌐 Limbă',
+grpInstant:'✅ Imediat — fără cont',
+grpCount:'modele',
+grpKey:'🔑 Cheie API',
+grpKeySome:'unele gratuite',
+mcInstant:'✅ Imediat',
+mcKeyOk:'Cheie OK',
+mcWorking:'Funcționează acum',
+liveModels:'modele live',
+cacheModels:'modele (cache)',
+pollLive:'Pollinations disponibile imediat',
+keyInvalid:'🔑 Cheie API invalidă sau lipsă pentru',
+pressSettings:'Apasă ⚙️.',
+keySaveBtn:'Salvează',
+noKeyNeeded:'✅ Fără cheie',
+sbConfig:'⚙️ Configurează chei API',
+sbReload:'🔄 Reîncarcă modelele Pollinations',
 fmtFile:'Fișier',
 sendBtn:'➤ Trimite',
 chatPH:'Scrie un mesaj… (Enter = trimite · Shift+Enter = rând nou)',
@@ -1070,6 +1086,22 @@ anonBadge:'🔒 No account',
 localBadge:'🖥️ Local',
 freeBadge:'✓ Free',
 langLabel:'🌐 Language',
+grpInstant:'✅ Instant — no account',
+grpCount:'models',
+grpKey:'🔑 API Key',
+grpKeySome:'some free',
+mcInstant:'✅ Instant',
+mcKeyOk:'Key OK',
+mcWorking:'Works now',
+liveModels:'live models',
+cacheModels:'models (cache)',
+pollLive:'Pollinations available instantly',
+keyInvalid:'🔑 Invalid or missing API key for',
+pressSettings:'Press ⚙️.',
+keySaveBtn:'Save',
+noKeyNeeded:'✅ No key needed',
+sbConfig:'⚙️ Configure API Keys',
+sbReload:'🔄 Reload Pollinations models',
 fmtFile:'File',
 sendBtn:'➤ Send',
 chatPH:'Write a message… (Enter = send · Shift+Enter = new line)',
@@ -1186,6 +1218,22 @@ anonBadge:'🔒 Senza account',
 localBadge:'🖥️ Locale',
 freeBadge:'✓ Gratuito',
 langLabel:'🌐 Lingua',
+grpInstant:'✅ Istantaneo — senza account',
+grpCount:'modelli',
+grpKey:'🔑 Chiave API',
+grpKeySome:'alcuni gratuiti',
+mcInstant:'✅ Istantaneo',
+mcKeyOk:'Chiave OK',
+mcWorking:'Funziona ora',
+liveModels:'modelli live',
+cacheModels:'modelli (cache)',
+pollLive:'Pollinations disponibili immediatamente',
+keyInvalid:'🔑 Chiave API non valida o mancante per',
+pressSettings:'Premi ⚙️.',
+keySaveBtn:'Salva',
+noKeyNeeded:'✅ Nessuna chiave',
+sbConfig:'⚙️ Configura chiavi API',
+sbReload:'🔄 Ricarica modelli Pollinations',
 fmtFile:'File',
 sendBtn:'➤ Invia',
 chatPH:'Scrivi un messaggio… (Invio = invia · Shift+Invio = nuova riga)',
@@ -1302,6 +1350,22 @@ anonBadge:'🔒 Sin cuenta',
 localBadge:'🖥️ Local',
 freeBadge:'✓ Gratis',
 langLabel:'🌐 Idioma',
+grpInstant:'✅ Inmediato — sin cuenta',
+grpCount:'modelos',
+grpKey:'🔑 Clave API',
+grpKeySome:'algunos gratuitos',
+mcInstant:'✅ Inmediato',
+mcKeyOk:'Clave OK',
+mcWorking:'Funciona ahora',
+liveModels:'modelos en vivo',
+cacheModels:'modelos (caché)',
+pollLive:'Pollinations disponibles inmediatamente',
+keyInvalid:'🔑 Clave API inválida o faltante para',
+pressSettings:'Pulsa ⚙️.',
+keySaveBtn:'Guardar',
+noKeyNeeded:'✅ Sin clave',
+sbConfig:'⚙️ Configurar claves API',
+sbReload:'🔄 Recargar modelos Pollinations',
 fmtFile:'Archivo',
 sendBtn:'➤ Enviar',
 chatPH:'Escribe un mensaje… (Enter = enviar · Shift+Enter = nueva línea)',
@@ -1418,6 +1482,22 @@ anonBadge:'🔒 Sem conta',
 localBadge:'🖥️ Local',
 freeBadge:'✓ Grátis',
 langLabel:'🌐 Idioma',
+grpInstant:'✅ Imediato — sem conta',
+grpCount:'modelos',
+grpKey:'🔑 Chave API',
+grpKeySome:'alguns gratuitos',
+mcInstant:'✅ Imediato',
+mcKeyOk:'Chave OK',
+mcWorking:'Funciona agora',
+liveModels:'modelos ao vivo',
+cacheModels:'modelos (cache)',
+pollLive:'Pollinations disponíveis imediatamente',
+keyInvalid:'🔑 Chave API inválida ou ausente para',
+pressSettings:'Pressione ⚙️.',
+keySaveBtn:'Salvar',
+noKeyNeeded:'✅ Sem chave',
+sbConfig:'⚙️ Configurar chaves API',
+sbReload:'🔄 Recarregar modelos Pollinations',
 fmtFile:'Arquivo',
 sendBtn:'➤ Enviar',
 chatPH:'Escreva uma mensagem… (Enter = enviar · Shift+Enter = nova linha)',
@@ -1534,6 +1614,22 @@ anonBadge:'🔒 Sans compte',
 localBadge:'🖥️ Local',
 freeBadge:'✓ Gratuit',
 langLabel:'🌐 Langue',
+grpInstant:'✅ Immédiat — sans compte',
+grpCount:'modèles',
+grpKey:'🔑 Clé API',
+grpKeySome:'certains gratuits',
+mcInstant:'✅ Immédiat',
+mcKeyOk:'Clé OK',
+mcWorking:'Fonctionne maintenant',
+liveModels:'modèles en direct',
+cacheModels:'modèles (cache)',
+pollLive:'Pollinations disponibles immédiatement',
+keyInvalid:'🔑 Clé API invalide ou manquante pour',
+pressSettings:'Appuyez ⚙️.',
+keySaveBtn:'Enregistrer',
+noKeyNeeded:'✅ Sans clé',
+sbConfig:'⚙️ Configurer les clés API',
+sbReload:'🔄 Recharger les modèles Pollinations',
 fmtFile:'Fichier',
 sendBtn:'➤ Envoyer',
 chatPH:'Écrivez un message… (Entrée = envoyer · Maj+Entrée = nouvelle ligne)',
@@ -1650,6 +1746,22 @@ anonBadge:'🔒 Kein Konto',
 localBadge:'🖥️ Lokal',
 freeBadge:'✓ Kostenlos',
 langLabel:'🌐 Sprache',
+grpInstant:'✅ Sofort — kein Konto',
+grpCount:'Modelle',
+grpKey:'🔑 API-Schlüssel',
+grpKeySome:'einige kostenlos',
+mcInstant:'✅ Sofort',
+mcKeyOk:'Schlüssel OK',
+mcWorking:'Funktioniert jetzt',
+liveModels:'Live-Modelle',
+cacheModels:'Modelle (Cache)',
+pollLive:'Pollinations sofort verfügbar',
+keyInvalid:'🔑 Ungültiger oder fehlender API-Schlüssel für',
+pressSettings:'Drücke ⚙️.',
+keySaveBtn:'Speichern',
+noKeyNeeded:'✅ Kein Schlüssel',
+sbConfig:'⚙️ API-Schlüssel konfigurieren',
+sbReload:'🔄 Pollinations-Modelle neu laden',
 fmtFile:'Datei',
 sendBtn:'➤ Senden',
 chatPH:'Nachricht schreiben… (Enter = senden · Shift+Enter = neue Zeile)',
@@ -2154,17 +2266,19 @@ async function fetchPollModels(manual=false){
     buildModels(live); // rebuild with live data (passes objects not just IDs)
 
     if(badge){
-      badge.textContent=`✅ ${live.length} modele live`;
+      badge.textContent=`✅ ${live.length} ${t('liveModels')}`;
       badge.className='sb-live';
     }
     const wc = document.getElementById('wfree-cnt');
-    if(wc) wc.textContent=`✅ ${live.length} modele Pollinations disponibile imediat`;
+    if(wc) wc.textContent=`✅ ${live.length} ${t('pollLive')}`;
 
   }catch(e){
     if(badge){
-      badge.textContent=`📋 ${POLL_CATALOG_IDS.length} modele (cache)`;
+      badge.textContent=`📋 ${POLL_CATALOG_IDS.length} ${t('cacheModels')}`;
       badge.className='sb-live';
     }
+    const wc2=document.getElementById('wfree-cnt');
+    if(wc2)wc2.textContent=`📋 ${POLL_CATALOG_IDS.length} ${t('cacheModels')}`;
   }
   renderML();
   updTop();
@@ -2325,11 +2439,11 @@ function renderML(){
   const keyed=list.filter(m=>!m.instant&&m.p!=='pollinations');
   let html='';
   if(instant.length){
-    html+=`<div class="mgrp">✅ Imediat — fără cont <span class="mgrp-b gb-free">${instant.length} modele</span></div>`;
+    html+=`<div class="mgrp">${t('grpInstant')} <span class="mgrp-b gb-free">${instant.length} ${t('grpCount')}</span></div>`;
     html+=instant.map(mcard).join('');
   }
   if(keyed.length){
-    html+=`<div class="mgrp">🔑 Cheie API <span class="mgrp-b gb-key">unele gratuite</span></div>`;
+    html+=`<div class="mgrp">${t('grpKey')} <span class="mgrp-b gb-key">${t('grpKeySome')}</span></div>`;
     html+=keyed.map(mcard).join('');
   }
   document.getElementById('mlist').innerHTML=html||`<div class="mgrp">${t('noModelsGroup')}</div>`;
@@ -2343,12 +2457,12 @@ function mcard(m){
       <div class="mc-ico">${pv.ico}</div>
       <div class="mc-name">${m.n}</div>
       <div class="mc-spd">${'⚡'.repeat(m.spd||3)}</div>
-      <div class="mc-dot ${ok?'dok':'dno'}" title="${m.instant?'Funcționează acum':ok?'Cheie OK':t('keyRequired')}"></div>
+      <div class="mc-dot ${ok?'dok':'dno'}" title="${m.instant?t('mcWorking'):ok?t('mcKeyOk'):t('keyRequired')}"></div>
     </div>
     <div class="mc-sub">
       <span class="mc-pv">${m.mk}${m.ctx&&m.ctx!=='?'?' · '+m.ctx:''}</span>
       ${m.spec?`<span class="mc-sp">${m.si||''} ${m.spec}</span>`:''}
-      ${m.instant?'<span class="mc-fr">✅ Imediat</span>':''}
+      ${m.instant?`<span class="mc-fr">${t('mcInstant')}</span>`:''}
     </div>
   </div>`;
 }
@@ -2392,7 +2506,7 @@ function renderKeys(){
     if(pv.noKey){
       return`<div class="psec ps-free">
         <div class="phd"><span class="phd-ico">${pv.ico}</span><span class="phd-name">${pv.n}</span>
-          <span class="phd-b pb-f">✅ Fără cheie</span></div>
+          <span class="phd-b pb-f">${t('noKeyNeeded')}</span></div>
         <div class="pbody"><div class="pguide">${pv.guide}</div></div></div>`;
     }
     const k=gk(pid);
@@ -2403,7 +2517,7 @@ function renderKeys(){
         <div class="pguide">${pv.guide}</div>
         <div class="krow">
           <input class="kin" id="ki-${pid}" type="password" placeholder="${pv.kh||'…'}" value="${k}">
-          <button class="ksave" onclick="saveK('${pid}')">Salvează</button>
+          <button class="ksave" onclick="saveK('${pid}')">${t('keySaveBtn')}</button>
           ${k?`<button class="kclr" onclick="clearK('${pid}')">🗑</button>`:''}
         </div>
         <div class="kstat ${k?'kok':'kno'}" id="ks-${pid}">${k?'✅ Configurată':'○ Nicio cheie'}</div>
@@ -2560,7 +2674,7 @@ async function sendMsg(){
     hist.pop();
     let msg=err.message||t('errUnknown');
     if(/401|auth|authentication/i.test(msg))
-      msg=`🔑 Cheie API invalidă sau lipsă pentru **${(PROV[cur.p]||{n:cur.p}).n}**. Apasă ⚙️.`;
+      msg=`${t('keyInvalid')} **${(PROV[cur.p]||{n:cur.p}).n}**. ${t('pressSettings')}`;
     else if(/CORS|Failed to fetch|NetworkError|tokenul/i.test(msg))
       msg=`🌐 Conexiune blocată. ${cur.p==='duckduckgo'?'DuckDuckGo este blocat de CORS în acest browser — încearcă un model Pollinations ✅ care funcționează garantat.':t('tryPoll')}`;
     else if(/rate|429|15s|too many/i.test(msg))
