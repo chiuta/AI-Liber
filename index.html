@@ -3492,11 +3492,12 @@ function selM(id){
   const ta=document.getElementById('cta');
   // Abort any in-progress request silently
   if(busy&&_abortCtrl){
+    _abortedBySelM=true;
     _abortCtrl.abort();
     _stopSlowTimer();
     rmTyping();
     if(aiBub){aiBub.parentElement.remove();aiBub=null;}
-    // Restore last user message
+    // Restore last user message (selM handles this)
     if(hist.length&&hist[hist.length-1].role==='user'){
       const lastMsg=hist.pop();
       if(cur&&hists[cur.id])hists[cur.id].hist=[...hist];
@@ -3924,6 +3925,10 @@ async function sendMsg(){
 
   // Create abort controller for this request
   _abortCtrl=new AbortController();
+  // Hard timeout: 45s max (Pollinations can be slow)
+  const _timeoutId=setTimeout(()=>{
+    if(_abortCtrl&&!_abortCtrl.signal.aborted)_abortCtrl.abort(new Error('timeout45'));
+  },45000);
   _startSlowTimer();
 
   try{
@@ -3964,13 +3969,14 @@ async function sendMsg(){
       addTypingMsg();
       reply=await streamOAI(ep,cur.id,[...hist],gk(cur.p),cur.p==='openrouter',chunkAI);
     }
-    finalAI(reply);
-    // Only push non-empty replies — an empty reply would corrupt future history
     if(reply && reply.trim()){
+      finalAI(reply);
       hist.push({role:'assistant',content:reply});
       if(cur)hists[cur.id]={hist:[...hist],html:document.getElementById('cmsgs').innerHTML};
-    } else if(!reply || !reply.trim()){
-      // Empty response — treat as error so history stays clean
+    } else {
+      // Empty response — remove typing bubble and treat as error
+      rmTyping();
+      if(aiBub){aiBub.parentElement.remove();aiBub=null;}
       throw new Error(t('errEmptyTitle'));
     }
   }catch(err){
@@ -4119,7 +4125,8 @@ async function sendMsg(){
       );
     }
   }finally{
-    // Always runs — even on error, abort, or unexpected throw
+    _abortedBySelM=false;
+    clearTimeout(_timeoutId);
     _stopSlowTimer();
     _abortCtrl=null;
     busy=false;
@@ -4155,32 +4162,45 @@ async function readSSE(body,parse,onChunk){
 // API — POLLINATIONS (anonymous, no auth)
 // ═══════════════════════════════════════════
 async function streamPollinations(modelId,msgs,onChunk){
+  const sig=_abortCtrl?.signal;
+
+  // Try streaming first
   const res=await fetch('https://text.pollinations.ai/openai',{
-    method:'POST',
-    signal:_abortCtrl?.signal,
+    method:'POST',signal:sig,
     headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({
-      model:modelId,
-      messages:[{role:'system',content:SYS},...msgs],
-      stream:true,
-    }),
+    body:JSON.stringify({model:modelId,messages:[{role:'system',content:SYS},...msgs],stream:true}),
   });
   if(!res.ok){
     const e=await res.json().catch(()=>({}));
     if(res.status===429)throw new Error('rate limit 15s');
     if(res.status===404){
-      // Model not found — add to blocklist and trigger refresh
       if(cur)_404models.add(cur.id);
       fetchPollModels(false);
-      throw new Error(`Model "${cur?.n||modelId}" indisponibil (404). Lista se actualizează — selectează alt model.`);
+      throw new Error(`Model "${cur?.n||modelId}" not available (404).`);
     }
     throw new Error(e.error?.message||`HTTP ${res.status}`);
   }
-  return readSSE(res.body,ln=>{
+
+  const streamed=await readSSE(res.body,ln=>{
     if(!ln.startsWith('data: ')||ln==='data: [DONE]')return null;
     try{const d=JSON.parse(ln.slice(6));return d.choices?.[0]?.delta?.content||null;}
     catch{return null;}
   },onChunk);
+
+  if(streamed && streamed.trim()) return streamed;
+
+  // Stream returned empty — fallback to non-streaming
+  if(sig?.aborted) return '';
+  const res2=await fetch('https://text.pollinations.ai/openai',{
+    method:'POST',signal:sig,
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({model:modelId,messages:[{role:'system',content:SYS},...msgs],stream:false}),
+  });
+  if(!res2.ok) throw new Error(`HTTP ${res2.status}`);
+  const j=await res2.json();
+  const text=j.choices?.[0]?.message?.content||'';
+  if(text) onChunk(text);
+  return text;
 }
 
 // ═══════════════════════════════════════════
@@ -7248,6 +7268,7 @@ const SHORTCUTS_ALL={
 const SHORTCUTS=SHORTCUTS_ALL.ro;
 const SHORTCUTS_EN=SHORTCUTS_ALL.en;
 
+let _abortedBySelM=false;
 let _cpTab='prompts', _qIdx=0, _qScore=0, _qAnswered=false, _qpCat='🚀 Start';
 
 function cpTab(tab, el){
