@@ -801,7 +801,7 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
   <button class="nb"    id="nb-chat"    onclick="goPage('chat')">💬 <span class="nl" data-i18n="navChat">Chat</span></button>
   <button class="nb"    id="nb-explore" onclick="goPage('explore')">🔍 <span class="nl" data-i18n="navExplore">Explorează</span></button>
   <button class="nb"    id="nb-tips"    onclick="goPage('tips')">💡 <span class="nl" data-i18n="navTips">Sfaturi</span></button>
-  <button class="nb" id="nb-legal" onclick="openLegal('privacy')">🔒 <span class="nl" data-i18n="navLegal">Legal</span></button>
+  <button class="nb" id="nb-legal" onclick="goPage('legal')">🔒 <span class="nl" data-i18n="navLegal">Legal</span></button>
   <a class="nb nb-patreon" href="https://www.patreon.com/c/alexio_tf" target="_blank" rel="noopener" data-i18n-title="patreonTitle" title="Susține AI Liber pe Patreon">🎁 <span class="nl" data-i18n="navPatreon">Patreon</span></a>
 </nav>
 
@@ -1134,6 +1134,15 @@ anonBadge:'🔒 Fără cont',
 localBadge:'🖥️ Local',
 freeBadge:'✓ Gratuit',
 langLabel:'🌐 Limbă',
+qrPerfect:'Perfect! Ești un expert în AI! 🎉',
+qrGood:'Foarte bine! Cunoști bine AI-ul!',
+qrOk:'Bine! Mai ai de învățat.',
+qrKeep:'Continuă să explorezi AI Liber!',
+qrNext:'Următoarea →',
+qrPlay:'🔄 Joacă din nou',
+qrDone:'Quiz terminat!',
+qrScore:'Scor',
+descLmsNoResp:'LM Studio nu răspunde. Asigură-te că serverul este pornit pe portul **1234**.',
 tabPrompts:'⚡ Idei rapide',
 tabQuiz:'🧠 Quiz AI',
 tabKeys:'⌨️ Scurtături',
@@ -1357,6 +1366,15 @@ anonBadge:'🔒 No account',
 localBadge:'🖥️ Local',
 freeBadge:'✓ Free',
 langLabel:'🌐 Language',
+qrPerfect:'Perfect! You are an AI expert! 🎉',
+qrGood:'Great! You know AI well!',
+qrOk:'Good! Keep learning.',
+qrKeep:'Keep exploring AI Liber!',
+qrNext:'Next →',
+qrPlay:'🔄 Play again',
+qrDone:'Quiz complete!',
+qrScore:'Score',
+descLmsNoResp:'LM Studio not responding. Make sure the server is running on port **1234**.',
 tabPrompts:'⚡ Quick ideas',
 tabQuiz:'🧠 AI Quiz',
 tabKeys:'⌨️ Shortcuts',
@@ -1579,6 +1597,15 @@ anonBadge:'🔒 Senza account',
 localBadge:'🖥️ Locale',
 freeBadge:'✓ Gratuito',
 langLabel:'🌐 Lingua',
+qrPerfect:'Perfetto! Sei un esperto di IA! 🎉',
+qrGood:'Molto bene! Conosci bene l\'IA!',
+qrOk:'Bene! Continua ad imparare.',
+qrKeep:'Continua ad esplorare AI Liber!',
+qrNext:'Prossima →',
+qrPlay:'🔄 Gioca di nuovo',
+qrDone:'Quiz completato!',
+qrScore:'Punteggio',
+descLmsNoResp:'LM Studio non risponde. Assicurati che il server sia in esecuzione sulla porta **1234**.',
 tabPrompts:'⚡ Idee rapide',
 tabQuiz:'🧠 Quiz IA',
 tabKeys:'⌨️ Scorciatoie',
@@ -1801,6 +1828,15 @@ anonBadge:'🔒 Sin cuenta',
 localBadge:'🖥️ Local',
 freeBadge:'✓ Gratis',
 langLabel:'🌐 Idioma',
+qrPerfect:'¡Perfecto! ¡Eres un experto en IA! 🎉',
+qrGood:'¡Muy bien! ¡Conoces bien la IA!',
+qrOk:'¡Bien! Sigue aprendiendo.',
+qrKeep:'¡Sigue explorando AI Liber!',
+qrNext:'Siguiente →',
+qrPlay:'🔄 Jugar de nuevo',
+qrDone:'¡Quiz completado!',
+qrScore:'Puntuación',
+descLmsNoResp:'LM Studio no responde. Asegúrate de que el servidor esté corriendo en el puerto **1234**.',
 tabPrompts:'⚡ Ideas rápidas',
 tabQuiz:'🧠 Quiz IA',
 tabKeys:'⌨️ Atajos',
@@ -2023,6 +2059,15 @@ anonBadge:'🔒 Sem conta',
 localBadge:'🖥️ Local',
 freeBadge:'✓ Grátis',
 langLabel:'🌐 Idioma',
+qrPerfect:'Perfeito! Você é um especialista em IA! 🎉',
+qrGood:'Muito bem! Você conhece bem a IA!',
+qrOk:'Bem! Continue aprendendo.',
+qrKeep:'Continue explorando AI Liber!',
+qrNext:'Próxima →',
+qrPlay:'🔄 Jogar novamente',
+qrDone:'Quiz concluído!',
+qrScore:'Pontuação',
+descLmsNoResp:'LM Studio não responde. Certifique-se de que o servidor está rodando na porta **1234**.',
 tabPrompts:'⚡ Ideias rápidas',
 tabQuiz:'🧠 Quiz IA',
 tabKeys:'⌨️ Atalhos',
@@ -2245,6 +2290,15 @@ anonBadge:'🔒 Sans compte',
 localBadge:'🖥️ Local',
 freeBadge:'✓ Gratuit',
 langLabel:'🌐 Langue',
+qrPerfect:'Parfait! Vous êtes expert IA! 🎉',
+qrGood:'Très bien! Vous connaissez bien l\'IA!',
+qrOk:'Bien! Continuez à apprendre.',
+qrKeep:'Continuez à explorer AI Liber!',
+qrNext:'Suivant →',
+qrPlay:'🔄 Rejouer',
+qrDone:'Quiz terminé!',
+qrScore:'Score',
+descLmsNoResp:'LM Studio ne répond pas. Vérifiez que le serveur tourne sur le port **1234**.',
 tabPrompts:'⚡ Idées rapides',
 tabQuiz:'🧠 Quiz IA',
 tabKeys:'⌨️ Raccourcis',
@@ -2467,6 +2521,15 @@ anonBadge:'🔒 Kein Konto',
 localBadge:'🖥️ Lokal',
 freeBadge:'✓ Kostenlos',
 langLabel:'🌐 Sprache',
+qrPerfect:'Perfekt! Du bist ein KI-Experte! 🎉',
+qrGood:'Sehr gut! Du kennst KI gut!',
+qrOk:'Gut! Weiter lernen.',
+qrKeep:'Entdecke AI Liber weiter!',
+qrNext:'Weiter →',
+qrPlay:'🔄 Nochmal spielen',
+qrDone:'Quiz abgeschlossen!',
+qrScore:'Punkte',
+descLmsNoResp:'LM Studio antwortet nicht. Stelle sicher, dass der Server auf Port **1234** läuft.',
 tabPrompts:'⚡ Schnellideen',
 tabQuiz:'🧠 KI-Quiz',
 tabKeys:'⌨️ Tastenkürzel',
@@ -2599,7 +2662,7 @@ function applyI18n(){
     if(typeof renderML==='function')renderML();
   }catch(err){console.warn('applyI18n error:',err);}
 }
-function setLang(lc){ _qpCat='🚀 Start';
+function setLang(lc){ _qpCat=null;
   CUR_LANG=lc;
   localStorage.setItem('ailib_lang',lc);
   document.documentElement.lang=lc;
@@ -3139,6 +3202,7 @@ function goPage(id,skipHash){
   });
   document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
   const _nb=document.getElementById(`nb-${id}`);if(_nb)_nb.classList.add('on');
+  if(id==='legal'){openLegal('privacy');}
   if(id==='explore'){const fc=document.querySelector('.fchip.on');if(fc&&typeof exF==='function'){const fv=fc.getAttribute('onclick').match(/exF\('([^']+)'/)?.[1]||'all';exF(fv,fc);}}
   window.scrollTo(0,0);
   if(!skipHash&&typeof location!=='undefined')try{location.hash='#'+id;}catch(e){}
@@ -7049,23 +7113,74 @@ const QUIZ_DATA={
 ro:[
   {q:'Ce înseamnă „LLM"?',opts:['Large Language Model','Local Learning Machine','Layered Logic Module','Linked List Manager'],a:0,exp:'Large Language Model — model mare de limbaj antrenat pe miliarde de texte.'},
   {q:'Care model e 100% gratuit și anonim fără cont?',opts:['GPT-4 Turbo','Pollinations.AI','Perplexity Pro','Claude 3 Opus'],a:1,exp:'Pollinations.AI oferă acces anonim la 25+ modele fără cont sau cheie API.'},
-  {q:'Ce înseamnă „context window"?',opts:['Fereastra de browser','Câți tokeni poate „ține minte" modelul','Viteza de răspuns','Numărul de cereri/minut'],a:1,exp:'Context window = câte informații poate procesa simultan. Claude are 200K tokens ≈ 150.000 cuvinte.'},
-  {q:'Ce e WebGPU?',opts:['Un browser special','API grafic pentru calcul în browser','O rețea AI distribuită','Un format de fișier video'],a:1,exp:'WebGPU permite rularea modelelor AI direct în browser folosind GPU-ul local.'},
+  {q:'Ce înseamnă „context window"?',opts:['Fereastra de browser','Câți tokeni poate procesa modelul','Viteza de răspuns','Cereri/minut'],a:1,exp:'Context window = câte informații poate procesa simultan. Claude are 200K tokens.'},
+  {q:'Ce e WebGPU?',opts:['Un browser special','API grafic pentru calcul în browser','O rețea AI distribuită','Un format video'],a:1,exp:'WebGPU permite rularea modelelor AI direct în browser folosind GPU-ul local.'},
   {q:'Care furnizor e bazat în Europa (GDPR)?',opts:['OpenAI','Google','Mistral AI','Meta'],a:2,exp:'Mistral AI e o companie franceză, conformă GDPR nativ.'},
   {q:'Ce înseamnă „token" în context AI?',opts:['O monedă criptografică','O bucată de text (~4 litere)','Un model AI mic','Un tip de cheie API'],a:1,exp:'Un token ≈ 4 caractere sau 3/4 dintr-un cuvânt. GPT-4 costă per token procesat.'},
   {q:'Care e cel mai rapid API AI gratuit?',opts:['Anthropic Claude','Groq (LPU chips)','AI Horde','WebLLM local'],a:1,exp:'Groq folosește cipuri LPU dedicate — de 10-100x mai rapid decât GPU-urile clasice.'},
-  {q:'Ce face „RAG" (Retrieval-Augmented Generation)?',opts:['Generează imagini din text','Caută informații relevante înainte de a răspunde','Rulează modele local','Criptează conversațiile'],a:1,exp:'RAG combină un motor de căutare cu un LLM — modelul „caută" înainte să răspundă.'},
+  {q:'Ce face RAG (Retrieval-Augmented Generation)?',opts:['Generează imagini din text','Caută informații relevante înainte de a răspunde','Rulează modele local','Criptează conversațiile'],a:1,exp:'RAG combină un motor de căutare cu un LLM — modelul caută înainte să răspundă.'},
 ],
 en:[
-  {q:'What does "LLM" stand for?',opts:['Large Language Model','Local Learning Machine','Layered Logic Module','Linked List Manager'],a:0,exp:'Large Language Model — trained on billions of text tokens to predict and generate language.'},
+  {q:'What does LLM stand for?',opts:['Large Language Model','Local Learning Machine','Layered Logic Module','Linked List Manager'],a:0,exp:'Large Language Model — trained on billions of text tokens to predict and generate language.'},
   {q:'Which model works 100% free and anonymous?',opts:['GPT-4 Turbo','Pollinations.AI','Perplexity Pro','Claude 3 Opus'],a:1,exp:'Pollinations.AI provides anonymous access to 25+ models with no account or API key.'},
-  {q:'What is a "context window"?',opts:['The browser window','How many tokens the model can process at once','Response speed','Requests per minute'],a:1,exp:'Context window = how much the model can "remember". Claude has 200K tokens ≈ 150,000 words.'},
+  {q:'What is a context window?',opts:['The browser window','How many tokens the model can process at once','Response speed','Requests per minute'],a:1,exp:'Context window = how much the model can remember. Claude has 200K tokens.'},
   {q:'What is WebGPU?',opts:['A special browser','A graphics API for in-browser computation','A distributed AI network','A video file format'],a:1,exp:'WebGPU allows running AI models directly in the browser using your local GPU.'},
   {q:'Which AI provider is European (GDPR-native)?',opts:['OpenAI','Google','Mistral AI','Meta'],a:2,exp:'Mistral AI is a French company, natively GDPR-compliant.'},
-  {q:'What is a "token" in AI context?',opts:['A cryptocurrency','A chunk of text (~4 characters)','A small AI model','A type of API key'],a:1,exp:'A token ≈ 4 characters or 3/4 of a word. GPT-4 pricing is per token.'},
+  {q:'What is a token in AI context?',opts:['A cryptocurrency','A chunk of text (~4 characters)','A small AI model','A type of API key'],a:1,exp:'A token is about 4 characters or 3/4 of a word. GPT-4 pricing is per token.'},
   {q:'Which is the fastest free AI API?',opts:['Anthropic Claude','Groq (LPU chips)','AI Horde','WebLLM local'],a:1,exp:'Groq uses dedicated LPU chips — 10-100x faster than traditional GPU inference.'},
   {q:'What does RAG stand for?',opts:['Random Access Generation','Retrieval-Augmented Generation','Recursive AI Graph','Real-time Answer Generator'],a:1,exp:'RAG combines a search engine with an LLM — the model searches before answering.'},
-]};
+],
+fr:[
+  {q:'Que signifie LLM ?',opts:['Large Language Model','Local Learning Machine','Layered Logic Module','Linked List Manager'],a:0,exp:"Grand Modele de Langage — entraine sur des milliards de textes."},
+  {q:'Quel modele est 100% gratuit et anonyme ?',opts:['GPT-4 Turbo','Pollinations.AI','Perplexity Pro','Claude 3 Opus'],a:1,exp:"Pollinations.AI offre un acces anonyme a 25+ modeles sans compte ni cle API."},
+  {q:"Qu'est-ce qu'une fenetre de contexte ?",opts:["La fenetre du navigateur","Combien de tokens le modele peut traiter","La vitesse de reponse","Requetes par minute"],a:1,exp:"Contexte = combien le modele peut memoriser. Claude a 200K tokens."},
+  {q:"Qu'est-ce que WebGPU ?",opts:["Un navigateur special","API graphique pour le navigateur","Un reseau IA distribue","Un format video"],a:1,exp:"WebGPU permet d'executer des modeles IA dans le navigateur via le GPU local."},
+  {q:'Quel fournisseur IA est europeen (RGPD) ?',opts:['OpenAI','Google','Mistral AI','Meta'],a:2,exp:'Mistral AI est une entreprise francaise, conforme au RGPD nativement.'},
+  {q:"Qu'est-ce qu'un token en IA ?",opts:["Une cryptomonnaie","Un morceau de texte (~4 car.)","Un petit modele IA","Une cle API"],a:1,exp:"Un token est environ 4 caracteres. GPT-4 facture par token utilise."},
+  {q:"Quelle est l'API IA gratuite la plus rapide ?",opts:['Anthropic Claude','Groq (puces LPU)','AI Horde','WebLLM'],a:1,exp:'Groq utilise des puces LPU dediees — 10-100x plus rapide que les GPU classiques.'},
+  {q:'Que signifie RAG ?',opts:['Random Access Generation','Retrieval-Augmented Generation','Recursive AI Graph','Real-time Answer Generator'],a:1,exp:"RAG combine un moteur de recherche avec un LLM — le modele cherche avant de repondre."},
+],
+de:[
+  {q:'Was bedeutet LLM?',opts:['Large Language Model','Local Learning Machine','Layered Logic Module','Linked List Manager'],a:0,exp:'Grosses Sprachmodell — auf Milliarden Texten trainiert.'},
+  {q:'Welches Modell ist kostenlos und anonym?',opts:['GPT-4 Turbo','Pollinations.AI','Perplexity Pro','Claude 3 Opus'],a:1,exp:'Pollinations.AI bietet anonymen Zugang zu 25+ Modellen ohne Konto oder API-Schluessel.'},
+  {q:'Was ist ein Kontextfenster?',opts:['Das Browserfenster','Wie viele Tokens das Modell verarbeiten kann','Antwortgeschwindigkeit','Anfragen/Minute'],a:1,exp:'Kontextfenster = wie viel das Modell merken kann. Claude: 200K Tokens.'},
+  {q:'Was ist WebGPU?',opts:['Ein spezieller Browser','Grafik-API fur Browser-Berechnungen','Ein verteiltes KI-Netzwerk','Ein Videoformat'],a:1,exp:'WebGPU ermoeglicht KI-Modelle direkt im Browser uber die lokale GPU.'},
+  {q:'Welcher KI-Anbieter ist europaeisch (DSGVO)?',opts:['OpenAI','Google','Mistral AI','Meta'],a:2,exp:'Mistral AI ist ein franzoesisches Unternehmen, nativ DSGVO-konform.'},
+  {q:'Was ist ein Token im KI-Kontext?',opts:['Eine Kryptowahrung','Ein Textstueck (~4 Zeichen)','Ein kleines KI-Modell','Ein API-Schluessel'],a:1,exp:'Ein Token entspricht ca. 4 Zeichen. GPT-4 berechnet Kosten pro Token.'},
+  {q:'Welche kostenlose KI-API ist am schnellsten?',opts:['Anthropic Claude','Groq (LPU-Chips)','AI Horde','WebLLM'],a:1,exp:'Groq nutzt dedizierte LPU-Chips — 10-100x schneller als herkoemliche GPU-Inferenz.'},
+  {q:'Was bedeutet RAG?',opts:['Random Access Generation','Retrieval-Augmented Generation','Recursive AI Graph','Real-time Answer Generator'],a:1,exp:'RAG kombiniert eine Suchmaschine mit einem LLM — das Modell sucht vor der Antwort.'},
+],
+es:[
+  {q:'Que significa LLM?',opts:['Large Language Model','Local Learning Machine','Layered Logic Module','Linked List Manager'],a:0,exp:'Modelo de Lenguaje Grande — entrenado en miles de millones de textos.'},
+  {q:'Que modelo es 100% gratuito y anonimo?',opts:['GPT-4 Turbo','Pollinations.AI','Perplexity Pro','Claude 3 Opus'],a:1,exp:'Pollinations.AI ofrece acceso anonimo a 25+ modelos sin cuenta ni clave API.'},
+  {q:'Que es una ventana de contexto?',opts:['La ventana del navegador','Cuantos tokens puede procesar el modelo','Velocidad de respuesta','Solicitudes por minuto'],a:1,exp:'Contexto = cuanto puede recordar el modelo. Claude tiene 200K tokens.'},
+  {q:'Que es WebGPU?',opts:['Un navegador especial','API grafica para el navegador','Una red IA distribuida','Un formato de video'],a:1,exp:'WebGPU permite ejecutar modelos IA en el navegador usando la GPU local.'},
+  {q:'Que proveedor de IA es europeo (RGPD)?',opts:['OpenAI','Google','Mistral AI','Meta'],a:2,exp:'Mistral AI es una empresa francesa, nativamente conforme con el RGPD.'},
+  {q:'Que es un token en IA?',opts:['Una criptomoneda','Un fragmento de texto (~4 car.)','Un pequeno modelo IA','Una clave API'],a:1,exp:'Un token equivale a unos 4 caracteres. GPT-4 cobra por token procesado.'},
+  {q:'Cual es la API IA gratuita mas rapida?',opts:['Anthropic Claude','Groq (chips LPU)','AI Horde','WebLLM'],a:1,exp:'Groq usa chips LPU dedicados — 10-100x mas rapido que la inferencia GPU.'},
+  {q:'Que significa RAG?',opts:['Random Access Generation','Retrieval-Augmented Generation','Recursive AI Graph','Real-time Answer Generator'],a:1,exp:'RAG combina un motor de busqueda con un LLM — el modelo busca antes de responder.'},
+],
+pt:[
+  {q:'O que significa LLM?',opts:['Large Language Model','Local Learning Machine','Layered Logic Module','Linked List Manager'],a:0,exp:'Modelo de Linguagem Grande — treinado em bilhoes de textos.'},
+  {q:'Qual modelo e 100% gratuito e anonimo?',opts:['GPT-4 Turbo','Pollinations.AI','Perplexity Pro','Claude 3 Opus'],a:1,exp:'Pollinations.AI oferece acesso anonimo a 25+ modelos sem conta ou chave API.'},
+  {q:'O que e uma janela de contexto?',opts:['A janela do navegador','Quantos tokens o modelo pode processar','Velocidade de resposta','Requisicoes por minuto'],a:1,exp:'Contexto = quanto o modelo pode lembrar. Claude tem 200K tokens.'},
+  {q:'O que e WebGPU?',opts:['Um navegador especial','API grafica para o navegador','Uma rede IA distribuida','Um formato de video'],a:1,exp:'WebGPU permite executar modelos IA no browser usando a GPU local.'},
+  {q:'Qual provedor de IA e europeu (RGPD)?',opts:['OpenAI','Google','Mistral AI','Meta'],a:2,exp:'Mistral AI e uma empresa francesa, nativamente conforme com o RGPD.'},
+  {q:'O que e um token em IA?',opts:['Uma criptomoeda','Um pedaco de texto (~4 car.)','Um pequeno modelo IA','Uma chave API'],a:1,exp:'Um token equivale a 4 caracteres. GPT-4 cobra por token processado.'},
+  {q:'Qual e a API IA gratuita mais rapida?',opts:['Anthropic Claude','Groq (chips LPU)','AI Horde','WebLLM'],a:1,exp:'Groq usa chips LPU dedicados — 10-100x mais rapido que a inferencia GPU.'},
+  {q:'O que significa RAG?',opts:['Random Access Generation','Retrieval-Augmented Generation','Recursive AI Graph','Real-time Answer Generator'],a:1,exp:'RAG combina um motor de busca com um LLM — o modelo pesquisa antes de responder.'},
+],
+it:[
+  {q:'Cosa significa LLM?',opts:['Large Language Model','Local Learning Machine','Layered Logic Module','Linked List Manager'],a:0,exp:'Grande Modello Linguistico — addestrato su miliardi di testi.'},
+  {q:'Quale modello e 100% gratuito e anonimo?',opts:['GPT-4 Turbo','Pollinations.AI','Perplexity Pro','Claude 3 Opus'],a:1,exp:'Pollinations.AI offre accesso anonimo a 25+ modelli senza account o chiave API.'},
+  {q:"Cos'e una finestra di contesto?",opts:['La finestra del browser','Quanti token il modello puo elaborare','Velocita di risposta','Richieste al minuto'],a:1,exp:'Contesto = quanto il modello puo ricordare. Claude ha 200K token.'},
+  {q:"Cos'e WebGPU?",opts:['Un browser speciale','API grafica per il browser','Una rete IA distribuita','Un formato video'],a:1,exp:'WebGPU consente di eseguire modelli IA nel browser tramite la GPU locale.'},
+  {q:'Quale provider IA e europeo (GDPR)?',opts:['OpenAI','Google','Mistral AI','Meta'],a:2,exp:"Mistral AI e un'azienda francese, nativamente conforme al GDPR."},
+  {q:"Cos'e un token in IA?",opts:['Una criptovaluta','Un pezzo di testo (~4 car.)','Un piccolo modello IA','Una chiave API'],a:1,exp:'Un token equivale a 4 caratteri. GPT-4 addebita per token elaborato.'},
+  {q:"Qual e l'API IA gratuita piu veloce?",opts:['Anthropic Claude','Groq (chip LPU)','AI Horde','WebLLM'],a:1,exp:'Groq usa chip LPU dedicati — 10-100x piu veloce della normale inferenza GPU.'},
+  {q:'Cosa significa RAG?',opts:['Random Access Generation','Retrieval-Augmented Generation','Recursive AI Graph','Real-time Answer Generator'],a:1,exp:'RAG combina un motore di ricerca con un LLM — il modello cerca prima di rispondere.'},
+]
+};
 
 const QUICK_PROMPTS={
 ro:{
@@ -7084,26 +7199,54 @@ en:{
   '🎯 Productivity':['Summarize this text in 5 bullet points: [text]','Create a prioritized to-do list for: [tasks]','Help me structure ideas for [project]','What questions should I ask in an interview for [job X]?'],
   '🎨 Creative':['Write a short poem about [topic]','Invent a story with [characters] on [theme]','Create a memorable slogan for [product/brand X]','Describe [place/object] in the style of a famous writer'],
 },
+fr:{
+  '🚀 Start':['🧠 Qu\'est-ce que l\'IA? Explique simplement.','📧 Écris un email professionnel pour demander un jour de congé.','🎁 Donne-moi 5 idées cadeaux créatives pour un amateur de nature.','🤖 Explique la différence entre Claude, ChatGPT et Gemini.','🎯 Quelles sont les habitudes de productivité les plus efficaces?'],
+  '✍️ Écriture':['Écris un email formel pour demander un jour de congé','Améliore ce texte: [colle ton texte]','Écris une introduction convaincante pour mon CV','Crée 5 titres accrocheurs sur l\'IA'],
+  '💻 Code':['Explique ce code: [colle le code]','Trouve les bugs dans: [colle le code]','Convertis de Python en JavaScript: [code]','Écris un script qui [décris ce que tu veux]'],
+  '🧠 Apprendre':['Explique [sujet] comme si j\'avais 12 ans','Quels sont les 5 concepts clés de [domaine]?','Fais-moi un quiz sur [sujet]','Crée un plan d\'étude pour [sujet] en 30 jours'],
+  '🎨 Créatif':['Écris un court poème sur [sujet]','Invente une histoire avec [personnages] sur [thème]','Crée un slogan mémorable pour [produit/marque]','Décris [lieu/objet] dans le style d\'un écrivain célèbre'],
+},
+de:{
+  '🚀 Start':['🧠 Was ist KI? Erkläre einfach.','📧 Schreibe eine professionelle E-Mail für einen freien Tag.','🎁 Gib mir 5 kreative Geschenkideen für einen Naturliebhaber.','🤖 Erkläre den Unterschied zwischen Claude, ChatGPT und Gemini.','🎯 Was sind die effektivsten Produktivitätsgewohnheiten?'],
+  '✍️ Schreiben':['Schreibe eine formelle E-Mail für einen freien Tag','Verbessere diesen Text: [füge deinen Text ein]','Schreibe eine überzeugende Lebenslauf-Einleitung','Erstelle 5 einprägsame Überschriften über KI'],
+  '💻 Code':['Erkläre diesen Code: [füge Code ein]','Finde Fehler in: [füge Code ein]','Konvertiere von Python nach JavaScript: [Code]','Schreibe ein Skript das [beschreibe was du willst]'],
+  '🧠 Lernen':['Erkläre [Thema] als ob ich 12 wäre','Was sind die 5 wichtigsten Konzepte in [Bereich]?','Prüfe mich über [Thema]','Erstelle einen 30-Tage-Lernplan für [Thema]'],
+  '🎨 Kreativ':['Schreibe ein kurzes Gedicht über [Thema]','Erfinde eine Geschichte mit [Charakteren] über [Thema]','Erstelle einen unvergesslichen Slogan für [Produkt/Marke]','Beschreibe [Ort/Objekt] im Stil eines berühmten Schriftstellers'],
+},
+es:{
+  '🚀 Start':['🧠 ¿Qué es la IA? Explica simplemente.','📧 Escribe un email profesional pidiendo un día libre.','🎁 Dame 5 ideas creativas de regalos para un amante de la naturaleza.','🤖 Explica la diferencia entre Claude, ChatGPT y Gemini.','🎯 ¿Cuáles son los hábitos de productividad más efectivos?'],
+  '✍️ Escritura':['Escribe un email formal para pedir un día libre','Mejora este texto: [pega tu texto]','Escribe una introducción convincente para mi CV','Crea 5 titulares llamativos sobre IA'],
+  '💻 Código':['Explica este código: [pega el código]','Encuentra errores en: [pega el código]','Convierte de Python a JavaScript: [código]','Escribe un script que [describe lo que quieres]'],
+  '🧠 Aprender':['Explica [tema] como si tuviera 12 años','¿Cuáles son los 5 conceptos más importantes de [campo]?','Hazme un quiz sobre [tema]','Crea un plan de estudio de 30 días para [tema]'],
+  '🎨 Creativo':['Escribe un poema corto sobre [tema]','Inventa una historia con [personajes] sobre [tema]','Crea un eslogan memorable para [producto/marca]','Describe [lugar/objeto] al estilo de un escritor famoso'],
+},
+pt:{
+  '🚀 Start':['🧠 O que é IA? Explica simplesmente.','📧 Escreve um email profissional pedindo um dia de folga.','🎁 Dá-me 5 ideias criativas de presentes para um amante da natureza.','🤖 Explica a diferença entre Claude, ChatGPT e Gemini.','🎯 Quais são os hábitos de produtividade mais eficazes?'],
+  '✍️ Escrita':['Escreve um email formal para pedir um dia de folga','Melhora este texto: [cola o teu texto]','Escreve uma introdução convincente para o meu CV','Cria 5 títulos chamativos sobre IA'],
+  '💻 Código':['Explica este código: [cola o código]','Encontra bugs em: [cola o código]','Converte de Python para JavaScript: [código]','Escreve um script que [descreve o que queres]'],
+  '🧠 Aprender':['Explica [tema] como se eu tivesse 12 anos','Quais são os 5 conceitos mais importantes de [área]?','Faz-me um quiz sobre [tema]','Cria um plano de estudo de 30 dias para [tema]'],
+  '🎨 Criativo':['Escreve um poema curto sobre [tema]','Inventa uma história com [personagens] sobre [tema]','Cria um slogan memorável para [produto/marca]','Descreve [lugar/objeto] no estilo de um escritor famoso'],
+},
+it:{
+  '🚀 Start':['🧠 Cos\'è l\'IA? Spiega semplicemente.','📧 Scrivi un\'email professionale per chiedere un giorno libero.','🎁 Dammi 5 idee creative di regali per un amante della natura.','🤖 Spiega la differenza tra Claude, ChatGPT e Gemini.','🎯 Quali sono le abitudini di produttività più efficaci?'],
+  '✍️ Scrittura':['Scrivi un\'email formale per chiedere un giorno libero','Migliora questo testo: [incolla il tuo testo]','Scrivi un\'introduzione convincente per il mio CV','Crea 5 titoli accattivanti sull\'IA'],
+  '💻 Codice':['Spiega questo codice: [incolla il codice]','Trova i bug in: [incolla il codice]','Converti da Python a JavaScript: [codice]','Scrivi uno script che [descrivi cosa vuoi]'],
+  '🧠 Imparare':['Spiega [argomento] come se avessi 12 anni','Quali sono i 5 concetti più importanti di [campo]?','Fammi un quiz su [argomento]','Crea un piano di studio di 30 giorni per [argomento]'],
+  '🎨 Creativo':['Scrivi una breve poesia su [argomento]','Inventa una storia con [personaggi] su [tema]','Crea uno slogan memorabile per [prodotto/marca]','Descrivi [luogo/oggetto] nello stile di uno scrittore famoso'],
+},
 };
 
-const SHORTCUTS=[
-  {key:'Enter',desc:'Trimite mesajul'},
-  {key:'Shift+Enter',desc:'Rând nou'},
-  {key:'Ctrl+B',desc:'Aldin (bold)'},
-  {key:'Ctrl+I',desc:'Cursiv (italic)'},
-  {key:'Ctrl+Z',desc:'Anulează'},
-  {key:'Esc',desc:'Închide popup'},
-  {key:'↑↓',desc:'Navighează modele'},
-];
-const SHORTCUTS_EN=[
-  {key:'Enter',desc:'Send message'},
-  {key:'Shift+Enter',desc:'New line'},
-  {key:'Ctrl+B',desc:'Bold'},
-  {key:'Ctrl+I',desc:'Italic'},
-  {key:'Ctrl+Z',desc:'Undo'},
-  {key:'Esc',desc:'Close popup'},
-  {key:'↑↓',desc:'Navigate models'},
-];
+const SHORTCUTS_ALL={
+  ro:[{key:'Enter',desc:'Trimite mesajul'},{key:'Shift+Enter',desc:'Rând nou'},{key:'Ctrl+B',desc:'Aldin'},{key:'Ctrl+I',desc:'Cursiv'},{key:'Ctrl+Z',desc:'Anulează'},{key:'Esc',desc:'Închide popup'},{key:'↑↓',desc:'Navighează modele'}],
+  en:[{key:'Enter',desc:'Send message'},{key:'Shift+Enter',desc:'New line'},{key:'Ctrl+B',desc:'Bold'},{key:'Ctrl+I',desc:'Italic'},{key:'Ctrl+Z',desc:'Undo'},{key:'Esc',desc:'Close popup'},{key:'↑↓',desc:'Navigate models'}],
+  fr:[{key:'Enter',desc:'Envoyer'},{key:'Shift+Enter',desc:'Nouvelle ligne'},{key:'Ctrl+B',desc:'Gras'},{key:'Ctrl+I',desc:'Italique'},{key:'Ctrl+Z',desc:'Annuler'},{key:'Esc',desc:'Fermer popup'},{key:'↑↓',desc:'Naviguer modèles'}],
+  de:[{key:'Enter',desc:'Senden'},{key:'Shift+Enter',desc:'Neue Zeile'},{key:'Ctrl+B',desc:'Fett'},{key:'Ctrl+I',desc:'Kursiv'},{key:'Ctrl+Z',desc:'Rückgängig'},{key:'Esc',desc:'Popup schließen'},{key:'↑↓',desc:'Modelle navigieren'}],
+  es:[{key:'Enter',desc:'Enviar'},{key:'Shift+Enter',desc:'Nueva línea'},{key:'Ctrl+B',desc:'Negrita'},{key:'Ctrl+I',desc:'Cursiva'},{key:'Ctrl+Z',desc:'Deshacer'},{key:'Esc',desc:'Cerrar popup'},{key:'↑↓',desc:'Navegar modelos'}],
+  pt:[{key:'Enter',desc:'Enviar'},{key:'Shift+Enter',desc:'Nova linha'},{key:'Ctrl+B',desc:'Negrito'},{key:'Ctrl+I',desc:'Itálico'},{key:'Ctrl+Z',desc:'Desfazer'},{key:'Esc',desc:'Fechar popup'},{key:'↑↓',desc:'Navegar modelos'}],
+  it:[{key:'Enter',desc:'Invia'},{key:'Shift+Enter',desc:'Nuova riga'},{key:'Ctrl+B',desc:'Grassetto'},{key:'Ctrl+I',desc:'Corsivo'},{key:'Ctrl+Z',desc:'Annulla'},{key:'Esc',desc:'Chiudi popup'},{key:'↑↓',desc:'Naviga modelli'}],
+};
+const SHORTCUTS=SHORTCUTS_ALL.ro;
+const SHORTCUTS_EN=SHORTCUTS_ALL.en;
 
 let _cpTab='prompts', _qIdx=0, _qScore=0, _qAnswered=false, _qpCat='🚀 Start';
 
@@ -7117,34 +7260,29 @@ function cpTab(tab, el){
 function _renderCpanel(){
   const body=document.getElementById('cpanel-body');
   if(!body)return;
-  const lang=CUR_LANG==='ro'?'ro':'en';
+  const lang=CUR_LANG;
   if(_cpTab==='quiz') _renderQuiz(body,lang);
   else if(_cpTab==='prompts') _renderPrompts(body,lang);
   else _renderShortcuts(body,lang);
 }
 
 function _renderQuiz(body,lang){
-  const data=QUIZ_DATA[lang]||QUIZ_DATA.en;
+  const data=QUIZ_DATA[lang]||QUIZ_DATA[CUR_LANG]||QUIZ_DATA.en;
   const total=data.length;
-  // Show final result after all questions
   if(_qIdx>=total){
     const pct=Math.round(_qScore/total*100);
     const medal=pct===100?'🏆':pct>=75?'🥇':pct>=50?'🥈':'🥉';
-    const msg=lang==='ro'
-      ?(pct===100?'Perfect! Ești un expert în AI! 🎉':pct>=75?'Foarte bine! Cunoști bine AI-ul!':pct>=50?'Bine! Mai ai de învățat.':'Continuă să explorezi AI Liber!')
-      :(pct===100?'Perfect! You are an AI expert! 🎉':pct>=75?'Great! You know AI well!':pct>=50?'Good! Keep learning.':'Keep exploring AI Liber!');
+    const msg=pct===100?t('qrPerfect'):pct>=75?t('qrGood'):pct>=50?t('qrOk'):t('qrKeep');
     body.innerHTML=`
       <div style="text-align:center;padding:8px 4px">
         <div style="font-size:2.2rem;margin-bottom:6px">${medal}</div>
-        <div style="font-size:1rem;font-weight:800;color:var(--txt);margin-bottom:4px">
-          ${lang==='ro'?'Quiz terminat!':'Quiz complete!'}
-        </div>
+        <div style="font-size:1rem;font-weight:800;color:var(--txt);margin-bottom:4px">${t('qrDone')}</div>
         <div style="font-size:1.6rem;font-weight:800;color:var(--acc);margin-bottom:6px">
           ${_qScore}/${total} <span style="font-size:.85rem;opacity:.7">(${pct}%)</span>
         </div>
         <div style="font-size:.8rem;color:var(--mut);margin-bottom:12px">${msg}</div>
         <button class="quiz-next" onclick="_qIdx=0;_qScore=0;_qAnswered=false;_renderCpanel()" style="display:inline-flex">
-          ${lang==='ro'?'🔄 Joacă din nou':'🔄 Play again'}
+          ${t('qrPlay')}
         </button>
       </div>`;
     return;
@@ -7154,21 +7292,21 @@ function _renderQuiz(body,lang){
     <div class="quiz-hd">
       <span class="quiz-num">${_qIdx+1}/${total}</span>
       <span class="quiz-q-text">${q.q}</span>
-      <span class="quiz-score-inline">${lang==='ro'?'Scor':'Score'}: <strong>${_qScore}/${_qIdx}</strong></span>
+      <span class="quiz-score-inline">${t('qrScore')}: <strong>${_qScore}/${_qIdx}</strong></span>
     </div>
     <div class="quiz-opts">${q.opts.map((o,i)=>
       `<button class="quiz-opt" onclick="_quizAns(${i})">${o}</button>`
     ).join('')}</div>
     <div class="quiz-nav">
-      <button class="quiz-next" onclick="_quizNext()" style="display:none" id="quiz-next">${lang==='ro'?'Următoarea →':'Next →'}</button>
+      <button class="quiz-next" onclick="_quizNext()" style="display:none" id="quiz-next">${t('qrNext')}</button>
     </div>`;
 }
+
 
 function _quizAns(i){
   if(_qAnswered)return;
   _qAnswered=true;
-  const lang=CUR_LANG==='ro'?'ro':'en';
-  const data=QUIZ_DATA[lang]||QUIZ_DATA.en;
+  const data=QUIZ_DATA[CUR_LANG]||QUIZ_DATA.en;
   const q=data[_qIdx%data.length];
   const correct=i===q.a;
   if(correct)_qScore++;
@@ -7188,8 +7326,7 @@ function _quizAns(i){
     nav.parentNode.insertBefore(exp,nav);
     // Score update
     const sc=document.querySelector('.quiz-score-inline');
-    const lang2=CUR_LANG==='ro'?'ro':'en';
-    if(sc)sc.innerHTML=(lang2==='ro'?'Scor':'Score')+': <strong>'+_qScore+'/'+(_qIdx+1)+'</strong>';
+    if(sc)sc.innerHTML=t('qrScore')+': <strong>'+_qScore+'/'+(_qIdx+1)+'</strong>';
     // Buton next (backup)
     const nb=document.getElementById('quiz-next');
     if(nb)nb.style.display='';
@@ -7205,7 +7342,9 @@ function _quizNext(){
 }
 
 function _renderPrompts(body,lang){
-  const data=QUICK_PROMPTS[lang]||QUICK_PROMPTS.en;
+  const lang2=QUICK_PROMPTS[lang]?lang:(QUICK_PROMPTS[CUR_LANG]?CUR_LANG:'en');
+  const data=QUICK_PROMPTS[lang2]||QUICK_PROMPTS.en;
+  if(!_qpCat||!data[_qpCat])_qpCat=Object.keys(data)[0]||'🚀 Start';
   const cats=Object.keys(data);
   if(!_qpCat||!data[_qpCat])_qpCat=cats[0];
   body.innerHTML=`
@@ -7228,7 +7367,7 @@ function _usePrompt(text){
 }
 
 function _renderShortcuts(body,lang){
-  const sc=lang==='ro'?SHORTCUTS:SHORTCUTS_EN;
+  const sc=SHORTCUTS_ALL[lang]||SHORTCUTS_ALL.en;
   body.innerHTML=`<div class="sc-grid">${sc.map(s=>
     `<div class="sc-row"><span class="sc-key">${s.key}</span><span class="sc-desc">${s.desc}</span></div>`
   ).join('')}</div>`;
@@ -7267,7 +7406,7 @@ _initCpanel();
 // Hash routing init
 (function(){
   const _id=(location.hash||'').slice(1);
-  const _valid=['chat','explore','tips'];
+  const _valid=['chat','explore','tips','legal'];
   if(_id&&_valid.includes(_id)){goPage(_id,true);}
   else{goPage('chat',true);} // default: chat
 })();
@@ -7463,6 +7602,20 @@ const LEGAL_CONTENT={
 };
 
 function openLegal(tab){
+  // If on legal page, update page content instead of modal
+  const lpage=document.getElementById('page-legal');
+  if(lpage&&lpage.classList.contains('on')){
+    const pb=document.getElementById('legal-page-body');
+    if(pb){
+      const tabKey={privacy:'lPriv',terms:'lTerms',cookies:'lCook',gdpr:'lGDPR'}[tab]||'lPriv';
+      const tabVersion=t('legalVersion')||'';
+      pb.innerHTML=`<div class="lmod-v" style="font-size:.72rem;color:var(--mut);margin-bottom:12px">${tabVersion}</div>${t(tabKey)||t('lPriv')||''}`;
+      if(window.katex)renderMath(pb);
+    }
+    document.querySelectorAll('.ltab').forEach(b=>b.classList.toggle('on',b.dataset.tab===tab));
+    applyI18n();
+    return;
+  }
   tab=tab||'privacy';
   const bodyKeys={privacy:'lPriv',terms:'lTerms',cookies:'lCook',gdpr:'lGDPR'};
   const icons={privacy:'🔒',terms:'📋',cookies:'🍪',gdpr:'🛡️'};
@@ -7509,6 +7662,21 @@ function eraseAllData(){
 
 </script>
 
+
+
+<!-- LEGAL -->
+<div class="page" id="page-legal">
+  <div class="tips-wrap">
+    <h2 class="stit" data-i18n="navLegal" style="margin-bottom:12px">🔒 Legal</h2>
+    <div style="display:flex;gap:0;border-bottom:1px solid var(--bdr);margin-bottom:16px;overflow-x:auto">
+      <button class="ltab on" data-tab="privacy" onclick="openLegal('privacy')" data-i18n="ltPriv" style="flex:1;padding:9px 4px;border:none;border-bottom:2px solid transparent;background:none;font-family:'Nunito',sans-serif;font-size:.75rem;font-weight:700;cursor:pointer;color:var(--mut);white-space:nowrap;transition:all .16s;min-width:80px">🔒 Confidențialitate</button>
+      <button class="ltab" data-tab="terms" onclick="openLegal('terms')" data-i18n="ltTerms" style="flex:1;padding:9px 4px;border:none;border-bottom:2px solid transparent;background:none;font-family:'Nunito',sans-serif;font-size:.75rem;font-weight:700;cursor:pointer;color:var(--mut);white-space:nowrap;transition:all .16s;min-width:60px">📋 Termeni</button>
+      <button class="ltab" data-tab="cookies" onclick="openLegal('cookies')" data-i18n="ltCook" style="flex:1;padding:9px 4px;border:none;border-bottom:2px solid transparent;background:none;font-family:'Nunito',sans-serif;font-size:.75rem;font-weight:700;cursor:pointer;color:var(--mut);white-space:nowrap;transition:all .16s;min-width:70px">🍪 Cookie-uri</button>
+      <button class="ltab" data-tab="gdpr" onclick="openLegal('gdpr')" data-i18n="ltGDPR" style="flex:1;padding:9px 4px;border:none;border-bottom:2px solid transparent;background:none;font-family:'Nunito',sans-serif;font-size:.75rem;font-weight:700;cursor:pointer;color:var(--mut);white-space:nowrap;transition:all .16s;min-width:60px">🛡️ GDPR</button>
+    </div>
+    <div class="lmod-body" id="legal-page-body" style="max-width:680px;margin:0 auto"></div>
+  </div>
+</div>
 
 <!-- ══ MODEL CHECK MODAL ═══════════════════════════════════ -->
 <div class="mcheck-ov" id="mcheck-ov" onclick="if(event.target===this)closeMCheck()">
