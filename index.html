@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://esm.run https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:; img-src 'self' data: blob: https:; connect-src 'self' https://text.pollinations.ai https://image.pollinations.ai https://duckduckgo.com https://api.anthropic.com https://api.openai.com https://generativelanguage.googleapis.com https://api.groq.com https://api.mistral.ai https://api.perplexity.ai https://openrouter.ai https://aihorde.net http://localhost:1234 http://localhost:11434 https://huggingface.co https://*.huggingface.co https://raw.githubusercontent.com https://cdn.jsdelivr.net https://esm.run; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'">
 <title>AI Liber — Inteligența artificială pentru toți</title>
 <meta name="description" content="Chat cu Claude, GPT-4, Gemini, Llama, DeepSeek și 30+ modele — unele fără cont, unele cu cheie API gratuită.">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
@@ -36,8 +37,8 @@ body>nav{position:fixed;top:0;left:0;right:0;height:var(--nav);z-index:200;
 .nb.on{background:var(--txt);color:var(--bg)}
 
 .page{display:none;padding-top:var(--nav)}
-.page.on{display:flex;flex-direction:column;min-height:100vh}
-#page-chat.on{display:flex;flex-direction:column;min-height:unset;height:100vh}
+.page.on{display:flex;flex-direction:column;min-height:100vh;min-height:100dvh}
+#page-chat.on{display:flex;flex-direction:column;min-height:unset;height:100vh;height:100dvh}
 
 /* HOME */
 .hero{max-width:920px;margin:0 auto;padding:60px 24px 44px;text-align:center}
@@ -78,7 +79,7 @@ body>nav{position:fixed;top:0;left:0;right:0;height:var(--nav);z-index:200;
 .sbody p{color:var(--mut);font-size:.88rem;line-height:1.6}
 
 /* CHAT */
-#page-chat{padding-top:var(--nav);height:100vh;display:none}
+#page-chat{padding-top:var(--nav);height:100vh;height:100dvh;display:none}
 #page-chat.on{display:flex;flex-direction:column}
 .chat-layout{flex:1;display:flex;overflow:hidden}
 
@@ -815,18 +816,18 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
           🤖 Modele AI
           <span class="sb-live loading" id="sb-live" data-i18n="updating">⏳ Se încarcă…</span>
         </div>
-        <button class="sb-close" onclick="closeSB()">✕</button>
+        <button class="sb-close" onclick="closeSB()" aria-label="Închide panoul lateral" data-i18n-aria="ariaCloseSB">✕</button>
       </div>
       <div class="cbar">
-        <button class="cpill on" onclick="filterM('all',this)">Toate</button>
-        <button class="cpill" onclick="filterM('instant',this)">✅ Imediat</button>
-        <button class="cpill" onclick="filterM('best',this)">⭐ Top</button>
-        <button class="cpill" onclick="filterM('fast',this)">⚡ Rapid</button>
-        <button class="cpill" onclick="filterM('code',this)">💻 Cod</button>
-        <button class="cpill" onclick="filterM('creative',this)">✍️ Creativ</button>
-        <button class="cpill" onclick="filterM('web',this)">🔍 Web</button>
-        <button class="cpill" onclick="filterM('math',this)">🧮 Math</button>
-        <button class="cpill" onclick="filterM('multi',this)">🌍 Multi</button>
+        <button class="cpill on" onclick="filterM('all',this)" data-i18n="cpillAll">Toate</button>
+        <button class="cpill" onclick="filterM('instant',this)" data-i18n="cpillInstant">✅ Imediat</button>
+        <button class="cpill" onclick="filterM('best',this)" data-i18n="cpillBest">⭐ Top</button>
+        <button class="cpill" onclick="filterM('fast',this)" data-i18n="cpillFast">⚡ Rapid</button>
+        <button class="cpill" onclick="filterM('code',this)" data-i18n="cpillCode">💻 Cod</button>
+        <button class="cpill" onclick="filterM('creative',this)" data-i18n="cpillCreative">✍️ Creativ</button>
+        <button class="cpill" onclick="filterM('web',this)" data-i18n="cpillWeb">🔍 Web</button>
+        <button class="cpill" onclick="filterM('math',this)" data-i18n="cpillMath">🧮 Math</button>
+        <button class="cpill" onclick="filterM('multi',this)" data-i18n="cpillMulti">🌍 Multi</button>
       </div>
       <div class="mlist" id="mlist"></div>
       <div class="sb-ft">
@@ -845,14 +846,14 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
 
     <div class="chat-main">
       <div class="ctop">
-        <button class="ctop-sb" onclick="toggleSB()">☰</button>
+        <button class="ctop-sb" onclick="toggleSB()" aria-label="Deschide/închide panoul de modele" data-i18n-aria="ariaToggleSB">☰</button>
         <div class="ctop-mdl">
           <div class="ctop-n" id="ctop-n">—</div>
-          <div class="ctop-i" id="ctop-i" data-i18n="selectModel" data-i18n="selModelPH">Selectează un model din stânga</div>
+          <div class="ctop-i" id="ctop-i" data-i18n="selModelPH">Selectează un model din stânga</div>
         </div>
         <div class="ctop-btns">
-          <button class="ibtn" data-i18n-title="ttNewChat" title="Conversație nouă" onclick="clearChat()">🗑</button>
-          <button class="ibtn" title="Chei API" onclick="openSett()">⚙️</button>
+          <button class="ibtn" data-i18n-title="ttNewChat" data-i18n-aria="ttNewChat" aria-label="Conversație nouă" title="Conversație nouă" onclick="clearChat()">🗑</button>
+          <button class="ibtn" title="Chei API" aria-label="Chei API" data-i18n-aria="settH" onclick="openSett()">⚙️</button>
         </div>
       </div>
       <div class="cmsgs" id="cmsgs">
@@ -1018,6 +1019,10 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
   <div class="modal">
     <h2 data-i18n="settH">⚙️ Chei API</h2>
     <p class="msub" data-i18n-html="settP">Modelele ✅ <strong>nu au nevoie de cheie</strong>. Celelalte necesită o cheie API — multe disponibile complet gratuit.</p>
+    <div class="key-warn" style="background:#fef3c7;border:1px solid #fcd34d;border-radius:8px;padding:10px 14px;margin:8px 0 14px;font-size:.78rem;line-height:1.55;color:#78350f">
+      <strong>⚠️ <span data-i18n="keyWarnTitle">Notă de securitate</span></strong><br>
+      <span data-i18n="keyWarnBody">Cheile sunt stocate local în browserul tău, obscurizate cu AES-GCM. Aceasta <strong>NU</strong> este criptare robustă: un script malițios rulat pe pagină sau o extensie de browser le poate recupera. Folosește chei cu limite de buget / rate limits pe contul providerului și revocă-le dacă bănuiești compromis.</span>
+    </div>
     <div id="kbody"></div>
     <div class="mbtns"><button class="btn btn-s" onclick="closeSett()" data-i18n="settClose">Închide</button></div>
   </div>
@@ -1027,6 +1032,9 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
 // ═══ i18n ENGINE (ro|en|it|es|pt|fr|de) ═══
 const T={
 ro:{
+ariaCloseSB:'Închide panoul lateral',ariaToggleSB:'Deschide/închide panoul de modele',
+keyWarnTitle:'Notă de securitate',keyWarnBody:'Cheile sunt stocate local în browserul tău, obscurizate cu AES-GCM. Aceasta <strong>NU</strong> este criptare robustă: un script malițios rulat pe pagină sau o extensie de browser le poate recupera. Folosește chei cu limite de buget / rate limits pe contul providerului și revocă-le dacă bănuiești compromis.',
+cpillAll:'Toate',cpillInstant:'✅ Imediat',cpillBest:'⭐ Top',cpillFast:'⚡ Rapid',cpillCode:'💻 Cod',cpillCreative:'✍️ Creativ',cpillWeb:'🔍 Web',cpillMath:'🧮 Math',cpillMulti:'🌍 Multi',
 navHome:'Acasă',
 navChat:'Chat',
 navExplore:'Explorează',
@@ -1259,6 +1267,9 @@ lGDPR:`<h3>Drepturile tale conform GDPR</h3><p>Toate datele stocate de AI Liber 
 
 },
 en:{
+ariaCloseSB:'Close sidebar',ariaToggleSB:'Toggle model sidebar',
+keyWarnTitle:'Security note',keyWarnBody:'Keys are stored locally in your browser, obfuscated with AES-GCM. This is <strong>NOT</strong> strong encryption: malicious scripts on the page or browser extensions can recover them. Use keys with budget limits / rate limits on your provider account, and revoke them if you suspect compromise.',
+cpillAll:'All',cpillInstant:'✅ Instant',cpillBest:'⭐ Top',cpillFast:'⚡ Fast',cpillCode:'💻 Code',cpillCreative:'✍️ Creative',cpillWeb:'🔍 Web',cpillMath:'🧮 Math',cpillMulti:'🌍 Multi',
 navHome:'Home',
 navChat:'Chat',
 navExplore:'Explore',
@@ -1490,6 +1501,9 @@ lCook:`<h3>Cookies &amp; local storage</h3><p>AI Liber <strong>does not use trad
 lGDPR:`<h3>Your GDPR rights</h3><p>All data stored by AI Liber is exclusively in <strong>your browser's localStorage</strong>. We have no servers with your data.</p><h3>📋 Right of access (Art. 15)</h3><p>Access: F12 → Application → Local Storage → ai-liber.ro</p><h3>✏️ Right to rectification (Art. 16)</h3><p>Modify API keys directly from ⚙️ Configure API Keys or from localStorage.</p><h3>🗑️ Right to erasure — "right to be forgotten" (Art. 17)</h3><p>Delete all data instantly:</p><div style="text-align:center;margin:16px 0"><button onclick="eraseAllData()" style="padding:11px 24px;border-radius:100px;background:#DC2626;color:#fff;border:none;font-family:'Nunito',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer" data-i18n-html="eraseBtn">🗑️</button></div><h3>🚫 Right to object (Art. 21)</h3><p>Decline the consent banner. Anonymous chats (Pollinations, DuckDuckGo, AI Horde) work with zero local storage.</p><h3>📬 Supervisory authority &amp; Contact</h3><p><strong>ANSPDCP (Romania)</strong>: <a href="https://www.dataprotection.ro" target="_blank">dataprotection.ro</a><br>AI Liber contact: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p>`,
 },
 it:{
+ariaCloseSB:'Chiudi barra laterale',ariaToggleSB:'Attiva/disattiva barra dei modelli',
+keyWarnTitle:'Nota sulla sicurezza',keyWarnBody:'Le chiavi sono memorizzate localmente nel browser, offuscate con AES-GCM. Questa <strong>NON</strong> è crittografia robusta: uno script malevolo o un\'estensione del browser può recuperarle. Usa chiavi con limiti di budget / rate limits sul provider e revocale in caso di sospetto.',
+cpillAll:'Tutti',cpillInstant:'✅ Istantaneo',cpillBest:'⭐ Top',cpillFast:'⚡ Veloce',cpillCode:'💻 Codice',cpillCreative:'✍️ Creativo',cpillWeb:'🔍 Web',cpillMath:'🧮 Mat.',cpillMulti:'🌍 Multi',
 navHome:'Home',
 navChat:'Chat',
 navExplore:'Esplora',
@@ -1721,6 +1735,9 @@ lCook:`<h3>Cookie &amp; archiviazione locale</h3><p>AI Liber <strong>non usa coo
 lGDPR:`<h3>I tuoi diritti GDPR</h3><p>Tutti i dati archiviati da AI Liber si trovano esclusivamente nel <strong>localStorage del tuo browser</strong>. Non abbiamo server con i tuoi dati.</p><h3>📋 Diritto di accesso (Art. 15)</h3><p>Accedi: F12 → Application → Local Storage → ai-liber.ro</p><h3>✏️ Diritto di rettifica (Art. 16)</h3><p>Modifica le chiavi API da ⚙️ Configura chiavi API.</p><h3>🗑️ Diritto alla cancellazione — «diritto all'oblio» (Art. 17)</h3><p>Cancella tutti i dati istantaneamente:</p><div style="text-align:center;margin:16px 0"><button onclick="eraseAllData()" style="padding:11px 24px;border-radius:100px;background:#DC2626;color:#fff;border:none;font-family:'Nunito',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer" data-i18n-html="eraseBtn">🗑️</button></div><h3>📬 Autorità &amp; Contatto</h3><p><strong>Garante Privacy</strong>: <a href="https://www.garanteprivacy.it" target="_blank">garanteprivacy.it</a><br>Contatto AI Liber: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p>`,
 },
 es:{
+ariaCloseSB:'Cerrar barra lateral',ariaToggleSB:'Alternar barra lateral de modelos',
+keyWarnTitle:'Nota de seguridad',keyWarnBody:'Las claves se almacenan localmente en tu navegador, ofuscadas con AES-GCM. Esto <strong>NO</strong> es cifrado robusto: un script malicioso o una extensión del navegador puede recuperarlas. Usa claves con límites de presupuesto / rate limits en tu cuenta del proveedor y revócalas si sospechas compromiso.',
+cpillAll:'Todos',cpillInstant:'✅ Instantáneo',cpillBest:'⭐ Top',cpillFast:'⚡ Rápido',cpillCode:'💻 Código',cpillCreative:'✍️ Creativo',cpillWeb:'🔍 Web',cpillMath:'🧮 Mates',cpillMulti:'🌍 Multi',
 navHome:'Inicio',
 navChat:'Chat',
 navExplore:'Explorar',
@@ -1952,6 +1969,9 @@ lCook:`<h3>Cookies &amp; almacenamiento local</h3><p>AI Liber <strong>no usa coo
 lGDPR:`<h3>Tus derechos RGPD</h3><p>Todos los datos almacenados por AI Liber están exclusivamente en <strong>el localStorage de tu navegador</strong>. No tenemos servidores con tus datos.</p><h3>📋 Derecho de acceso (Art. 15)</h3><p>Accede: F12 → Application → Local Storage → ai-liber.ro</p><h3>✏️ Derecho de rectificación (Art. 16)</h3><p>Modifica las claves API desde ⚙️ Configurar claves API.</p><h3>🗑️ Derecho al olvido (Art. 17)</h3><p>Elimina todos los datos instantáneamente:</p><div style="text-align:center;margin:16px 0"><button onclick="eraseAllData()" style="padding:11px 24px;border-radius:100px;background:#DC2626;color:#fff;border:none;font-family:'Nunito',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer" data-i18n-html="eraseBtn">🗑️</button></div><h3>📬 Autoridad &amp; Contacto</h3><p><strong>AEPD</strong>: <a href="https://www.aepd.es" target="_blank">aepd.es</a><br>Contacto AI Liber: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p>`,
 },
 pt:{
+ariaCloseSB:'Fechar barra lateral',ariaToggleSB:'Alternar barra lateral de modelos',
+keyWarnTitle:'Nota de segurança',keyWarnBody:'As chaves são armazenadas localmente no seu navegador, ofuscadas com AES-GCM. Isto <strong>NÃO</strong> é criptografia robusta: um script malicioso ou extensão de navegador pode recuperá-las. Use chaves com limites de orçamento / rate limits na conta do provedor e revogue-as em caso de suspeita.',
+cpillAll:'Todos',cpillInstant:'✅ Instantâneo',cpillBest:'⭐ Top',cpillFast:'⚡ Rápido',cpillCode:'💻 Código',cpillCreative:'✍️ Criativo',cpillWeb:'🔍 Web',cpillMath:'🧮 Mat.',cpillMulti:'🌍 Multi',
 navHome:'Início',
 navChat:'Chat',
 navExplore:'Explorar',
@@ -2183,6 +2203,9 @@ lCook:`<h3>Cookies &amp; armazenamento local</h3><p>AI Liber <strong>não usa co
 lGDPR:`<h3>Seus direitos LGPD/RGPD</h3><p>Todos os dados armazenados pelo AI Liber estão exclusivamente no <strong>localStorage do seu navegador</strong>. Não temos servidores com seus dados.</p><h3>📋 Direito de acesso (Art. 15 RGPD / Art. 18 LGPD)</h3><p>Acesse: F12 → Application → Local Storage → ai-liber.ro</p><h3>✏️ Direito de retificação (Art. 16)</h3><p>Modifique as chaves API de ⚙️ Configurar Chaves API.</p><h3>🗑️ Direito ao esquecimento (Art. 17)</h3><p>Exclua todos os dados instantaneamente:</p><div style="text-align:center;margin:16px 0"><button onclick="eraseAllData()" style="padding:11px 24px;border-radius:100px;background:#DC2626;color:#fff;border:none;font-family:'Nunito',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer" data-i18n-html="eraseBtn">🗑️</button></div><h3>📬 Autoridade &amp; Contato</h3><p><strong>ANPD</strong>: <a href="https://www.gov.br/anpd" target="_blank">gov.br/anpd</a><br>Contato AI Liber: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p>`,
 },
 fr:{
+ariaCloseSB:'Fermer la barre latérale',ariaToggleSB:'Basculer la barre latérale des modèles',
+keyWarnTitle:'Note de sécurité',keyWarnBody:'Les clés sont stockées localement dans votre navigateur, offusquées avec AES-GCM. Ce <strong>N\'est PAS</strong> un chiffrement robuste : un script malveillant ou une extension de navigateur peut les récupérer. Utilisez des clés avec limites de budget / rate limits chez le fournisseur, et révoquez-les en cas de doute.',
+cpillAll:'Tout',cpillInstant:'✅ Instantané',cpillBest:'⭐ Top',cpillFast:'⚡ Rapide',cpillCode:'💻 Code',cpillCreative:'✍️ Créatif',cpillWeb:'🔍 Web',cpillMath:'🧮 Maths',cpillMulti:'🌍 Multi',
 navHome:'Accueil',
 navChat:'Chat',
 navExplore:'Explorer',
@@ -2414,6 +2437,9 @@ lCook:`<h3>Cookies &amp; stockage local</h3><p>AI Liber <strong>n'utilise pas de
 lGDPR:`<h3>Vos droits RGPD</h3><p>Toutes les données stockées par AI Liber se trouvent exclusivement dans <strong>le localStorage de votre navigateur</strong>. Pas de serveurs avec vos données.</p><h3>📋 Droit d'accès (Art. 15)</h3><p>Accédez : F12 → Application → Local Storage → ai-liber.ro</p><h3>✏️ Droit de rectification (Art. 16)</h3><p>Modifiez les clés API depuis ⚙️ Configurer les clés API.</p><h3>🗑️ Droit à l'effacement — « droit à l'oubli » (Art. 17)</h3><p>Supprimez toutes les données instantanément :</p><div style="text-align:center;margin:16px 0"><button onclick="eraseAllData()" style="padding:11px 24px;border-radius:100px;background:#DC2626;color:#fff;border:none;font-family:'Nunito',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer" data-i18n-html="eraseBtn">🗑️</button></div><h3>📬 Autorité &amp; Contact</h3><p><strong>CNIL</strong> : <a href="https://www.cnil.fr" target="_blank">cnil.fr</a><br>Contact AI Liber : <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p>`,
 },
 de:{
+ariaCloseSB:'Seitenleiste schließen',ariaToggleSB:'Modell-Seitenleiste umschalten',
+keyWarnTitle:'Sicherheitshinweis',keyWarnBody:'Schlüssel werden lokal im Browser gespeichert, mit AES-GCM verschleiert. Dies ist <strong>KEINE</strong> starke Verschlüsselung: ein bösartiges Skript auf der Seite oder eine Browser-Erweiterung kann sie wiederherstellen. Verwenden Sie Schlüssel mit Budget- / Rate-Limits beim Anbieter und widerrufen Sie sie bei Verdacht.',
+cpillAll:'Alle',cpillInstant:'✅ Sofort',cpillBest:'⭐ Top',cpillFast:'⚡ Schnell',cpillCode:'💻 Code',cpillCreative:'✍️ Kreativ',cpillWeb:'🔍 Web',cpillMath:'🧮 Mathe',cpillMulti:'🌍 Multi',
 navHome:'Start',
 navChat:'Chat',
 navExplore:'Erkunden',
@@ -2690,7 +2716,19 @@ function initLang(){
 // ═══════════════════════════════════════════
 // SYSTEM PROMPT
 // ═══════════════════════════════════════════
-const SYS=`Ești un asistent AI prietenos și util pe un site pentru începători. Răspunde în română când utilizatorul scrie în română, în engleză când scrie în engleză. Fii clar, concis și cald. Dacă menționezi info medicale/juridice/financiare, reamintește că trebuie consultat un specialist.`;
+// System prompt per language — keeps the model's default language aligned with UI.
+// Fallback is RO (the project's primary audience). Overridden at call time via SYS().
+const SYS_BY_LANG={
+  ro:`Ești un asistent AI prietenos și util pe un site pentru începători. Răspunde în limba în care scrie utilizatorul. Fii clar, concis și cald. Dacă menționezi informații medicale, juridice sau financiare, reamintește că trebuie consultat un specialist.`,
+  en:`You are a friendly, helpful AI assistant on a site for beginners. Reply in the user's language. Be clear, concise and warm. If you mention medical, legal or financial information, remind the user to consult a qualified professional.`,
+  fr:`Tu es un assistant IA amical et utile sur un site pour débutants. Réponds dans la langue de l'utilisateur. Sois clair, concis et chaleureux. Si tu mentionnes des informations médicales, juridiques ou financières, rappelle qu'il faut consulter un spécialiste.`,
+  de:`Du bist ein freundlicher, hilfsbereiter KI-Assistent auf einer Seite für Anfänger. Antworte in der Sprache des Nutzers. Sei klar, prägnant und warmherzig. Wenn du medizinische, juristische oder finanzielle Informationen erwähnst, erinnere daran, einen Fachmann zu konsultieren.`,
+  es:`Eres un asistente de IA amable y útil en un sitio para principiantes. Responde en el idioma del usuario. Sé claro, conciso y cálido. Si mencionas información médica, jurídica o financiera, recuerda consultar a un especialista.`,
+  pt:`Você é um assistente de IA amigável e útil em um site para iniciantes. Responda no idioma do usuário. Seja claro, conciso e caloroso. Se mencionar informações médicas, jurídicas ou financeiras, lembre que é preciso consultar um especialista.`,
+  it:`Sei un assistente IA amichevole e utile su un sito per principianti. Rispondi nella lingua dell'utente. Sii chiaro, conciso e cordiale. Se menzioni informazioni mediche, legali o finanziarie, ricorda che è necessario consultare uno specialista.`,
+};
+// Dynamic SYS — evaluated at call time so language switches apply to the next message.
+function getSYS(){return SYS_BY_LANG[CUR_LANG]||SYS_BY_LANG.ro;}
 
 // ═══════════════════════════════════════════
 // PROVIDERS
@@ -2710,10 +2748,10 @@ const PROV={
     guide:'✅ <strong>Conectează-te la Ollama rulând local!</strong> Pași: 1. Instalează <a href="https://ollama.ai" target="_blank">Ollama</a>  2. <code>ollama pull llama3.2</code>  3. Pornește cu CORS: <code>OLLAMA_ORIGINS=* ollama serve</code>  4. Revino și trimite mesaj. Port: 11434. Fără cheie!'},
   anthropic:{n:'Anthropic',ico:'🤖',c:'#C4522D',kh:'sk-ant-api03-…',
     kUrl:'https://console.anthropic.com',free:false,
-    guide:'Contul nou primește credite gratuite. <a href="https://console.anthropic.com" target="_blank">→ Obține cheie</a>'},
+    guide:'⚠️ <strong>Atenție:</strong> această cheie are acces la facturarea contului tău Anthropic. Apelul este făcut direct din browser (header <code>anthropic-dangerous-direct-browser-access</code>) — dacă pagina este compromisă, atacatorul poate consuma credite. Folosește chei cu limite de buget stricte. Contul nou primește credite gratuite. <a href="https://console.anthropic.com" target="_blank">→ Obține cheie</a>'},
   openai:{n:'OpenAI',ico:'🟢',c:'#10A37F',kh:'sk-proj-…',
     kUrl:'https://platform.openai.com/api-keys',free:false,
-    guide:'Necesită card bancar. Conturi noi primesc $5 credite. <a href="https://platform.openai.com/api-keys" target="_blank">→ Obține cheie</a>'},
+    guide:'⚠️ <strong>Atenție:</strong> cheile OpenAI au acces la facturarea contului. Setează un <em>hard limit</em> pe <a href="https://platform.openai.com/account/limits" target="_blank">platform.openai.com/account/limits</a> înainte de a lipi cheia aici. Conturi noi primesc $5 credite. <a href="https://platform.openai.com/api-keys" target="_blank">→ Obține cheie</a>'},
   google:{n:'Google AI Studio',ico:'✨',c:'#1A73E8',kh:'AIzaSy…',
     kUrl:'https://aistudio.google.com/app/apikey',free:true,
     guide:'🎁 Complet gratuit, fără card! <a href="https://aistudio.google.com/app/apikey" target="_blank">→ Obține cheie gratuită</a>'},
@@ -3133,7 +3171,37 @@ let MODELS = [];
 let cur = null;
 let hist = [];
 const hists = {}; // per-model history: {modelId: {hist:[], html:''}}
-const _404models = new Set(); // models that returned 404, skip in future
+
+// 404 model cache — persisted so reloads don't re-probe dead model IDs.
+// TTL: 1 hour, so providers that fix a model eventually become available again.
+const _404_TTL_MS = 60*60*1000;
+function _load404(){
+  try{
+    const raw=localStorage.getItem('ailib_404');
+    if(!raw)return new Set();
+    const data=JSON.parse(raw);
+    const now=Date.now();
+    const valid=Object.entries(data).filter(([,ts])=>now-ts<_404_TTL_MS);
+    // Rewrite pruned cache
+    if(valid.length!==Object.keys(data).length){
+      const pruned=Object.fromEntries(valid);
+      localStorage.setItem('ailib_404',JSON.stringify(pruned));
+    }
+    return new Set(valid.map(([k])=>k));
+  }catch(e){return new Set();}
+}
+function _save404(id){
+  try{
+    const raw=localStorage.getItem('ailib_404');
+    const data=raw?JSON.parse(raw):{};
+    data[id]=Date.now();
+    localStorage.setItem('ailib_404',JSON.stringify(data));
+  }catch(e){}
+}
+const _404models = _load404();
+// Wrap .add so persistence happens automatically at every failure site
+const _404_nativeAdd=_404models.add.bind(_404models);
+_404models.add=function(id){_save404(id);return _404_nativeAdd(id);};
 let busy = false;
 let _abortCtrl = null;   // AbortController for current request
 let _slowTimer  = null;  // setTimeout for slow-response warning
@@ -3144,7 +3212,13 @@ let aiBub = null;
 
 function buildModels(pollIds){
   const pollModels = pollIds.map(buildPollModel);
-  MODELS = [...pollModels, ...OTHER_MODELS];
+  let combined = [...pollModels, ...OTHER_MODELS];
+  // On HTTPS origins, browsers block fetch() to http://localhost (mixed content).
+  // Hide LM Studio / Ollama models in that case — they would only produce errors.
+  if(location.protocol==='https:'){
+    combined = combined.filter(m=>m.p!=='lmstudio'&&m.p!=='ollama');
+  }
+  MODELS = combined;
   if(!cur || !MODELS.find(m=>m.id===cur.id)){
     cur = MODELS[0];
   }
@@ -3248,11 +3322,19 @@ async function _getCryptoKey(){
     sessionStorage.setItem('ailib_ssec',btoa(String.fromCharCode(...sec)));
   }
   const secBuf=Uint8Array.from(atob(sessionStorage.getItem('ailib_ssec')),c=>c.charCodeAt(0));
-  // Combine salt + session secret as key material
-  const combined=new Uint8Array(saltBuf.length+secBuf.length);
-  combined.set(saltBuf);combined.set(secBuf,saltBuf.length);
-  const raw=await crypto.subtle.digest('SHA-256',combined);
-  _cryptoKey=await crypto.subtle.importKey('raw',raw,{name:'AES-GCM'},false,['encrypt','decrypt']);
+  // PBKDF2(session_secret, salt, 100k iterations) → AES-GCM key
+  // Note: this remains obscuration, not true encryption — both salt and session_secret
+  // live in browser storage and are recoverable by any script that runs in-origin.
+  // The goal is to raise the bar for opportunistic forensic recovery, not to
+  // defend against active XSS or malicious browser extensions.
+  const baseKey=await crypto.subtle.importKey('raw',secBuf,{name:'PBKDF2'},false,['deriveKey']);
+  _cryptoKey=await crypto.subtle.deriveKey(
+    {name:'PBKDF2',salt:saltBuf,iterations:100000,hash:'SHA-256'},
+    baseKey,
+    {name:'AES-GCM',length:256},
+    false,
+    ['encrypt','decrypt']
+  );
   return _cryptoKey;
 }
 
@@ -3266,7 +3348,12 @@ async function encryptKey(plaintext){
     const out=new Uint8Array(iv.length+ct.byteLength);
     out.set(iv);out.set(new Uint8Array(ct),iv.length);
     return btoa(String.fromCharCode(...out));
-  }catch(e){console.error('Encrypt failed:',e);return plaintext;}
+  }catch(e){
+    // Fail closed — DON'T silently store plaintext disguised as ciphertext.
+    // Caller (sk/loadEncryptedKeys) must handle null and keep key in memory only.
+    console.error('Encrypt failed:',e);
+    return null;
+  }
 }
 
 async function decryptKey(cipher){
@@ -3279,11 +3366,16 @@ async function decryptKey(cipher){
     const pt=await crypto.subtle.decrypt({name:'AES-GCM',iv},key,ct);
     return new TextDecoder().decode(pt);
   }catch(e){
-    // Decryption failed — key stored in old plaintext format, migrate it
-    // If it looks like a valid API key, return it (migration path)
-    if(cipher.startsWith('sk-')||cipher.startsWith('gsk_')||cipher.startsWith('AIzaSy')||cipher.length<200)
-      return cipher;
-    return '';
+    // Decryption failed. This happens if:
+    //  (a) user cleared localStorage (ksalt regenerated → old ciphertext unreadable)
+    //  (b) legacy plaintext was stored under aik_enc_* (shouldn't happen post-fix, but
+    //      keep migration path for existing installs).
+    // Only accept as migration if it LOOKS like a plaintext API key (short, prefixed).
+    const looksPlaintext = (
+      cipher.startsWith('sk-')||cipher.startsWith('gsk_')||
+      cipher.startsWith('AIzaSy')||cipher.startsWith('pplx-')
+    ) && cipher.length<200;
+    return looksPlaintext ? cipher : '';
   }
 }
 
@@ -3316,12 +3408,17 @@ async function loadEncryptedKeys(){
       const plain=await decryptKey(enc);
       if(plain)_keyCache[p]=plain;
     } else {
-      // Check for legacy plaintext key and migrate
+      // Check for legacy plaintext key and migrate (race-safe: encrypt BEFORE removing plaintext)
       const legacy=localStorage.getItem('aik_'+p);
       if(legacy){
         _keyCache[p]=legacy;
-        sk(p,legacy); // re-save encrypted
-        localStorage.removeItem('aik_'+p); // remove plaintext
+        const encNew=await encryptKey(legacy);
+        if(encNew && encNew!==legacy){
+          localStorage.setItem('aik_enc_'+p,encNew);
+          localStorage.removeItem('aik_'+p); // only remove plaintext after ciphertext is persisted
+        }
+        // If encryption failed (encNew===legacy per fallback branch), keep legacy in place —
+        // key remains usable in memory, migration retries next load.
       }
     }
   }
@@ -4032,11 +4129,14 @@ async function sendMsg(){
     } else if(/429|rate.?limit|too.?many|slow.?down|throttl/i.test(raw)){
       // Rate limit
       const isPoll=cur.p==='pollinations';
+      // Snapshot state NOW so retry in 15s is safe even if user changes model/clears chat
+      const _retrySnap={modelId:cur.id,text:text};
+      window._retrySnap=_retrySnap; // attach to window so inline handler can reach it
       addRichErr(
         `${t('errRateTitle')} — ${pName}`,
         isPoll ? t('errRatePollDesc') : t('errRateDesc'),
         [
-          {label:t('actRetry15'),action:'setTimeout(sendMsg,15000)'},
+          {label:t('actRetry15'),action:'setTimeout(()=>retryFromSnapshot(window._retrySnap),15000)'},
           ...(isPoll?[
             {label:t('actRegPoll'),action:"window.open('https://auth.pollinations.ai','_blank')"},
             {label:'⚡ Treci la Groq (rapid, gratuit)',action:"openInlineKey('groq')"},
@@ -4138,6 +4238,24 @@ async function sendMsg(){
 }
 function sendSug(t){document.getElementById('cta').value=t;sendMsg();}
 
+// Safe retry after a timeout: re-validate model still exists, re-populate text if empty.
+// Prevents retry from sending with wrong model or stale history after user navigated away.
+function retryFromSnapshot(snap){
+  if(!snap||busy)return;
+  const m=MODELS.find(x=>x.id===snap.modelId);
+  if(!m){
+    // Model disappeared (e.g., removed after model-check). Silently no-op.
+    console.warn('Retry aborted: model no longer available',snap.modelId);
+    return;
+  }
+  // If user is on a different model, switch back to the one the failed request used
+  if(!cur||cur.id!==m.id){selM(m.id);}
+  const ta=document.getElementById('cta');
+  if(ta&&!ta.value.trim()){ta.value=snap.text;}
+  // Only retry if the textarea matches snapshot — if user typed something else, respect it
+  if(ta&&ta.value.trim()===snap.text.trim()){sendMsg();}
+}
+
 // ═══════════════════════════════════════════
 // SSE READER
 // ═══════════════════════════════════════════
@@ -4168,7 +4286,7 @@ async function streamPollinations(modelId,msgs,onChunk){
   const res=await fetch('https://text.pollinations.ai/openai',{
     method:'POST',signal:sig,
     headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({model:modelId,messages:[{role:'system',content:SYS},...msgs],stream:true}),
+    body:JSON.stringify({model:modelId,messages:[{role:'system',content:getSYS()},...msgs],stream:true}),
   });
   if(!res.ok){
     const e=await res.json().catch(()=>({}));
@@ -4194,7 +4312,7 @@ async function streamPollinations(modelId,msgs,onChunk){
   const res2=await fetch('https://text.pollinations.ai/openai',{
     method:'POST',signal:sig,
     headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({model:modelId,messages:[{role:'system',content:SYS},...msgs],stream:false}),
+    body:JSON.stringify({model:modelId,messages:[{role:'system',content:getSYS()},...msgs],stream:false}),
   });
   if(!res2.ok) throw new Error(`HTTP ${res2.status}`);
   const j=await res2.json();
@@ -4219,7 +4337,7 @@ async function streamDDG(modelId,msgs,onChunk){
 
   // DDG doesn't support "system" role → prepend as first user/assistant pair
   const ddgMsgs=[
-    {role:'user',content:SYS},
+    {role:'user',content:getSYS()},
     {role:'assistant',content:t('sysAck')},
     ...msgs,
   ];
@@ -4253,7 +4371,7 @@ let _wllmEngine=null, _wllmModelId=null;
 async function chatWebLLM(modelId,msgs,onChunk){
   // 1. Verifică WebGPU
   if(!navigator.gpu){
-    throw new Error('WebGPU nu este suportat.\n\nFolosește Chrome 113+, Edge 113+ sau Firefox Nightly.\nSau alege un model Pollinations ✅ care funcționează în orice browser.');
+    throw new Error('WebGPU nu este suportat.\n\nFolosește Chrome 113+, Edge 113+ sau Opera 99+.\nFirefox are WebGPU sub flag (about:config → dom.webgpu.enabled) — poate să nu funcționeze stabil.\nSau alege un model Pollinations ✅ care funcționează în orice browser.');
   }
   try{ await navigator.gpu.requestAdapter(); }
   catch(e){ throw new Error(t('errWLLMGPU')); }
@@ -4287,7 +4405,7 @@ async function chatWebLLM(modelId,msgs,onChunk){
 
   // 4. Generează răspuns cu streaming
   const stream = await _wllmEngine.chat.completions.create({
-    messages:[{role:'system',content:SYS},...msgs],
+    messages:[{role:'system',content:getSYS()},...msgs],
     stream:true, temperature:0.7,
   });
 
@@ -4315,7 +4433,7 @@ async function streamLocalOAI(baseUrl,modelId,msgs,onChunk){
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
         model:modelId||'',
-        messages:[{role:'system',content:SYS},...msgs],
+        messages:[{role:'system',content:getSYS()},...msgs],
         stream:true,
         max_tokens:2000,
         temperature:0.7,
@@ -4348,7 +4466,7 @@ async function streamLocalOAI(baseUrl,modelId,msgs,onChunk){
 // ═══════════════════════════════════════════
 async function chatAIHorde(modelId,msgs,onChunk){
   // Build prompt in Alpaca-style (KoboldAI format)
-  let prompt=SYS+'\n\n';
+  let prompt=getSYS()+'\n\n';
   for(const m of msgs){
     if(m.role==='user')prompt+=`### Utilizator:\n${m.content}\n\n`;
     else prompt+=`### Asistent:\n${m.content}\n\n`;
@@ -4419,7 +4537,7 @@ async function streamAnthropic(modelId,msgs,key,onChunk){
   if(key)hdr['x-api-key']=key;
   const res=await fetch('https://api.anthropic.com/v1/messages',{
     method:'POST',headers:hdr,
-    body:JSON.stringify({model:modelId,max_tokens:2000,system:SYS,messages:msgs,stream:true}),
+    body:JSON.stringify({model:modelId,max_tokens:2000,system:getSYS(),messages:msgs,stream:true}),
   });
   if(!res.ok){const e=await res.json().catch(()=>({}));if(res.status===404)throw new Error(`Model 404 — verifică modelul selectat.`);throw new Error(e.error?.message||`HTTP ${res.status}`);}
   return readSSE(res.body,ln=>{
@@ -4434,10 +4552,10 @@ async function streamAnthropic(modelId,msgs,key,onChunk){
 // ═══════════════════════════════════════════
 async function streamOAI(ep,modelId,msgs,key,isOR,onChunk){
   const hdr={'Content-Type':'application/json','Authorization':`Bearer ${key}`};
-  if(isOR){hdr['HTTP-Referer']=window.location.origin||'https://ai-liber.ro';hdr['X-Title']='AI Liber';}
+  if(isOR){hdr['HTTP-Referer']=window.location.origin;hdr['X-Title']='AI Liber';}
   const res=await fetch(ep,{
     method:'POST',headers:hdr,
-    body:JSON.stringify({model:modelId,messages:[{role:'system',content:SYS},...msgs],stream:true,max_tokens:2000}),
+    body:JSON.stringify({model:modelId,messages:[{role:'system',content:getSYS()},...msgs],stream:true,max_tokens:2000}),
   });
   if(!res.ok){const e=await res.json().catch(()=>({}));if(res.status===404)throw new Error(`Model 404 — verifică modelul selectat.`);throw new Error(e.error?.message||`HTTP ${res.status}`);}
   return readSSE(res.body,ln=>{
@@ -4455,7 +4573,7 @@ async function callGoogle(modelId,msgs,key){
   const contents=msgs.map(m=>({role:m.role==='assistant'?'model':'user',parts:[{text:m.content}]}));
   const url=`https://generativelanguage.googleapis.com/v1beta/models/${modelId}:generateContent?key=${key}`;
   const res=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({systemInstruction:{parts:[{text:SYS}]},contents,generationConfig:{maxOutputTokens:2000}})});
+    body:JSON.stringify({systemInstruction:{parts:[{text:getSYS()}]},contents,generationConfig:{maxOutputTokens:2000}})});
   const data=await res.json();
   if(data.error)throw new Error(data.error.message);
   return data.candidates?.[0]?.content?.parts?.[0]?.text||t('emptyResp');
@@ -4502,8 +4620,15 @@ function renderMD(raw){
   s=s.replace(/\^([^^]+)\^/g,'<sup>$1</sup>');
   // Subscript ~text~  (but not ~~)
   s=s.replace(/(?<!~)~([^~\n]+)~(?!~)/g,'<sub>$1</sub>');
-  // Links
-  s=s.replace(/\[([^\]]+)\]\(([^)]+)\)/g,'<a href="$2" target="_blank" rel="noopener">$1</a>');
+  // Links — only allow safe schemes (http, https, mailto, tel, #, /)
+  s=s.replace(/\[([^\]]+)\]\(([^)]+)\)/g,(_,txt,url)=>{
+    const u=url.trim();
+    // Allow: http://, https://, mailto:, tel:, #anchor, /relative, ./relative, ../relative
+    const safe=/^(https?:\/\/|mailto:|tel:|#|\/|\.\/|\.\.\/)/i.test(u);
+    if(!safe)return esc(txt); // strip unsafe links, keep visible text
+    const safeUrl=u.replace(/"/g,'&quot;');
+    return`<a href="${safeUrl}" target="_blank" rel="noopener">${txt}</a>`;
+  });
   // Blockquotes
   s=s.replace(/((?:^&gt; .+\n?)+)/gm,q=>'<blockquote>'+q.replace(/^&gt; (.+)/gm,'<p>$1</p>')+'</blockquote>');
   // Tables
@@ -4532,10 +4657,12 @@ function renderMD(raw){
   // Restore code blocks
   blocks.forEach((b,i)=>{s=s.replaceAll(`\x00b${i}\x00`,b);});
   // Restore math as placeholder spans (rendered later via KaTeX)
+  // IMPORTANT: escape formula content — prevents XSS if model returns e.g. $<img onerror=…>$
   maths.forEach((m,i)=>{
     const cls=m.display?'math-block':'math-inline';
-    const f=m.f.replace(/"/g,'&quot;');
-    s=s.replaceAll(`\x00m${i}\x00`,`<span class="${cls}" data-formula="${f}">\\(${m.f}\\)</span>`);
+    const fEsc=esc(m.f);
+    const fAttr=fEsc.replace(/"/g,'&quot;');
+    s=s.replaceAll(`\x00m${i}\x00`,`<span class="${cls}" data-formula="${fAttr}">\\(${fEsc}\\)</span>`);
   });
   // Load KaTeX if math present and render async
   if(maths.length)loadKaTeX();
@@ -7405,7 +7532,8 @@ function _initCpanel(){
 // 1. Build with hardcoded catalog immediately (instant display)
 buildModels(POLL_CATALOG_IDS);
 renderML();
-selM(MODELS[0].id);
+if(MODELS.length){selM(MODELS[0].id);}
+else{console.error('No models available — check build/filters');}
 exF('all',document.querySelector('.fchip'));
 
 // 2. Init sidebar resize (desktop only)
@@ -7663,13 +7791,27 @@ function closeLegal(){
   const _lo=document.getElementById('legal-ov');if(_lo)_lo.classList.remove('on');
   document.body.style.overflow='';
 }
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLegal();});
+document.addEventListener('keydown',e=>{
+  if(e.key!=='Escape')return;
+  const lo=document.getElementById('legal-ov');
+  if(lo&&lo.classList.contains('on')){closeLegal();return;}
+  const so=document.getElementById('sov');
+  if(so&&so.classList.contains('on')){closeSett();return;}
+  const mo=document.getElementById('mcheck-ov');
+  if(mo&&mo.classList.contains('on')){closeMCheck();return;}
+});
 
 function eraseAllData(){
   const keys=Object.keys(localStorage).filter(k=>
-    k.startsWith('sk_')||k.startsWith('ailib_')||false
+    k.startsWith('sk_')||k.startsWith('ailib_')||k.startsWith('aik_')||false
   );
   keys.forEach(k=>localStorage.removeItem(k));
+  // Also clear in-memory key cache and session secret
+  try{
+    Object.keys(_keyCache).forEach(k=>delete _keyCache[k]);
+    sessionStorage.removeItem('ailib_ssec');
+    _cryptoKey=null;
+  }catch(e){}
   closeLegal();
   // Show confirmation
   const bar=document.createElement('div');
@@ -7704,7 +7846,7 @@ function eraseAllData(){
   <div class="mcheck-box">
     <div class="mcheck-hd">
       <span data-i18n="mcTitle">🔍 Verifică &amp; actualizează modele</span>
-      <button class="ibtn" onclick="closeMCheck()">✕</button>
+      <button class="ibtn" onclick="closeMCheck()" aria-label="Închide" data-i18n-aria="btnClose">✕</button>
     </div>
     <div class="mcheck-body" id="mcheck-body">
       <div class="mcheck-status"><span class="mcheck-spinner"></span> Se verifică modelele disponibile…</div>
@@ -7760,8 +7902,6 @@ function eraseAllData(){
 </div>
 
 <!-- ══ COOKIE CONSENT BANNER ════════════════════════════════ -->
-
-</div>
 
 </body>
 </html>
