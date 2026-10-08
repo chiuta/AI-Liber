@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<meta charset="UTF-8">
 <!--
   ============================================================================
   AI-Liber
@@ -43,9 +44,8 @@
 @font-face{font-family:'Playfair Display';font-style:normal;font-weight:800;font-display:swap;src:url(data:font/woff2;base64,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) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
 </style>
 
-<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://esm.run https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; font-src 'self' https://cdn.jsdelivr.net data:; img-src 'self' data: blob: https:; connect-src 'self' https://text.pollinations.ai https://image.pollinations.ai https://duckduckgo.com https://api.anthropic.com https://api.openai.com https://generativelanguage.googleapis.com https://api.groq.com https://api.mistral.ai https://api.perplexity.ai https://openrouter.ai https://aihorde.net http://localhost:1234 http://localhost:11434 https://huggingface.co https://*.huggingface.co https://raw.githubusercontent.com https://cdn.jsdelivr.net https://esm.run; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://esm.run https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; font-src 'self' https://cdn.jsdelivr.net data:; img-src 'self' data: blob: https:; connect-src 'self' https://text.pollinations.ai https://image.pollinations.ai https://duckduckgo.com https://api.anthropic.com https://api.openai.com https://generativelanguage.googleapis.com https://api.groq.com https://api.mistral.ai https://api.perplexity.ai https://openrouter.ai https://aihorde.net http://localhost:1234 http://localhost:11434 https://huggingface.co https://*.huggingface.co https://*.hf.co https://raw.githubusercontent.com https://cdn.jsdelivr.net https://esm.run; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'">
 <title>AI Liber — Inteligența artificială pentru toți</title>
 <meta name="description" content="Chat cu Claude, GPT-4, Gemini, Llama, DeepSeek și 30+ modele — unele fără cont, unele cu cheie API gratuită.">
 <style>
@@ -874,7 +874,7 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
       <div class="sb-ft">
         <button onclick="openSett()" data-i18n="sbConfig">⚙️ Configurează chei API</button>
         <button onclick="openModelCheck()" class="sb-check" data-i18n="sbCheck">🔍 Verifică & actualizează modele</button>
-        <div class="sb-refresh" onclick="fetchPollModels(true)" data-i18n="sbReload">🔄 Reîncarcă modelele Pollinations</div>
+        <div class="sb-refresh" role="button" tabindex="0" onclick="fetchPollModels(true)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();fetchPollModels(true);}" data-i18n="sbReload">🔄 Reîncarcă modelele Pollinations</div>
       </div>
       <!-- Drag-to-resize handle -->
       <div id="sb-drag" class="sb-drag">
@@ -908,6 +908,7 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
       </div>
       <div class="cinput" id="cinput">
         <div class="slow-warn" id="slow-warn"></div>
+        <div class="rl-warn" id="rl-warn" role="status"></div>
         <div class="inp-resize" id="inp-resize" data-i18n-title="ttResize" title="Trage pentru a redimensiona"></div>
         <div class="fmt-bar">
           <!-- Text styling -->
@@ -966,7 +967,7 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
         <div class="inline-key" id="inline-key"></div>
         <div class="crow">
           <div class="crow-inner">
-            <textarea class="cta" id="cta" rows="3"
+            <textarea class="cta" id="cta" rows="3" data-i18n-aria="chatPH"
               placeholder="Scrie un mesaj… (Enter = trimite · Shift+Enter = rând nou)" data-i18n-ph="chatPH"></textarea>
             <div class="crow-bottom">
               <p class="chint" data-i18n="hint">⚠️ AI-ul poate greși. Informații medicale/juridice/financiare — consultă un specialist.</p>
@@ -2713,10 +2714,52 @@ lGDPR:`<h3>Ihre DSGVO-Rechte</h3><p>Alle von AI Liber gespeicherten Daten befind
 },
 };
 
+// Chei i18n folosite în cod/HTML dar lipsă din toate limbile (adăugate la audit; fără ele UI afișa numele cheii, ex. „ttBold”).
+// Se adaugă doar dacă lipsesc; t() face fallback EN → RO pentru limbile fără traducere dedicată.
+(function(){
+  const add=(l,o)=>{for(const k in o)if(!(k in T[l]))T[l][k]=o[k];};
+  add('ro',{
+    grpReason:'Raționament',pollDesc:'Model cu căutare web integrată, gratuit via Pollinations.AI.',descOptCode:'Optimizat pentru programare și cod.',
+    descFastResp:'Răspunsuri rapide, gratuit.',descGoogleFast:'Model Google rapid, gratuit via Pollinations.',
+    grpReasonAnon:'Raționament anonim',grpReasonLocal:'Raționament local',grpReasonAdv:'Raționament avansat',grpMath:'Matematică',grpReasonLocalL:'Raționament local',grpWrite:'Scriere',
+    updating:'⏳ Se actualizează…',noModelsGroup:'Niciun model în această categorie.',keyRequired:'Necesită cheie API',
+    kwFree:'gratuit, fără cheie',keySet:'cheie configurată',keyNeeded:'cheie necesară',keyFree:'GRATUIT',keyPaid:'PLĂTIT',keySaved:'✓ Salvată',
+    errUnknown:'Eroare necunoscută.',errDDGCors:'DuckDuckGo a refuzat conexiunea directă din browser (CORS).',sysAck:'Am înțeles. Voi respecta aceste instrucțiuni.',
+    errWLLMGPU:'WebGPU nu a putut fi inițializat (GPU indisponibil sau neacceptat de browser).',loadingWLLM:'⏳ Se încarcă biblioteca WebLLM…',
+    errWLLMCDN:'Biblioteca WebLLM nu a putut fi încărcată de pe CDN. Verifică conexiunea la internet.',preparing:'Se pregătește…',generating:'⏳ Se generează răspunsul…',
+    errLMS:'Pornește serverul local din LM Studio (Developer → Start Server, portul 1234) și activează CORS.',
+    errOllama:'Pornește Ollama cu OLLAMA_ORIGINS=* ollama serve (portul 11434) pentru a permite CORS.',
+    errHordeEmpty:'AI Horde a returnat un răspuns gol.',errHordeFail:'Cererea către AI Horde a eșuat.',emptyResp:'(răspuns gol)',colPrefix:'Coloana',
+    fileLoading:'⏳ Se citește fișierul…',fileUnsupported:'Format neacceptat',fileEmpty:'Fișierul nu conține text',fileErr:'Eroare la citirea fișierului',
+    tblPickTitle:'Selectează dimensiunea tabelului',ttNewChat:'Conversație nouă',ttResize:'Trage pentru a redimensiona',
+    ttBold:'Aldin · Ctrl+B',ttItalic:'Cursiv · Ctrl+I',ttStrike:'Tăiat',ttSup:'Superscript',ttSub:'Subscript',ttCode:'Cod inline',ttCodeBlock:'Bloc de cod',
+    ttH1:'Titlu 1',ttH2:'Titlu 2',ttH3:'Titlu 3',ttListUl:'Listă cu puncte',ttListOl:'Listă numerotată',ttListTask:'Listă de sarcini',
+    ttQuote:'Citat',ttHr:'Linie orizontală',ttLink:'Link',ttTable:'Tabel',ttMath:'Formulă matematică (LaTeX)',ttEmoji:'Emoji',ttFile:'Încarcă fișier (txt, md, pdf, docx)'
+  });
+  add('en',{
+    grpReason:'Reasoning',pollDesc:'Model with built-in web search, free via Pollinations.AI.',descOptCode:'Optimized for programming and code.',
+    descFastResp:'Fast responses, free.',descGoogleFast:'Fast Google model, free via Pollinations.',
+    grpReasonAnon:'Anonymous reasoning',grpReasonLocal:'Local reasoning',grpReasonAdv:'Advanced reasoning',grpMath:'Math',grpReasonLocalL:'Local reasoning',grpWrite:'Writing',
+    updating:'⏳ Updating…',noModelsGroup:'No models in this category.',keyRequired:'API key required',
+    kwFree:'free, no key',keySet:'key configured',keyNeeded:'key required',keyFree:'FREE',keyPaid:'PAID',keySaved:'✓ Saved',
+    errUnknown:'Unknown error.',errDDGCors:'DuckDuckGo refused the direct browser connection (CORS).',sysAck:'Understood. I will follow these instructions.',
+    errWLLMGPU:'WebGPU could not be initialized (GPU unavailable or not supported by the browser).',loadingWLLM:'⏳ Loading the WebLLM library…',
+    errWLLMCDN:'The WebLLM library could not be loaded from the CDN. Check your internet connection.',preparing:'Preparing…',generating:'⏳ Generating the answer…',
+    errLMS:'Start the local server in LM Studio (Developer → Start Server, port 1234) and enable CORS.',
+    errOllama:'Start Ollama with OLLAMA_ORIGINS=* ollama serve (port 11434) to allow CORS.',
+    errHordeEmpty:'AI Horde returned an empty response.',errHordeFail:'The AI Horde request failed.',emptyResp:'(empty response)',colPrefix:'Column',
+    fileLoading:'⏳ Reading file…',fileUnsupported:'Unsupported format',fileEmpty:'The file contains no text',fileErr:'Error reading the file',
+    tblPickTitle:'Select table size',ttNewChat:'New conversation',ttResize:'Drag to resize',
+    ttBold:'Bold · Ctrl+B',ttItalic:'Italic · Ctrl+I',ttStrike:'Strikethrough',ttSup:'Superscript',ttSub:'Subscript',ttCode:'Inline code',ttCodeBlock:'Code block',
+    ttH1:'Heading 1',ttH2:'Heading 2',ttH3:'Heading 3',ttListUl:'Bulleted list',ttListOl:'Numbered list',ttListTask:'Task list',
+    ttQuote:'Quote',ttHr:'Horizontal rule',ttLink:'Link',ttTable:'Table',ttMath:'Math formula (LaTeX)',ttEmoji:'Emoji',ttFile:'Upload file (txt, md, pdf, docx)'
+  });
+})();
+
 const LANGS={ro:'Română',en:'English',fr:'Français',de:'Deutsch',es:'Español',pt:'Português',it:'Italiano'};
 const RTL_LANGS=new Set();
 let CUR_LANG='ro';
-function t(k){return(T[CUR_LANG]||T.ro)[k]||(T.ro[k])||k;}
+function t(k){return(T[CUR_LANG]||T.ro)[k]||(T.en&&T.en[k])||(T.ro[k])||k;}
 function applyI18n(){
   try{
     document.querySelectorAll('[data-i18n]').forEach(e=>{try{e.textContent=t(e.dataset.i18n);}catch(x){}});
@@ -2731,7 +2774,7 @@ function applyI18n(){
 }
 function setLang(lc){ _qpCat=null;
   CUR_LANG=lc;
-  localStorage.setItem('ailib_lang',lc);
+  try{localStorage.setItem('ailib_lang',lc);}catch(e){}
   document.documentElement.lang=lc;
   applyI18n();
   _renderCpanel();
@@ -2745,7 +2788,8 @@ function setLang(lc){ _qpCat=null;
   }catch(x){}
 }
 function initLang(){
-  const saved=localStorage.getItem('ailib_lang');
+  let saved=null;
+  try{saved=localStorage.getItem('ailib_lang');}catch(e){}
   if(saved&&T[saved]){CUR_LANG=saved;}
   else{
     const nav=(navigator.language||navigator.userLanguage||'').toLowerCase().split('-')[0];
@@ -2928,8 +2972,8 @@ function fCtx(n){if(!n)return'?';if(n>=1000000)return(n/1000000)+'M';if(n>=1000)
 // Build a Pollinations model object from an ID (or API response)
 function buildPollModel(nameOrObj){
   const name = typeof nameOrObj==='string' ? nameOrObj : nameOrObj.name;
-  const apiDesc = typeof nameOrObj==='object' ? (nameOrObj.description||nameOrObj.desc||'') : '';
-  const apiCtx  = typeof nameOrObj==='object' ? (nameOrObj.contextWindow||nameOrObj.contextLength||nameOrObj.context_length||0) : 0;
+  const apiDesc = typeof nameOrObj==='object' ? String(nameOrObj.description||nameOrObj.desc||'').replace(/[<>&"'`]/g,'').slice(0,300) : '';
+  const apiCtx  = typeof nameOrObj==='object' ? (Number(nameOrObj.contextWindow||nameOrObj.contextLength||nameOrObj.context_length)||0) : 0;
 
   return{
     id: name,
@@ -3278,7 +3322,7 @@ async function fetchPollModels(manual=false){
 
     // data is array — each item has at least .name
     const live = data
-      .filter(m => m && m.name && typeof m.name==='string')
+      .filter(m => m && m.name && typeof m.name==='string' && /^[A-Za-z0-9._-]{1,64}$/.test(m.name))
       .filter(m => !PX.includes(m.name)&&!_404models.has(m.name));
 
     if(live.length < 3) throw new Error('Too few models returned');
@@ -3325,7 +3369,7 @@ function goPage(id,skipHash){
 // Hash routing: listen for back/forward
 window.addEventListener('popstate',()=>{
   const id=(location.hash||'#home').slice(1)||'home';
-  const valid=['chat','explore','tips'];
+  const valid=['chat','explore','tips','legal'];
   goPage(valid.includes(id)?id:'home',true);
 });
 
@@ -3421,8 +3465,8 @@ async function decryptKey(cipher){
 }
 
 // Override gk/sk to use encryption for paid providers
-const _gkPlain=p=>localStorage.getItem('aik_'+p)||'';
-const _skPlain=(p,v)=>v?localStorage.setItem('aik_'+p,v):localStorage.removeItem('aik_'+p);
+const _gkPlain=p=>{try{return localStorage.getItem('aik_'+p)||'';}catch(e){return '';}};
+const _skPlain=(p,v)=>{try{v?localStorage.setItem('aik_'+p,v):localStorage.removeItem('aik_'+p);}catch(e){}};
 
 // Synchronous gk for UI rendering (uses cached decrypted values)
 const _keyCache={};
@@ -3432,12 +3476,12 @@ function gk(p){
 }
 function sk(p,v){
   if(FREE_PROVS.has(p)){_skPlain(p,v);return;}
-  if(!v){delete _keyCache[p];localStorage.removeItem('aik_enc_'+p);return;}
+  if(!v){delete _keyCache[p];try{localStorage.removeItem('aik_enc_'+p);}catch(e){}return;}
   _keyCache[p]=v;
   // Encrypt async and store
   encryptKey(v).then(enc=>{
-    if(enc)localStorage.setItem('aik_enc_'+p,enc);
-  });
+    if(enc){try{localStorage.setItem('aik_enc_'+p,enc);}catch(e){console.warn('Key persist failed:',e);}}
+  }).catch(e=>console.warn('Key encrypt failed:',e));
 }
 
 // Decrypt all stored encrypted keys on load
@@ -3506,7 +3550,7 @@ function setSBWidth(w, skipSave){
     sb.classList.remove('sb-collapsed');
     sbW = w;
     if(btn) btn.style.display = '';
-    if(!skipSave) localStorage.setItem('ailib_sbw', w);
+    if(!skipSave){try{localStorage.setItem('ailib_sbw', w);}catch(e){}}
   }
 }
 
@@ -3521,7 +3565,8 @@ function initSBResize(){
   if(!handle || window.innerWidth <= 768) return;
 
   // Restore saved width
-  const saved = parseInt(localStorage.getItem('ailib_sbw'));
+  let saved = NaN;
+  try{ saved = parseInt(localStorage.getItem('ailib_sbw')); }catch(e){}
   setSBWidth(saved > 0 ? saved : SB_DEF, true);
 
   // ── Drag start ──────────────────────────
@@ -3611,7 +3656,7 @@ function renderML(){
 function mcard(m){
   const pv=PROV[m.p]||{ico:'🤖',c:'#888'};
   const ok=canUse(m);
-  return`<div class="mcard${m.id===cur.id?' on':''}" style="--mc:${pv.c}" onclick="selM('${m.id}')">
+  return`<div class="mcard${m.id===cur.id?' on':''}" style="--mc:${pv.c}" role="button" tabindex="0" onclick="selM('${m.id}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selM('${m.id}');}">
     <div class="mc-top">
       <div class="mc-ico">${pv.ico}</div>
       <div class="mc-name">${m.n}</div>
@@ -3954,6 +3999,27 @@ function addErrMsg(t){
   d.innerHTML=`<div class="mav">${ico}</div><div class="mbub">${renderMD(t)}</div>`;
   c.appendChild(d);c.scrollTop=c.scrollHeight;
 }
+// Mesaj de eroare cu butoane de acțiune (apelat din sendMsg; lipsea definiția → ReferenceError la orice eroare API).
+// title/desc sunt text (desc acceptă markdown, trecut prin renderMD care escapează HTML); action = cod JS static din sendMsg.
+function addRichErr(title,desc,actions){
+  const c=document.getElementById('cmsgs');
+  if(!c)return;
+  const ico=cur?(PROV[cur.p]||{ico:'🤖'}).ico:'🤖';
+  const d=document.createElement('div');d.className='msg ai err';
+  d.innerHTML=`<div class="mav">${ico}</div><div class="mbub"><strong class="rerr-t"></strong><div class="rerr-d"></div><div class="twait-slow-btns rerr-a" style="margin-top:8px"></div></div>`;
+  d.querySelector('.rerr-t').textContent=title||'';
+  d.querySelector('.rerr-d').innerHTML=renderMD(desc||'');
+  const box=d.querySelector('.rerr-a');
+  (actions||[]).forEach(a=>{
+    if(!a||!a.label||!a.action)return;
+    const b=document.createElement('button');
+    b.className='slow-warn-cancel';b.type='button';
+    b.textContent=a.label;
+    b.setAttribute('onclick',a.action);
+    box.appendChild(b);
+  });
+  c.appendChild(d);c.scrollTop=c.scrollHeight;
+}
 
 
 
@@ -4125,6 +4191,8 @@ async function sendMsg(){
     if(cur&&hists[cur.id])hists[cur.id].hist=[...hist];
     // If user cancelled deliberately → silent (finally will cleanup)
     if(err.name==='AbortError'){return;}
+    // Repune textul în câmp, altfel butoanele „Reîncearcă” (sendMsg) nu au ce trimite
+    {const _rta=document.getElementById('cta');if(_rta&&!_rta.value.trim()){_rta.value=text;}}
     const raw=err.message||t('errUnknown');
     const pv=PROV[cur.p]||{n:cur.p,ico:'🤖'};
     const pName=pv.n;
@@ -4138,7 +4206,7 @@ async function sendMsg(){
         `${t('errKeyDesc')}`,
         [
           {label:`⚙️ Actualizează cheia ${pName}`,action:`openInlineKey('${cur.p}')`},
-          {label:t('actGetKey'),action:`window.open('${pv.kUrl||"https://openrouter.ai/keys"}','_blank')`},
+          {label:t('actGetKey'),action:`window.open('${pv.kUrl||"https://openrouter.ai/keys"}','_blank','noopener')`},
           ...(isInst?[]:[{label:t('actSwitchFree'),action:"selM('openai')"}]),
         ]
       );
@@ -4148,7 +4216,7 @@ async function sendMsg(){
         `${t('errQuotaTitle')} — ${pName}`,
         `${t('errQuotaDesc')}`,
         [
-          {label:`💳 Verifică contul ${pName}`,action:`window.open('${pv.kUrl||"#"}','_blank')`},
+          {label:`💳 Verifică contul ${pName}`,action:`window.open('${pv.kUrl||"#"}','_blank','noopener')`},
           {label:t('actSwitchFree'),action:"selM('openai')"},
           {label:t('actTryGroq'),action:"openInlineKey('groq')"},
         ]
@@ -4179,7 +4247,7 @@ async function sendMsg(){
         [
           {label:t('actRetry15'),action:'setTimeout(()=>retryFromSnapshot(window._retrySnap),15000)'},
           ...(isPoll?[
-            {label:t('actRegPoll'),action:"window.open('https://auth.pollinations.ai','_blank')"},
+            {label:t('actRegPoll'),action:"window.open('https://auth.pollinations.ai','_blank','noopener')"},
             {label:'⚡ Treci la Groq (rapid, gratuit)',action:"openInlineKey('groq')"},
           ]:[]),
         ]
@@ -4206,7 +4274,7 @@ async function sendMsg(){
           [
             {label:'✅ Pollinations — la fel de gratuit',action:"selM('openai')"},
             {label:t('actRetry'),action:'sendMsg()'},
-            {label:t('actOpenDDG'),action:"window.open('https://duckduckgo.com/chat','_blank')"},
+            {label:t('actOpenDDG'),action:"window.open('https://duckduckgo.com/chat','_blank','noopener')"},
           ]
         );
       } else {
@@ -4238,7 +4306,7 @@ async function sendMsg(){
         t('errWebGPUDesc'),
         [
           {label:t('actSwitchOnline'),action:"selM('openai')"},
-          {label:t('actGetChrome'),action:"window.open('https://www.google.com/chrome/','_blank')"},
+          {label:t('actGetChrome'),action:"window.open('https://www.google.com/chrome/','_blank','noopener')"},
         ]
       );
     } else if(/empty|gol|no content|no response|vide/i.test(raw)){
@@ -4314,6 +4382,7 @@ async function readSSE(body,parse,onChunk){
       if(c){full+=c;onChunk(full);}
     }
   }
+  if(buf.trim()){const c=parse(buf.trim());if(c){full+=c;onChunk(full);}}
   return full;
 }
 
@@ -4551,13 +4620,13 @@ async function chatAIHorde(modelId,msgs,onChunk){
   // Poll for result (max 90 iterations × 4s = 6 min)
   for(let i=0;i<90;i++){
     await new Promise(r=>setTimeout(r,4000));
-    const sr=await fetch(`https://aihorde.net/api/v2/generate/text/status/${id}`,{
+    const sr=await fetch(`https://aihorde.net/api/v2/generate/text/status/${encodeURIComponent(id)}`,{
       headers:{'Client-Agent':'AI Liber:1.0'},
     });
     const s=await sr.json();
     const wait=s.wait_time||0;
     const pos=s.queue_position!=null?s.queue_position:'?';
-    onChunk(`⏳ Procesare pe cluster AI Horde...\n\nPozi în coadă: ${pos} | Timp estimat: ~${wait}s\n\n_(Workeri voluntari — mai lent ca un server dedicat, dar 100% gratuit și anonim)_`);
+    onChunk(`⏳ Procesare pe cluster AI Horde...\n\nPoziția în coadă: ${pos} | Timp estimat: ~${wait}s\n\n_(Workeri voluntari — mai lent ca un server dedicat, dar 100% gratuit și anonim)_`);
     if(s.done){
       const text=(s.generations?.[0]?.text||'').trim();
       if(!text)throw new Error(t('errHordeEmpty'));
@@ -4633,16 +4702,24 @@ function renderMD(raw){
     blocks.push(`<pre><code class="lang-${lang||'text'}">${esc(code.trim())}</code></pre>`);
     return`\x00b${blocks.length-1}\x00`;
   });
+  // Protect inline code (altfel _ * $ din interiorul `cod` erau interpretate ca markdown/matematică)
+  const icodes=[];
+  s=s.replace(/`([^`\n]+)`/g,(_,code)=>{
+    icodes.push(`<code>${esc(code)}</code>`);
+    return`\x00c${icodes.length-1}\x00`;
+  });
   // Math blocks $$ ... $$ (before escaping HTML)
   const maths=[];
   s=s.replace(/\$\$([\s\S]+?)\$\$/g,(_,f)=>{
     maths.push({f:f.trim(),display:true});return`\x00m${maths.length-1}\x00`;
   });
-  s=s.replace(/\$([^$\n]+)\$/g,(_,f)=>{
+  s=s.replace(/\$(?!\s)([^$\n]*[^\s$\n])\$(?!\d)/g,(_,f)=>{
     maths.push({f:f.trim(),display:false});return`\x00m${maths.length-1}\x00`;
   });
   // Escape HTML
   s=esc(s);
+  // Protejează caracterele de formatare din URL-ul linkurilor (altfel _ * ~ ^ din href deveneau <em>/<sup>)
+  s=s.replace(/\]\(([^)]+)\)/g,(m,u)=>'](' +u.replace(/[_*~^]/g,c=>'&#'+c.charCodeAt(0)+';')+')');
   // Inline code
   s=s.replace(/`([^`\n]+)`/g,'<code>$1</code>');
   // Headings
@@ -4697,6 +4774,7 @@ function renderMD(raw){
   }).join('');
   // Restore code blocks
   blocks.forEach((b,i)=>{s=s.replaceAll(`\x00b${i}\x00`,b);});
+  icodes.forEach((b,i)=>{s=s.replaceAll(`\x00c${i}\x00`,b);});
   // Restore math as placeholder spans (rendered later via KaTeX)
   // IMPORTANT: escape formula content — prevents XSS if model returns e.g. $<img onerror=…>$
   maths.forEach((m,i)=>{
@@ -7037,7 +7115,7 @@ async function extractPDF(file) {
     });
   }
   const buf = await file.arrayBuffer();
-  const pdf = await pdfjsLib.getDocument({ data: buf }).promise;
+  const pdf = await pdfjsLib.getDocument({ data: buf, isEvalSupported: false }).promise;
   let text = '';
   for (let i = 1; i <= pdf.numPages; i++) {
     const page = await pdf.getPage(i);
@@ -7101,7 +7179,7 @@ function openInlineKey(pid){
   if(!pv||pv.noKey)return;
   const panel=document.getElementById('inline-key');
   if(!panel)return;
-  const existing=localStorage.getItem('aik_'+pid)||'';
+  const existing=(gk(pid)||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
   const isFree=pv.free;
 
   panel.innerHTML=`
@@ -7186,7 +7264,7 @@ async function openModelCheck(){
   try{
     const r=await fetch('https://text.pollinations.ai/models');
     const data=await r.json();
-    liveIds=data.filter(m=>m&&m.name&&!PX.includes(m.name)).map(m=>m.name);
+    liveIds=data.filter(m=>m&&typeof m.name==='string'&&/^[A-Za-z0-9._-]{1,64}$/.test(m.name)&&!PX.includes(m.name)).map(m=>m.name);
   }catch(e){
     body.innerHTML=`<div class="mcheck-status">${t('mcError')}</div>`;
     return;
@@ -7599,10 +7677,18 @@ loadEncryptedKeys().catch(e=>console.warn('Key load:',e));
 _initCpanel();
 // Hash routing init
 (function(){
-  const _id=(location.hash||'').slice(1);
-  const _valid=['chat','explore','tips','legal'];
-  if(_id&&_valid.includes(_id)){goPage(_id,true);}
-  else{goPage('chat',true);} // default: chat
+  const _route=function(){
+    const _id=(location.hash||'').slice(1);
+    const _valid=['chat','explore','tips','legal'];
+    if(_id&&_valid.includes(_id)){goPage(_id,true);}
+    else{goPage('chat',true);} // default: chat
+  };
+  // Scriptul rulează înaintea markup-ului #page-legal / modale (plasat după blocul de script): rutarea și traducerea
+  // trebuie refăcute după parsarea completă, altfel #legal la încărcare și butoanele din modale rămân netraduse.
+  if(document.readyState==='loading'){
+    _route();
+    document.addEventListener('DOMContentLoaded',function(){try{applyI18n();}catch(e){} _route();});
+  }else{_route();}
 })();
 
 // 3. Fetch live model list from Pollinations in background
