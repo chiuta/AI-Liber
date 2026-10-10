@@ -45,15 +45,15 @@
 </style>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://esm.run https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; font-src 'self' https://cdn.jsdelivr.net data:; img-src 'self' data: blob: https:; connect-src 'self' https://text.pollinations.ai https://image.pollinations.ai https://duckduckgo.com https://api.anthropic.com https://api.openai.com https://generativelanguage.googleapis.com https://api.groq.com https://api.mistral.ai https://api.perplexity.ai https://openrouter.ai https://aihorde.net http://localhost:1234 http://localhost:11434 https://huggingface.co https://*.huggingface.co https://*.hf.co https://raw.githubusercontent.com https://cdn.jsdelivr.net https://esm.run; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://esm.run https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; font-src 'self' https://cdn.jsdelivr.net data:; img-src 'self' data: blob: https:; connect-src 'self' https://text.pollinations.ai https://image.pollinations.ai https://duckduckgo.com https://api.anthropic.com https://api.openai.com https://generativelanguage.googleapis.com https://api.groq.com https://api.mistral.ai https://api.perplexity.ai https://openrouter.ai https://aihorde.net http://localhost:1234 http://localhost:11434 https://huggingface.co https://*.huggingface.co https://*.hf.co https://raw.githubusercontent.com https://cdn.jsdelivr.net https://esm.run; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none';">
 <title>AI Liber — Inteligența artificială pentru toți</title>
 <meta name="description" content="Chat cu Claude, GPT-4, Gemini, Llama, DeepSeek și 30+ modele — unele fără cont, unele cu cheie API gratuită.">
 <style>
 :root{
   --bg:#FAF7F2;--surf:#FFF;--surf2:#F2EDE5;--bdr:#E0D8CE;
-  --txt:#1C1612;--mut:#7A6B5E;
-  --acc:#C4522D;--acc-h:#A8431F;--acc-lt:#FAEAE3;
-  --grn:#2A8C5A;--grn-lt:#E5F5EE;
+  --txt:#1C1612;--mut:#6B5C4F;
+  --acc:#B0451F;--acc-h:#923815;--acc-lt:#FAEAE3;
+  --grn:#1F7048;--grn-lt:#E5F5EE;
   --r:14px;--r-sm:8px;
   --sh:0 2px 16px rgba(0,0,0,.07);--sh-lg:0 8px 36px rgba(0,0,0,.13);
   --nav:60px;--sb:278px;
@@ -391,8 +391,8 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
 
 /* Enlarged textarea */
 /* cta and csend defined in cinput block above */
-.chint{font-size:.66rem;color:var(--mut);margin:0;line-height:1.2;opacity:.75;flex:1}
-.rl-warn{font-size:.72rem;color:#B8620A;background:#FFF5E5;border:1px solid #F0D090;
+.chint{font-size:.66rem;color:var(--mut);margin:0;line-height:1.2;opacity:1;flex:1}
+.rl-warn{font-size:.72rem;color:#8F4A06;background:#FFF5E5;border:1px solid #F0D090;
   border-radius:var(--r-sm);padding:5px 10px;margin-top:4px;text-align:center;display:none}
 .rl-warn.show{display:block}
 
@@ -8055,7 +8055,7 @@ function eraseAllData(){
 @media (max-width:560px){#tf-donate .tf-lbl{display:none}}
 @media print{#tf-donate{display:none}}
 </style>
-<input type="checkbox" id="tf-donate-cb" class="tf-cb" aria-hidden="true">
+<input type="checkbox" id="tf-donate-cb" class="tf-cb" aria-hidden="true" tabindex="-1">
 <div class="tf-panel">
 <span class="tf-lbl">Sprijină:</span>
 <a class="tf-b tf-pat" href="https://www.patreon.com/c/alexio_tf" target="_blank" rel="noopener" aria-label="Sprijină pe Patreon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="15.4" cy="9.4" r="6.6" fill="currentColor"/><rect x="2.4" y="2.4" width="3.7" height="19.2" fill="currentColor"/></svg>Patreon</a>
