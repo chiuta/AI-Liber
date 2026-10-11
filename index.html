@@ -45,7 +45,7 @@
 </style>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval' https://esm.run https://cdn.jsdelivr.net 'sha256-1cdJbbck7gC71vwth/sq/T/L2LKvKjpqLBtygbjbPto='; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; font-src 'self' https://cdn.jsdelivr.net data:; img-src 'self' data: blob:; connect-src 'self' https://text.pollinations.ai https://image.pollinations.ai https://duckduckgo.com https://api.anthropic.com https://api.openai.com https://generativelanguage.googleapis.com https://api.groq.com https://api.mistral.ai https://api.perplexity.ai https://openrouter.ai https://aihorde.net http://localhost:1234 http://localhost:11434 https://huggingface.co https://*.huggingface.co https://*.hf.co https://raw.githubusercontent.com https://cdn.jsdelivr.net https://esm.run; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none';">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval' https://esm.run https://cdn.jsdelivr.net 'sha256-muIrr1nKhzfn4dvjEggk0koKh8eikPw0O3+Er2Vrudc='; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; font-src 'self' https://cdn.jsdelivr.net data:; img-src 'self' data: blob:; connect-src 'self' https://text.pollinations.ai https://image.pollinations.ai https://duckduckgo.com https://api.anthropic.com https://api.openai.com https://generativelanguage.googleapis.com https://api.groq.com https://api.mistral.ai https://api.perplexity.ai https://openrouter.ai https://aihorde.net http://localhost:1234 http://localhost:11434 https://huggingface.co https://*.huggingface.co https://*.hf.co https://raw.githubusercontent.com https://cdn.jsdelivr.net https://esm.run; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none';">
 <title>AI Liber — Inteligența artificială pentru toți</title>
 <meta name="description" content="Chat cu Claude, GPT-4, Gemini, Llama, DeepSeek și 30+ modele — unele fără cont, unele cu cheie API gratuită.">
 <style>
@@ -864,7 +864,7 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
     <aside class="sb" id="sidebar">
       <div class="sb-hd">
         <div class="sb-hd-txt">
-          🤖 Modele AI
+          <span data-i18n="sbModelsHd">🤖 Modele AI</span>
           <span class="sb-live loading" id="sb-live">📋</span>
         </div>
         <button class="sb-close" data-onclick="closeSB" aria-label="Închide panoul lateral" data-i18n-aria="ariaCloseSB">✕</button>
@@ -1090,7 +1090,7 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
     <p class="msub" data-i18n-html="settP">Modelele ✅ <strong>nu au nevoie de cheie</strong>. Celelalte necesită o cheie API — multe disponibile complet gratuit.</p>
     <div class="key-warn" style="background:#fef3c7;border:1px solid #fcd34d;border-radius:8px;padding:10px 14px;margin:8px 0 14px;font-size:.78rem;line-height:1.55;color:#78350f">
       <strong>⚠️ <span data-i18n="keyWarnTitle">Notă de securitate</span></strong><br>
-      <span data-i18n="keyWarnBody">Cheile sunt stocate local în browserul tău, obscurizate cu AES-GCM. Aceasta <strong>NU</strong> este criptare robustă: un script malițios rulat pe pagină sau o extensie de browser le poate recupera. Folosește chei cu limite de buget / rate limits pe contul providerului și revocă-le dacă bănuiești compromis. Cheile persistă doar pe durata sesiunii acestei file (rămân după reîncărcare, dar într-o filă nouă sau după repornirea browserului trebuie reintroduse).</span>
+      <span data-i18n="keyWarnBody">Cheile sunt stocate local în browserul tău, obscurizate cu AES-GCM. Aceasta NU este criptare robustă: un script malițios rulat pe pagină sau o extensie de browser le poate recupera. Folosește chei cu limite de buget / rate limits pe contul providerului și revocă-le dacă bănuiești compromis. Cheile persistă doar pe durata sesiunii acestei file (rămân după reîncărcare, dar într-o filă nouă sau după repornirea browserului trebuie reintroduse).</span>
     </div>
     <div id="kbody"></div>
     <div class="mbtns"><button class="btn btn-s" data-onclick="closeSett" data-i18n="settClose">Închide</button></div>
@@ -1102,7 +1102,7 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
 const T={
 ro:{
 ariaCloseSB:'Închide panoul lateral',ariaToggleSB:'Deschide/închide panoul de modele',
-keyWarnTitle:'Notă de securitate',keyWarnBody:'Cheile sunt stocate local în browserul tău, obscurizate cu AES-GCM. Aceasta <strong>NU</strong> este criptare robustă: un script malițios rulat pe pagină sau o extensie de browser le poate recupera. Folosește chei cu limite de buget / rate limits pe contul providerului și revocă-le dacă bănuiești compromis. Cheile persistă doar pe durata sesiunii acestei file (rămân după reîncărcare, dar într-o filă nouă sau după repornirea browserului trebuie reintroduse).',
+keyWarnTitle:'Notă de securitate',keyWarnBody:'Cheile sunt stocate local în browserul tău, obscurizate cu AES-GCM. Aceasta NU este criptare robustă: un script malițios rulat pe pagină sau o extensie de browser le poate recupera. Folosește chei cu limite de buget / rate limits pe contul providerului și revocă-le dacă bănuiești compromis. Cheile persistă doar pe durata sesiunii acestei file (rămân după reîncărcare, dar într-o filă nouă sau după repornirea browserului trebuie reintroduse).',
 cpillAll:'Toate',cpillInstant:'✅ Imediat',cpillBest:'⭐ Top',cpillFast:'⚡ Rapid',cpillCode:'💻 Cod',cpillCreative:'✍️ Creativ',cpillWeb:'🔍 Web',cpillMath:'🧮 Math',cpillMulti:'🌍 Multi',
 navHome:'Acasă',
 navChat:'Chat',
@@ -1340,7 +1340,7 @@ lGDPR:`<h3>Drepturile tale conform GDPR</h3><p>Toate datele stocate de AI Liber 
 },
 en:{
 ariaCloseSB:'Close sidebar',ariaToggleSB:'Toggle model sidebar',
-keyWarnTitle:'Security note',keyWarnBody:'Keys are stored locally in your browser, obfuscated with AES-GCM. This is <strong>NOT</strong> strong encryption: malicious scripts on the page or browser extensions can recover them. Use keys with budget limits / rate limits on your provider account, and revoke them if you suspect compromise. Keys only last for the session of this tab (they survive a reload, but in a new tab or after restarting the browser you must enter them again).',
+keyWarnTitle:'Security note',keyWarnBody:'Keys are stored locally in your browser, obfuscated with AES-GCM. This is NOT strong encryption: malicious scripts on the page or browser extensions can recover them. Use keys with budget limits / rate limits on your provider account, and revoke them if you suspect compromise. Keys only last for the session of this tab (they survive a reload, but in a new tab or after restarting the browser you must enter them again).',
 cpillAll:'All',cpillInstant:'✅ Instant',cpillBest:'⭐ Top',cpillFast:'⚡ Fast',cpillCode:'💻 Code',cpillCreative:'✍️ Creative',cpillWeb:'🔍 Web',cpillMath:'🧮 Math',cpillMulti:'🌍 Multi',
 navHome:'Home',
 navChat:'Chat',
@@ -1577,7 +1577,7 @@ lGDPR:`<h3>Your GDPR rights</h3><p>All data stored by AI Liber is exclusively in
 },
 it:{
 ariaCloseSB:'Chiudi barra laterale',ariaToggleSB:'Attiva/disattiva barra dei modelli',
-keyWarnTitle:'Nota sulla sicurezza',keyWarnBody:'Le chiavi sono memorizzate localmente nel browser, offuscate con AES-GCM. Questa <strong>NON</strong> è crittografia robusta: uno script malevolo o un\'estensione del browser può recuperarle. Usa chiavi con limiti di budget / rate limits sul provider e revocale in caso di sospetto. Le chiavi durano solo per la sessione di questa scheda (restano dopo il ricaricamento, ma in una nuova scheda o dopo il riavvio vanno reinserite).',
+keyWarnTitle:'Nota sulla sicurezza',keyWarnBody:'Le chiavi sono memorizzate localmente nel browser, offuscate con AES-GCM. Questa NON è crittografia robusta: uno script malevolo o un\'estensione del browser può recuperarle. Usa chiavi con limiti di budget / rate limits sul provider e revocale in caso di sospetto. Le chiavi durano solo per la sessione di questa scheda (restano dopo il ricaricamento, ma in una nuova scheda o dopo il riavvio vanno reinserite).',
 cpillAll:'Tutti',cpillInstant:'✅ Istantaneo',cpillBest:'⭐ Top',cpillFast:'⚡ Veloce',cpillCode:'💻 Codice',cpillCreative:'✍️ Creativo',cpillWeb:'🔍 Web',cpillMath:'🧮 Mat.',cpillMulti:'🌍 Multi',
 navHome:'Home',
 navChat:'Chat',
@@ -1814,7 +1814,7 @@ lGDPR:`<h3>I tuoi diritti GDPR</h3><p>Tutti i dati archiviati da AI Liber si tro
 },
 es:{
 ariaCloseSB:'Cerrar barra lateral',ariaToggleSB:'Alternar barra lateral de modelos',
-keyWarnTitle:'Nota de seguridad',keyWarnBody:'Las claves se almacenan localmente en tu navegador, ofuscadas con AES-GCM. Esto <strong>NO</strong> es cifrado robusto: un script malicioso o una extensión del navegador puede recuperarlas. Usa claves con límites de presupuesto / rate limits en tu cuenta del proveedor y revócalas si sospechas compromiso. Las claves solo duran la sesión de esta pestaña (sobreviven a una recarga, pero en una pestaña nueva o tras reiniciar el navegador hay que volver a introducirlas).',
+keyWarnTitle:'Nota de seguridad',keyWarnBody:'Las claves se almacenan localmente en tu navegador, ofuscadas con AES-GCM. Esto NO es cifrado robusto: un script malicioso o una extensión del navegador puede recuperarlas. Usa claves con límites de presupuesto / rate limits en tu cuenta del proveedor y revócalas si sospechas compromiso. Las claves solo duran la sesión de esta pestaña (sobreviven a una recarga, pero en una pestaña nueva o tras reiniciar el navegador hay que volver a introducirlas).',
 cpillAll:'Todos',cpillInstant:'✅ Instantáneo',cpillBest:'⭐ Top',cpillFast:'⚡ Rápido',cpillCode:'💻 Código',cpillCreative:'✍️ Creativo',cpillWeb:'🔍 Web',cpillMath:'🧮 Mates',cpillMulti:'🌍 Multi',
 navHome:'Inicio',
 navChat:'Chat',
@@ -2051,7 +2051,7 @@ lGDPR:`<h3>Tus derechos RGPD</h3><p>Todos los datos almacenados por AI Liber est
 },
 pt:{
 ariaCloseSB:'Fechar barra lateral',ariaToggleSB:'Alternar barra lateral de modelos',
-keyWarnTitle:'Nota de segurança',keyWarnBody:'As chaves são armazenadas localmente no seu navegador, ofuscadas com AES-GCM. Isto <strong>NÃO</strong> é criptografia robusta: um script malicioso ou extensão de navegador pode recuperá-las. Use chaves com limites de orçamento / rate limits na conta do provedor e revogue-as em caso de suspeita. As chaves duram apenas a sessão deste separador (sobrevivem a um recarregamento, mas num novo separador ou após reiniciar o navegador é preciso reintroduzi-las).',
+keyWarnTitle:'Nota de segurança',keyWarnBody:'As chaves são armazenadas localmente no seu navegador, ofuscadas com AES-GCM. Isto NÃO é criptografia robusta: um script malicioso ou extensão de navegador pode recuperá-las. Use chaves com limites de orçamento / rate limits na conta do provedor e revogue-as em caso de suspeita. As chaves duram apenas a sessão deste separador (sobrevivem a um recarregamento, mas num novo separador ou após reiniciar o navegador é preciso reintroduzi-las).',
 cpillAll:'Todos',cpillInstant:'✅ Instantâneo',cpillBest:'⭐ Top',cpillFast:'⚡ Rápido',cpillCode:'💻 Código',cpillCreative:'✍️ Criativo',cpillWeb:'🔍 Web',cpillMath:'🧮 Mat.',cpillMulti:'🌍 Multi',
 navHome:'Início',
 navChat:'Chat',
@@ -2288,7 +2288,7 @@ lGDPR:`<h3>Seus direitos LGPD/RGPD</h3><p>Todos os dados armazenados pelo AI Lib
 },
 fr:{
 ariaCloseSB:'Fermer la barre latérale',ariaToggleSB:'Basculer la barre latérale des modèles',
-keyWarnTitle:'Note de sécurité',keyWarnBody:'Les clés sont stockées localement dans votre navigateur, offusquées avec AES-GCM. Ce <strong>N\'est PAS</strong> un chiffrement robuste : un script malveillant ou une extension de navigateur peut les récupérer. Utilisez des clés avec limites de budget / rate limits chez le fournisseur, et révoquez-les en cas de doute. Les clés ne durent que le temps de la session de cet onglet (elles survivent à un rechargement, mais dans un nouvel onglet ou après un redémarrage il faut les ressaisir).',
+keyWarnTitle:'Note de sécurité',keyWarnBody:'Les clés sont stockées localement dans votre navigateur, offusquées avec AES-GCM. Ce N\'est PAS un chiffrement robuste : un script malveillant ou une extension de navigateur peut les récupérer. Utilisez des clés avec limites de budget / rate limits chez le fournisseur, et révoquez-les en cas de doute. Les clés ne durent que le temps de la session de cet onglet (elles survivent à un rechargement, mais dans un nouvel onglet ou après un redémarrage il faut les ressaisir).',
 cpillAll:'Tout',cpillInstant:'✅ Instantané',cpillBest:'⭐ Top',cpillFast:'⚡ Rapide',cpillCode:'💻 Code',cpillCreative:'✍️ Créatif',cpillWeb:'🔍 Web',cpillMath:'🧮 Maths',cpillMulti:'🌍 Multi',
 navHome:'Accueil',
 navChat:'Chat',
@@ -2525,7 +2525,7 @@ lGDPR:`<h3>Vos droits RGPD</h3><p>Toutes les données stockées par AI Liber se 
 },
 de:{
 ariaCloseSB:'Seitenleiste schließen',ariaToggleSB:'Modell-Seitenleiste umschalten',
-keyWarnTitle:'Sicherheitshinweis',keyWarnBody:'Schlüssel werden lokal im Browser gespeichert, mit AES-GCM verschleiert. Dies ist <strong>KEINE</strong> starke Verschlüsselung: ein bösartiges Skript auf der Seite oder eine Browser-Erweiterung kann sie wiederherstellen. Verwenden Sie Schlüssel mit Budget- / Rate-Limits beim Anbieter und widerrufen Sie sie bei Verdacht. Schlüssel gelten nur für die Sitzung dieses Tabs (sie überstehen ein Neuladen, müssen aber in einem neuen Tab oder nach einem Neustart des Browsers erneut eingegeben werden).',
+keyWarnTitle:'Sicherheitshinweis',keyWarnBody:'Schlüssel werden lokal im Browser gespeichert, mit AES-GCM verschleiert. Dies ist KEINE starke Verschlüsselung: ein bösartiges Skript auf der Seite oder eine Browser-Erweiterung kann sie wiederherstellen. Verwenden Sie Schlüssel mit Budget- / Rate-Limits beim Anbieter und widerrufen Sie sie bei Verdacht. Schlüssel gelten nur für die Sitzung dieses Tabs (sie überstehen ein Neuladen, müssen aber in einem neuen Tab oder nach einem Neustart des Browsers erneut eingegeben werden).',
 cpillAll:'Alle',cpillInstant:'✅ Sofort',cpillBest:'⭐ Top',cpillFast:'⚡ Schnell',cpillCode:'💻 Code',cpillCreative:'✍️ Kreativ',cpillWeb:'🔍 Web',cpillMath:'🧮 Mathe',cpillMulti:'🌍 Multi',
 navHome:'Start',
 navChat:'Chat',
@@ -2838,6 +2838,14 @@ function setLang(lc){ _qpCat=null;
   try{localStorage.setItem('ailib_lang',lc);}catch(e){}
   document.documentElement.lang=lc;
   applyI18n();
+  // Insignele „N modele (cache/live)” nu au data-i18n: le rescriem în limba nouă
+  try{
+    [['sb-live','liveModels'],['wfree-cnt','pollLive']].forEach(([id,liveKey])=>{
+      const bd=document.getElementById(id);
+      const m=bd&&!bd.classList.contains('loading')&&/^(📋|✅)\s*(\d+)/.exec(bd.textContent);
+      if(m)bd.textContent=`${m[1]} ${m[2]} ${t(m[1]==='📋'?'cacheModels':liveKey)}`;
+    });
+  }catch(x){}
   // Catalogul de modele își ia textele (furnizor, specificații, grupe) din t() la construire: îl reconstruim în limba nouă
   try{
     OTHER_MODELS=_otherModels();
@@ -2942,7 +2950,7 @@ const PROV_GUIDE_EN={
  "openrouter": "🎁 \":free\" models are 100% free, no card! <a href=\"https://openrouter.ai/keys\" target=\"_blank\" rel=\"noopener noreferrer\">→ Get a free key</a>"
 };
 // Ghidurile furnizorilor: engleză pentru UI-ul englez; celelalte limbi folosesc textul românesc din PROV (traducere neefectuată)
-function provGuide(pid){ const pv=PROV[pid]; return (CUR_LANG==='en'&&PROV_GUIDE_EN[pid])||(pv?pv.guide:''); }
+function provGuide(pid){ const pv=PROV[pid]; return (CUR_LANG!=='ro'&&PROV_GUIDE_EN[pid])||(pv?pv.guide:''); }
 
 // ═══════════════════════════════════════════
 // POLLINATIONS MODEL CATALOG
@@ -3755,6 +3763,9 @@ function renderML(){
   document.getElementById('mlist').innerHTML=html||`<div class="mgrp">${t('noModelsGroup')}</div>`;
 }
 
+// Etichetele de specificații ale modelelor (în română în catalog) → limba curentă
+const SPEC_T={"Rapid":{"en":"Fast","fr":"Rapide","it":"Veloce","es":"Rápido","pt":"Rápido","de":"Schnell"},"Ultra-rapid":{"en":"Ultra-fast","fr":"Ultra-rapide","it":"Ultra-veloce","es":"Ultrarrápido","pt":"Ultrarrápido","de":"Ultraschnell"},"Gratuit":{"en":"Free","fr":"Gratuit","it":"Gratuito","es":"Gratis","pt":"Grátis","de":"Kostenlos"},"Flash Rapid":{"en":"Flash Fast","fr":"Flash rapide","it":"Flash veloce","es":"Flash rápido","pt":"Flash rápido","de":"Flash schnell"},"Raționament":{"en":"Reasoning","fr":"Raisonnement","it":"Ragionamento","es":"Razonamiento","pt":"Raciocínio","de":"Schlussfolgern"},"Programare":{"en":"Coding","fr":"Programmation","it":"Programmazione","es":"Programación","pt":"Programação","de":"Programmierung"},"Multilingv":{"en":"Multilingual","fr":"Multilingue","it":"Multilingue","es":"Multilingüe","pt":"Multilíngue","de":"Mehrsprachig"},"100% Anonim":{"en":"100% Anonymous","fr":"100% anonyme","it":"100% anonimo","es":"100% anónimo","pt":"100% anônimo","de":"100% anonym"},"Raționament anonim":{"en":"Anonymous reasoning","fr":"Raisonnement anonyme","it":"Ragionamento anonimo","es":"Razonamiento anónimo","pt":"Raciocínio anônimo","de":"Anonymes Schlussfolgern"},"Local în browser":{"en":"Local in browser","fr":"Local dans le navigateur","it":"Locale nel browser","es":"Local en el navegador","pt":"Local no navegador","de":"Lokal im Browser"},"Raționament local":{"en":"Local reasoning","fr":"Raisonnement local","it":"Ragionamento locale","es":"Razonamiento local","pt":"Raciocínio local","de":"Lokales Schlussfolgern"},"Cel mai rapid local":{"en":"Fastest local","fr":"Le plus rapide en local","it":"Il più veloce in locale","es":"El más rápido en local","pt":"O mais rápido local","de":"Lokal am schnellsten"},"Ultra-mic 360MB":{"en":"Ultra-small 360MB","fr":"Ultra-petit 360MB","it":"Ultra-piccolo 360MB","es":"Ultrapequeño 360MB","pt":"Ultrapequeno 360MB","de":"Ultraklein 360MB"},"Ultra-mic 500MB":{"en":"Ultra-small 500MB","fr":"Ultra-petit 500MB","it":"Ultra-piccolo 500MB","es":"Ultrapequeño 500MB","pt":"Ultrapequeno 500MB","de":"Ultraklein 500MB"},"Mic 1GB":{"en":"Small 1GB","fr":"Petit 1GB","it":"Piccolo 1GB","es":"Pequeño 1GB","pt":"Pequeno 1GB","de":"Klein 1GB"},"Puternic Local":{"en":"Powerful local","fr":"Puissant en local","it":"Potente in locale","es":"Potente en local","pt":"Potente local","de":"Leistungsstark lokal"},"Puternic local":{"en":"Powerful local","fr":"Puissant en local","it":"Potente in locale","es":"Potente en local","pt":"Potente local","de":"Leistungsstark lokal"},"Raționament avansat":{"en":"Advanced reasoning","fr":"Raisonnement avancé","it":"Ragionamento avanzato","es":"Razonamiento avanzado","pt":"Raciocínio avançado","de":"Erweitertes Schlussfolgern"},"Cel mai capabil local":{"en":"Most capable local","fr":"Le plus capable en local","it":"Il più capace in locale","es":"El más capaz en local","pt":"O mais capaz local","de":"Lokal am leistungsfähigsten"},"Anonim Gratuit":{"en":"Anonymous Free","fr":"Anonyme gratuit","it":"Anonimo gratuito","es":"Anónimo gratis","pt":"Anônimo grátis","de":"Anonym kostenlos"},"Matematică":{"en":"Math","fr":"Mathématiques","it":"Matematica","es":"Matemáticas","pt":"Matemática","de":"Mathematik"},"Cod specialist":{"en":"Code specialist","fr":"Spécialiste du code","it":"Specialista di codice","es":"Especialista en código","pt":"Especialista em código","de":"Code-Spezialist"},"Creativ":{"en":"Creative","fr":"Créatif","it":"Creativo","es":"Creativo","pt":"Criativo","de":"Kreativ"},"Server local":{"en":"Local server","fr":"Serveur local","it":"Server locale","es":"Servidor local","pt":"Servidor local","de":"Lokaler Server"},"Scriere":{"en":"Writing","fr":"Écriture","it":"Scrittura","es":"Escritura","pt":"Escrita","de":"Schreiben"},"Cel mai capabil":{"en":"Most capable","fr":"Le plus capable","it":"Il più capace","es":"El más capaz","pt":"O mais capaz","de":"Am leistungsfähigsten"},"Cel mai rapid":{"en":"Fastest","fr":"Le plus rapide","it":"Il più veloce","es":"El más rápido","pt":"O mais rápido","de":"Am schnellsten"},"Web live":{"en":"Live web","fr":"Web en direct","it":"Web in tempo reale","es":"Web en vivo","pt":"Web ao vivo","de":"Live-Web"}};
+function specT(sp){const e=SPEC_T[sp];return(e&&e[CUR_LANG])||sp;}
 function mcard(m){
   const pv=PROV[m.p]||{ico:'🤖',c:'#888'};
   const ok=canUse(m);
@@ -3767,7 +3778,7 @@ function mcard(m){
     </div>
     <div class="mc-sub">
       <span class="mc-pv">${m.mk}${m.ctx&&m.ctx!=='?'?' · '+m.ctx:''}</span>
-      ${m.spec?`<span class="mc-sp">${m.si||''} ${m.spec}</span>`:''}
+      ${m.spec?`<span class="mc-sp">${m.si||''} ${specT(m.spec)}</span>`:''}
       ${m.instant?`<span class="mc-fr">${t('mcInstant')}</span>`:''}
     </div>
   </div>`;
