@@ -45,7 +45,7 @@
 </style>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://esm.run https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; font-src 'self' https://cdn.jsdelivr.net data:; img-src 'self' data: blob: https:; connect-src 'self' https://text.pollinations.ai https://image.pollinations.ai https://duckduckgo.com https://api.anthropic.com https://api.openai.com https://generativelanguage.googleapis.com https://api.groq.com https://api.mistral.ai https://api.perplexity.ai https://openrouter.ai https://aihorde.net http://localhost:1234 http://localhost:11434 https://huggingface.co https://*.huggingface.co https://*.hf.co https://raw.githubusercontent.com https://cdn.jsdelivr.net https://esm.run; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none';">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://esm.run https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; font-src 'self' https://cdn.jsdelivr.net data:; img-src 'self' data: blob:; connect-src 'self' https://text.pollinations.ai https://image.pollinations.ai https://duckduckgo.com https://api.anthropic.com https://api.openai.com https://generativelanguage.googleapis.com https://api.groq.com https://api.mistral.ai https://api.perplexity.ai https://openrouter.ai https://aihorde.net http://localhost:1234 http://localhost:11434 https://huggingface.co https://*.huggingface.co https://*.hf.co https://raw.githubusercontent.com https://cdn.jsdelivr.net https://esm.run; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none';">
 <title>AI Liber — Inteligența artificială pentru toți</title>
 <meta name="description" content="Chat cu Claude, GPT-4, Gemini, Llama, DeepSeek și 30+ modele — unele fără cont, unele cu cheie API gratuită.">
 <style>
@@ -228,6 +228,8 @@ body.is-resizing .sb::after{opacity:.6}
 @keyframes spin{to{transform:rotate(360deg)}}
 .sb-refresh{font-size:.73rem;color:var(--mut);text-align:center;cursor:pointer;transition:all .15s}
 .sb-refresh:hover{color:var(--acc)}
+.sb-auto{display:flex;gap:.4rem;align-items:flex-start;font-size:.68rem;color:var(--mut);margin-top:.5rem;cursor:pointer;text-align:left;line-height:1.35}
+.sb-auto input{margin-top:.15rem;flex:none}
 
 /* CHAT MAIN */
 .chat-main{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--surf)}
@@ -855,7 +857,7 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
       <div class="sb-hd">
         <div class="sb-hd-txt">
           🤖 Modele AI
-          <span class="sb-live loading" id="sb-live" data-i18n="updating">⏳ Se încarcă…</span>
+          <span class="sb-live loading" id="sb-live">📋</span>
         </div>
         <button class="sb-close" onclick="closeSB()" aria-label="Închide panoul lateral" data-i18n-aria="ariaCloseSB">✕</button>
       </div>
@@ -875,6 +877,7 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
         <button onclick="openSett()" data-i18n="sbConfig">⚙️ Configurează chei API</button>
         <button onclick="openModelCheck()" class="sb-check" data-i18n="sbCheck">🔍 Verifică & actualizează modele</button>
         <div class="sb-refresh" role="button" tabindex="0" onclick="fetchPollModels(true)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();fetchPollModels(true);}" data-i18n="sbReload">🔄 Reîncarcă modelele Pollinations</div>
+        <label class="sb-auto"><input type="checkbox" id="pollAuto" onchange="setPollAuto(this.checked)"> <span data-i18n="sbAuto">Actualizează automat lista la pornire (contactează text.pollinations.ai; implicit oprit)</span></label>
       </div>
       <!-- Drag-to-resize handle -->
       <div id="sb-drag" class="sb-drag">
@@ -1063,7 +1066,7 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
     <p class="msub" data-i18n-html="settP">Modelele ✅ <strong>nu au nevoie de cheie</strong>. Celelalte necesită o cheie API — multe disponibile complet gratuit.</p>
     <div class="key-warn" style="background:#fef3c7;border:1px solid #fcd34d;border-radius:8px;padding:10px 14px;margin:8px 0 14px;font-size:.78rem;line-height:1.55;color:#78350f">
       <strong>⚠️ <span data-i18n="keyWarnTitle">Notă de securitate</span></strong><br>
-      <span data-i18n="keyWarnBody">Cheile sunt stocate local în browserul tău, obscurizate cu AES-GCM. Aceasta <strong>NU</strong> este criptare robustă: un script malițios rulat pe pagină sau o extensie de browser le poate recupera. Folosește chei cu limite de buget / rate limits pe contul providerului și revocă-le dacă bănuiești compromis.</span>
+      <span data-i18n="keyWarnBody">Cheile sunt stocate local în browserul tău, obscurizate cu AES-GCM. Aceasta <strong>NU</strong> este criptare robustă: un script malițios rulat pe pagină sau o extensie de browser le poate recupera. Folosește chei cu limite de buget / rate limits pe contul providerului și revocă-le dacă bănuiești compromis. Cheile persistă doar pe durata sesiunii acestei file (rămân după reîncărcare, dar într-o filă nouă sau după repornirea browserului trebuie reintroduse).</span>
     </div>
     <div id="kbody"></div>
     <div class="mbtns"><button class="btn btn-s" onclick="closeSett()" data-i18n="settClose">Închide</button></div>
@@ -1075,7 +1078,7 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
 const T={
 ro:{
 ariaCloseSB:'Închide panoul lateral',ariaToggleSB:'Deschide/închide panoul de modele',
-keyWarnTitle:'Notă de securitate',keyWarnBody:'Cheile sunt stocate local în browserul tău, obscurizate cu AES-GCM. Aceasta <strong>NU</strong> este criptare robustă: un script malițios rulat pe pagină sau o extensie de browser le poate recupera. Folosește chei cu limite de buget / rate limits pe contul providerului și revocă-le dacă bănuiești compromis.',
+keyWarnTitle:'Notă de securitate',keyWarnBody:'Cheile sunt stocate local în browserul tău, obscurizate cu AES-GCM. Aceasta <strong>NU</strong> este criptare robustă: un script malițios rulat pe pagină sau o extensie de browser le poate recupera. Folosește chei cu limite de buget / rate limits pe contul providerului și revocă-le dacă bănuiești compromis. Cheile persistă doar pe durata sesiunii acestei file (rămân după reîncărcare, dar într-o filă nouă sau după repornirea browserului trebuie reintroduse).',
 cpillAll:'Toate',cpillInstant:'✅ Imediat',cpillBest:'⭐ Top',cpillFast:'⚡ Rapid',cpillCode:'💻 Cod',cpillCreative:'✍️ Creativ',cpillWeb:'🔍 Web',cpillMath:'🧮 Math',cpillMulti:'🌍 Multi',
 navHome:'Acasă',
 navChat:'Chat',
@@ -1299,6 +1302,7 @@ keySaveBtn:'Salvează',
 noKeyNeeded:'✅ Fără cheie',
 sbConfig:'⚙️ Configurează chei API',
 sbReload:'🔄 Reîncarcă modelele Pollinations',
+sbAuto:'Actualizează automat lista la pornire (contactează text.pollinations.ai; implicit oprit)',
 fmtFile:'Fișier',
 sendBtn:'➤ Trimite',
 chatPH:'Scrie un mesaj… (Enter = trimite · Shift+Enter = rând nou)',
@@ -1310,7 +1314,7 @@ lGDPR:`<h3>Drepturile tale conform GDPR</h3><p>Toate datele stocate de AI Liber 
 },
 en:{
 ariaCloseSB:'Close sidebar',ariaToggleSB:'Toggle model sidebar',
-keyWarnTitle:'Security note',keyWarnBody:'Keys are stored locally in your browser, obfuscated with AES-GCM. This is <strong>NOT</strong> strong encryption: malicious scripts on the page or browser extensions can recover them. Use keys with budget limits / rate limits on your provider account, and revoke them if you suspect compromise.',
+keyWarnTitle:'Security note',keyWarnBody:'Keys are stored locally in your browser, obfuscated with AES-GCM. This is <strong>NOT</strong> strong encryption: malicious scripts on the page or browser extensions can recover them. Use keys with budget limits / rate limits on your provider account, and revoke them if you suspect compromise. Keys only last for the session of this tab (they survive a reload, but in a new tab or after restarting the browser you must enter them again).',
 cpillAll:'All',cpillInstant:'✅ Instant',cpillBest:'⭐ Top',cpillFast:'⚡ Fast',cpillCode:'💻 Code',cpillCreative:'✍️ Creative',cpillWeb:'🔍 Web',cpillMath:'🧮 Math',cpillMulti:'🌍 Multi',
 navHome:'Home',
 navChat:'Chat',
@@ -1534,6 +1538,7 @@ keySaveBtn:'Save',
 noKeyNeeded:'✅ No key needed',
 sbConfig:'⚙️ Configure API Keys',
 sbReload:'🔄 Reload Pollinations models',
+sbAuto:'Update the list automatically on load (contacts text.pollinations.ai; off by default)',
 fmtFile:'File',
 sendBtn:'➤ Send',
 chatPH:'Write a message… (Enter = send · Shift+Enter = new line)',
@@ -1544,7 +1549,7 @@ lGDPR:`<h3>Your GDPR rights</h3><p>All data stored by AI Liber is exclusively in
 },
 it:{
 ariaCloseSB:'Chiudi barra laterale',ariaToggleSB:'Attiva/disattiva barra dei modelli',
-keyWarnTitle:'Nota sulla sicurezza',keyWarnBody:'Le chiavi sono memorizzate localmente nel browser, offuscate con AES-GCM. Questa <strong>NON</strong> è crittografia robusta: uno script malevolo o un\'estensione del browser può recuperarle. Usa chiavi con limiti di budget / rate limits sul provider e revocale in caso di sospetto.',
+keyWarnTitle:'Nota sulla sicurezza',keyWarnBody:'Le chiavi sono memorizzate localmente nel browser, offuscate con AES-GCM. Questa <strong>NON</strong> è crittografia robusta: uno script malevolo o un\'estensione del browser può recuperarle. Usa chiavi con limiti di budget / rate limits sul provider e revocale in caso di sospetto. Le chiavi durano solo per la sessione di questa scheda (restano dopo il ricaricamento, ma in una nuova scheda o dopo il riavvio vanno reinserite).',
 cpillAll:'Tutti',cpillInstant:'✅ Istantaneo',cpillBest:'⭐ Top',cpillFast:'⚡ Veloce',cpillCode:'💻 Codice',cpillCreative:'✍️ Creativo',cpillWeb:'🔍 Web',cpillMath:'🧮 Mat.',cpillMulti:'🌍 Multi',
 navHome:'Home',
 navChat:'Chat',
@@ -1768,6 +1773,7 @@ keySaveBtn:'Salva',
 noKeyNeeded:'✅ Nessuna chiave',
 sbConfig:'⚙️ Configura chiavi API',
 sbReload:'🔄 Ricarica modelli Pollinations',
+sbAuto:'Aggiorna automaticamente l\'elenco all\'avvio (contatta text.pollinations.ai; disattivato di default)',
 fmtFile:'File',
 sendBtn:'➤ Invia',
 chatPH:'Scrivi un messaggio… (Invio = invia · Shift+Invio = nuova riga)',
@@ -1778,7 +1784,7 @@ lGDPR:`<h3>I tuoi diritti GDPR</h3><p>Tutti i dati archiviati da AI Liber si tro
 },
 es:{
 ariaCloseSB:'Cerrar barra lateral',ariaToggleSB:'Alternar barra lateral de modelos',
-keyWarnTitle:'Nota de seguridad',keyWarnBody:'Las claves se almacenan localmente en tu navegador, ofuscadas con AES-GCM. Esto <strong>NO</strong> es cifrado robusto: un script malicioso o una extensión del navegador puede recuperarlas. Usa claves con límites de presupuesto / rate limits en tu cuenta del proveedor y revócalas si sospechas compromiso.',
+keyWarnTitle:'Nota de seguridad',keyWarnBody:'Las claves se almacenan localmente en tu navegador, ofuscadas con AES-GCM. Esto <strong>NO</strong> es cifrado robusto: un script malicioso o una extensión del navegador puede recuperarlas. Usa claves con límites de presupuesto / rate limits en tu cuenta del proveedor y revócalas si sospechas compromiso. Las claves solo duran la sesión de esta pestaña (sobreviven a una recarga, pero en una pestaña nueva o tras reiniciar el navegador hay que volver a introducirlas).',
 cpillAll:'Todos',cpillInstant:'✅ Instantáneo',cpillBest:'⭐ Top',cpillFast:'⚡ Rápido',cpillCode:'💻 Código',cpillCreative:'✍️ Creativo',cpillWeb:'🔍 Web',cpillMath:'🧮 Mates',cpillMulti:'🌍 Multi',
 navHome:'Inicio',
 navChat:'Chat',
@@ -2002,6 +2008,7 @@ keySaveBtn:'Guardar',
 noKeyNeeded:'✅ Sin clave',
 sbConfig:'⚙️ Configurar claves API',
 sbReload:'🔄 Recargar modelos Pollinations',
+sbAuto:'Actualizar la lista automáticamente al cargar (contacta con text.pollinations.ai; desactivado por defecto)',
 fmtFile:'Archivo',
 sendBtn:'➤ Enviar',
 chatPH:'Escribe un mensaje… (Enter = enviar · Shift+Enter = nueva línea)',
@@ -2012,7 +2019,7 @@ lGDPR:`<h3>Tus derechos RGPD</h3><p>Todos los datos almacenados por AI Liber est
 },
 pt:{
 ariaCloseSB:'Fechar barra lateral',ariaToggleSB:'Alternar barra lateral de modelos',
-keyWarnTitle:'Nota de segurança',keyWarnBody:'As chaves são armazenadas localmente no seu navegador, ofuscadas com AES-GCM. Isto <strong>NÃO</strong> é criptografia robusta: um script malicioso ou extensão de navegador pode recuperá-las. Use chaves com limites de orçamento / rate limits na conta do provedor e revogue-as em caso de suspeita.',
+keyWarnTitle:'Nota de segurança',keyWarnBody:'As chaves são armazenadas localmente no seu navegador, ofuscadas com AES-GCM. Isto <strong>NÃO</strong> é criptografia robusta: um script malicioso ou extensão de navegador pode recuperá-las. Use chaves com limites de orçamento / rate limits na conta do provedor e revogue-as em caso de suspeita. As chaves duram apenas a sessão deste separador (sobrevivem a um recarregamento, mas num novo separador ou após reiniciar o navegador é preciso reintroduzi-las).',
 cpillAll:'Todos',cpillInstant:'✅ Instantâneo',cpillBest:'⭐ Top',cpillFast:'⚡ Rápido',cpillCode:'💻 Código',cpillCreative:'✍️ Criativo',cpillWeb:'🔍 Web',cpillMath:'🧮 Mat.',cpillMulti:'🌍 Multi',
 navHome:'Início',
 navChat:'Chat',
@@ -2236,6 +2243,7 @@ keySaveBtn:'Salvar',
 noKeyNeeded:'✅ Sem chave',
 sbConfig:'⚙️ Configurar chaves API',
 sbReload:'🔄 Recarregar modelos Pollinations',
+sbAuto:'Atualizar a lista automaticamente ao carregar (contacta text.pollinations.ai; desativado por padrão)',
 fmtFile:'Arquivo',
 sendBtn:'➤ Enviar',
 chatPH:'Escreva uma mensagem… (Enter = enviar · Shift+Enter = nova linha)',
@@ -2246,7 +2254,7 @@ lGDPR:`<h3>Seus direitos LGPD/RGPD</h3><p>Todos os dados armazenados pelo AI Lib
 },
 fr:{
 ariaCloseSB:'Fermer la barre latérale',ariaToggleSB:'Basculer la barre latérale des modèles',
-keyWarnTitle:'Note de sécurité',keyWarnBody:'Les clés sont stockées localement dans votre navigateur, offusquées avec AES-GCM. Ce <strong>N\'est PAS</strong> un chiffrement robuste : un script malveillant ou une extension de navigateur peut les récupérer. Utilisez des clés avec limites de budget / rate limits chez le fournisseur, et révoquez-les en cas de doute.',
+keyWarnTitle:'Note de sécurité',keyWarnBody:'Les clés sont stockées localement dans votre navigateur, offusquées avec AES-GCM. Ce <strong>N\'est PAS</strong> un chiffrement robuste : un script malveillant ou une extension de navigateur peut les récupérer. Utilisez des clés avec limites de budget / rate limits chez le fournisseur, et révoquez-les en cas de doute. Les clés ne durent que le temps de la session de cet onglet (elles survivent à un rechargement, mais dans un nouvel onglet ou après un redémarrage il faut les ressaisir).',
 cpillAll:'Tout',cpillInstant:'✅ Instantané',cpillBest:'⭐ Top',cpillFast:'⚡ Rapide',cpillCode:'💻 Code',cpillCreative:'✍️ Créatif',cpillWeb:'🔍 Web',cpillMath:'🧮 Maths',cpillMulti:'🌍 Multi',
 navHome:'Accueil',
 navChat:'Chat',
@@ -2470,6 +2478,7 @@ keySaveBtn:'Enregistrer',
 noKeyNeeded:'✅ Sans clé',
 sbConfig:'⚙️ Configurer les clés API',
 sbReload:'🔄 Recharger les modèles Pollinations',
+sbAuto:'Mettre à jour la liste automatiquement au chargement (contacte text.pollinations.ai ; désactivé par défaut)',
 fmtFile:'Fichier',
 sendBtn:'➤ Envoyer',
 chatPH:'Écrivez un message… (Entrée = envoyer · Maj+Entrée = nouvelle ligne)',
@@ -2480,7 +2489,7 @@ lGDPR:`<h3>Vos droits RGPD</h3><p>Toutes les données stockées par AI Liber se 
 },
 de:{
 ariaCloseSB:'Seitenleiste schließen',ariaToggleSB:'Modell-Seitenleiste umschalten',
-keyWarnTitle:'Sicherheitshinweis',keyWarnBody:'Schlüssel werden lokal im Browser gespeichert, mit AES-GCM verschleiert. Dies ist <strong>KEINE</strong> starke Verschlüsselung: ein bösartiges Skript auf der Seite oder eine Browser-Erweiterung kann sie wiederherstellen. Verwenden Sie Schlüssel mit Budget- / Rate-Limits beim Anbieter und widerrufen Sie sie bei Verdacht.',
+keyWarnTitle:'Sicherheitshinweis',keyWarnBody:'Schlüssel werden lokal im Browser gespeichert, mit AES-GCM verschleiert. Dies ist <strong>KEINE</strong> starke Verschlüsselung: ein bösartiges Skript auf der Seite oder eine Browser-Erweiterung kann sie wiederherstellen. Verwenden Sie Schlüssel mit Budget- / Rate-Limits beim Anbieter und widerrufen Sie sie bei Verdacht. Schlüssel gelten nur für die Sitzung dieses Tabs (sie überstehen ein Neuladen, müssen aber in einem neuen Tab oder nach einem Neustart des Browsers erneut eingegeben werden).',
 cpillAll:'Alle',cpillInstant:'✅ Sofort',cpillBest:'⭐ Top',cpillFast:'⚡ Schnell',cpillCode:'💻 Code',cpillCreative:'✍️ Kreativ',cpillWeb:'🔍 Web',cpillMath:'🧮 Mathe',cpillMulti:'🌍 Multi',
 navHome:'Start',
 navChat:'Chat',
@@ -2704,6 +2713,7 @@ keySaveBtn:'Speichern',
 noKeyNeeded:'✅ Kein Schlüssel',
 sbConfig:'⚙️ API-Schlüssel konfigurieren',
 sbReload:'🔄 Pollinations-Modelle neu laden',
+sbAuto:'Liste beim Laden automatisch aktualisieren (kontaktiert text.pollinations.ai; standardmäßig aus)',
 fmtFile:'Datei',
 sendBtn:'➤ Senden',
 chatPH:'Nachricht schreiben… (Enter = senden · Shift+Enter = neue Zeile)',
@@ -3312,8 +3322,17 @@ function buildModels(pollIds){
 // ═══════════════════════════════════════════
 // POLLINATIONS LIVE FETCH
 // ═══════════════════════════════════════════
+function _pollAutoOn(){try{return localStorage.getItem('ailib_pollauto')==='1';}catch(e){return false;}}
+function setPollAuto(on){try{if(on)localStorage.setItem('ailib_pollauto','1');else localStorage.removeItem('ailib_pollauto');}catch(e){}if(on)fetchPollModels(true);}
 async function fetchPollModels(manual=false){
   const badge = document.getElementById('sb-live');
+  if(!manual&&!_pollAutoOn()){
+    // Opt-in: no automatic network request to Pollinations unless the user enabled it or clicked reload
+    if(badge){badge.textContent=`📋 ${POLL_CATALOG_IDS.length} ${t('cacheModels')}`;badge.className='sb-live';}
+    const wc0=document.getElementById('wfree-cnt');
+    if(wc0)wc0.textContent=`📋 ${POLL_CATALOG_IDS.length} ${t('cacheModels')}`;
+    return;
+  }
   if(badge){badge.textContent=t('updating');badge.className='sb-live loading';}
 
   try{
@@ -7372,7 +7391,7 @@ function applyModelChanges(){
   document.getElementById('mcheck-apply').disabled=true;
 
   // Auto-refresh to get full metadata
-  setTimeout(()=>{fetchPollModels(false);closeMCheck();},2500);
+  setTimeout(()=>{fetchPollModels(true);closeMCheck();},2500);
 }
 
 
@@ -7692,6 +7711,7 @@ _initCpanel();
 })();
 
 // 3. Fetch live model list from Pollinations in background
+try{var _pa=document.getElementById('pollAuto');if(_pa)_pa.checked=_pollAutoOn();}catch(e){}
 fetchPollModels();
 // Auto-refresh models when user returns to tab (avoids stale cache)
 document.addEventListener('visibilitychange',()=>{
