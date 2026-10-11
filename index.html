@@ -45,7 +45,7 @@
 </style>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://esm.run https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; font-src 'self' https://cdn.jsdelivr.net data:; img-src 'self' data: blob:; connect-src 'self' https://text.pollinations.ai https://image.pollinations.ai https://duckduckgo.com https://api.anthropic.com https://api.openai.com https://generativelanguage.googleapis.com https://api.groq.com https://api.mistral.ai https://api.perplexity.ai https://openrouter.ai https://aihorde.net http://localhost:1234 http://localhost:11434 https://huggingface.co https://*.huggingface.co https://*.hf.co https://raw.githubusercontent.com https://cdn.jsdelivr.net https://esm.run; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none';">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval' https://esm.run https://cdn.jsdelivr.net 'sha256-1cdJbbck7gC71vwth/sq/T/L2LKvKjpqLBtygbjbPto='; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; font-src 'self' https://cdn.jsdelivr.net data:; img-src 'self' data: blob:; connect-src 'self' https://text.pollinations.ai https://image.pollinations.ai https://duckduckgo.com https://api.anthropic.com https://api.openai.com https://generativelanguage.googleapis.com https://api.groq.com https://api.mistral.ai https://api.perplexity.ai https://openrouter.ai https://aihorde.net http://localhost:1234 http://localhost:11434 https://huggingface.co https://*.huggingface.co https://*.hf.co https://raw.githubusercontent.com https://cdn.jsdelivr.net https://esm.run; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none';">
 <title>AI Liber — Inteligența artificială pentru toți</title>
 <meta name="description" content="Chat cu Claude, GPT-4, Gemini, Llama, DeepSeek și 30+ modele — unele fără cont, unele cu cheie API gratuită.">
 <style>
@@ -838,8 +838,8 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
 <body>
 
 <nav>
-  <span class="logo" onclick="goPage('chat')"><span class="logo-ai">AI</span> <span class="logo-lib">Liber</span> <span class="logo-wico">🌸</span></span>
-  <select onchange="setLang(this.value)" class="lang-sel-nav" data-i18n-aria="langLabel" aria-label="Limbă">
+  <span class="logo" data-onclick="goPage" data-arg="chat"><span class="logo-ai">AI</span> <span class="logo-lib">Liber</span> <span class="logo-wico">🌸</span></span>
+  <select data-onchange="setLang" class="lang-sel-nav" data-i18n-aria="langLabel" aria-label="Limbă">
   <option value="ro" selected>Română</option>
   <option value="en">English</option>
   <option value="fr">Français</option>
@@ -848,10 +848,10 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
   <option value="pt">Português</option>
   <option value="it">Italiano</option>
 </select>
-  <button class="nb"    id="nb-chat"    onclick="goPage('chat')">💬 <span class="nl" data-i18n="navChat">Chat</span></button>
-  <button class="nb"    id="nb-explore" onclick="goPage('explore')">🔍 <span class="nl" data-i18n="navExplore">Explorează</span></button>
-  <button class="nb"    id="nb-tips"    onclick="goPage('tips')">💡 <span class="nl" data-i18n="navTips">Sfaturi</span></button>
-  <button class="nb" id="nb-legal" onclick="goPage('legal')">🔒 <span class="nl" data-i18n="navLegal">Legal</span></button>
+  <button class="nb"    id="nb-chat"    data-onclick="goPage" data-arg="chat">💬 <span class="nl" data-i18n="navChat">Chat</span></button>
+  <button class="nb"    id="nb-explore" data-onclick="goPage" data-arg="explore">🔍 <span class="nl" data-i18n="navExplore">Explorează</span></button>
+  <button class="nb"    id="nb-tips"    data-onclick="goPage" data-arg="tips">💡 <span class="nl" data-i18n="navTips">Sfaturi</span></button>
+  <button class="nb" id="nb-legal" data-onclick="goPage" data-arg="legal">🔒 <span class="nl" data-i18n="navLegal">Legal</span></button>
   <a class="nb nb-patreon" href="https://www.patreon.com/c/alexio_tf" target="_blank" rel="noopener" data-i18n-title="patreonTitle" title="Susține AI Liber pe Patreon">🎁 <span class="nl" data-i18n="navPatreon">Patreon</span></a>
 </nav>
 
@@ -859,7 +859,7 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
 <h1 class="sr-only">AI Liber</h1>
 <!-- CHAT -->
 <div class="page on" id="page-chat">
-  <div class="sbov" id="sbov" onclick="closeSB()"></div>
+  <div class="sbov" id="sbov" data-onclick="closeSB"></div>
   <div class="chat-layout">
     <aside class="sb" id="sidebar">
       <div class="sb-hd">
@@ -867,25 +867,25 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
           🤖 Modele AI
           <span class="sb-live loading" id="sb-live">📋</span>
         </div>
-        <button class="sb-close" onclick="closeSB()" aria-label="Închide panoul lateral" data-i18n-aria="ariaCloseSB">✕</button>
+        <button class="sb-close" data-onclick="closeSB" aria-label="Închide panoul lateral" data-i18n-aria="ariaCloseSB">✕</button>
       </div>
       <div class="cbar">
-        <button class="cpill on" onclick="filterM('all',this)" data-i18n="cpillAll">Toate</button>
-        <button class="cpill" onclick="filterM('instant',this)" data-i18n="cpillInstant">✅ Imediat</button>
-        <button class="cpill" onclick="filterM('best',this)" data-i18n="cpillBest">⭐ Top</button>
-        <button class="cpill" onclick="filterM('fast',this)" data-i18n="cpillFast">⚡ Rapid</button>
-        <button class="cpill" onclick="filterM('code',this)" data-i18n="cpillCode">💻 Cod</button>
-        <button class="cpill" onclick="filterM('creative',this)" data-i18n="cpillCreative">✍️ Creativ</button>
-        <button class="cpill" onclick="filterM('web',this)" data-i18n="cpillWeb">🔍 Web</button>
-        <button class="cpill" onclick="filterM('math',this)" data-i18n="cpillMath">🧮 Math</button>
-        <button class="cpill" onclick="filterM('multi',this)" data-i18n="cpillMulti">🌍 Multi</button>
+        <button class="cpill on" data-onclick="filterM" data-arg="all" data-i18n="cpillAll">Toate</button>
+        <button class="cpill" data-onclick="filterM" data-arg="instant" data-i18n="cpillInstant">✅ Imediat</button>
+        <button class="cpill" data-onclick="filterM" data-arg="best" data-i18n="cpillBest">⭐ Top</button>
+        <button class="cpill" data-onclick="filterM" data-arg="fast" data-i18n="cpillFast">⚡ Rapid</button>
+        <button class="cpill" data-onclick="filterM" data-arg="code" data-i18n="cpillCode">💻 Cod</button>
+        <button class="cpill" data-onclick="filterM" data-arg="creative" data-i18n="cpillCreative">✍️ Creativ</button>
+        <button class="cpill" data-onclick="filterM" data-arg="web" data-i18n="cpillWeb">🔍 Web</button>
+        <button class="cpill" data-onclick="filterM" data-arg="math" data-i18n="cpillMath">🧮 Math</button>
+        <button class="cpill" data-onclick="filterM" data-arg="multi" data-i18n="cpillMulti">🌍 Multi</button>
       </div>
       <div class="mlist" id="mlist"></div>
       <div class="sb-ft">
-        <button onclick="openSett()" data-i18n="sbConfig">⚙️ Configurează chei API</button>
-        <button onclick="openModelCheck()" class="sb-check" data-i18n="sbCheck">🔍 Verifică & actualizează modele</button>
-        <div class="sb-refresh" role="button" tabindex="0" onclick="fetchPollModels(true)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();fetchPollModels(true);}" data-i18n="sbReload">🔄 Reîncarcă modelele Pollinations</div>
-        <label class="sb-auto"><input type="checkbox" id="pollAuto" onchange="setPollAuto(this.checked)"> <span data-i18n="sbAuto">Actualizează automat lista la pornire (contactează text.pollinations.ai; implicit oprit)</span></label>
+        <button data-onclick="openSett" data-i18n="sbConfig">⚙️ Configurează chei API</button>
+        <button data-onclick="openModelCheck" class="sb-check" data-i18n="sbCheck">🔍 Verifică & actualizează modele</button>
+        <div class="sb-refresh" role="button" tabindex="0" data-onclick="fetchPollModelsTrue" data-onkeydown="kdPollModels" data-i18n="sbReload">🔄 Reîncarcă modelele Pollinations</div>
+        <label class="sb-auto"><input type="checkbox" id="pollAuto" data-onchange="setPollAuto"> <span data-i18n="sbAuto">Actualizează automat lista la pornire (contactează text.pollinations.ai; implicit oprit)</span></label>
       </div>
       <!-- Drag-to-resize handle -->
       <div id="sb-drag" class="sb-drag">
@@ -898,14 +898,14 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
 
     <div class="chat-main">
       <div class="ctop">
-        <button class="ctop-sb" onclick="toggleSB()" aria-label="Deschide/închide panoul de modele" data-i18n-aria="ariaToggleSB">☰</button>
+        <button class="ctop-sb" data-onclick="toggleSB" aria-label="Deschide/închide panoul de modele" data-i18n-aria="ariaToggleSB">☰</button>
         <div class="ctop-mdl">
           <div class="ctop-n" id="ctop-n">—</div>
           <div class="ctop-i" id="ctop-i" data-i18n="selModelPH">Selectează un model din stânga</div>
         </div>
         <div class="ctop-btns">
-          <button class="ibtn" data-i18n-title="ttNewChat" data-i18n-aria="ttNewChat" aria-label="Conversație nouă" title="Conversație nouă" onclick="clearChat()">🗑</button>
-          <button class="ibtn" title="Chei API" aria-label="Chei API" data-i18n-aria="settH" onclick="openSett()">⚙️</button>
+          <button class="ibtn" data-i18n-title="ttNewChat" data-i18n-aria="ttNewChat" aria-label="Conversație nouă" title="Conversație nouă" data-onclick="clearChat">🗑</button>
+          <button class="ibtn" title="Chei API" aria-label="Chei API" data-i18n-aria="settH" data-onclick="openSett">⚙️</button>
         </div>
       </div>
       <div class="cmsgs" id="cmsgs">
@@ -923,41 +923,41 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
         <div class="inp-resize" id="inp-resize" data-i18n-title="ttResize" title="Trage pentru a redimensiona"></div>
         <div class="fmt-bar">
           <!-- Text styling -->
-          <button class="fmt-btn" data-i18n-title="ttBold" title="Aldin · Ctrl+B" onclick="wrapMD('**','**')"><b>B</b></button>
-          <button class="fmt-btn" data-i18n-title="ttItalic" title="Cursiv · Ctrl+I" onclick="wrapMD('_','_')"><i>I</i></button>
-          <button class="fmt-btn fmt-strike" data-i18n-title="ttStrike" title="Tăiat" onclick="wrapMD('~~','~~')">S</button>
-          <button class="fmt-btn fmt-sup" data-i18n-title="ttSup" title="Superscript" onclick="wrapMD('^','')">x²</button>
-          <button class="fmt-btn fmt-sub" data-i18n-title="ttSub" title="Subscript" onclick="wrapMD('~','')">x₂</button>
+          <button class="fmt-btn" data-i18n-title="ttBold" title="Aldin · Ctrl+B" data-onclick="wrapMD" data-arg="0"><b>B</b></button>
+          <button class="fmt-btn" data-i18n-title="ttItalic" title="Cursiv · Ctrl+I" data-onclick="wrapMD" data-arg="1"><i>I</i></button>
+          <button class="fmt-btn fmt-strike" data-i18n-title="ttStrike" title="Tăiat" data-onclick="wrapMD" data-arg="2">S</button>
+          <button class="fmt-btn fmt-sup" data-i18n-title="ttSup" title="Superscript" data-onclick="wrapMD" data-arg="3">x²</button>
+          <button class="fmt-btn fmt-sub" data-i18n-title="ttSub" title="Subscript" data-onclick="wrapMD" data-arg="4">x₂</button>
           <span class="fmt-sep"></span>
           <!-- Code -->
-          <button class="fmt-btn fmt-mono" data-i18n-title="ttCode" title="Cod inline" onclick="wrapMD('`','`')">`x`</button>
-          <button class="fmt-btn fmt-mono" data-i18n-title="ttCodeBlock" title="Bloc de cod" onclick="wrapMD('\n```\n','\n```\n')">```</button>
+          <button class="fmt-btn fmt-mono" data-i18n-title="ttCode" title="Cod inline" data-onclick="wrapMD" data-arg="5">`x`</button>
+          <button class="fmt-btn fmt-mono" data-i18n-title="ttCodeBlock" title="Bloc de cod" data-onclick="wrapMD" data-arg="6">```</button>
           <span class="fmt-sep"></span>
           <!-- Headings -->
-          <button class="fmt-btn" data-i18n-title="ttH1" title="Titlu 1" onclick="wrapMD('\n# ','')">H1</button>
-          <button class="fmt-btn" data-i18n-title="ttH2" title="Titlu 2" onclick="wrapMD('\n## ','')">H2</button>
-          <button class="fmt-btn" data-i18n-title="ttH3" title="Titlu 3" onclick="wrapMD('\n### ','')">H3</button>
+          <button class="fmt-btn" data-i18n-title="ttH1" title="Titlu 1" data-onclick="wrapMD" data-arg="7">H1</button>
+          <button class="fmt-btn" data-i18n-title="ttH2" title="Titlu 2" data-onclick="wrapMD" data-arg="8">H2</button>
+          <button class="fmt-btn" data-i18n-title="ttH3" title="Titlu 3" data-onclick="wrapMD" data-arg="9">H3</button>
           <span class="fmt-sep"></span>
           <!-- Lists -->
-          <button class="fmt-btn" data-i18n-title="ttListUl" title="Listă cu puncte" onclick="insertMDList('ul')">• ≡</button>
-          <button class="fmt-btn" data-i18n-title="ttListOl" title="Listă numerotată" onclick="insertMDList('ol')">1. ≡</button>
-          <button class="fmt-btn" data-i18n-title="ttListTask" title="Listă de sarcini" onclick="insertMDList('task')">☑ ≡</button>
+          <button class="fmt-btn" data-i18n-title="ttListUl" title="Listă cu puncte" data-onclick="insertMDList" data-arg="ul">• ≡</button>
+          <button class="fmt-btn" data-i18n-title="ttListOl" title="Listă numerotată" data-onclick="insertMDList" data-arg="ol">1. ≡</button>
+          <button class="fmt-btn" data-i18n-title="ttListTask" title="Listă de sarcini" data-onclick="insertMDList" data-arg="task">☑ ≡</button>
           <span class="fmt-sep"></span>
           <!-- Block elements -->
-          <button class="fmt-btn" data-i18n-title="ttQuote" title="Citat" onclick="wrapMD('\n> ','')">❝</button>
-          <button class="fmt-btn" data-i18n-title="ttHr" title="Linie orizontală" onclick="insertAtCursor('\n---\n')">——</button>
+          <button class="fmt-btn" data-i18n-title="ttQuote" title="Citat" data-onclick="wrapMD" data-arg="10">❝</button>
+          <button class="fmt-btn" data-i18n-title="ttHr" title="Linie orizontală" data-onclick="insertHr">——</button>
           <span class="fmt-sep"></span>
           <!-- Special inserts -->
-          <button class="fmt-btn" data-i18n-title="ttLink" title="Link" onclick="insertMDLink()">🔗</button>
-          <button class="fmt-btn" data-i18n-title="ttTable" title="Tabel" onclick="showTablePicker()" id="btn-table">⊞</button>
-          <button class="fmt-btn" data-i18n-title="ttMath" title="Formulă matematică (LaTeX)" onclick="insertMath()">∑</button>
+          <button class="fmt-btn" data-i18n-title="ttLink" title="Link" data-onclick="insertMDLink">🔗</button>
+          <button class="fmt-btn" data-i18n-title="ttTable" title="Tabel" data-onclick="showTablePicker" id="btn-table">⊞</button>
+          <button class="fmt-btn" data-i18n-title="ttMath" title="Formulă matematică (LaTeX)" data-onclick="insertMath">∑</button>
           <span class="fmt-sep"></span>
           <!-- Emoji -->
-          <button class="fmt-btn" data-i18n-title="ttEmoji" title="Emoji" onclick="toggleEmoji(event)" id="btn-emoji">😊</button>
+          <button class="fmt-btn" data-i18n-title="ttEmoji" title="Emoji" data-onclick="toggleEmoji" id="btn-emoji">😊</button>
           <span class="fmt-sep"></span>
           <!-- File -->
-          <button class="fmt-btn fmt-upload" data-i18n-title="ttFile" title="Încarcă fișier (txt, md, pdf, docx)" onclick="document.getElementById('file-inp').click()">📎 <span class="fmt-upload-label" data-i18n="fmtFile">Fișier</span></button>
-          <input type="file" id="file-inp" style="display:none" accept=".txt,.md,.markdown,.csv,.pdf,.docx,.doc,.rtf" onchange="handleFile(this)">
+          <button class="fmt-btn fmt-upload" data-i18n-title="ttFile" title="Încarcă fișier (txt, md, pdf, docx)" data-onclick="pickFile">📎 <span class="fmt-upload-label" data-i18n="fmtFile">Fișier</span></button>
+          <input type="file" id="file-inp" style="display:none" accept=".txt,.md,.markdown,.csv,.pdf,.docx,.doc,.rtf" data-onchange="handleFile">
           <span id="file-status"></span>
         </div>
 
@@ -982,7 +982,7 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
               placeholder="Scrie un mesaj… (Enter = trimite · Shift+Enter = rând nou)" data-i18n-ph="chatPH"></textarea>
             <div class="crow-bottom">
               <p class="chint" data-i18n="hint">⚠️ AI-ul poate greși. Informații medicale/juridice/financiare — consultă un specialist.</p>
-              <button class="csend" id="csend" onclick="sendMsg()" data-i18n="sendBtn">➤ Trimite</button>
+              <button class="csend" id="csend" data-onclick="sendMsg" data-i18n="sendBtn">➤ Trimite</button>
             </div>
           </div>
         </div>
@@ -990,9 +990,9 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
         <!-- ══ BOTTOM PANEL ════ -->
         <div class="cpanel" id="cpanel">
           <div class="cpanel-tabs">
-            <button class="cpanel-tab on" data-i18n="tabPrompts" onclick="cpTab('prompts',this)">⚡ Idei rapide</button>
-            <button class="cpanel-tab" data-i18n="tabQuiz" onclick="cpTab('quiz',this)">🧠 Quiz AI</button>
-            <button class="cpanel-tab" data-i18n="tabKeys" onclick="cpTab('keys',this)">⌨️ Shortcuts</button>
+            <button class="cpanel-tab on" data-i18n="tabPrompts" data-onclick="cpTab" data-arg="prompts">⚡ Idei rapide</button>
+            <button class="cpanel-tab" data-i18n="tabQuiz" data-onclick="cpTab" data-arg="quiz">🧠 Quiz AI</button>
+            <button class="cpanel-tab" data-i18n="tabKeys" data-onclick="cpTab" data-arg="keys">⌨️ Shortcuts</button>
           </div>
           <div class="cpanel-body" id="cpanel-body"></div>
         </div>
@@ -1008,25 +1008,25 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
     <p class="ssub" data-i18n="exSub">Toate sunt gratuite. Fă clic pentru a le deschide direct.</p>
     <p class="ssub" data-i18n="exNote" style="font-size:.78rem">Planurile gratuite și condițiile furnizorilor se schimbă des; catalogul a fost verificat doar parțial la 11.10.2026 — confirmă pe site-ul fiecărui serviciu.</p>
     <div class="fbar">
-      <button class="fchip on" onclick="exF('all',this)" data-i18n="fAll">✦ Toate</button>
-      <button class="fchip" onclick="exF('anon',this)" data-i18n="fAnon">🔒 Fără cont</button>
-      <button class="fchip" onclick="exF('local',this)" data-i18n="fLocal">🖥️ Local (browser)</button>
-      <button class="fchip" onclick="exF('general',this)" data-i18n="fChat">💬 Chat</button>
-      <button class="fchip" onclick="exF('research',this)" data-i18n="fRes">🔍 Cercetare</button>
-      <button class="fchip" onclick="exF('image',this)" data-i18n="fImg">🎨 Imagini</button>
-      <button class="fchip" onclick="exF('video',this)" data-i18n="fVid">🎬 Video AI</button>
-      <button class="fchip" onclick="exF('media',this)" data-i18n="fMed">🎵 Media</button>
-      <button class="fchip" onclick="exF('code',this)" data-i18n="fCod">💻 Cod</button>
-      <button class="fchip" onclick="exF('writing',this)" data-i18n="fWri">✍️ Scriere</button>
-      <button class="fchip" onclick="exF('productivity',this)" data-i18n="fProd">📊 Productivitate</button>
-      <button class="fchip" onclick="exF('creative',this)" data-i18n="fCrea">🎨 Creativ</button>
+      <button class="fchip on" data-onclick="exF" data-arg="all" data-i18n="fAll">✦ Toate</button>
+      <button class="fchip" data-onclick="exF" data-arg="anon" data-i18n="fAnon">🔒 Fără cont</button>
+      <button class="fchip" data-onclick="exF" data-arg="local" data-i18n="fLocal">🖥️ Local (browser)</button>
+      <button class="fchip" data-onclick="exF" data-arg="general" data-i18n="fChat">💬 Chat</button>
+      <button class="fchip" data-onclick="exF" data-arg="research" data-i18n="fRes">🔍 Cercetare</button>
+      <button class="fchip" data-onclick="exF" data-arg="image" data-i18n="fImg">🎨 Imagini</button>
+      <button class="fchip" data-onclick="exF" data-arg="video" data-i18n="fVid">🎬 Video AI</button>
+      <button class="fchip" data-onclick="exF" data-arg="media" data-i18n="fMed">🎵 Media</button>
+      <button class="fchip" data-onclick="exF" data-arg="code" data-i18n="fCod">💻 Cod</button>
+      <button class="fchip" data-onclick="exF" data-arg="writing" data-i18n="fWri">✍️ Scriere</button>
+      <button class="fchip" data-onclick="exF" data-arg="productivity" data-i18n="fProd">📊 Productivitate</button>
+      <button class="fchip" data-onclick="exF" data-arg="creative" data-i18n="fCrea">🎨 Creativ</button>
     </div>
     <div class="aigrid" id="aigrid"></div>
     <footer class="site-footer" style="max-width:100%;padding-top:32px;margin-top:16px">
       <div class="fleg" data-i18n="footCopy">© 2026 AI Liber — Proiect independent.</div>
       <div class="foot-right">
-        <div class="foot-links"><a onclick="openLegal('privacy')" data-i18n="footPriv">Confidențialitate</a><span>·</span><a onclick="openLegal('terms')" data-i18n="footTerms">Termeni</a><span>·</span><a onclick="openLegal('cookies')" data-i18n="footCook">Cookie-uri</a><span>·</span><a onclick="openLegal('gdpr')" data-i18n="footGDPR">GDPR</a></div>
-        <select class="lang-sel-foot" onchange="setLang(this.value)" data-i18n-aria="langLabel" aria-label="Limbă / Language">
+        <div class="foot-links"><a data-onclick="openLegal" data-arg="privacy" data-i18n="footPriv">Confidențialitate</a><span>·</span><a data-onclick="openLegal" data-arg="terms" data-i18n="footTerms">Termeni</a><span>·</span><a data-onclick="openLegal" data-arg="cookies" data-i18n="footCook">Cookie-uri</a><span>·</span><a data-onclick="openLegal" data-arg="gdpr" data-i18n="footGDPR">GDPR</a></div>
+        <select class="lang-sel-foot" data-onchange="setLang" data-i18n-aria="langLabel" aria-label="Limbă / Language">
   <option value="ro" selected>Română</option>
   <option value="en">English</option>
   <option value="fr">Français</option>
@@ -1053,8 +1053,8 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
     <footer class="site-footer" style="max-width:100%;padding-top:28px;margin-top:12px">
       <div class="fleg" data-i18n="footCopy">© 2026 AI Liber — Creat cu ❤️ în România</div>
       <div class="foot-right">
-        <div class="foot-links"><a onclick="openLegal('privacy')" data-i18n="footPriv">Confidențialitate</a><span>·</span><a onclick="openLegal('terms')" data-i18n="footTerms">Termeni</a><span>·</span><a onclick="openLegal('cookies')" data-i18n="footCook">Cookie-uri</a><span>·</span><a onclick="openLegal('gdpr')" data-i18n="footGDPR">GDPR</a></div>
-        <select class="lang-sel-foot" onchange="setLang(this.value)" aria-label="Limbă / Language">
+        <div class="foot-links"><a data-onclick="openLegal" data-arg="privacy" data-i18n="footPriv">Confidențialitate</a><span>·</span><a data-onclick="openLegal" data-arg="terms" data-i18n="footTerms">Termeni</a><span>·</span><a data-onclick="openLegal" data-arg="cookies" data-i18n="footCook">Cookie-uri</a><span>·</span><a data-onclick="openLegal" data-arg="gdpr" data-i18n="footGDPR">GDPR</a></div>
+        <select class="lang-sel-foot" data-onchange="setLang" aria-label="Limbă / Language">
   <option value="ro" selected>Română</option>
   <option value="en">English</option>
   <option value="fr">Français</option>
@@ -1073,10 +1073,10 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
   <div class="tips-wrap">
     <h2 class="stit" data-i18n="navLegal" style="margin-bottom:12px">🔒 Legal</h2>
     <div style="display:flex;gap:0;border-bottom:1px solid var(--bdr);margin-bottom:16px;overflow-x:auto">
-      <button class="ltab on" data-tab="privacy" onclick="openLegal('privacy')" data-i18n="ltPriv" style="flex:1;padding:9px 4px;border:none;border-bottom:2px solid transparent;background:none;font-family:'Nunito',sans-serif;font-size:.75rem;font-weight:700;cursor:pointer;color:var(--mut);white-space:nowrap;transition:all .16s;min-width:80px">🔒 Confidențialitate</button>
-      <button class="ltab" data-tab="terms" onclick="openLegal('terms')" data-i18n="ltTerms" style="flex:1;padding:9px 4px;border:none;border-bottom:2px solid transparent;background:none;font-family:'Nunito',sans-serif;font-size:.75rem;font-weight:700;cursor:pointer;color:var(--mut);white-space:nowrap;transition:all .16s;min-width:60px">📋 Termeni</button>
-      <button class="ltab" data-tab="cookies" onclick="openLegal('cookies')" data-i18n="ltCook" style="flex:1;padding:9px 4px;border:none;border-bottom:2px solid transparent;background:none;font-family:'Nunito',sans-serif;font-size:.75rem;font-weight:700;cursor:pointer;color:var(--mut);white-space:nowrap;transition:all .16s;min-width:70px">🍪 Cookie-uri</button>
-      <button class="ltab" data-tab="gdpr" onclick="openLegal('gdpr')" data-i18n="ltGDPR" style="flex:1;padding:9px 4px;border:none;border-bottom:2px solid transparent;background:none;font-family:'Nunito',sans-serif;font-size:.75rem;font-weight:700;cursor:pointer;color:var(--mut);white-space:nowrap;transition:all .16s;min-width:60px">🛡️ GDPR</button>
+      <button class="ltab on" data-tab="privacy" data-onclick="openLegal" data-arg="privacy" data-i18n="ltPriv" style="flex:1;padding:9px 4px;border:none;border-bottom:2px solid transparent;background:none;font-family:'Nunito',sans-serif;font-size:.75rem;font-weight:700;cursor:pointer;color:var(--mut);white-space:nowrap;transition:all .16s;min-width:80px">🔒 Confidențialitate</button>
+      <button class="ltab" data-tab="terms" data-onclick="openLegal" data-arg="terms" data-i18n="ltTerms" style="flex:1;padding:9px 4px;border:none;border-bottom:2px solid transparent;background:none;font-family:'Nunito',sans-serif;font-size:.75rem;font-weight:700;cursor:pointer;color:var(--mut);white-space:nowrap;transition:all .16s;min-width:60px">📋 Termeni</button>
+      <button class="ltab" data-tab="cookies" data-onclick="openLegal" data-arg="cookies" data-i18n="ltCook" style="flex:1;padding:9px 4px;border:none;border-bottom:2px solid transparent;background:none;font-family:'Nunito',sans-serif;font-size:.75rem;font-weight:700;cursor:pointer;color:var(--mut);white-space:nowrap;transition:all .16s;min-width:70px">🍪 Cookie-uri</button>
+      <button class="ltab" data-tab="gdpr" data-onclick="openLegal" data-arg="gdpr" data-i18n="ltGDPR" style="flex:1;padding:9px 4px;border:none;border-bottom:2px solid transparent;background:none;font-family:'Nunito',sans-serif;font-size:.75rem;font-weight:700;cursor:pointer;color:var(--mut);white-space:nowrap;transition:all .16s;min-width:60px">🛡️ GDPR</button>
     </div>
     <div class="lmod-body" id="legal-page-body" style="max-width:680px;margin:0 auto"></div>
   </div>
@@ -1084,7 +1084,7 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
 </main>
 
 <!-- SETTINGS -->
-<div class="ov" id="sov" onclick="sovClick(event)">
+<div class="ov" id="sov" data-onclick="sovClick">
   <div class="modal">
     <h2 data-i18n="settH">⚙️ Chei API</h2>
     <p class="msub" data-i18n-html="settP">Modelele ✅ <strong>nu au nevoie de cheie</strong>. Celelalte necesită o cheie API — multe disponibile complet gratuit.</p>
@@ -1093,7 +1093,7 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
       <span data-i18n="keyWarnBody">Cheile sunt stocate local în browserul tău, obscurizate cu AES-GCM. Aceasta <strong>NU</strong> este criptare robustă: un script malițios rulat pe pagină sau o extensie de browser le poate recupera. Folosește chei cu limite de buget / rate limits pe contul providerului și revocă-le dacă bănuiești compromis. Cheile persistă doar pe durata sesiunii acestei file (rămân după reîncărcare, dar într-o filă nouă sau după repornirea browserului trebuie reintroduse).</span>
     </div>
     <div id="kbody"></div>
-    <div class="mbtns"><button class="btn btn-s" onclick="closeSett()" data-i18n="settClose">Închide</button></div>
+    <div class="mbtns"><button class="btn btn-s" data-onclick="closeSett" data-i18n="settClose">Închide</button></div>
   </div>
 </div>
 
@@ -1335,7 +1335,7 @@ chatPH:'Scrie un mesaj… (Enter = trimite · Shift+Enter = rând nou)',
 lPriv:`<h3>1. Cine suntem</h3><p><strong><span class="logo-ai">AI</span> <span class="logo-lib">Liber</span></strong> este un proiect independent din România. Nu avem servere — aplicația rulează complet în browserul tău. Cheile API plătite sunt obscurizate cu <strong>AES-256-GCM</strong> în localStorage (niciodată în text simplu) — vezi nota de securitate: aceasta nu este criptare robustă împotriva unui script malițios sau a unei extensii cu acces la pagină. Contact: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p><h3>2. Ce stocăm</h3><div class="lmod-info">✅ Nicio dată nu este trimisă sau stocată de noi.</div><table class="lmod-table"><tr><th>Date</th><th>Unde</th><th>Scop</th><th>Durată</th></tr><tr><td>Chei API</td><td>localStorage</td><td>Auth AI terți</td><td>Până la ștergere</td></tr><tr><td>Lățime sidebar</td><td>localStorage</td><td>Preferință UI</td><td>Până la ștergere</td></tr><tr><td>Consimțământ</td><td>localStorage</td><td>Evitare banner repetat</td><td>1 an</td></tr><tr><td>Istoric chat</td><td>RAM (sesiune)</td><td>Context chat activ</td><td>La închiderea tab-ului</td></tr></table><h3>3. Servicii terțe</h3><p>Mesajele tale merg <strong>direct</strong> din browserul tău la furnizorul AI ales. AI Liber nu interceptează nimic. Furnizori: Pollinations.AI, DuckDuckGo AI (anonim), AI Horde (voluntari), WebLLM/LM Studio/Ollama (complet local), Anthropic/OpenAI/Google/Groq/Mistral/Perplexity/OpenRouter (cu cheia ta).</p><div class="lmod-warn">⚠️ Nu include date personale sensibile (CNP, parole, date medicale sau financiare) în mesajele trimise la servicii AI terțe.</div><h3>4. Temei juridic &amp; Contact</h3><p>Stocarea locală se face în baza interesului legitim (Art. 6(1)(f) GDPR). Drepturi: vezi tab-ul GDPR. Contact: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p>`,
 lTerms:`<h3>1. Acceptarea termenilor</h3><p>Prin utilizarea <strong><span class="logo-ai">AI</span> <span class="logo-lib">Liber</span></strong> accepți prezenții termeni. Nu furnizăm servicii AI proprii și nu suntem afiliați niciunui furnizor AI listat.</p><h3>2. Utilizare</h3><p><strong>Permisă:</strong> uz personal, educațional, non-comercial; modificarea și redistribuirea codului sursă.</p><p><strong>Interzisă:</strong> conținut ilegal sau defăimător; eludarea limitelor furnizorilor AI; utilizarea cheilor API ale altor persoane fără consimțământ.</p><h3>3. Chei API &amp; responsabilitate</h3><p>Cheile API sunt stocate <strong>exclusiv local</strong> în browserul tău — nu sunt accesibile nouă. Ești singur responsabil pentru securizarea și costurile generate.</p><div class="lmod-warn">⚠️ Conținutul AI poate fi inexact. Nu lua decizii medicale, juridice sau financiare bazate exclusiv pe AI fără verificare cu un specialist.</div><h3>4. Contact</h3><p>AI Liber este furnizat „ca atare", fără garanții. Legislație aplicabilă: română și europeană (GDPR, AI Act). Contact: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p>`,
 lCook:`<h3>Cookie-uri și stocare locală</h3><p>AI Liber <strong>nu folosește cookie-uri tradiționale</strong>. Folosim exclusiv <strong>localStorage</strong> — stocare locală controlată 100% de tine.</p><div class="lmod-info">✅ Zero tracking. Zero cookies de la terți. Zero reclame. Nu conținem cod de analiză, nu avem pixeli publicitari.</div><table class="lmod-table"><tr><th>Cheie</th><th>Conținut</th><th>Obligatoriu</th></tr><tr><td>ailib_sbw</td><td>Lățimea sidebar-ului</td><td>Nu — funcțional</td></tr><tr><td>aik_enc_*</td><td>Cheile API criptate AES-256-GCM (nu text simplu)</td><td>Nu — opțional</td></tr><tr><td>ailib_ksalt</td><td>Salt criptografic pentru derivarea cheii</td><td>Da — dacă folosești chei API</td></tr><tr><td>ailib_consent</td><td>„accepted" sau „rejected"</td><td>Da — esențial</td></tr></table><h3>Ce NU stocăm niciodată</h3><ul><li>Istoricul conversațiilor (se șterge la închiderea tab-ului)</li><li>Date de identificare personală (nume, email, IP, locație)</li><li>Date de utilizare sau statistici</li></ul><h3>Cum ștergi datele</h3><p><strong>Chrome/Edge:</strong> F12 → Application → Local Storage → Clear<br><strong>Firefox:</strong> F12 → Storage → Local Storage → Delete All<br>Sau folosește butonul din secțiunea GDPR.</p>`,
-lGDPR:`<h3>Drepturile tale conform GDPR</h3><p>Toate datele stocate de AI Liber se află exclusiv în <strong>localStorage-ul browserului tău</strong>. Nu deținem servere cu datele tale.</p><h3>📋 Dreptul de acces (Art. 15)</h3><p>Accesează: F12 → Application → Local Storage → ai-liber.ro</p><h3>✏️ Dreptul de rectificare (Art. 16)</h3><p>Modifică cheile API direct din ⚙️ Configurează chei API sau din localStorage.</p><h3>🗑️ Dreptul la ștergere — „dreptul de a fi uitat" (Art. 17)</h3><p>Șterge toate datele instantaneu:</p><div style="text-align:center;margin:16px 0"><button onclick="eraseAllData()" style="padding:11px 24px;border-radius:100px;background:#DC2626;color:#fff;border:none;font-family:'Nunito',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer" data-i18n-html="eraseBtn">🗑️</button></div><h3>🚫 Dreptul de opoziție (Art. 21)</h3><p>Refuză bannerul de consimțământ. Conversațiile anonime (Pollinations, DuckDuckGo, AI Horde) funcționează fără nicio stocare locală.</p><h3>📬 Autoritate &amp; Contact</h3><p><strong>ANSPDCP</strong>: <a href="https://www.dataprotection.ro" target="_blank" rel="noopener noreferrer">dataprotection.ro</a> · +40.318.059.211<br>Contact AI Liber: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p>`,
+lGDPR:`<h3>Drepturile tale conform GDPR</h3><p>Toate datele stocate de AI Liber se află exclusiv în <strong>localStorage-ul browserului tău</strong>. Nu deținem servere cu datele tale.</p><h3>📋 Dreptul de acces (Art. 15)</h3><p>Accesează: F12 → Application → Local Storage → ai-liber.ro</p><h3>✏️ Dreptul de rectificare (Art. 16)</h3><p>Modifică cheile API direct din ⚙️ Configurează chei API sau din localStorage.</p><h3>🗑️ Dreptul la ștergere — „dreptul de a fi uitat" (Art. 17)</h3><p>Șterge toate datele instantaneu:</p><div style="text-align:center;margin:16px 0"><button data-onclick="eraseAllData" style="padding:11px 24px;border-radius:100px;background:#DC2626;color:#fff;border:none;font-family:'Nunito',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer" data-i18n-html="eraseBtn">🗑️</button></div><h3>🚫 Dreptul de opoziție (Art. 21)</h3><p>Refuză bannerul de consimțământ. Conversațiile anonime (Pollinations, DuckDuckGo, AI Horde) funcționează fără nicio stocare locală.</p><h3>📬 Autoritate &amp; Contact</h3><p><strong>ANSPDCP</strong>: <a href="https://www.dataprotection.ro" target="_blank" rel="noopener noreferrer">dataprotection.ro</a> · +40.318.059.211<br>Contact AI Liber: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p>`,
 
 },
 en:{
@@ -1573,7 +1573,7 @@ chatPH:'Write a message… (Enter = send · Shift+Enter = new line)',
 lPriv:`<h3>1. Who we are</h3><p><strong><span class="logo-ai">AI</span> <span class="logo-lib">Liber</span></strong> is an independent, non-commercial project from Romania. We have no servers — the app runs entirely in your browser. Paid API keys are obfuscated with <strong>AES-256-GCM</strong> in localStorage (never plaintext) — see the security note: this is not strong encryption against a malicious script or extension with access to the page. Contact: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p><h3>2. What we store</h3><div class="lmod-info">✅ <strong>No data is sent to or stored by us.</strong></div><table class="lmod-table"><tr><th>Data</th><th>Location</th><th>Purpose</th><th>Duration</th></tr><tr><td>API keys</td><td>localStorage</td><td>Auth to third-party AI</td><td>Until manually deleted</td></tr><tr><td>Sidebar width</td><td>localStorage</td><td>UI preference</td><td>Until deleted</td></tr><tr><td>Cookie consent</td><td>localStorage</td><td>Avoid repeat banner</td><td>1 year</td></tr><tr><td>Chat history</td><td>RAM (session)</td><td>Active chat context</td><td>When tab closes</td></tr></table><h3>3. Third-party services</h3><p>Your messages go <strong>directly</strong> from your browser to the chosen AI provider. AI Liber intercepts nothing. Providers: Pollinations.AI, DuckDuckGo AI (anonymous), AI Horde (volunteers), WebLLM/LM Studio/Ollama (fully local), Anthropic/OpenAI/Google/Groq/Mistral/Perplexity/OpenRouter (with your own key).</p><div class="lmod-warn">⚠️ Do not include sensitive personal data (ID numbers, passwords, medical or financial data) in messages sent to third-party AI services.</div><h3>4. Legal basis &amp; Contact</h3><p>Local storage is based on legitimate interest (Art. 6(1)(f) GDPR). Rights: see GDPR tab. Contact: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p>`,
 lTerms:`<h3>1. Acceptance</h3><p>By using <strong><span class="logo-ai">AI</span> <span class="logo-lib">Liber</span></strong> you accept these terms. We do not provide our own AI services and are not affiliated with any listed AI provider.</p><h3>2. Permitted &amp; prohibited use</h3><p><strong>Permitted:</strong> personal, educational and non-commercial use; modifying and redistributing the source code.</p><p><strong>Prohibited:</strong> illegal or defamatory content; circumventing AI provider limits; using others' API keys without consent.</p><h3>3. API keys &amp; responsibility</h3><p>API keys are stored <strong>locally only</strong> — we cannot access them. You are solely responsible for their security and any costs incurred.</p><div class="lmod-warn">⚠️ AI content may be inaccurate. Do not make medical, legal or financial decisions based solely on AI responses without expert verification.</div><h3>4. Contact</h3><p>AI Liber is provided "as-is" with no guarantee of continuous availability. Applicable law: Romanian and European (GDPR, AI Act). Contact: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p>`,
 lCook:`<h3>Cookies &amp; local storage</h3><p>AI Liber <strong>does not use traditional cookies</strong>. We use only <strong>localStorage</strong> — local storage controlled entirely by you.</p><div class="lmod-info">✅ <strong>Zero tracking. Zero third-party cookies. Zero ads.</strong> No analytics code, no ad pixels, no behavior tracking.</div><table class="lmod-table"><tr><th>Key</th><th>Content</th><th>Required</th></tr><tr><td>ailib_sbw</td><td>Sidebar width</td><td>No — functional</td></tr><tr><td>aik_enc_*</td><td>API keys encrypted with AES-256-GCM (never plaintext)</td><td>No — optional</td></tr><tr><td>ailib_ksalt</td><td>Cryptographic salt for key derivation</td><td>Yes — if you use API keys</td></tr><tr><td>ailib_consent</td><td>"accepted" or "rejected"</td><td>Yes — essential</td></tr></table><h3>What we NEVER store</h3><ul><li>Chat history (deleted when tab closes)</li><li>Personal identification data (name, email, IP, location)</li><li>Usage statistics</li></ul><h3>How to delete your data</h3><p><strong>Chrome/Edge:</strong> F12 → Application → Local Storage → Clear<br><strong>Firefox:</strong> F12 → Storage → Local Storage → Delete All<br>Or use the button in the GDPR section.</p>`,
-lGDPR:`<h3>Your GDPR rights</h3><p>All data stored by AI Liber is exclusively in <strong>your browser's localStorage</strong>. We have no servers with your data.</p><h3>📋 Right of access (Art. 15)</h3><p>Access: F12 → Application → Local Storage → ai-liber.ro</p><h3>✏️ Right to rectification (Art. 16)</h3><p>Modify API keys directly from ⚙️ Configure API Keys or from localStorage.</p><h3>🗑️ Right to erasure — "right to be forgotten" (Art. 17)</h3><p>Delete all data instantly:</p><div style="text-align:center;margin:16px 0"><button onclick="eraseAllData()" style="padding:11px 24px;border-radius:100px;background:#DC2626;color:#fff;border:none;font-family:'Nunito',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer" data-i18n-html="eraseBtn">🗑️</button></div><h3>🚫 Right to object (Art. 21)</h3><p>Decline the consent banner. Anonymous chats (Pollinations, DuckDuckGo, AI Horde) work with zero local storage.</p><h3>📬 Supervisory authority &amp; Contact</h3><p><strong>ANSPDCP (Romania)</strong>: <a href="https://www.dataprotection.ro" target="_blank" rel="noopener noreferrer">dataprotection.ro</a><br>AI Liber contact: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p>`,
+lGDPR:`<h3>Your GDPR rights</h3><p>All data stored by AI Liber is exclusively in <strong>your browser's localStorage</strong>. We have no servers with your data.</p><h3>📋 Right of access (Art. 15)</h3><p>Access: F12 → Application → Local Storage → ai-liber.ro</p><h3>✏️ Right to rectification (Art. 16)</h3><p>Modify API keys directly from ⚙️ Configure API Keys or from localStorage.</p><h3>🗑️ Right to erasure — "right to be forgotten" (Art. 17)</h3><p>Delete all data instantly:</p><div style="text-align:center;margin:16px 0"><button data-onclick="eraseAllData" style="padding:11px 24px;border-radius:100px;background:#DC2626;color:#fff;border:none;font-family:'Nunito',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer" data-i18n-html="eraseBtn">🗑️</button></div><h3>🚫 Right to object (Art. 21)</h3><p>Decline the consent banner. Anonymous chats (Pollinations, DuckDuckGo, AI Horde) work with zero local storage.</p><h3>📬 Supervisory authority &amp; Contact</h3><p><strong>ANSPDCP (Romania)</strong>: <a href="https://www.dataprotection.ro" target="_blank" rel="noopener noreferrer">dataprotection.ro</a><br>AI Liber contact: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p>`,
 },
 it:{
 ariaCloseSB:'Chiudi barra laterale',ariaToggleSB:'Attiva/disattiva barra dei modelli',
@@ -1810,7 +1810,7 @@ chatPH:'Scrivi un messaggio… (Invio = invia · Shift+Invio = nuova riga)',
 lPriv:`<h3>1. Chi siamo</h3><p><strong><span class="logo-ai">AI</span> <span class="logo-lib">Liber</span></strong> è un progetto indipendente e non commerciale della Romania. Nessun server — l'applicazione funziona interamente nel tuo browser. Contatto: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p><h3>2. Cosa conserviamo</h3><div class="lmod-info">✅ Nessun dato viene inviato o conservato da noi.</div><table class="lmod-table"><tr><th>Dati</th><th>Posizione</th><th>Scopo</th><th>Durata</th></tr><tr><td>Chiavi API</td><td>localStorage</td><td>Auth servizi IA terzi</td><td>Fino alla cancellazione</td></tr><tr><td>Larghezza sidebar</td><td>localStorage</td><td>Preferenza UI</td><td>Fino alla cancellazione</td></tr><tr><td>Consenso cookie</td><td>localStorage</td><td>Evitare banner ripetuto</td><td>1 anno</td></tr><tr><td>Cronologia chat</td><td>RAM (sessione)</td><td>Contesto chat attivo</td><td>Alla chiusura della scheda</td></tr></table><h3>3. Servizi di terze parti</h3><p>I tuoi messaggi vanno <strong>direttamente</strong> dal browser al fornitore IA scelto. AI Liber non intercetta nulla. Base legale: interesse legittimo (Art. 6(1)(f) GDPR). Contatto: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p>`,
 lTerms:`<h3>1. Accettazione</h3><p>Utilizzando <strong><span class="logo-ai">AI</span> <span class="logo-lib">Liber</span></strong>, accetti questi termini. Non forniamo servizi IA propri e non siamo affiliati a nessun fornitore elencato.</p><h3>2. Uso permesso &amp; vietato</h3><p><strong>Permesso:</strong> uso personale, educativo e non commerciale; modifica e redistribuzione del codice sorgente.</p><p><strong>Vietato:</strong> contenuto illegale o diffamatorio; elusione dei limiti dei fornitori IA; uso delle chiavi API altrui senza consenso.</p><h3>3. Responsabilità</h3><p>Le chiavi API sono conservate solo localmente — non abbiamo accesso. Sei l'unico responsabile della loro sicurezza e dei costi generati.</p><div class="lmod-warn">⚠️ Il contenuto IA può essere impreciso. Non prendere decisioni mediche, legali o finanziarie basandoti solo sull'IA.</div><p>Contatto: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p>`,
 lCook:`<h3>Cookie &amp; archiviazione locale</h3><p>AI Liber <strong>non usa cookie tradizionali</strong>. Usiamo solo <strong>localStorage</strong> — archiviazione locale controllata al 100% da te.</p><div class="lmod-info">✅ Zero tracking. Zero cookie di terze parti. Zero pubblicità.</div><table class="lmod-table"><tr><th>Chiave</th><th>Contenuto</th><th>Obbligatorio</th></tr><tr><td>ailib_sbw</td><td>Larghezza sidebar</td><td>No — funzionale</td></tr><tr><td>sk_*</td><td>Le tue chiavi API</td><td>No — opzionale</td></tr><tr><td>ailib_consent</td><td>«accepted» o «rejected»</td><td>Sì — essenziale</td></tr></table><h3>Cosa non archiviamo mai</h3><ul><li>Cronologia chat (eliminata alla chiusura della scheda)</li><li>Dati di identificazione personale</li><li>Statistiche di utilizzo</li></ul>`,
-lGDPR:`<h3>I tuoi diritti GDPR</h3><p>Tutti i dati archiviati da AI Liber si trovano esclusivamente nel <strong>localStorage del tuo browser</strong>. Non abbiamo server con i tuoi dati.</p><h3>📋 Diritto di accesso (Art. 15)</h3><p>Accedi: F12 → Application → Local Storage → ai-liber.ro</p><h3>✏️ Diritto di rettifica (Art. 16)</h3><p>Modifica le chiavi API da ⚙️ Configura chiavi API.</p><h3>🗑️ Diritto alla cancellazione — «diritto all'oblio» (Art. 17)</h3><p>Cancella tutti i dati istantaneamente:</p><div style="text-align:center;margin:16px 0"><button onclick="eraseAllData()" style="padding:11px 24px;border-radius:100px;background:#DC2626;color:#fff;border:none;font-family:'Nunito',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer" data-i18n-html="eraseBtn">🗑️</button></div><h3>📬 Autorità &amp; Contatto</h3><p><strong>Garante Privacy</strong>: <a href="https://www.garanteprivacy.it" target="_blank" rel="noopener noreferrer">garanteprivacy.it</a><br>Contatto AI Liber: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p>`,
+lGDPR:`<h3>I tuoi diritti GDPR</h3><p>Tutti i dati archiviati da AI Liber si trovano esclusivamente nel <strong>localStorage del tuo browser</strong>. Non abbiamo server con i tuoi dati.</p><h3>📋 Diritto di accesso (Art. 15)</h3><p>Accedi: F12 → Application → Local Storage → ai-liber.ro</p><h3>✏️ Diritto di rettifica (Art. 16)</h3><p>Modifica le chiavi API da ⚙️ Configura chiavi API.</p><h3>🗑️ Diritto alla cancellazione — «diritto all'oblio» (Art. 17)</h3><p>Cancella tutti i dati istantaneamente:</p><div style="text-align:center;margin:16px 0"><button data-onclick="eraseAllData" style="padding:11px 24px;border-radius:100px;background:#DC2626;color:#fff;border:none;font-family:'Nunito',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer" data-i18n-html="eraseBtn">🗑️</button></div><h3>📬 Autorità &amp; Contatto</h3><p><strong>Garante Privacy</strong>: <a href="https://www.garanteprivacy.it" target="_blank" rel="noopener noreferrer">garanteprivacy.it</a><br>Contatto AI Liber: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p>`,
 },
 es:{
 ariaCloseSB:'Cerrar barra lateral',ariaToggleSB:'Alternar barra lateral de modelos',
@@ -2047,7 +2047,7 @@ chatPH:'Escribe un mensaje… (Enter = enviar · Shift+Enter = nueva línea)',
 lPriv:`<h3>1. Quiénes somos</h3><p><strong><span class="logo-ai">AI</span> <span class="logo-lib">Liber</span></strong> es un proyecto independiente y no comercial de Rumanía. Sin servidores propios — la aplicación funciona completamente en tu navegador. Contacto: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p><h3>2. Qué almacenamos</h3><div class="lmod-info">✅ No enviamos ni almacenamos ningún dato.</div><table class="lmod-table"><tr><th>Datos</th><th>Ubicación</th><th>Propósito</th><th>Duración</th></tr><tr><td>Claves API</td><td>localStorage</td><td>Auth servicios IA terceros</td><td>Hasta eliminación manual</td></tr><tr><td>Ancho de sidebar</td><td>localStorage</td><td>Preferencia UI</td><td>Hasta eliminación</td></tr><tr><td>Consentimiento</td><td>localStorage</td><td>Evitar banner repetido</td><td>1 año</td></tr><tr><td>Historial de chat</td><td>RAM (sesión)</td><td>Contexto de chat activo</td><td>Al cerrar la pestaña</td></tr></table><h3>3. Servicios de terceros</h3><p>Tus mensajes van <strong>directamente</strong> de tu navegador al proveedor de IA elegido. AI Liber no intercepta nada. Base legal: interés legítimo (Art. 6(1)(f) RGPD). Contacto: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p>`,
 lTerms:`<h3>1. Aceptación</h3><p>Al usar <strong><span class="logo-ai">AI</span> <span class="logo-lib">Liber</span></strong>, aceptas estos términos. No proporcionamos servicios de IA propios y no estamos afiliados a ningún proveedor listado.</p><h3>2. Uso permitido &amp; prohibido</h3><p><strong>Permitido:</strong> uso personal, educativo y no comercial; modificación y redistribución del código fuente.</p><p><strong>Prohibido:</strong> contenido ilegal o difamatorio; eludir los límites de los proveedores de IA; usar claves API de terceros sin consentimiento.</p><h3>3. Responsabilidad</h3><p>Las claves API se almacenan <strong>solo localmente</strong> — no tenemos acceso. Eres el único responsable de su seguridad y de los costes generados.</p><div class="lmod-warn">⚠️ El contenido de IA puede ser inexacto. No tomes decisiones médicas, legales o financieras basadas únicamente en IA.</div><p>Ley aplicable: española y europea (RGPD, Ley de IA). Contacto: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p>`,
 lCook:`<h3>Cookies &amp; almacenamiento local</h3><p>AI Liber <strong>no usa cookies tradicionales</strong>. Solo usamos <strong>localStorage</strong> — controlado 100% por ti.</p><div class="lmod-info">✅ Cero rastreo. Cero cookies de terceros. Cero anuncios.</div><table class="lmod-table"><tr><th>Clave</th><th>Contenido</th><th>Requerido</th></tr><tr><td>ailib_sbw</td><td>Ancho de la barra lateral</td><td>No — funcional</td></tr><tr><td>sk_*</td><td>Tus claves API</td><td>No — opcional</td></tr><tr><td>ailib_consent</td><td>«accepted» o «rejected»</td><td>Sí — esencial</td></tr></table><h3>Qué NO almacenamos nunca</h3><ul><li>Historial de conversaciones (se elimina al cerrar la pestaña)</li><li>Datos de identificación personal</li><li>Estadísticas de uso</li></ul>`,
-lGDPR:`<h3>Tus derechos RGPD</h3><p>Todos los datos almacenados por AI Liber están exclusivamente en <strong>el localStorage de tu navegador</strong>. No tenemos servidores con tus datos.</p><h3>📋 Derecho de acceso (Art. 15)</h3><p>Accede: F12 → Application → Local Storage → ai-liber.ro</p><h3>✏️ Derecho de rectificación (Art. 16)</h3><p>Modifica las claves API desde ⚙️ Configurar claves API.</p><h3>🗑️ Derecho al olvido (Art. 17)</h3><p>Elimina todos los datos instantáneamente:</p><div style="text-align:center;margin:16px 0"><button onclick="eraseAllData()" style="padding:11px 24px;border-radius:100px;background:#DC2626;color:#fff;border:none;font-family:'Nunito',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer" data-i18n-html="eraseBtn">🗑️</button></div><h3>📬 Autoridad &amp; Contacto</h3><p><strong>AEPD</strong>: <a href="https://www.aepd.es" target="_blank" rel="noopener noreferrer">aepd.es</a><br>Contacto AI Liber: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p>`,
+lGDPR:`<h3>Tus derechos RGPD</h3><p>Todos los datos almacenados por AI Liber están exclusivamente en <strong>el localStorage de tu navegador</strong>. No tenemos servidores con tus datos.</p><h3>📋 Derecho de acceso (Art. 15)</h3><p>Accede: F12 → Application → Local Storage → ai-liber.ro</p><h3>✏️ Derecho de rectificación (Art. 16)</h3><p>Modifica las claves API desde ⚙️ Configurar claves API.</p><h3>🗑️ Derecho al olvido (Art. 17)</h3><p>Elimina todos los datos instantáneamente:</p><div style="text-align:center;margin:16px 0"><button data-onclick="eraseAllData" style="padding:11px 24px;border-radius:100px;background:#DC2626;color:#fff;border:none;font-family:'Nunito',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer" data-i18n-html="eraseBtn">🗑️</button></div><h3>📬 Autoridad &amp; Contacto</h3><p><strong>AEPD</strong>: <a href="https://www.aepd.es" target="_blank" rel="noopener noreferrer">aepd.es</a><br>Contacto AI Liber: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p>`,
 },
 pt:{
 ariaCloseSB:'Fechar barra lateral',ariaToggleSB:'Alternar barra lateral de modelos',
@@ -2284,7 +2284,7 @@ chatPH:'Escreva uma mensagem… (Enter = enviar · Shift+Enter = nova linha)',
 lPriv:`<h3>1. Quem somos</h3><p><strong><span class="logo-ai">AI</span> <span class="logo-lib">Liber</span></strong> é um projeto independente e não comercial da Romênia. Sem servidores — o aplicativo roda inteiramente no seu navegador. Contato: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p><h3>2. O que armazenamos</h3><div class="lmod-info">✅ Nenhum dado é enviado ou armazenado por nós.</div><table class="lmod-table"><tr><th>Dados</th><th>Local</th><th>Propósito</th><th>Duração</th></tr><tr><td>Chaves API</td><td>localStorage</td><td>Auth serviços IA terceiros</td><td>Até exclusão manual</td></tr><tr><td>Largura da barra lateral</td><td>localStorage</td><td>Preferência UI</td><td>Até exclusão</td></tr><tr><td>Consentimento</td><td>localStorage</td><td>Evitar banner repetido</td><td>1 ano</td></tr><tr><td>Histórico do chat</td><td>RAM (sessão)</td><td>Contexto do chat ativo</td><td>Ao fechar a aba</td></tr></table><h3>3. Serviços de terceiros &amp; Contato</h3><p>Suas mensagens vão <strong>diretamente</strong> do seu navegador ao provedor de IA escolhido. Base legal: interesse legítimo (Art. 6(1)(f) LGPD/RGPD). Contato: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p>`,
 lTerms:`<h3>1. Aceitação</h3><p>Ao usar <strong><span class="logo-ai">AI</span> <span class="logo-lib">Liber</span></strong>, você aceita estes termos. Não fornecemos serviços de IA próprios e não somos afiliados a nenhum provedor listado.</p><h3>2. Uso permitido &amp; proibido</h3><p><strong>Permitido:</strong> uso pessoal, educativo e não comercial; modificação e redistribuição do código fonte.</p><p><strong>Proibido:</strong> conteúdo ilegal ou difamatório; eludir os limites dos provedores de IA; usar chaves API de terceiros sem consentimento.</p><h3>3. Responsabilidade</h3><p>As chaves API são armazenadas apenas localmente — não temos acesso. Você é o único responsável por elas e pelos custos gerados.</p><div class="lmod-warn">⚠️ O conteúdo de IA pode ser impreciso. Não tome decisões médicas, jurídicas ou financeiras baseadas apenas em IA.</div><p>Lei aplicável: LGPD e europeia (RGPD, Lei de IA). Contato: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p>`,
 lCook:`<h3>Cookies &amp; armazenamento local</h3><p>AI Liber <strong>não usa cookies tradicionais</strong>. Usamos apenas <strong>localStorage</strong> — armazenamento local controlado 100% por você.</p><div class="lmod-info">✅ Zero rastreamento. Zero cookies de terceiros. Zero anúncios.</div><table class="lmod-table"><tr><th>Chave</th><th>Conteúdo</th><th>Obrigatório</th></tr><tr><td>ailib_sbw</td><td>Largura da barra lateral</td><td>Não — funcional</td></tr><tr><td>sk_*</td><td>Suas chaves API</td><td>Não — opcional</td></tr><tr><td>ailib_consent</td><td>«accepted» ou «rejected»</td><td>Sim — essencial</td></tr></table><h3>O que nunca armazenamos</h3><ul><li>Histórico de conversas (excluído ao fechar a aba)</li><li>Dados de identificação pessoal</li><li>Estatísticas de uso</li></ul>`,
-lGDPR:`<h3>Seus direitos LGPD/RGPD</h3><p>Todos os dados armazenados pelo AI Liber estão exclusivamente no <strong>localStorage do seu navegador</strong>. Não temos servidores com seus dados.</p><h3>📋 Direito de acesso (Art. 15 RGPD / Art. 18 LGPD)</h3><p>Acesse: F12 → Application → Local Storage → ai-liber.ro</p><h3>✏️ Direito de retificação (Art. 16)</h3><p>Modifique as chaves API de ⚙️ Configurar Chaves API.</p><h3>🗑️ Direito ao esquecimento (Art. 17)</h3><p>Exclua todos os dados instantaneamente:</p><div style="text-align:center;margin:16px 0"><button onclick="eraseAllData()" style="padding:11px 24px;border-radius:100px;background:#DC2626;color:#fff;border:none;font-family:'Nunito',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer" data-i18n-html="eraseBtn">🗑️</button></div><h3>📬 Autoridade &amp; Contato</h3><p><strong>ANPD</strong>: <a href="https://www.gov.br/anpd" target="_blank" rel="noopener noreferrer">gov.br/anpd</a><br>Contato AI Liber: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p>`,
+lGDPR:`<h3>Seus direitos LGPD/RGPD</h3><p>Todos os dados armazenados pelo AI Liber estão exclusivamente no <strong>localStorage do seu navegador</strong>. Não temos servidores com seus dados.</p><h3>📋 Direito de acesso (Art. 15 RGPD / Art. 18 LGPD)</h3><p>Acesse: F12 → Application → Local Storage → ai-liber.ro</p><h3>✏️ Direito de retificação (Art. 16)</h3><p>Modifique as chaves API de ⚙️ Configurar Chaves API.</p><h3>🗑️ Direito ao esquecimento (Art. 17)</h3><p>Exclua todos os dados instantaneamente:</p><div style="text-align:center;margin:16px 0"><button data-onclick="eraseAllData" style="padding:11px 24px;border-radius:100px;background:#DC2626;color:#fff;border:none;font-family:'Nunito',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer" data-i18n-html="eraseBtn">🗑️</button></div><h3>📬 Autoridade &amp; Contato</h3><p><strong>ANPD</strong>: <a href="https://www.gov.br/anpd" target="_blank" rel="noopener noreferrer">gov.br/anpd</a><br>Contato AI Liber: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p>`,
 },
 fr:{
 ariaCloseSB:'Fermer la barre latérale',ariaToggleSB:'Basculer la barre latérale des modèles',
@@ -2521,7 +2521,7 @@ chatPH:'Écrivez un message… (Entrée = envoyer · Maj+Entrée = nouvelle lign
 lPriv:`<h3>1. Qui nous sommes</h3><p><strong><span class="logo-ai">AI</span> <span class="logo-lib">Liber</span></strong> est un projet indépendant et non commercial de Roumanie. Pas de serveurs — l'application fonctionne entièrement dans votre navigateur. Contact : <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p><h3>2. Ce que nous stockons</h3><div class="lmod-info">✅ Aucune donnée n'est envoyée ou stockée par nous.</div><table class="lmod-table"><tr><th>Données</th><th>Emplacement</th><th>But</th><th>Durée</th></tr><tr><td>Clés API</td><td>localStorage</td><td>Auth services IA tiers</td><td>Jusqu'à suppression manuelle</td></tr><tr><td>Largeur sidebar</td><td>localStorage</td><td>Préférence UI</td><td>Jusqu'à suppression</td></tr><tr><td>Consentement</td><td>localStorage</td><td>Éviter bannière répétée</td><td>1 an</td></tr><tr><td>Historique chat</td><td>RAM (session)</td><td>Contexte chat actif</td><td>Fermeture de l'onglet</td></tr></table><h3>3. Services tiers</h3><p>Vos messages vont <strong>directement</strong> de votre navigateur au fournisseur IA choisi. AI Liber n'intercepte rien. Base légale : intérêt légitime (Art. 6(1)(f) RGPD). Contact : <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p>`,
 lTerms:`<h3>1. Acceptation</h3><p>En utilisant <strong><span class="logo-ai">AI</span> <span class="logo-lib">Liber</span></strong>, vous acceptez ces conditions. Nous ne fournissons pas de services IA propres et ne sommes pas affiliés à un fournisseur listé.</p><h3>2. Utilisation permise &amp; interdite</h3><p><strong>Permise :</strong> usage personnel, éducatif et non commercial ; modification et redistribution du code source.</p><p><strong>Interdite :</strong> contenu illégal ou diffamatoire ; contournement des limites des fournisseurs IA ; utilisation des clés API d'autrui sans consentement.</p><h3>3. Responsabilité</h3><p>Les clés API sont stockées <strong>localement uniquement</strong> — nous n'y avons pas accès. Vous êtes seul responsable de leur sécurisation et des coûts générés.</p><div class="lmod-warn">⚠️ Le contenu IA peut être inexact. Ne prenez pas de décisions médicales, juridiques ou financières basées uniquement sur l'IA.</div><p>Droit applicable : français et européen (RGPD, Loi IA). Contact : <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p>`,
 lCook:`<h3>Cookies &amp; stockage local</h3><p>AI Liber <strong>n'utilise pas de cookies traditionnels</strong>. Uniquement <strong>localStorage</strong> — contrôlé 100% par vous.</p><div class="lmod-info">✅ Zéro tracking. Zéro cookie tiers. Zéro publicité.</div><table class="lmod-table"><tr><th>Clé</th><th>Contenu</th><th>Obligatoire</th></tr><tr><td>ailib_sbw</td><td>Largeur sidebar</td><td>Non — fonctionnel</td></tr><tr><td>sk_*</td><td>Vos clés API</td><td>Non — optionnel</td></tr><tr><td>ailib_consent</td><td>« accepted » ou « rejected »</td><td>Oui — essentiel</td></tr></table><h3>Ce que nous ne stockons JAMAIS</h3><ul><li>Historique des conversations (supprimé à la fermeture de l'onglet)</li><li>Données d'identification personnelle</li><li>Statistiques d'utilisation</li></ul>`,
-lGDPR:`<h3>Vos droits RGPD</h3><p>Toutes les données stockées par AI Liber se trouvent exclusivement dans <strong>le localStorage de votre navigateur</strong>. Pas de serveurs avec vos données.</p><h3>📋 Droit d'accès (Art. 15)</h3><p>Accédez : F12 → Application → Local Storage → ai-liber.ro</p><h3>✏️ Droit de rectification (Art. 16)</h3><p>Modifiez les clés API depuis ⚙️ Configurer les clés API.</p><h3>🗑️ Droit à l'effacement — « droit à l'oubli » (Art. 17)</h3><p>Supprimez toutes les données instantanément :</p><div style="text-align:center;margin:16px 0"><button onclick="eraseAllData()" style="padding:11px 24px;border-radius:100px;background:#DC2626;color:#fff;border:none;font-family:'Nunito',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer" data-i18n-html="eraseBtn">🗑️</button></div><h3>📬 Autorité &amp; Contact</h3><p><strong>CNIL</strong> : <a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer">cnil.fr</a><br>Contact AI Liber : <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p>`,
+lGDPR:`<h3>Vos droits RGPD</h3><p>Toutes les données stockées par AI Liber se trouvent exclusivement dans <strong>le localStorage de votre navigateur</strong>. Pas de serveurs avec vos données.</p><h3>📋 Droit d'accès (Art. 15)</h3><p>Accédez : F12 → Application → Local Storage → ai-liber.ro</p><h3>✏️ Droit de rectification (Art. 16)</h3><p>Modifiez les clés API depuis ⚙️ Configurer les clés API.</p><h3>🗑️ Droit à l'effacement — « droit à l'oubli » (Art. 17)</h3><p>Supprimez toutes les données instantanément :</p><div style="text-align:center;margin:16px 0"><button data-onclick="eraseAllData" style="padding:11px 24px;border-radius:100px;background:#DC2626;color:#fff;border:none;font-family:'Nunito',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer" data-i18n-html="eraseBtn">🗑️</button></div><h3>📬 Autorité &amp; Contact</h3><p><strong>CNIL</strong> : <a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer">cnil.fr</a><br>Contact AI Liber : <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p>`,
 },
 de:{
 ariaCloseSB:'Seitenleiste schließen',ariaToggleSB:'Modell-Seitenleiste umschalten',
@@ -2758,7 +2758,7 @@ chatPH:'Nachricht schreiben… (Enter = senden · Shift+Enter = neue Zeile)',
 lPriv:`<h3>1. Wer wir sind</h3><p><strong><span class="logo-ai">AI</span> <span class="logo-lib">Liber</span></strong> ist ein unabhängiges, nicht-kommerzielles Projekt aus Rumänien. Keine eigenen Server — die App läuft vollständig in Ihrem Browser. Kontakt: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p><h3>2. Was wir speichern</h3><div class="lmod-info">✅ Es werden keine Daten von uns gesendet oder gespeichert.</div><table class="lmod-table"><tr><th>Daten</th><th>Ort</th><th>Zweck</th><th>Dauer</th></tr><tr><td>API-Schlüssel</td><td>localStorage</td><td>Auth bei Drittanbieter-KI</td><td>Bis zur manuellen Löschung</td></tr><tr><td>Sidebar-Breite</td><td>localStorage</td><td>UI-Einstellung</td><td>Bis zur Löschung</td></tr><tr><td>Cookie-Zustimmung</td><td>localStorage</td><td>Wiederholtes Banner vermeiden</td><td>1 Jahr</td></tr><tr><td>Chat-Verlauf</td><td>RAM (Sitzung)</td><td>Aktiver Chat-Kontext</td><td>Beim Schließen des Tabs</td></tr></table><h3>3. Drittanbieterdienste</h3><p>Ihre Nachrichten gehen <strong>direkt</strong> von Ihrem Browser zum gewählten KI-Anbieter. AI Liber fängt nichts ab. Rechtsgrundlage: berechtigtes Interesse (Art. 6(1)(f) DSGVO). Kontakt: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p>`,
 lTerms:`<h3>1. Annahme</h3><p>Durch die Nutzung von <strong><span class="logo-ai">AI</span> <span class="logo-lib">Liber</span></strong> akzeptieren Sie diese Bedingungen. Wir stellen keine eigenen KI-Dienste bereit und sind mit keinem gelisteten KI-Anbieter verbunden.</p><h3>2. Erlaubte &amp; verbotene Nutzung</h3><p><strong>Erlaubt:</strong> persönliche, bildungsbezogene und nicht-kommerzielle Nutzung; Modifikation und Weitergabe des Quellcodes.</p><p><strong>Verboten:</strong> illegale oder verleumderische Inhalte; Umgehung von KI-Anbieterlimits; Nutzung der API-Schlüssel anderer ohne Zustimmung.</p><h3>3. Verantwortung</h3><p>API-Schlüssel werden <strong>nur lokal</strong> gespeichert — wir haben keinen Zugang. Sie sind allein für die Sicherung und entstehende Kosten verantwortlich.</p><div class="lmod-warn">⚠️ KI-Inhalte können ungenau sein. Treffen Sie keine medizinischen, rechtlichen oder finanziellen Entscheidungen allein auf Basis von KI.</div><p>Anwendbares Recht: deutsches und europäisches Recht (DSGVO, KI-Gesetz). Kontakt: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p>`,
 lCook:`<h3>Cookies &amp; lokale Speicherung</h3><p>AI Liber <strong>verwendet keine traditionellen Cookies</strong>. Nur <strong>localStorage</strong> — vollständig von Ihnen kontrolliert.</p><div class="lmod-info">✅ Kein Tracking. Keine Drittanbieter-Cookies. Keine Werbung.</div><table class="lmod-table"><tr><th>Schlüssel</th><th>Inhalt</th><th>Erforderlich</th></tr><tr><td>ailib_sbw</td><td>Sidebar-Breite</td><td>Nein — funktional</td></tr><tr><td>sk_*</td><td>Ihre API-Schlüssel</td><td>Nein — optional</td></tr><tr><td>ailib_consent</td><td>„accepted" oder „rejected"</td><td>Ja — wesentlich</td></tr></table><h3>Was wir NIE speichern</h3><ul><li>Chat-Verlauf (gelöscht beim Schließen des Tabs)</li><li>Persönliche Identifikationsdaten</li><li>Nutzungsstatistiken</li></ul>`,
-lGDPR:`<h3>Ihre DSGVO-Rechte</h3><p>Alle von AI Liber gespeicherten Daten befinden sich ausschließlich in <strong>dem localStorage Ihres Browsers</strong>. Wir haben keine Server mit Ihren Daten.</p><h3>📋 Auskunftsrecht (Art. 15)</h3><p>Zugang: F12 → Application → Local Storage → ai-liber.ro</p><h3>✏️ Recht auf Berichtigung (Art. 16)</h3><p>Ändern Sie API-Schlüssel über ⚙️ API-Schlüssel konfigurieren.</p><h3>🗑️ Recht auf Löschung — „Recht auf Vergessenwerden" (Art. 17)</h3><p>Löschen Sie alle Daten sofort:</p><div style="text-align:center;margin:16px 0"><button onclick="eraseAllData()" style="padding:11px 24px;border-radius:100px;background:#DC2626;color:#fff;border:none;font-family:'Nunito',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer" data-i18n-html="eraseBtn">🗑️</button></div><h3>📬 Aufsichtsbehörde &amp; Kontakt</h3><p><strong>BfDI</strong>: <a href="https://www.bfdi.bund.de" target="_blank" rel="noopener noreferrer">bfdi.bund.de</a><br>Kontakt AI Liber: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p>`,
+lGDPR:`<h3>Ihre DSGVO-Rechte</h3><p>Alle von AI Liber gespeicherten Daten befinden sich ausschließlich in <strong>dem localStorage Ihres Browsers</strong>. Wir haben keine Server mit Ihren Daten.</p><h3>📋 Auskunftsrecht (Art. 15)</h3><p>Zugang: F12 → Application → Local Storage → ai-liber.ro</p><h3>✏️ Recht auf Berichtigung (Art. 16)</h3><p>Ändern Sie API-Schlüssel über ⚙️ API-Schlüssel konfigurieren.</p><h3>🗑️ Recht auf Löschung — „Recht auf Vergessenwerden" (Art. 17)</h3><p>Löschen Sie alle Daten sofort:</p><div style="text-align:center;margin:16px 0"><button data-onclick="eraseAllData" style="padding:11px 24px;border-radius:100px;background:#DC2626;color:#fff;border:none;font-family:'Nunito',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer" data-i18n-html="eraseBtn">🗑️</button></div><h3>📬 Aufsichtsbehörde &amp; Kontakt</h3><p><strong>BfDI</strong>: <a href="https://www.bfdi.bund.de" target="_blank" rel="noopener noreferrer">bfdi.bund.de</a><br>Kontakt AI Liber: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p>`,
 },
 };
 
@@ -2820,11 +2820,33 @@ function applyI18n(){
     if(typeof renderML==='function')renderML();
   }catch(err){console.warn('applyI18n error:',err);}
 }
+// Widgetul de sprijin: etichete traduse (altfel rămâneau în română în celelalte limbi)
+(function(){
+  const TF={
+    ro:{tfSup:'Sprijină:',tfSupAuthor:'Sprijină autorul',tfPatreon:'Sprijină pe Patreon',tfHide:'Ascunde',tfSupShort:'Sprijină'},
+    en:{tfSup:'Support:',tfSupAuthor:'Support the author',tfPatreon:'Support on Patreon',tfHide:'Hide',tfSupShort:'Support'},
+    fr:{tfSup:'Soutenir :',tfSupAuthor:'Soutenir l\'auteur',tfPatreon:'Soutenir sur Patreon',tfHide:'Masquer',tfSupShort:'Soutenir'},
+    it:{tfSup:'Sostieni:',tfSupAuthor:'Sostieni l\'autore',tfPatreon:'Sostieni su Patreon',tfHide:'Nascondi',tfSupShort:'Sostieni'},
+    es:{tfSup:'Apoya:',tfSupAuthor:'Apoya al autor',tfPatreon:'Apoya en Patreon',tfHide:'Ocultar',tfSupShort:'Apoya'},
+    pt:{tfSup:'Apoie:',tfSupAuthor:'Apoie o autor',tfPatreon:'Apoie no Patreon',tfHide:'Ocultar',tfSupShort:'Apoie'},
+    de:{tfSup:'Unterstützen:',tfSupAuthor:'Den Autor unterstützen',tfPatreon:'Auf Patreon unterstützen',tfHide:'Ausblenden',tfSupShort:'Unterstützen'},
+  };
+  for(const l in TF){ if(T[l]) Object.assign(T[l],TF[l]); }
+})();
 function setLang(lc){ _qpCat=null;
   CUR_LANG=lc;
   try{localStorage.setItem('ailib_lang',lc);}catch(e){}
   document.documentElement.lang=lc;
   applyI18n();
+  // Catalogul de modele își ia textele (furnizor, specificații, grupe) din t() la construire: îl reconstruim în limba nouă
+  try{
+    OTHER_MODELS=_otherModels();
+    buildModels(_lastPollSrc||POLL_CATALOG_IDS);
+    if(cur){cur=MODELS.find(m=>m.id===cur.id)||MODELS[0];}
+    renderML(); updTop();
+    const rw=document.getElementById('rl-warn'), rk={pollinations:'rlPoll',webllm:'rlWLLM',duckduckgo:'rlDDG',aihorde:'rlHorde',lmstudio:'rlLMS',ollama:'rlOllama'}[cur&&cur.p];
+    if(rw&&rk){rw.innerHTML=t(rk);}
+  }catch(x){}
   // Ecranul de bun venit este generat din șabloane: îl regenerăm în limba nouă (altfel rămân texte din limba veche)
   try{ if(document.getElementById('cwelc') && !document.querySelector('#cmsgs .msg')) _showWelcome(); }catch(x){}
   _renderCpanel();
@@ -2832,7 +2854,7 @@ function setLang(lc){ _qpCat=null;
   try{
     const fc=document.querySelector('.fchip.on');
     if(fc&&typeof exF==='function'){
-      const fval=(fc.getAttribute('onclick')||'').replace(/.*exF\('([^']+)'.*/,'$1')||'all';
+      const fval=fc.getAttribute('data-arg')||'all';
       exF(fval,fc);
     }
   }catch(x){}
@@ -2883,10 +2905,10 @@ const PROV={
     guide:'✅ <strong>Conectează-te la Ollama rulând local!</strong> Pași: 1. Instalează <a href="https://ollama.ai" target="_blank" rel="noopener noreferrer">Ollama</a>  2. <code>ollama pull llama3.2</code>  3. Pornește cu CORS: <code>OLLAMA_ORIGINS=* ollama serve</code>  4. Revino și trimite mesaj. Port: 11434. Fără cheie!'},
   anthropic:{n:'Anthropic',ico:'🤖',c:'#C4522D',kh:'sk-ant-api03-…',
     kUrl:'https://console.anthropic.com',free:false,
-    guide:'⚠️ <strong>Atenție:</strong> această cheie are acces la facturarea contului tău Anthropic. Apelul este făcut direct din browser (header <code>anthropic-dangerous-direct-browser-access</code>) — dacă pagina este compromisă, atacatorul poate consuma credite. Folosește chei cu limite de buget stricte. Contul nou primește credite gratuite. <a href="https://console.anthropic.com" target="_blank" rel="noopener noreferrer">→ Obține cheie</a>'},
+    guide:'⚠️ <strong>Atenție:</strong> această cheie are acces la facturarea contului tău Anthropic. Apelul este făcut direct din browser (header <code>anthropic-dangerous-direct-browser-access</code>) — dacă pagina este compromisă, atacatorul poate consuma credite. Folosește chei cu limite de buget stricte. Un cont nou poate primi credite gratuite (oferta variază: verifică pe site). <a href="https://console.anthropic.com" target="_blank" rel="noopener noreferrer">→ Obține cheie</a>'},
   openai:{n:'OpenAI',ico:'🟢',c:'#10A37F',kh:'sk-proj-…',
     kUrl:'https://platform.openai.com/api-keys',free:false,
-    guide:'⚠️ <strong>Atenție:</strong> cheile OpenAI au acces la facturarea contului. Setează un <em>hard limit</em> pe <a href="https://platform.openai.com/account/limits" target="_blank" rel="noopener noreferrer">platform.openai.com/account/limits</a> înainte de a lipi cheia aici. Conturi noi primesc $5 credite. <a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener noreferrer">→ Obține cheie</a>'},
+    guide:'⚠️ <strong>Atenție:</strong> cheile OpenAI au acces la facturarea contului. Setează un <em>hard limit</em> pe <a href="https://platform.openai.com/account/limits" target="_blank" rel="noopener noreferrer">platform.openai.com/account/limits</a> înainte de a lipi cheia aici. Conturile noi pot primi credite de probă (oferta variază: verifică pe site). <a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener noreferrer">→ Obține cheie</a>'},
   google:{n:'Google AI Studio',ico:'✨',c:'#1A73E8',kh:'AIzaSy…',
     kUrl:'https://aistudio.google.com/app/apikey',free:true,
     guide:'🎁 Complet gratuit, fără card! <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener noreferrer">→ Obține cheie gratuită</a>'},
@@ -2903,6 +2925,24 @@ const PROV={
     kUrl:'https://openrouter.ai/keys',free:true,
     guide:'🎁 Modele ":free" 100% gratuite, fără card! <a href="https://openrouter.ai/keys" target="_blank" rel="noopener noreferrer">→ Obține cheie gratuită</a>'},
 };
+
+const PROV_GUIDE_EN={
+ "pollinations": "✅ <strong>Completely free, no account, no key!</strong> Rate: 1 message/15s anonymous. Free registration at <a href=\"https://auth.pollinations.ai\" target=\"_blank\" rel=\"noopener noreferrer\">auth.pollinations.ai</a> for 1 message/5s.",
+ "duckduckgo": "✅ <strong>No account, no key!</strong> According to DuckDuckGo, conversations are not saved. The models on offer change often (checked on 11 Oct 2026: GPT-4o mini, GPT-5 mini, Claude Haiku 4.5, gpt-oss-120b, Llama 4 Scout, Mistral Small 3; source: TechRadar, July 2026) — some models in the app's list may be retired: use “Check & update models”. Note: CORS errors may appear in some browsers — try Pollinations as an alternative.",
+ "webllm": "✅ <strong>Runs 100% LOCALLY in your browser!</strong> No server, no data sent. Completely private. Requires Chrome 113+ or Edge 113+ (with WebGPU). First download: 1-4GB per model (cached permanently in the browser).",
+ "aihorde": "✅ <strong>Distributed cluster of volunteers — 100% free and anonymous!</strong> No key needed for anonymous use (lower priority, wait 10-60s). Free key at <a href=\"https://aihorde.net/register\" target=\"_blank\" rel=\"noopener noreferrer\">aihorde.net/register</a> for faster answers.",
+ "lmstudio": "✅ <strong>Connect to LM Studio running locally on your PC!</strong> Steps: 1. Download <a href=\"https://lmstudio.ai\" target=\"_blank\" rel=\"noopener noreferrer\">LM Studio</a>  2. Download a model  3. Press \"Start Server\" (port 1234)  4. Come back here and send a message. No API key!",
+ "ollama": "✅ <strong>Connect to Ollama running locally!</strong> Steps: 1. Install <a href=\"https://ollama.ai\" target=\"_blank\" rel=\"noopener noreferrer\">Ollama</a>  2. <code>ollama pull llama3.2</code>  3. Start with CORS: <code>OLLAMA_ORIGINS=* ollama serve</code>  4. Come back and send a message. Port: 11434. No key!",
+ "anthropic": "⚠️ <strong>Warning:</strong> this key has access to your Anthropic account billing. The call is made directly from the browser (header <code>anthropic-dangerous-direct-browser-access</code>) — if the page is compromised, an attacker can spend credits. Use keys with strict budget limits. A new account may receive free credits (the offer varies: check the site). <a href=\"https://console.anthropic.com\" target=\"_blank\" rel=\"noopener noreferrer\">→ Get a key</a>",
+ "openai": "⚠️ <strong>Warning:</strong> OpenAI keys have access to the account's billing. Set a <em>hard limit</em> at <a href=\"https://platform.openai.com/account/limits\" target=\"_blank\" rel=\"noopener noreferrer\">platform.openai.com/account/limits</a> before pasting the key here. New accounts may receive trial credits (the offer varies: check the site). <a href=\"https://platform.openai.com/api-keys\" target=\"_blank\" rel=\"noopener noreferrer\">→ Get a key</a>",
+ "google": "🎁 Completely free, no card! <a href=\"https://aistudio.google.com/app/apikey\" target=\"_blank\" rel=\"noopener noreferrer\">→ Get a free key</a>",
+ "groq": "🎁 Free, no card! <a href=\"https://console.groq.com/keys\" target=\"_blank\" rel=\"noopener noreferrer\">→ Get a free key</a>",
+ "mistral": "European, GDPR-minded AI. <a href=\"https://console.mistral.ai/api-keys\" target=\"_blank\" rel=\"noopener noreferrer\">→ Get a key</a>",
+ "perplexity": "Requires paid credits. <a href=\"https://www.perplexity.ai/settings/api\" target=\"_blank\" rel=\"noopener noreferrer\">→ Get a key</a>",
+ "openrouter": "🎁 \":free\" models are 100% free, no card! <a href=\"https://openrouter.ai/keys\" target=\"_blank\" rel=\"noopener noreferrer\">→ Get a free key</a>"
+};
+// Ghidurile furnizorilor: engleză pentru UI-ul englez; celelalte limbi folosesc textul românesc din PROV (traducere neefectuată)
+function provGuide(pid){ const pv=PROV[pid]; return (CUR_LANG==='en'&&PROV_GUIDE_EN[pid])||(pv?pv.guide:''); }
 
 // ═══════════════════════════════════════════
 // POLLINATIONS MODEL CATALOG
@@ -3011,7 +3051,7 @@ const PSPEC={
   'gemini-thinking':'Thinking',
   'llama':'Meta 70B',          'llama-fast':'Instant',    'llama-scalable':'405B',
   'mistral':'European',        'mistral-large':'EU Premium',
-  'deepseek-r1':t('grpReason'), 'deepseek':'Distill',
+  get 'deepseek-r1'(){return t('grpReason');}, 'deepseek':'Distill',
   'qwen-coder':'Programare',   'qwen':'Multilingv',
   'phi':'Compact',             'claude-hybridspace':'Haiku',
 };
@@ -3099,7 +3139,7 @@ const POLL_CATALOG_IDS=[
 // ═══════════════════════════════════════════
 // OTHER MODELS (require keys)
 // ═══════════════════════════════════════════
-const OTHER_MODELS=[
+function _otherModels(){return[
 // ── DUCKDUCKGO (anonim total, fără cont, fără cheie) ─────────
   {id:'gpt-4o-mini',p:'duckduckgo',n:'GPT-4o Mini',mk:`OpenAI ${t('mkViaDDG')}`,
     spd:5,ctx:'16K',cats:['instant','fast','general'],spec:t('specAnon'),si:'🦆',instant:true,
@@ -3297,7 +3337,8 @@ const OTHER_MODELS=[
   // Perplexity
   {id:'llama-3.1-sonar-large-128k-online',p:'perplexity',n:'Sonar Large',mk:'Perplexity AI',
     spd:3,ctx:'127K',cats:['web','best'],spec:'Web live',si:'🔍',desc:'Caută pe internet în timp real cu surse.'},
-];
+];}
+let OTHER_MODELS=_otherModels(); // reconstruit la schimbarea limbii (textele din catalog vin din t())
 
 // ═══════════════════════════════════════════
 // MODELS array (built dynamically)
@@ -3345,7 +3386,9 @@ const SLOW_WARN_MS = 8000; // show warning after 8s without first chunk
 let cat = 'all';
 let aiBub = null;
 
+let _lastPollSrc=null;
 function buildModels(pollIds){
+  _lastPollSrc=pollIds;
   const pollModels = pollIds.map(buildPollModel);
   let combined = [...pollModels, ...OTHER_MODELS];
   // On HTTPS origins, browsers block fetch() to http://localhost (mixed content).
@@ -3421,7 +3464,7 @@ function goPage(id,skipHash){
   document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
   const _nb=document.getElementById(`nb-${id}`);if(_nb)_nb.classList.add('on');
   if(id==='legal'){openLegal('privacy');}
-  if(id==='explore'){const fc=document.querySelector('.fchip.on');if(fc&&typeof exF==='function'){const fv=fc.getAttribute('onclick').match(/exF\('([^']+)'/)?.[1]||'all';exF(fv,fc);}}
+  if(id==='explore'){const fc=document.querySelector('.fchip.on');if(fc&&typeof exF==='function'){const fv=fc.getAttribute('data-arg')||'all';exF(fv,fc);}}
   window.scrollTo(0,0);
   if(!skipHash&&typeof location!=='undefined')try{location.hash='#'+id;}catch(e){}
 }
@@ -3715,7 +3758,7 @@ function renderML(){
 function mcard(m){
   const pv=PROV[m.p]||{ico:'🤖',c:'#888'};
   const ok=canUse(m);
-  return`<div class="mcard${m.id===cur.id?' on':''}" style="--mc:${pv.c}" role="button" tabindex="0" onclick="selM('${m.id}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selM('${m.id}');}">
+  return`<div class="mcard${m.id===cur.id?' on':''}" style="--mc:${pv.c}" role="button" tabindex="0" data-onclick="selM" data-arg="${m.id}" data-onkeydown="kdSelM">
     <div class="mc-top">
       <div class="mc-ico">${pv.ico}</div>
       <div class="mc-name">${m.n}</div>
@@ -3828,7 +3871,7 @@ function _showWelcome(){
       </div>
     </div>
     <div class="cwelc-explore">
-      <button class="btn btn-s" onclick="goPage('explore')" data-i18n="heroBtn2" style="font-size:.8rem;padding:7px 16px">${t('heroBtn2')}</button>
+      <button class="btn btn-s" data-onclick="goPage" data-arg="explore" data-i18n="heroBtn2" style="font-size:.8rem;padding:7px 16px">${t('heroBtn2')}</button>
     </div>
     <div class="cwelc-sec">
       <h3 class="cwelc-stit">${t('sec1H')}</h3>
@@ -3867,18 +3910,18 @@ function renderKeys(){
       return`<div class="psec ps-free">
         <div class="phd"><span class="phd-ico">${pv.ico}</span><span class="phd-name">${pv.n}</span>
           <span class="phd-b pb-f">${t('noKeyNeeded')}</span></div>
-        <div class="pbody"><div class="pguide">${pv.guide}</div></div></div>`;
+        <div class="pbody"><div class="pguide">${provGuide(pid)}</div></div></div>`;
     }
     const k=gk(pid);
     return`<div class="psec">
       <div class="phd"><span class="phd-ico">${pv.ico}</span><span class="phd-name">${pv.n}</span>
         <span class="phd-b ${pv.free?'pb-f':'pb-p'}">${pv.free?t('keyFree'):t('keyPaid')}</span></div>
       <div class="pbody">
-        <div class="pguide">${pv.guide}</div>
+        <div class="pguide">${provGuide(pid)}</div>
         <div class="krow">
           <input class="kin" id="ki-${pid}" type="password" placeholder="${pv.kh||'…'}" value="${k}">
-          <button class="ksave" onclick="saveK('${pid}')">${t('keySaveBtn')}</button>
-          ${k?`<button class="kclr" onclick="clearK('${pid}')">🗑</button>`:''}
+          <button class="ksave" data-onclick="saveK" data-arg="${pid}">${t('keySaveBtn')}</button>
+          ${k?`<button class="kclr" data-onclick="clearK" data-arg="${pid}">🗑</button>`:''}
         </div>
         <div class="kstat ${k?'kok':'kno'}" id="ks-${pid}">${k?'✅ Configurată':'○ Nicio cheie'}</div>
       </div></div>`;
@@ -4106,8 +4149,8 @@ function _startSlowTimer(){
       sw.innerHTML=`
         <span>⚠️ ${pName} ${t('slowWarnMsg')}</span>
         <div class="twait-slow-btns">
-          <button class="slow-warn-cancel" onclick="cancelRequest()">${t('slowWarnCancel')}</button>
-          <button class="slow-warn-switch" onclick="abortAndPick()">${t('slowWarnSwitch')}</button>
+          <button class="slow-warn-cancel" data-onclick="cancelRequest">${t('slowWarnCancel')}</button>
+          <button class="slow-warn-switch" data-onclick="abortAndPick">${t('slowWarnSwitch')}</button>
         </div>`;
       wrap.appendChild(sw);
       // Scroll ca să fie vizibil complet
@@ -7248,14 +7291,14 @@ function openInlineKey(pid){
       <span>${t('ikTitle')} <strong>${pv.n}</strong></span>
     </div>
     ${isFree?`<div class="inline-key-free">${t('ikFree')}</div>`:''}
-    <div class="inline-key-guide">${pv.guide}</div>
+    <div class="inline-key-guide">${provGuide(pid)}</div>
     <div class="inline-key-row">
       <input class="inline-key-inp" id="ik-inp-${pid}" type="password"
         placeholder="${pv.kh||'…'}"
         value="${existing}"
-        oninput="document.getElementById('ik-save-${pid}').disabled=!this.value.trim()">
+        data-oninput="ikInput" data-arg="${pid}">
       <button class="inline-key-save" id="ik-save-${pid}"
-        onclick="saveInlineKey('${pid}')"
+        data-onclick="saveInlineKey" data-arg="${pid}"
         ${existing?'':'disabled'}>
         ${existing?t('ikUpdate'):t('ikSave')}
       </button>
@@ -7265,7 +7308,7 @@ function openInlineKey(pid){
         ${t('ikGet')} ${pv.n} →
       </a>
     </div>`:''}
-    <div class="inline-key-dismiss" onclick="closeInlineKey()">${t('ikDismiss')}</div>
+    <div class="inline-key-dismiss" data-onclick="closeInlineKey">${t('ikDismiss')}</div>
   `;
   panel.classList.add('on');
   // Focus input
@@ -7612,7 +7655,7 @@ function _renderQuiz(body,lang){
           ${_qScore}/${total} <span style="font-size:.85rem;opacity:.7">(${pct}%)</span>
         </div>
         <div style="font-size:.8rem;color:var(--mut);margin-bottom:12px">${msg}</div>
-        <button class="quiz-next" onclick="_qIdx=0;_qScore=0;_qAnswered=false;_renderCpanel()" style="display:inline-flex">
+        <button class="quiz-next" data-onclick="quizRestart" style="display:inline-flex">
           ${t('qrPlay')}
         </button>
       </div>`;
@@ -7626,10 +7669,10 @@ function _renderQuiz(body,lang){
       <span class="quiz-score-inline">${t('qrScore')}: <strong>${_qScore}/${_qIdx}</strong></span>
     </div>
     <div class="quiz-opts">${q.opts.map((o,i)=>
-      `<button class="quiz-opt" onclick="_quizAns(${i})">${o}</button>`
+      `<button class="quiz-opt" data-onclick="quizAns" data-arg="${i}">${o}</button>`
     ).join('')}</div>
     <div class="quiz-nav">
-      <button class="quiz-next" onclick="_quizNext()" style="display:none" id="quiz-next">${t('qrNext')}</button>
+      <button class="quiz-next" data-onclick="_quizNext" style="display:none" id="quiz-next">${t('qrNext')}</button>
     </div>`;
 }
 
@@ -7680,10 +7723,10 @@ function _renderPrompts(body,lang){
   if(!_qpCat||!data[_qpCat])_qpCat=cats[0];
   body.innerHTML=`
     <div class="qp-cats">${cats.map(c=>
-      `<button class="qp-cat${c===_qpCat?' on':''}" onclick="_qpCat='${c}';_renderCpanel()">${c}</button>`
+      `<button class="qp-cat${c===_qpCat?' on':''}" data-onclick="qpCat" data-arg="${c}">${c}</button>`
     ).join('')}</div>
     <div class="qp-list">${(data[_qpCat]||[]).map(p=>
-      `<button class="qp-item" onclick="_usePrompt(this.textContent)">${p}</button>`
+      `<button class="qp-item" data-onclick="usePrompt">${p}</button>`
     ).join('')}</div>`;
 }
 
@@ -7915,7 +7958,7 @@ const LEGAL_CONTENT={
 <h3>🗑️ Dreptul la ștergere / „dreptul de a fi uitat" (Art. 17)</h3>
 <p>Poți șterge toate datele stocate de AI Liber instantaneu:</p>
 <div style="text-align:center;margin:16px 0">
-  <button onclick="eraseAllData()" style="padding:11px 24px;border-radius:100px;background:#DC2626;color:#fff;border:none;font-family:'Nunito',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer">🗑️ Șterge toate datele mele local</button>
+  <button data-onclick="eraseAllData" style="padding:11px 24px;border-radius:100px;background:#DC2626;color:#fff;border:none;font-family:'Nunito',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer">🗑️ Șterge toate datele mele local</button>
 </div>
 <p style="font-size:.8rem;text-align:center;color:var(--mut)">Aceasta va șterge toate cheile API, preferințele UI și consimțământul stocat în browser pentru acest site.</p>
 
@@ -8015,57 +8058,122 @@ function eraseAllData(){
 
 // ── Cookie / localStorage consent banner ──────────────────────
 
+
+// ═══ DELEGATED EVENT DISPATCHER (replaces inline on*= handlers; CSP without 'unsafe-inline') ═══
+const MD_WRAP=[["**", "**"], ["_", "_"], ["~~", "~~"], ["^", ""], ["~", ""], ["`", "`"], ["\n```\n", "\n```\n"], ["\n# ", ""], ["\n## ", ""], ["\n### ", ""], ["\n> ", ""]];
+const UI_ACT={
+ _quizNext:()=>_quizNext(),
+ abortAndPick:()=>abortAndPick(),
+ applyModelChanges:()=>applyModelChanges(),
+ cancelRequest:()=>cancelRequest(),
+ clearChat:()=>clearChat(),
+ clearK:(el)=>clearK(el.dataset.arg),
+ closeInlineKey:()=>closeInlineKey(),
+ closeLegal:()=>closeLegal(),
+ closeLegalBackdrop:(el,ev)=>{if(ev.target===el)closeLegal();},
+ closeMCheck:()=>closeMCheck(),
+ closeMCheckBackdrop:(el,ev)=>{if(ev.target===el)closeMCheck();},
+ closeSB:()=>closeSB(),
+ closeSett:()=>closeSett(),
+ cpTab:(el)=>cpTab(el.dataset.arg,el),
+ eraseAllData:()=>eraseAllData(),
+ exF:(el)=>exF(el.dataset.arg,el),
+ fetchPollModelsTrue:()=>fetchPollModels(true),
+ filterM:(el)=>filterM(el.dataset.arg,el),
+ goPage:(el)=>goPage(el.dataset.arg),
+ handleFile:(el)=>handleFile(el),
+ ikInput:(el)=>{document.getElementById('ik-save-'+el.dataset.arg).disabled=!el.value.trim();},
+ insertHr:()=>insertAtCursor('\n---\n'),
+ insertMDLink:()=>insertMDLink(),
+ insertMDList:(el)=>insertMDList(el.dataset.arg),
+ insertMath:()=>insertMath(),
+ kdPollModels:(el,ev)=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();fetchPollModels(true);}},
+ kdSelM:(el,ev)=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();selM(el.dataset.arg);}},
+ openLegal:(el)=>openLegal(el.dataset.arg),
+ openModelCheck:()=>openModelCheck(),
+ openSett:()=>openSett(),
+ pickFile:()=>{document.getElementById('file-inp').click();},
+ qpCat:(el)=>{_qpCat=el.dataset.arg;_renderCpanel();},
+ quizAns:(el)=>_quizAns(+el.dataset.arg),
+ quizRestart:()=>{_qIdx=0;_qScore=0;_qAnswered=false;_renderCpanel();},
+ saveInlineKey:(el)=>saveInlineKey(el.dataset.arg),
+ saveK:(el)=>saveK(el.dataset.arg),
+ selM:(el)=>selM(el.dataset.arg),
+ sendMsg:()=>sendMsg(),
+ setLang:(el)=>setLang(el.value),
+ setPollAuto:(el)=>setPollAuto(el.checked),
+ showTablePicker:()=>showTablePicker(),
+ sovClick:(el,ev)=>sovClick(ev),
+ toggleEmoji:(el,ev)=>toggleEmoji(ev),
+ toggleSB:()=>toggleSB(),
+ usePrompt:(el)=>_usePrompt(el.textContent),
+ wrapMD:(el)=>wrapMD(...MD_WRAP[+el.dataset.arg])
+};
+(function(){
+  ['click','change','input','keydown'].forEach(type=>{
+    const attr='data-on'+type;
+    document.body.addEventListener(type,ev=>{
+      for(let n=ev.target;n&&n.nodeType===1;n=n.parentElement){
+        if(n.hasAttribute(attr)){
+          const f=UI_ACT[n.getAttribute(attr)];
+          if(f){try{f(n,ev);}catch(err){setTimeout(()=>{throw err;},0);}}
+          if(ev.cancelBubble)break;
+        }
+      }
+    });
+  });
+})();
 </script>
 
 
 
 <!-- ══ MODEL CHECK MODAL ═══════════════════════════════════ -->
-<div class="mcheck-ov" id="mcheck-ov" onclick="if(event.target===this)closeMCheck()">
+<div class="mcheck-ov" id="mcheck-ov" data-onclick="closeMCheckBackdrop">
   <div class="mcheck-box">
     <div class="mcheck-hd">
       <span data-i18n="mcTitle">🔍 Verifică &amp; actualizează modele</span>
-      <button class="ibtn" onclick="closeMCheck()" aria-label="Închide" data-i18n-aria="btnClose">✕</button>
+      <button class="ibtn" data-onclick="closeMCheck" aria-label="Închide" data-i18n-aria="btnClose">✕</button>
     </div>
     <div class="mcheck-body" id="mcheck-body">
       <div class="mcheck-status"><span class="mcheck-spinner"></span> Se verifică modelele disponibile…</div>
     </div>
     <div class="mcheck-ft">
-      <button class="mcheck-cancel" onclick="closeMCheck()" data-i18n="mcCancel">Anulează</button>
-      <button class="mcheck-apply" id="mcheck-apply" onclick="applyModelChanges()" data-i18n="mcApply" disabled>Aplică modificările</button>
+      <button class="mcheck-cancel" data-onclick="closeMCheck" data-i18n="mcCancel">Anulează</button>
+      <button class="mcheck-apply" id="mcheck-apply" data-onclick="applyModelChanges" data-i18n="mcApply" disabled>Aplică modificările</button>
     </div>
   </div>
 </div>
 
 <!-- ══ LEGAL MODALS ══════════════════════════════════════════ -->
-<div class="lmod-ov" id="legal-ov" onclick="if(event.target===this)closeLegal()">
+<div class="lmod-ov" id="legal-ov" data-onclick="closeLegalBackdrop">
   <div class="lmod" role="dialog" aria-modal="true" aria-labelledby="legal-title">
     <div class="lmod-hd">
       <span id="legal-icon" style="font-size:1.3rem"></span>
       <h2 id="legal-title"></h2>
       <span class="lmod-v" id="legal-version"></span>
-      <button class="lmod-close" onclick="closeLegal()" data-i18n-aria="btnClose" aria-label="Închide">✕</button>
+      <button class="lmod-close" data-onclick="closeLegal" data-i18n-aria="btnClose" aria-label="Închide">✕</button>
     </div>
     <!-- Tab navigation -->
     <div style="display:flex;gap:0;border-bottom:1px solid var(--bdr);overflow-x:auto;flex-shrink:0">
-      <button class="ltab on" data-tab="privacy" onclick="openLegal('privacy')" data-i18n="ltPriv"
+      <button class="ltab on" data-tab="privacy" data-onclick="openLegal" data-arg="privacy" data-i18n="ltPriv"
         style="flex:1;padding:9px 4px;border:none;border-bottom:2px solid transparent;
           background:none;font-family:'Nunito',sans-serif;font-size:.75rem;font-weight:700;
           cursor:pointer;color:var(--mut);white-space:nowrap;transition:all .16s;min-width:80px">
         🔒 Confidențialitate
       </button>
-      <button class="ltab" data-tab="terms" onclick="openLegal('terms')" data-i18n="ltTerms"
+      <button class="ltab" data-tab="terms" data-onclick="openLegal" data-arg="terms" data-i18n="ltTerms"
         style="flex:1;padding:9px 4px;border:none;border-bottom:2px solid transparent;
           background:none;font-family:'Nunito',sans-serif;font-size:.75rem;font-weight:700;
           cursor:pointer;color:var(--mut);white-space:nowrap;transition:all .16s;min-width:60px">
         📋 Termeni
       </button>
-      <button class="ltab" data-tab="cookies" onclick="openLegal('cookies')" data-i18n="ltCook"
+      <button class="ltab" data-tab="cookies" data-onclick="openLegal" data-arg="cookies" data-i18n="ltCook"
         style="flex:1;padding:9px 4px;border:none;border-bottom:2px solid transparent;
           background:none;font-family:'Nunito',sans-serif;font-size:.75rem;font-weight:700;
           cursor:pointer;color:var(--mut);white-space:nowrap;transition:all .16s;min-width:70px">
         🍪 Cookie-uri
       </button>
-      <button class="ltab" data-tab="gdpr" onclick="openLegal('gdpr')" data-i18n="ltGDPR"
+      <button class="ltab" data-tab="gdpr" data-onclick="openLegal" data-arg="gdpr" data-i18n="ltGDPR"
         style="flex:1;padding:9px 4px;border:none;border-bottom:2px solid transparent;
           background:none;font-family:'Nunito',sans-serif;font-size:.75rem;font-weight:700;
           cursor:pointer;color:var(--mut);white-space:nowrap;transition:all .16s;min-width:60px">
@@ -8074,7 +8182,7 @@ function eraseAllData(){
     </div>
     <div class="lmod-body" id="legal-body"></div>
     <div class="lmod-ft">
-      <button onclick="closeLegal()" data-i18n="lOk">Am înțeles</button>
+      <button data-onclick="closeLegal" data-i18n="lOk">Am înțeles</button>
     </div>
   </div>
 </div>
@@ -8082,7 +8190,7 @@ function eraseAllData(){
 <!-- ══ COOKIE CONSENT BANNER ════════════════════════════════ -->
 
 <!-- tf-donate: sprijin voluntar (Patreon + Buy Me a Coffee) — self-contained, fără resurse externe, fără JS -->
-<div id="tf-donate" role="complementary" aria-label="Sprijină autorul">
+<div id="tf-donate" role="complementary" aria-label="Sprijină autorul" data-i18n-aria="tfSupAuthor">
 <style>
 #tf-donate{position:fixed;right:14px;bottom:14px;z-index:2147483600;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1}
 #tf-donate *{box-sizing:border-box}
@@ -8104,12 +8212,12 @@ function eraseAllData(){
 </style>
 <input type="checkbox" id="tf-donate-cb" class="tf-cb" aria-hidden="true" tabindex="-1">
 <div class="tf-panel">
-<span class="tf-lbl">Sprijină:</span>
-<a class="tf-b tf-pat" href="https://www.patreon.com/c/alexio_tf" target="_blank" rel="noopener" aria-label="Sprijină pe Patreon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="15.4" cy="9.4" r="6.6" fill="currentColor"/><rect x="2.4" y="2.4" width="3.7" height="19.2" fill="currentColor"/></svg>Patreon</a>
+<span class="tf-lbl" data-i18n="tfSup">Sprijină:</span>
+<a class="tf-b tf-pat" href="https://www.patreon.com/c/alexio_tf" target="_blank" rel="noopener" aria-label="Sprijină pe Patreon" data-i18n-aria="tfPatreon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="15.4" cy="9.4" r="6.6" fill="currentColor"/><rect x="2.4" y="2.4" width="3.7" height="19.2" fill="currentColor"/></svg>Patreon</a>
 <a class="tf-b tf-bmc" href="https://buymeacoffee.com/echo.of.the.strings" target="_blank" rel="noopener" aria-label="Buy Me a Coffee"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h11v6.5a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V8z"/><path d="M16 9.5h2.2a2.3 2.3 0 0 1 0 4.6H16"/><path d="M7.5 4.5V3M11.5 4.5V3"/></svg>Coffee</a>
-<label for="tf-donate-cb" class="tf-x" title="Ascunde" aria-label="Ascunde">✕</label>
+<label for="tf-donate-cb" class="tf-x" title="Ascunde" aria-label="Ascunde" data-i18n-title="tfHide" data-i18n-aria="tfHide">✕</label>
 </div>
-<label for="tf-donate-cb" class="tf-open" title="Sprijină" aria-label="Sprijină">♥</label>
+<label for="tf-donate-cb" class="tf-open" title="Sprijină" aria-label="Sprijină" data-i18n-title="tfSupShort" data-i18n-aria="tfSupShort">♥</label>
 </div>
 </body>
 </html>
