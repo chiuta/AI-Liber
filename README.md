@@ -2,6 +2,8 @@
 
 Chat cu modele de inteligență artificială gratuite sau cu cheile tale API, plus un ghid al celor mai bune AI-uri gratuite, într-un singur fișier HTML.
 
+**Ultima actualizare:** 11 octombrie 2026
+
 **Live:** https://chiuta.github.io/AI-Liber/
 
 ![Captura de ecran](screenshot.png)
@@ -68,3 +70,12 @@ Alexio — Alexandru-Ionuț Chiuță, contact: alexio@trom.tf. Aplicația este o
 ## English summary
 
 AI Liber is a single-file HTML chat front-end for free no-account AI services, bring-your-own-key APIs, local Ollama/LM Studio servers and an in-browser WebLLM model, plus a directory of free AI tools, a quiz and prompt ideas. 7 UI languages. Keys are kept in localStorage (AES-GCM obfuscated, not strong encryption). Chat requires internet access to the chosen provider. CC0.
+
+## Surse verificate la 11.10.2026
+- DuckDuckGo AI Chat (duck.ai), modele gratuite fără cont: TechRadar, „Duck.ai by DuckDuckGo review”, 13 iulie 2026 (https://techradar.com/pro/duck-ai-review): Claude 4.5 Haiku, GPT-4o mini, GPT-5 mini, gpt-oss-120b, Llama 4 Scout, Mistral Small 3 24B. Modelele hardcodate în aplicație pentru DuckDuckGo (Claude 3 Haiku, Llama 3.1 70B, Mixtral 8x7B, o3-mini) pot fi retrase; ID-urile API ale DuckDuckGo nu pot fi verificate fără rețea și nu au fost schimbate (aplicația are „Verifică & actualizează modele” și lista de modele care dau 404).
+- Pollinations (text, fără cheie, ~1 cerere/15 s anonim, cheie gratuită opțională): https://free-llm.com/provider/pollinations-ai (pagină actualizată în octombrie 2026).
+- Textele juridice (versiunea „v1.0 · 12 aprilie 2026”) nu au fost modificate în această rundă; data lor este decizia autorului și nu a fost schimbată.
+
+## Istoric / Changelog
+- **11 octombrie 2026** — ecranul de bun venit se regenerează la schimbarea limbii (înainte rămânea în română într-o interfață engleză/franceză etc.); bannerul nu mai enumeră modele perisabile (GPT-4, Llama 70B, DeepSeek R1…); ghidul DuckDuckGo este datat și cu avertisment despre modele retrase; notă datată în „Explorează” despre planuri gratuite schimbătoare; mesaj clar „ești offline” (7 limbi) în loc de eroare de rețea când alegi un model care are nevoie de internet; pe 360 px nu mai apar depășiri orizontale (bara de sus, pagina Legal).
+- Accesibilitate: conținutul este în `main` (inclusiv pagina Legal), titlu `h1` ascuns vizual, ordinea titlurilor corectată, widgetul de sprijin are rol `complementary`; axe-core: 0 violări la 1280×800 și 360×740 pe paginile Chat, Explorează, Sfaturi și Legal. Cele 113 atribute `onclick`/`onchange` inline au rămas (CSP-ul permite `'unsafe-inline'`; refactorizarea lor ar fi riscantă fără teste de regresie extinse). Aplicația nu are număr de versiune.

@@ -77,6 +77,8 @@ body>nav{position:fixed;top:0;left:0;right:0;height:var(--nav);z-index:200;
 .nb:hover{background:var(--surf2);color:var(--txt)}
 .nb.on{background:var(--txt);color:var(--bg)}
 
+.lmod-body,.lmod-body p,.lmod-body li,.lmod-body td{overflow-wrap:anywhere}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .page{display:none;padding-top:var(--nav)}
 .page.on{display:flex;flex-direction:column;min-height:100vh;min-height:100dvh}
 #page-chat.on{display:flex;flex-direction:column;min-height:unset;height:100vh;height:100dvh}
@@ -283,7 +285,7 @@ body.is-resizing .sb::after{opacity:.6}
 .dot:nth-child(2){animation-delay:.2s}.dot:nth-child(3){animation-delay:.4s}
 @keyframes bo{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-7px)}}
 .cwelc{text-align:center;padding:8px 20px 6px;color:var(--mut);max-width:520px;margin:0 auto}
-.cwelc h3{font-size:1.05rem;font-weight:700;color:var(--txt);margin-bottom:5px}
+.cwelc h2,.cwelc h3{font-size:1.05rem;font-weight:700;color:var(--txt);margin-bottom:5px}
 .cwelc p{font-size:.88rem;margin-bottom:5px;line-height:1.6}
 .wfree{font-size:.75rem;font-weight:700;color:var(--grn);background:var(--grn-lt);
   padding:5px 12px;border-radius:100px;display:inline-block;margin-bottom:13px}
@@ -544,6 +546,10 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
   /* Pe telefoane mici ascunde eticheta Legal */
   #nb-legal .nl{display:none}
   .lang-sel option{max-width:60px}
+  nav{padding:0 6px}
+  .nb{padding:6px 6px}
+  .lang-sel-nav{max-width:68px;padding:4px 4px}
+  .logo-wico{display:none}
 }
 
 
@@ -849,6 +855,8 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
   <a class="nb nb-patreon" href="https://www.patreon.com/c/alexio_tf" target="_blank" rel="noopener" data-i18n-title="patreonTitle" title="Susține AI Liber pe Patreon">🎁 <span class="nl" data-i18n="navPatreon">Patreon</span></a>
 </nav>
 
+<main id="main-content">
+<h1 class="sr-only">AI Liber</h1>
 <!-- CHAT -->
 <div class="page on" id="page-chat">
   <div class="sbov" id="sbov" onclick="closeSB()"></div>
@@ -903,7 +911,7 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
       <div class="cmsgs" id="cmsgs">
         <div class="cwelc" id="cwelc">
           <span class="wico">🌸</span>
-          <h3 data-i18n="cwH">Bun venit în Chat AI Liber!</h3>
+          <h2 data-i18n="cwH">Bun venit în Chat AI Liber!</h2>
           <p data-i18n-html="cwP">Modelele marcate cu ✅ funcționează <strong>chiar acum</strong><span data-i18n="badgeSuffix2">, fără cont.</span></p>
           <div class="wfree" id="wfree-cnt" data-i18n="cwFree">✅ Se încarcă lista de modele gratuite…</div>
 
@@ -998,6 +1006,7 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
   <div class="exwrap">
     <h2 class="stit" data-i18n="exH">Cele mai bune AI-uri gratuite</h2>
     <p class="ssub" data-i18n="exSub">Toate sunt gratuite. Fă clic pentru a le deschide direct.</p>
+    <p class="ssub" data-i18n="exNote" style="font-size:.78rem">Planurile gratuite și condițiile furnizorilor se schimbă des; catalogul a fost verificat doar parțial la 11.10.2026 — confirmă pe site-ul fiecărui serviciu.</p>
     <div class="fbar">
       <button class="fchip on" onclick="exF('all',this)" data-i18n="fAll">✦ Toate</button>
       <button class="fchip" onclick="exF('anon',this)" data-i18n="fAnon">🔒 Fără cont</button>
@@ -1059,6 +1068,21 @@ body.inp-resizing{cursor:ns-resize!important;user-select:none!important}
   </div>
 </div>
 
+<!-- LEGAL -->
+<div class="page" id="page-legal">
+  <div class="tips-wrap">
+    <h2 class="stit" data-i18n="navLegal" style="margin-bottom:12px">🔒 Legal</h2>
+    <div style="display:flex;gap:0;border-bottom:1px solid var(--bdr);margin-bottom:16px;overflow-x:auto">
+      <button class="ltab on" data-tab="privacy" onclick="openLegal('privacy')" data-i18n="ltPriv" style="flex:1;padding:9px 4px;border:none;border-bottom:2px solid transparent;background:none;font-family:'Nunito',sans-serif;font-size:.75rem;font-weight:700;cursor:pointer;color:var(--mut);white-space:nowrap;transition:all .16s;min-width:80px">🔒 Confidențialitate</button>
+      <button class="ltab" data-tab="terms" onclick="openLegal('terms')" data-i18n="ltTerms" style="flex:1;padding:9px 4px;border:none;border-bottom:2px solid transparent;background:none;font-family:'Nunito',sans-serif;font-size:.75rem;font-weight:700;cursor:pointer;color:var(--mut);white-space:nowrap;transition:all .16s;min-width:60px">📋 Termeni</button>
+      <button class="ltab" data-tab="cookies" onclick="openLegal('cookies')" data-i18n="ltCook" style="flex:1;padding:9px 4px;border:none;border-bottom:2px solid transparent;background:none;font-family:'Nunito',sans-serif;font-size:.75rem;font-weight:700;cursor:pointer;color:var(--mut);white-space:nowrap;transition:all .16s;min-width:70px">🍪 Cookie-uri</button>
+      <button class="ltab" data-tab="gdpr" onclick="openLegal('gdpr')" data-i18n="ltGDPR" style="flex:1;padding:9px 4px;border:none;border-bottom:2px solid transparent;background:none;font-family:'Nunito',sans-serif;font-size:.75rem;font-weight:700;cursor:pointer;color:var(--mut);white-space:nowrap;transition:all .16s;min-width:60px">🛡️ GDPR</button>
+    </div>
+    <div class="lmod-body" id="legal-page-body" style="max-width:680px;margin:0 auto"></div>
+  </div>
+</div>
+</main>
+
 <!-- SETTINGS -->
 <div class="ov" id="sov" onclick="sovClick(event)">
   <div class="modal">
@@ -1092,7 +1116,7 @@ h1Em:'pentru toți',
 lead:'Chat cu GPT-4, Llama, Gemini, DeepSeek și 30+ modele AI — unele fără cont, toate accesibile.',
 heroBtn1:'💬 Deschide Chat',
 heroBtn2:'🔍 Explorează AI-urile',
-bannerP:'Prin <strong>Pollinations.AI</strong>, accesezi <strong>20+ modele complet gratuit</strong> — GPT-4, Llama 70B, DeepSeek R1, Gemini, Mistral Large și altele <span data-i18n="badgeSuffix">— fără cont, fără cheie API.</span>',
+bannerP:'Prin <strong>Pollinations.AI</strong>, accesezi <strong>20+ modele complet gratuit</strong> de la mai mulți furnizori (lista se schimbă; vezi „Verifică & actualizează modele”) <span data-i18n="badgeSuffix">— fără cont, fără cheie API.</span>',
 sec1H:'Ce este inteligența artificială?',
 sec1P:'Un AI este un program cu care poți purta o conversație normală — ca un asistent extrem de bine pregătit, disponibil 24/7.',
 c1H:'Scrie pentru tine',
@@ -1101,6 +1125,8 @@ c2H:'Răspunde la orice',
 c2P:'Știință, medicină, drept, rețete, sfaturi — AI-ul explică pe înțelesul tău, fără judecăți.',
 c3H:'Economisești timp',
 c3P:'Sarcini care durau ore pot fi realizate în minute.',
+errOffline:'Ești offline: acest model are nevoie de internet. Reconectează-te sau alege un model local (WebLLM, Ollama, LM Studio).',
+exNote:'Planurile gratuite și condițiile furnizorilor se schimbă des; catalogul a fost verificat doar parțial la 11.10.2026 — confirmă pe site-ul fiecărui serviciu.',
 stepsH:'Cum să începi',
 stepsP:'Nu ai nevoie de cunoștințe tehnice.',
 st1H:'Apasă „Chat" din meniu',
@@ -1328,7 +1354,7 @@ h1Em:'for everyone',
 lead:'Chat with GPT-4, Llama, Gemini, DeepSeek and 30+ AI models — some without an account, all free.',
 heroBtn1:'💬 Open Chat',
 heroBtn2:'🔍 Explore AIs',
-bannerP:'Through <strong>Pollinations.AI</strong>, access <strong>20+ models completely free</strong> — GPT-4, Llama 70B, DeepSeek R1, Gemini, Mistral Large and more — no account, no API key.',
+bannerP:'Through <strong>Pollinations.AI</strong>, access <strong>20+ models completely free</strong> from several providers (the list changes — see “Check &amp; update models”) — no account, no API key.',
 sec1H:'What is artificial intelligence?',
 sec1P:'An AI is a program you can have a normal conversation with — like an extremely well-trained assistant, available 24/7.',
 c1H:'Writes for you',
@@ -1337,6 +1363,8 @@ c2H:'Answers anything',
 c2P:'Science, medicine, law, recipes, advice — AI explains in plain language, without judgment.',
 c3H:'Saves your time',
 c3P:'Tasks that took hours can now be done in minutes.',
+errOffline:'You are offline: this model needs the internet. Reconnect or choose a local model (WebLLM, Ollama, LM Studio).',
+exNote:'Free plans and provider terms change often; the catalog was only partly re-checked on 11 Oct 2026 — confirm on each service\'s own site.',
 stepsH:'How to get started',
 stepsP:'No technical knowledge required.',
 st1H:'Click "Chat" in the menu',
@@ -1572,6 +1600,8 @@ c2H:'Risponde a tutto',
 c2P:'Scienza, medicina, diritto, ricette — l\'IA spiega in modo semplice, senza giudicare.',
 c3H:'Risparmia tempo',
 c3P:'Attività che richiedevano ore possono essere svolte in minuti.',
+errOffline:'Sei offline: questo modello richiede internet. Riconnettiti o scegli un modello locale (WebLLM, Ollama, LM Studio).',
+exNote:'I piani gratuiti e le condizioni dei fornitori cambiano spesso; il catalogo è stato ricontrollato solo in parte l\'11.10.2026 — verifica sul sito di ciascun servizio.',
 stepsH:'Come iniziare',
 stepsP:'Nessuna conoscenza tecnica richiesta.',
 st1H:'Clicca su "Chat" nel menu',
@@ -1807,6 +1837,8 @@ c2H:'Responde cualquier cosa',
 c2P:'Ciencia, medicina, derecho, recetas — la IA explica en tu idioma, sin juicios.',
 c3H:'Ahorra tu tiempo',
 c3P:'Tareas que tomaban horas ahora se hacen en minutos.',
+errOffline:'Estás sin conexión: este modelo necesita internet. Vuelve a conectarte o elige un modelo local (WebLLM, Ollama, LM Studio).',
+exNote:'Los planes gratuitos y las condiciones de los proveedores cambian a menudo; el catálogo se revisó solo en parte el 11.10.2026: confirma en el sitio de cada servicio.',
 stepsH:'Cómo empezar',
 stepsP:'No se requieren conocimientos técnicos.',
 st1H:'Haz clic en "Chat" en el menú',
@@ -2042,6 +2074,8 @@ c2H:'Responde a tudo',
 c2P:'Ciência, medicina, direito, receitas — a IA explica de forma simples, sem julgamentos.',
 c3H:'Economiza seu tempo',
 c3P:'Tarefas que levavam horas agora são feitas em minutos.',
+errOffline:'Você está offline: este modelo precisa de internet. Reconecte-se ou escolha um modelo local (WebLLM, Ollama, LM Studio).',
+exNote:'Os planos gratuitos e as condições dos provedores mudam com frequência; o catálogo foi reverificado só em parte em 11.10.2026 — confirme no site de cada serviço.',
 stepsH:'Como começar',
 stepsP:'Nenhum conhecimento técnico necessário.',
 st1H:'Clique em "Chat" no menu',
@@ -2277,6 +2311,8 @@ c2H:'Répond à tout',
 c2P:'Science, médecine, droit, recettes — l\'IA explique simplement, sans jugement.',
 c3H:'Économise votre temps',
 c3P:'Des tâches qui prenaient des heures se font maintenant en minutes.',
+errOffline:'Vous êtes hors ligne : ce modèle nécessite internet. Reconnectez-vous ou choisissez un modèle local (WebLLM, Ollama, LM Studio).',
+exNote:'Les offres gratuites et les conditions des fournisseurs changent souvent ; le catalogue n\'a été revérifié que partiellement le 11.10.2026 — confirmez sur le site de chaque service.',
 stepsH:'Comment commencer',
 stepsP:'Aucune connaissance technique requise.',
 st1H:'Cliquez sur "Chat" dans le menu',
@@ -2512,6 +2548,8 @@ c2H:'Beantwortet alles',
 c2P:'Wissenschaft, Medizin, Recht, Rezepte — die KI erklärt verständlich, ohne zu urteilen.',
 c3H:'Spart Ihre Zeit',
 c3P:'Aufgaben, die Stunden dauerten, werden jetzt in Minuten erledigt.',
+errOffline:'Du bist offline: Dieses Modell braucht Internet. Verbinde dich erneut oder wähle ein lokales Modell (WebLLM, Ollama, LM Studio).',
+exNote:'Kostenlose Tarife und Anbieterbedingungen ändern sich oft; der Katalog wurde am 11.10.2026 nur teilweise geprüft — bitte auf der Seite des jeweiligen Dienstes bestätigen.',
 stepsH:'Wie man anfängt',
 stepsP:'Keine technischen Kenntnisse erforderlich.',
 st1H:'Klicken Sie auf „Chat" im Menü',
@@ -2787,6 +2825,8 @@ function setLang(lc){ _qpCat=null;
   try{localStorage.setItem('ailib_lang',lc);}catch(e){}
   document.documentElement.lang=lc;
   applyI18n();
+  // Ecranul de bun venit este generat din șabloane: îl regenerăm în limba nouă (altfel rămân texte din limba veche)
+  try{ if(document.getElementById('cwelc') && !document.querySelector('#cmsgs .msg')) _showWelcome(); }catch(x){}
   _renderCpanel();
   // Refresh explore grid badges after lang change
   try{
@@ -2832,7 +2872,7 @@ const PROV={
   pollinations:{n:'Pollinations.AI',ico:'🌸',c:'#E55B9B',noKey:true,free:true,
     guide:'✅ <strong>Complet gratuit, fără cont, fără cheie!</strong> Rata: 1 mesaj/15s anonim. Înregistrare gratuită la <a href="https://auth.pollinations.ai" target="_blank" rel="noopener noreferrer">auth.pollinations.ai</a> pentru 1 mesaj/5s.'},
   duckduckgo:{n:'DuckDuckGo AI',ico:'🦆',c:'#DE5833',noKey:true,free:true,
-    guide:'✅ <strong>100% anonim, fără cont, fără date înregistrate!</strong> DuckDuckGo nu salvează nimic. Acces la GPT-4o mini, Claude, Llama și Mixtral. Notă: pot apărea erori CORS în unele browsere — încearcă Pollinations ca alternativă.'},
+    guide:'✅ <strong>Fără cont, fără cheie!</strong> Conform DuckDuckGo, conversațiile nu sunt salvate. Modelele oferite se schimbă des (verificat la 11.10.2026: GPT-4o mini, GPT-5 mini, Claude Haiku 4.5, gpt-oss-120b, Llama 4 Scout, Mistral Small 3; sursa: TechRadar, iulie 2026) — unele modele din lista aplicației pot fi retrase: folosește „Verifică & actualizează modele”. Notă: pot apărea erori CORS în unele browsere — încearcă Pollinations ca alternativă.'},
   webllm:{n:'WebLLM (Browser Local)',ico:'🖥️',c:'#059669',noKey:true,free:true,
     guide:'✅ <strong>Rulează 100% LOCAL în browserul tău!</strong> Zero server, zero date trimise. Complet privat. Necesită Chrome 113+ sau Edge 113+ (cu WebGPU). Prima descărcare: 1-4GB per model (se cacheează permanent în browser).'},
   aihorde:{n:'AI Horde',ico:'🌐',c:'#D97706',noKey:true,free:true,
@@ -3775,7 +3815,7 @@ function _showWelcome(){
       <p data-i18n-html="cwP" style="font-size:.72rem;color:var(--mut);margin:0 0 3px">${t('cwP')}</p>
       <div class="wfree" style="margin-bottom:4px">✅ ${c} Pollinations</div>
       <div class="cwelc-free-banner">
-        🌸 ${t('bannerP')||'Prin <strong>Pollinations.AI</strong>, accesezi <strong>20+ modele gratuit</strong> — fără cont, fără cheie API.'}
+        🌸 ${t('bannerP')}
       </div>
     </div>
     <div class="cwelc-sec">
@@ -4137,6 +4177,7 @@ async function sendMsg(){
   const text=ta.value.trim();
   if(!text)return;
   if(!canUse(cur)){openInlineKey(cur.p);return;}
+  if(typeof navigator!=='undefined' && navigator.onLine===false && !['webllm','ollama','lmstudio'].includes(cur.p)){addErrMsg(t('errOffline'));return;}
 
   ta.value='';ta.style.height='auto';
   if(cur&&hists[cur.id])hists[cur.id].draft='';
@@ -7978,20 +8019,6 @@ function eraseAllData(){
 
 
 
-<!-- LEGAL -->
-<div class="page" id="page-legal">
-  <div class="tips-wrap">
-    <h2 class="stit" data-i18n="navLegal" style="margin-bottom:12px">🔒 Legal</h2>
-    <div style="display:flex;gap:0;border-bottom:1px solid var(--bdr);margin-bottom:16px;overflow-x:auto">
-      <button class="ltab on" data-tab="privacy" onclick="openLegal('privacy')" data-i18n="ltPriv" style="flex:1;padding:9px 4px;border:none;border-bottom:2px solid transparent;background:none;font-family:'Nunito',sans-serif;font-size:.75rem;font-weight:700;cursor:pointer;color:var(--mut);white-space:nowrap;transition:all .16s;min-width:80px">🔒 Confidențialitate</button>
-      <button class="ltab" data-tab="terms" onclick="openLegal('terms')" data-i18n="ltTerms" style="flex:1;padding:9px 4px;border:none;border-bottom:2px solid transparent;background:none;font-family:'Nunito',sans-serif;font-size:.75rem;font-weight:700;cursor:pointer;color:var(--mut);white-space:nowrap;transition:all .16s;min-width:60px">📋 Termeni</button>
-      <button class="ltab" data-tab="cookies" onclick="openLegal('cookies')" data-i18n="ltCook" style="flex:1;padding:9px 4px;border:none;border-bottom:2px solid transparent;background:none;font-family:'Nunito',sans-serif;font-size:.75rem;font-weight:700;cursor:pointer;color:var(--mut);white-space:nowrap;transition:all .16s;min-width:70px">🍪 Cookie-uri</button>
-      <button class="ltab" data-tab="gdpr" onclick="openLegal('gdpr')" data-i18n="ltGDPR" style="flex:1;padding:9px 4px;border:none;border-bottom:2px solid transparent;background:none;font-family:'Nunito',sans-serif;font-size:.75rem;font-weight:700;cursor:pointer;color:var(--mut);white-space:nowrap;transition:all .16s;min-width:60px">🛡️ GDPR</button>
-    </div>
-    <div class="lmod-body" id="legal-page-body" style="max-width:680px;margin:0 auto"></div>
-  </div>
-</div>
-
 <!-- ══ MODEL CHECK MODAL ═══════════════════════════════════ -->
 <div class="mcheck-ov" id="mcheck-ov" onclick="if(event.target===this)closeMCheck()">
   <div class="mcheck-box">
@@ -8055,7 +8082,7 @@ function eraseAllData(){
 <!-- ══ COOKIE CONSENT BANNER ════════════════════════════════ -->
 
 <!-- tf-donate: sprijin voluntar (Patreon + Buy Me a Coffee) — self-contained, fără resurse externe, fără JS -->
-<div id="tf-donate" aria-label="Sprijină autorul">
+<div id="tf-donate" role="complementary" aria-label="Sprijină autorul">
 <style>
 #tf-donate{position:fixed;right:14px;bottom:14px;z-index:2147483600;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1}
 #tf-donate *{box-sizing:border-box}
