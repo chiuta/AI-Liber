@@ -2,7 +2,7 @@
 
 Chat cu modele de inteligență artificială gratuite sau cu cheile tale API, plus un ghid al celor mai bune AI-uri gratuite, într-un singur fișier HTML.
 
-**Ultima actualizare:** 11 octombrie 2026
+**Versiune:** 1.0.0 · **Ultima actualizare:** 12 octombrie 2026
 
 **Live:** https://chiuta.github.io/AI-Liber/
 
@@ -78,6 +78,7 @@ AI Liber is a single-file HTML chat front-end for free no-account AI services, b
 - Textele juridice (versiunea „v1.0 · 12 aprilie 2026”) nu au fost modificate în această rundă; data lor este decizia autorului și nu a fost schimbată.
 
 ## Istoric / Changelog
+- 1.0.0 — 2026-10-12: versiunea și data ultimei actualizări sunt afișate în aplicație
 - **11 octombrie 2026 (runda 7)** — în panoul de chei API nota de securitate nu mai afișează literal `<strong>NOT</strong>` (etichetele HTML au fost scoase din textul în cele 7 limbi); antetul „🤖 Modele AI” din panoul lateral și insignele „N modele (cache/live)” se traduc acum la schimbarea limbii; etichetele de specificații ale modelelor („Cel mai rapid”, „Raționament”, „Programare” etc.) sunt traduse în EN/FR/IT/ES/PT/DE; ghidurile furnizorilor din Setări apar în engleză (nu în română) în limbile non-RO; CSP-ul păstrează hash-ul recalculat. Textele juridice nu au fost modificate. 0 erori, axe 0 violări la 1280×800 și 360×740.
 - **11 octombrie 2026 (a doua intervenție)** — cele 112 atribute `on*` inline (85 de handlere distincte) au fost înlocuite cu un dispecer delegat la nivel de `body`, iar CSP nu mai are `'unsafe-inline'` la `script-src` (hash `sha256`); paritatea de comportament a fost verificată automat pe 12 stări ale aplicației (peste 6.800 de evenimente declanșate pe versiunea veche și pe cea nouă, aceleași apeluri și argumente, 0 diferențe) și cu CSP activ (0 erori, 0 încălcări). Catalogul de modele se reconstruiește acum la schimbarea limbii (etichetele „rulează în browser”, „Local în browser”, grupele de raționament nu mai rămân în limba veche), ghidurile furnizorilor din Setări au traducere în engleză (în celelalte limbi rămân în română), eticheta și aria-label-urile widgetului de sprijin sunt traduse în cele 7 limbi, iar ofertele de credite de probă din ghidurile OpenAI/Anthropic sunt formulate ca variabile („verifică pe site”), nu ca promisiuni.
 - **11 octombrie 2026** — ecranul de bun venit se regenerează la schimbarea limbii (înainte rămânea în română într-o interfață engleză/franceză etc.); bannerul nu mai enumeră modele perisabile (GPT-4, Llama 70B, DeepSeek R1…); ghidul DuckDuckGo este datat și cu avertisment despre modele retrase; notă datată în „Explorează” despre planuri gratuite schimbătoare; mesaj clar „ești offline” (7 limbi) în loc de eroare de rețea când alegi un model care are nevoie de internet; pe 360 px nu mai apar depășiri orizontale (bara de sus, pagina Legal).
