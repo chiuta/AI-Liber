@@ -2,7 +2,7 @@
 
 Chat cu modele de inteligență artificială gratuite sau cu cheile tale API, plus un ghid al celor mai bune AI-uri gratuite, într-un singur fișier HTML.
 
-**Versiune:** 1.0.0 · **Ultima actualizare:** 12 octombrie 2026
+**Versiune:** 1.1.0 · **Ultima actualizare:** 14 octombrie 2026
 
 **Live:** https://chiuta.github.io/AI-Liber/
 
@@ -23,6 +23,20 @@ AI Liber este o aplicație single-file (`index.html`) care oferă o interfață 
 - Panou inferior cu „⚡ Idei rapide” (prompturi), „🧠 Quiz AI” și „⌨️ Shortcuts”.
 - Interfață în 7 limbi: română, engleză, franceză, germană, spaniolă, portugheză, italiană.
 - Texte de confidențialitate (GDPR), termeni și informații despre cookie-uri/stocare locală, în fiecare limbă.
+
+## Funcții noi (1.1.0)
+
+- **Verificare locală de date personale înainte de trimitere** (`FFF.pii`): când mesajul urmează să plece către un serviciu extern (Pollinations, DuckDuckGo, AI Horde, API-uri cu cheie), aplicația caută local e-mailuri, telefoane, IBAN (mod 97), CNP (cifră de control), carduri (Luhn), IP, chei/token-uri. Dacă găsește ceva, nu trimite nimic până alegi: „Maschează bifatele și continuă”, „Continuă fără mascare” sau „Anulează” (textul rămâne în câmp). Se poate opri din bara laterală (preferința se păstrează). Pentru modelele locale (WebLLM, Ollama, LM Studio) nu se afișează dialogul, fiindcă textul nu părăsește calculatorul.
+- **Indicator „ce pleacă din acest dispozitiv”** lângă selectorul de model: „Local: mesajele rămân în browser” (WebLLM), „Local: mesajele merg doar la serverul de pe acest calculator” (Ollama/LM Studio) sau „Mesajele pleacă spre <gazdă>” (servicii externe). La WebLLM, indicatorul precizează că fișierele modelului se descarcă din rețea la prima folosire, dar textul tău nu pleacă.
+- **Istoric local de conversații, opțional (oprit implicit):** dacă bifezi „Salvează conversațiile pe acest dispozitiv”, conversațiile se păstrează în `localStorage` (cheile `ailib_conv`, `ailib_hist`), cu datele personale mascate dacă vrei (buton „Caută date personale în istoric”). Panoul „🗂 Istoric local” are căutare locală după sens (`FFF.search`: BM25, diacritice, forme apropiate, fragmente evidențiate), reluarea unei conversații în chat, ștergere pe conversație, export Markdown.
+- **Copie criptată a istoricului** prin eticheta de transparență (Exportă criptat, parolă). Cheile API și secretul de sesiune **nu** intră în copie (verificat în test).
+
+### Limite
+- Detecția de date personale este euristică (nume proprii și adrese au încredere scăzută). Nu garantează absența datelor sensibile.
+- Mascarea se aplică textului din câmpul de mesaj, nu fișierelor deja încărcate în chat.
+- Istoricul are plafon de dimensiune; la depășire se elimină cele mai vechi conversații (cu mesaj).
+
+**Kit FFF.** Din `fff-kit` (lipit în `index.html`, fără rețea) se folosesc modulele `core, label, bundle, pii, search`: etichetă de transparență (apasă versiunea din subsol), export/import/ștergere `.fff.json` cu criptare opțională AES-GCM + PBKDF2, detecția locală de date personale și căutarea locală BM25. Politica CSP **nu a fost schimbată** față de versiunea anterioară în afară de hash-urile `sha256` ale scripturilor inline (stilurile noi sunt în `<style>`, acoperit de `style-src 'unsafe-inline'` deja prezent; nu s-a adăugat nicio gazdă nouă). Traducerile textelor noi în fr/it/es/pt/hu/de sunt automate și **neverificate nativ**. Detecția de date personale este euristică: poate rata sau semnala greșit; nu înlocuiește verificarea ta.
 
 ## Manual de utilizare
 
@@ -78,6 +92,7 @@ AI Liber is a single-file HTML chat front-end for free no-account AI services, b
 - Textele juridice (versiunea „v1.0 · 12 aprilie 2026”) nu au fost modificate în această rundă; data lor este decizia autorului și nu a fost schimbată.
 
 ## Istoric / Changelog
+- **1.1.0 — 2026-10-14:** verificare locală de date personale înainte de trimitere (`FFF.pii`), indicator „ce pleacă”, istoric local opțional căutabil (`FFF.search`), copie criptată `.fff.json` (`FFF.bundle`), etichetă de transparență; teste în `tests/fff-r8.test.mjs`.
 - 1.0.0 — 2026-10-12: versiunea și data ultimei actualizări sunt afișate în aplicație
 - **11 octombrie 2026 (runda 7)** — în panoul de chei API nota de securitate nu mai afișează literal `<strong>NOT</strong>` (etichetele HTML au fost scoase din textul în cele 7 limbi); antetul „🤖 Modele AI” din panoul lateral și insignele „N modele (cache/live)” se traduc acum la schimbarea limbii; etichetele de specificații ale modelelor („Cel mai rapid”, „Raționament”, „Programare” etc.) sunt traduse în EN/FR/IT/ES/PT/DE; ghidurile furnizorilor din Setări apar în engleză (nu în română) în limbile non-RO; CSP-ul păstrează hash-ul recalculat. Textele juridice nu au fost modificate. 0 erori, axe 0 violări la 1280×800 și 360×740.
 - **11 octombrie 2026 (a doua intervenție)** — cele 112 atribute `on*` inline (85 de handlere distincte) au fost înlocuite cu un dispecer delegat la nivel de `body`, iar CSP nu mai are `'unsafe-inline'` la `script-src` (hash `sha256`); paritatea de comportament a fost verificată automat pe 12 stări ale aplicației (peste 6.800 de evenimente declanșate pe versiunea veche și pe cea nouă, aceleași apeluri și argumente, 0 diferențe) și cu CSP activ (0 erori, 0 încălcări). Catalogul de modele se reconstruiește acum la schimbarea limbii (etichetele „rulează în browser”, „Local în browser”, grupele de raționament nu mai rămân în limba veche), ghidurile furnizorilor din Setări au traducere în engleză (în celelalte limbi rămân în română), eticheta și aria-label-urile widgetului de sprijin sunt traduse în cele 7 limbi, iar ofertele de credite de probă din ghidurile OpenAI/Anthropic sunt formulate ca variabile („verifică pe site”), nu ca promisiuni.

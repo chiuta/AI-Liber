@@ -1,0 +1,199 @@
+{
+  "schema": 1,
+  "slug": "ai-liber",
+  "name": "AI Liber — Inteligența artificială pentru toți",
+  "version": "1.1.0",
+  "updated": "2026-10-14",
+  "description": "Chat cu Claude, GPT-4, Gemini, Llama, DeepSeek și 30+ modele — unele fără cont, unele cu cheie API gratuită.",
+  "egress": [
+    {
+      "host": "*.hf.co",
+      "via": [
+        "csp:connect-src"
+      ]
+    },
+    {
+      "host": "*.huggingface.co",
+      "via": [
+        "csp:connect-src"
+      ]
+    },
+    {
+      "host": "aihorde.net",
+      "via": [
+        "csp:connect-src",
+        "fetch"
+      ]
+    },
+    {
+      "host": "api.anthropic.com",
+      "via": [
+        "csp:connect-src",
+        "fetch"
+      ]
+    },
+    {
+      "host": "api.groq.com",
+      "via": [
+        "csp:connect-src"
+      ]
+    },
+    {
+      "host": "api.mistral.ai",
+      "via": [
+        "csp:connect-src"
+      ]
+    },
+    {
+      "host": "api.openai.com",
+      "via": [
+        "csp:connect-src"
+      ]
+    },
+    {
+      "host": "api.perplexity.ai",
+      "via": [
+        "csp:connect-src"
+      ]
+    },
+    {
+      "host": "cdn.jsdelivr.net",
+      "via": [
+        "csp:connect-src",
+        "csp:font-src",
+        "csp:script-src",
+        "csp:style-src",
+        "src="
+      ]
+    },
+    {
+      "host": "duckduckgo.com",
+      "via": [
+        "csp:connect-src",
+        "fetch"
+      ]
+    },
+    {
+      "host": "esm.run",
+      "via": [
+        "csp:connect-src",
+        "csp:script-src",
+        "import()"
+      ]
+    },
+    {
+      "host": "generativelanguage.googleapis.com",
+      "via": [
+        "csp:connect-src"
+      ]
+    },
+    {
+      "host": "huggingface.co",
+      "via": [
+        "csp:connect-src"
+      ]
+    },
+    {
+      "host": "image.pollinations.ai",
+      "via": [
+        "csp:connect-src"
+      ]
+    },
+    {
+      "host": "localhost",
+      "via": [
+        "csp:connect-src"
+      ]
+    },
+    {
+      "host": "openrouter.ai",
+      "via": [
+        "csp:connect-src"
+      ]
+    },
+    {
+      "host": "raw.githubusercontent.com",
+      "via": [
+        "csp:connect-src"
+      ]
+    },
+    {
+      "host": "text.pollinations.ai",
+      "via": [
+        "csp:connect-src",
+        "fetch"
+      ]
+    }
+  ],
+  "permissions": [
+    "serviceWorker",
+    "localStorage",
+    "Web Crypto",
+    "WebGPU"
+  ],
+  "storageKeys": [
+    "aik_",
+    "aik_enc_",
+    "ailib_404",
+    "ailib_ksalt",
+    "ailib_lang",
+    "ailib_pollauto",
+    "ailib_sbw"
+  ],
+  "sizeBytes": 937454,
+  "sha256": "cf103e28b82e85c09a3cf2da58f214dc12ad260ee6629ea47676601fc9bf45b1",
+  "csp": {
+    "present": true,
+    "directives": {
+      "default-src": "'self'",
+      "script-src": "'self' 'wasm-unsafe-eval' https://esm.run https://cdn.jsdelivr.net sha256×4",
+      "style-src": "'self' 'unsafe-inline' https://cdn.jsdelivr.net",
+      "font-src": "'self' https://cdn.jsdelivr.net data:",
+      "img-src": "'self' data: blob:",
+      "connect-src": "'self' https://text.pollinations.ai https://image.pollinations.ai https://duckduckgo.com https://api.anthropic.com https://api.openai.com https://generativelanguage.googleapis.com https://api.groq.com https://api.mistral.ai https://api.perplexity.ai https://openrouter.ai https://aihorde.net http://localhost:1234 http://localhost:11434 https://huggingface.co https://*.huggingface.co https://*.hf.co https://raw.githubusercontent.com https://cdn.jsdelivr.net https://esm.run",
+      "worker-src": "'self' blob:",
+      "object-src": "'none'",
+      "base-uri": "'self'",
+      "form-action": "'none'",
+      "manifest-src": "'self'"
+    },
+    "scriptInline": "hash",
+    "connect": "'self' https://text.pollinations.ai https://image.pollinations.ai https://duckduckgo.com https://api.anthropic.com https://api.openai.com https://generativelanguage.googleapis.com https://api.groq.com https://api.mistral.ai https://api.perplexity.ai https://openrouter.ai https://aihorde.net http://localhost:1234 http://localhost:11434 https://huggingface.co https://*.huggingface.co https://*.hf.co https://raw.githubusercontent.com https://cdn.jsdelivr.net https://esm.run"
+  },
+  "features": {
+    "export": true,
+    "import": true,
+    "i18n": [
+      "ro",
+      "en",
+      "fr",
+      "it",
+      "es",
+      "pt",
+      "hu",
+      "de"
+    ],
+    "pwa": {
+      "manifest": true,
+      "serviceWorker": true
+    },
+    "modules": [
+      "core",
+      "label",
+      "bundle",
+      "pii",
+      "search"
+    ]
+  },
+  "kit": {
+    "version": "1.0.0",
+    "modules": [
+      "core",
+      "label",
+      "bundle",
+      "pii",
+      "search"
+    ]
+  },
+  "selfSerializing": false
+}
