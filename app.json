@@ -140,8 +140,8 @@
     "ailib_pollauto",
     "ailib_sbw"
   ],
-  "sizeBytes": 937392,
-  "sha256": "397696c3206720c3bd109b6017d6d3bfc5e2dd0415ff05ab81f9955d478f397d",
+  "sizeBytes": 896907,
+  "sha256": "9dd391b3a9864f42d76de73618e667a31bb8cd06e5499f58555f51cfef64f1d2",
   "csp": {
     "present": true,
     "directives": {
@@ -170,7 +170,6 @@
       "it",
       "es",
       "pt",
-      "hu",
       "de"
     ],
     "pwa": {
