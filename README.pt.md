@@ -2,13 +2,13 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · **Português** · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versão:** 1.2.0 · **Última atualização:** 2026-10-19
+**Versão:** 1.3.0 · **Última atualização:** 2026-10-19
 
 Converse com modelos de inteligência artificial gratuitos ou com as suas próprias chaves API, além de um guia das melhores IA gratuitas, num único ficheiro HTML.
 
 **Aplicação online:** https://chiuta.github.io/AI-Liber/
 
-![Captura de ecrã](screenshot.png)
+![Captura de ecrã](screenshot.pt.png)
 
 ## O que é
 
