@@ -1,100 +1,102 @@
-# AI Liber — Inteligența artificială pentru toți
+# AI Liber — Artificial intelligence for everyone
 
-Chat cu modele de inteligență artificială gratuite sau cu cheile tale API, plus un ghid al celor mai bune AI-uri gratuite, într-un singur fișier HTML.
+**English** · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versiune:** 1.1.0 · **Ultima actualizare:** 14 octombrie 2026
+**Version:** 1.1.0 · **Last updated:** 2026-10-14
 
-**Live:** https://chiuta.github.io/AI-Liber/
+Chat with free artificial-intelligence models or with your own API keys, plus a guide to the best free AIs, in a single HTML file.
 
-![Captura de ecran](screenshot.png)
+**Live app:** https://chiuta.github.io/AI-Liber/
 
-## Ce este
+![Screenshot](screenshot.png)
 
-AI Liber este o aplicație single-file (`index.html`) care oferă o interfață unică de chat către mai mulți furnizori de modele de limbaj: servicii gratuite, fără cont (de exemplu Pollinations, DuckDuckGo AI Chat, AI Horde), servicii cu cheie API proprie (OpenAI, Anthropic, Gemini, Groq, Mistral, OpenRouter, Perplexity), servere locale (Ollama, LM Studio) și un model rulat direct în browser prin WebLLM. Include și o secțiune cu un catalog de AI-uri gratuite, un quiz și idei de prompturi.
+## What it is
 
-## Funcții
+AI Liber is a single-file app (`index.html`) that offers one chat interface to several language-model providers: free services with no account (for example Pollinations, DuckDuckGo AI Chat, AI Horde), services with your own API key (OpenAI, Anthropic, Gemini, Groq, Mistral, OpenRouter, Perplexity), local servers (Ollama, LM Studio) and a model run directly in the browser through WebLLM. It also includes a section with a catalogue of free AIs, a quiz and prompt ideas.
 
-- Chat cu selector de model/furnizor, trimitere cu butonul „➤ Trimite”, oprirea unei cereri în curs.
-- Bară de formatare Markdown (aldin, cursiv, tăiat, cod, listă, citat, tabel etc.).
-- Panou „Configurează chei API” pentru furnizorii care cer cheie; cheile sunt păstrate local, obscurizate cu AES-GCM (aplicația avertizează explicit că aceasta nu este criptare robustă).
-- Buton „Verifică & actualizează modele” pentru reîmprospătarea listei de modele.
-- Suport pentru servere locale Ollama (`localhost:11434`) și LM Studio (`localhost:1234`) și pentru un model local în browser (WebLLM).
-- Catalog „Cele mai bune AI-uri gratuite”, filtrabil pe categorii (Chat, Cercetare, Imagini, Video AI, Media, Cod, Scriere, Productivitate, Creativ) și pe „Fără cont” / „Local (browser)”.
-- Panou inferior cu „⚡ Idei rapide” (prompturi), „🧠 Quiz AI” și „⌨️ Shortcuts”.
-- Interfață în 7 limbi: română, engleză, franceză, germană, spaniolă, portugheză, italiană.
-- Texte de confidențialitate (GDPR), termeni și informații despre cookie-uri/stocare locală, în fiecare limbă.
+## Features
 
-## Funcții noi (1.1.0)
+- Chat with a model/provider selector, sending with the "➤ Send" button, stopping a request in progress.
+- A Markdown formatting bar (bold, italic, strikethrough, code, list, quote, table, etc.).
+- A "Configure API keys" panel for the providers that require a key; the keys are kept locally, obscured with AES-GCM (the app explicitly warns that this is not strong encryption).
+- A "Check & update models" button to refresh the model list.
+- Support for local Ollama servers (`localhost:11434`) and LM Studio (`localhost:1234`) and for a local in-browser model (WebLLM).
+- A "Best free AIs" catalogue, filterable by category (Chat, Research, Images, AI Video, Media, Code, Writing, Productivity, Creative) and by "No account" / "Local (browser)".
+- A bottom panel with "⚡ Quick ideas" (prompts), "🧠 AI Quiz" and "⌨️ Shortcuts".
+- Interface in 7 languages: Romanian, English, French, German, Spanish, Portuguese, Italian.
+- Privacy texts (GDPR), terms and information about cookies/local storage, in every language.
 
-- **Verificare locală de date personale înainte de trimitere** (`FFF.pii`): când mesajul urmează să plece către un serviciu extern (Pollinations, DuckDuckGo, AI Horde, API-uri cu cheie), aplicația caută local e-mailuri, telefoane, IBAN (mod 97), CNP (cifră de control), carduri (Luhn), IP, chei/token-uri. Dacă găsește ceva, nu trimite nimic până alegi: „Maschează bifatele și continuă”, „Continuă fără mascare” sau „Anulează” (textul rămâne în câmp). Se poate opri din bara laterală (preferința se păstrează). Pentru modelele locale (WebLLM, Ollama, LM Studio) nu se afișează dialogul, fiindcă textul nu părăsește calculatorul.
-- **Indicator „ce pleacă din acest dispozitiv”** lângă selectorul de model: „Local: mesajele rămân în browser” (WebLLM), „Local: mesajele merg doar la serverul de pe acest calculator” (Ollama/LM Studio) sau „Mesajele pleacă spre <gazdă>” (servicii externe). La WebLLM, indicatorul precizează că fișierele modelului se descarcă din rețea la prima folosire, dar textul tău nu pleacă.
-- **Istoric local de conversații, opțional (oprit implicit):** dacă bifezi „Salvează conversațiile pe acest dispozitiv”, conversațiile se păstrează în `localStorage` (cheile `ailib_conv`, `ailib_hist`), cu datele personale mascate dacă vrei (buton „Caută date personale în istoric”). Panoul „🗂 Istoric local” are căutare locală după sens (`FFF.search`: BM25, diacritice, forme apropiate, fragmente evidențiate), reluarea unei conversații în chat, ștergere pe conversație, export Markdown.
-- **Copie criptată a istoricului** prin eticheta de transparență (Exportă criptat, parolă). Cheile API și secretul de sesiune **nu** intră în copie (verificat în test).
+## New features (1.1.0)
 
-### Limite
-- Detecția de date personale este euristică (nume proprii și adrese au încredere scăzută). Nu garantează absența datelor sensibile.
-- Mascarea se aplică textului din câmpul de mesaj, nu fișierelor deja încărcate în chat.
-- Istoricul are plafon de dimensiune; la depășire se elimină cele mai vechi conversații (cu mesaj).
+- **Local check for personal data before sending** (`FFF.pii`): when the message is about to go to an external service (Pollinations, DuckDuckGo, AI Horde, API-key services), the app looks locally for emails, phone numbers, IBANs (mod 97), CNPs (check digit), cards (Luhn), IPs, keys/tokens. If it finds something, it sends nothing until you choose: "Mask the ticked items and continue", "Continue without masking" or "Cancel" (the text stays in the field). It can be switched off from the sidebar (the preference is kept). For local models (WebLLM, Ollama, LM Studio) the dialog is not shown, because the text does not leave the computer.
+- **"What leaves this device" indicator** next to the model selector: "Local: messages stay in the browser" (WebLLM), "Local: messages go only to the server on this computer" (Ollama/LM Studio) or "Messages go to <host>" (external services). For WebLLM, the indicator specifies that the model files are downloaded from the network on first use, but your text does not leave.
+- **Optional local conversation history (off by default):** if you tick "Save conversations on this device", conversations are kept in `localStorage` (keys `ailib_conv`, `ailib_hist`), with personal data masked if you want (button "Search for personal data in the history"). The "🗂 Local history" panel has local search by meaning (`FFF.search`: BM25, diacritics, close forms, highlighted fragments), resuming a conversation in the chat, deletion per conversation, Markdown export.
+- **Encrypted copy of the history** through the transparency label (Export encrypted, password). The API keys and the session secret are **not** included in the copy (verified in a test).
 
-**Kit FFF.** Din `fff-kit` (lipit în `index.html`, fără rețea) se folosesc modulele `core, label, bundle, pii, search`: etichetă de transparență (apasă versiunea din subsol), export/import/ștergere `.fff.json` cu criptare opțională AES-GCM + PBKDF2, detecția locală de date personale și căutarea locală BM25. Politica CSP **nu a fost schimbată** față de versiunea anterioară în afară de hash-urile `sha256` ale scripturilor inline (stilurile noi sunt în `<style>`, acoperit de `style-src 'unsafe-inline'` deja prezent; nu s-a adăugat nicio gazdă nouă). Traducerile textelor noi în fr/it/es/pt/hu/de sunt automate și **neverificate nativ**. Detecția de date personale este euristică: poate rata sau semnala greșit; nu înlocuiește verificarea ta.
+### Limits
+- Personal-data detection is heuristic (proper names and addresses have low confidence). It does not guarantee the absence of sensitive data.
+- Masking applies to the text in the message field, not to files already uploaded to the chat.
+- The history has a size cap; when it is exceeded, the oldest conversations are removed (with a message).
 
-## Manual de utilizare
+**FFF kit.** From `fff-kit` (pasted into `index.html`, no network) the modules `core, label, bundle, pii, search` are used: the transparency label (press the version in the footer), `.fff.json` export/import/deletion with optional AES-GCM + PBKDF2 encryption, local personal-data detection and local BM25 search. The CSP policy **has not been changed** from the previous version apart from the `sha256` hashes of the inline scripts (the new styles are in `<style>`, covered by the `style-src 'unsafe-inline'` already present; no new host was added). The translations of the new texts into fr/it/es/pt/hu/de are automatic and **not natively verified**. Personal-data detection is heuristic: it may miss or wrongly flag; it does not replace your own checking.
 
-1. Deschide aplicația și alege limba din selectorul de limbă (Română, English, Français, Deutsch, Español, Português, Italiano).
-2. Alege un model din listă. Modelele marcate „Fără cont” nu cer cheie.
-3. Pentru un furnizor cu cheie: apasă „⚙️ Configurează chei API”, introdu cheia pentru furnizorul dorit și închide fereastra.
-4. Scrie mesajul în câmpul de text și apasă Enter sau „➤ Trimite”. Shift+Enter inserează un rând nou.
-5. Formatare: Ctrl+B (aldin), Ctrl+I (cursiv), Ctrl+Z (anulare); Esc închide ferestrele; ↑↓ navighează lista de modele.
-6. Pentru modele locale: pornește Ollama cu `OLLAMA_ORIGINS=* ollama serve` sau serverul LM Studio pe portul 1234, apoi alege modelul local.
-7. Folosește „⚡ Idei rapide”, „🧠 Quiz AI” sau secțiunea „Cele mai bune AI-uri gratuite” pentru inspirație și descoperire de servicii.
-8. Pentru a șterge datele, folosește opțiunile descrise în fereastra de confidențialitate sau golește datele site-ului din browser.
+## User guide
 
-## Confidențialitate și rețea
+1. Open the app and choose the language from the language selector (Romanian, English, Français, Deutsch, Español, Português, Italiano).
+2. Choose a model from the list. Models marked "No account" do not require a key.
+3. For a provider with a key: press "⚙️ Configure API keys", enter the key for the provider you want and close the window.
+4. Write the message in the text field and press Enter or "➤ Send". Shift+Enter inserts a new line.
+5. Formatting: Ctrl+B (bold), Ctrl+I (italic), Ctrl+Z (undo); Esc closes the windows; ↑↓ navigate the model list.
+6. For local models: start Ollama with `OLLAMA_ORIGINS=* ollama serve` or the LM Studio server on port 1234, then choose the local model.
+7. Use "⚡ Quick ideas", "🧠 AI Quiz" or the "Best free AIs" section for inspiration and for discovering services.
+8. To delete the data, use the options described in the privacy window or clear the site's data in the browser.
 
-Aplicația **nu este strict offline**: chatul funcționează doar prin contactarea serviciilor alese de tine.
+## Privacy and network
 
-- **Persistența cheilor API:** cheile se criptează (AES-GCM) cu un secret aleator păstrat în `sessionStorage`; în practică ele supraviețuiesc reîncărcării aceleiași file, dar **nu și unei file noi sau repornirii browserului** (secretul se pierde, cheile cifrate rămân nereadabile în `localStorage`), deci trebuie reintroduse. Verificat prin test (reîncărcare: cheia rămâne; filă nouă: gol).
-- **Stocare locală (localStorage):** limba (`ailib_lang`), chei API obscurizate (`aik_enc_*`, `aik_*`) cu o sare (`ailib_ksalt`), o listă locală de modele care au dat eroare 404 (`ailib_404`), o preferință de interfață (`ailib_sbw`), opțiunea de actualizare automată a listei de modele (`ailib_pollauto`, doar dacă o bifezi). În `sessionStorage`: un secret de sesiune (`ailib_ssec`).
-- **La încărcarea paginii:** nu se trimite nicio cerere automată către Pollinations. Lista live de modele (`https://text.pollinations.ai/models`) se cere doar dacă apeși „Reîncarcă modelele Pollinations” / „Verifică & actualizează modele” sau bifezi explicit, în bara laterală, „Actualizează automat lista la pornire” (opt-in, implicit oprit; preferința se păstrează în `ailib_pollauto`). Până atunci se folosește catalogul local din pagină. Când un răspuns conține formule (`$…$`), KaTeX este încărcat de pe `cdn.jsdelivr.net` (versiune fixată, cu verificare de integritate SRI).
-- **Gazde terțe contactate, doar după o acțiune a ta (trimiterea unui mesaj, reîncărcarea listei, activarea WebLLM):** `text.pollinations.ai`, `auth.pollinations.ai` (Pollinations); `duckduckgo.com` (DuckDuckGo AI Chat); `aihorde.net` (AI Horde); `api.openai.com`, `api.anthropic.com`, `generativelanguage.googleapis.com`, `api.perplexity.ai` și alte API-uri ale furnizorilor, doar dacă folosești cheia respectivă; `esm.run` (încărcarea WebLLM `@mlc-ai/web-llm@0.2.84`, doar când activezi modelul în browser) și, în funcție de model, descărcarea ponderilor de la gazdele WebLLM.
-- Mesajele tale sunt trimise furnizorului ales; politicile lor se aplică. Cheile sunt trimise doar furnizorului căruia îi aparțin.
-- Fișierele încărcate în chat sunt procesate local în browser (`vendor/mammoth.browser.min.js` pentru .docx, `vendor/pdfjs/` pentru PDF), dar textul extras ajunge la furnizorul ales odată cu mesajul. Cataloagele conțin linkuri externe (doar navigare, la click).
-- **CSP:** scriptul inline este permis doar prin hash `sha256` (fără `'unsafe-inline'` la `script-src`); evenimentele UI sunt tratate de un dispecer delegat (`data-onclick`, `data-onchange`, `data-oninput`, `data-onkeydown` + `data-arg`), fără atribute `on*` inline. **După orice modificare a scriptului, recalculează hash-ul din meta CSP.** Gazdele permise la `script-src` (`esm.run`, `cdn.jsdelivr.net`) rămân pentru WebLLM și KaTeX, încărcate doar la acțiunea ta.
-- Serverele locale (`localhost`) sunt contactate doar dacă le selectezi; din pagini HTTPS browserul poate bloca apelurile către `http://localhost` (mixed content).
+The app **is not strictly offline**: the chat works only by contacting the services you choose.
 
-## Limitări
+- **API-key persistence:** the keys are encrypted (AES-GCM) with a random secret kept in `sessionStorage`; in practice they survive a reload of the same tab, but **not a new tab or a browser restart** (the secret is lost, the encrypted keys remain unreadable in `localStorage`), so they have to be re-entered. Verified by a test (reload: the key stays; new tab: empty).
+- **Local storage (localStorage):** the language (`ailib_lang`), obscured API keys (`aik_enc_*`, `aik_*`) with a salt (`ailib_ksalt`), a local list of models that returned a 404 error (`ailib_404`), an interface preference (`ailib_sbw`), the option to automatically update the model list (`ailib_pollauto`, only if you tick it). In `sessionStorage`: a session secret (`ailib_ssec`).
+- **On page load:** no automatic request is sent to Pollinations. The live model list (`https://text.pollinations.ai/models`) is requested only if you press "Reload Pollinations models" / "Check & update models" or explicitly tick, in the sidebar, "Automatically update the list at startup" (opt-in, off by default; the preference is kept in `ailib_pollauto`). Until then the local catalogue in the page is used. When an answer contains formulas (`$…$`), KaTeX is loaded from `cdn.jsdelivr.net` (pinned version, with SRI integrity check).
+- **Third-party hosts contacted, only after an action of yours (sending a message, reloading the list, enabling WebLLM):** `text.pollinations.ai`, `auth.pollinations.ai` (Pollinations); `duckduckgo.com` (DuckDuckGo AI Chat); `aihorde.net` (AI Horde); `api.openai.com`, `api.anthropic.com`, `generativelanguage.googleapis.com`, `api.perplexity.ai` and other providers' APIs, only if you use the respective key; `esm.run` (loading WebLLM `@mlc-ai/web-llm@0.2.84`, only when you enable the in-browser model) and, depending on the model, the download of the weights from the WebLLM hosts.
+- Your messages are sent to the chosen provider; their policies apply. The keys are sent only to the provider they belong to.
+- Files uploaded to the chat are processed locally in the browser (`vendor/mammoth.browser.min.js` for .docx, `vendor/pdfjs/` for PDF), but the extracted text reaches the chosen provider along with the message. The catalogues contain external links (navigation only, on click).
+- **CSP:** the inline script is allowed only by `sha256` hash (no `'unsafe-inline'` in `script-src`); UI events are handled by a delegated dispatcher (`data-onclick`, `data-onchange`, `data-oninput`, `data-onkeydown` + `data-arg`), with no inline `on*` attributes. **After any change to the script, recalculate the hash in the CSP meta.** The hosts allowed in `script-src` (`esm.run`, `cdn.jsdelivr.net`) remain for WebLLM and KaTeX, loaded only on your action.
+- Local servers (`localhost`) are contacted only if you select them; from HTTPS pages the browser may block calls to `http://localhost` (mixed content).
 
-Răspunsurile AI pot fi greșite; aplicația afișează sub câmpul de mesaj avertismentul „AI can make mistakes. For medical/legal/financial info — consult a specialist” (în limba interfeței). Mesajele sunt prelucrate de furnizorii aleși, conform politicilor lor.
+## Limitations
 
-## Rulare locală / offline
+AI answers can be wrong; the app displays under the message field the warning "AI can make mistakes. For medical/legal/financial info — consult a specialist" (in the interface language). Messages are processed by the chosen providers, according to their policies.
 
-Descarcă `index.html` și deschide-l în browser. Interfața, catalogul, quiz-ul și ghidurile funcționează fără internet; pentru orice răspuns de chat ai nevoie de conexiune la furnizorul ales (sau de un server local Ollama/LM Studio pornit pe calculatorul tău).
+## Running locally / offline
 
-## Licență
+Download `index.html` and open it in a browser. The interface, the catalogue, the quiz and the guides work without internet; for any chat answer you need a connection to the chosen provider (or a local Ollama/LM Studio server running on your computer).
 
-MIT — vezi fișierul LICENSE
+## Licence
+
+MIT — see the LICENSE file
 
 ## Audit
 
-Audit: 2026-10-10 (rundă 2: 2026-10-11) — `fetchPollModels()` este acum opt-in (nu mai rulează la pornire sau la `visibilitychange` fără acordul tău); mesajul din interfață despre chei spune explicit că ele durează doar cât sesiunea filei; KaTeX din cdn.jsdelivr.net (index.html:~7063). Randarea Markdown a răspunsurilor AI este protejată împotriva XSS (testat cu `<img onerror>`, `javascript:`, atribute injectate în href, formule). Corecturi de contrast și focus.
+Audit: 2026-10-10 (round 2: 2026-10-11) — `fetchPollModels()` is now opt-in (it no longer runs at startup or on `visibilitychange` without your consent); the message in the interface about keys explicitly says they last only for the tab's session; KaTeX from cdn.jsdelivr.net (index.html:~7063). The Markdown rendering of AI answers is protected against XSS (tested with `<img onerror>`, `javascript:`, injected attributes in href, formulas). Contrast and focus fixes.
 
-## Autor
+## Author
 
-Alexio — Alexandru-Ionuț Chiuță, contact: alexio@trom.tf. Aplicația este oferită în spiritul mișcării trade-free TROM (trom.tf); sprijinul voluntar este opțional.
+Alexio — Alexandru-Ionuț Chiuță, contact: alexio@trom.tf. The app is offered in the spirit of the trade-free TROM movement (trom.tf); voluntary support is optional.
 
-## English summary
+## Summary
 
 AI Liber is a single-file HTML chat front-end for free no-account AI services, bring-your-own-key APIs, local Ollama/LM Studio servers and an in-browser WebLLM model, plus a directory of free AI tools, a quiz and prompt ideas. 7 UI languages. Keys are kept in localStorage (AES-GCM obfuscated, not strong encryption). Chat requires internet access to the chosen provider. MIT licence.
 
-## Surse verificate la 11.10.2026
-- DuckDuckGo AI Chat (duck.ai), modele gratuite fără cont: TechRadar, „Duck.ai by DuckDuckGo review”, 13 iulie 2026 (https://techradar.com/pro/duck-ai-review): Claude 4.5 Haiku, GPT-4o mini, GPT-5 mini, gpt-oss-120b, Llama 4 Scout, Mistral Small 3 24B. Modelele hardcodate în aplicație pentru DuckDuckGo (Claude 3 Haiku, Llama 3.1 70B, Mixtral 8x7B, o3-mini) pot fi retrase; ID-urile API ale DuckDuckGo nu pot fi verificate fără rețea și nu au fost schimbate (aplicația are „Verifică & actualizează modele” și lista de modele care dau 404).
-- Pollinations (text, fără cheie, ~1 cerere/15 s anonim, cheie gratuită opțională): https://free-llm.com/provider/pollinations-ai (pagină actualizată în octombrie 2026).
-- Textele juridice (versiunea „v1.0 · 12 aprilie 2026”) nu au fost modificate în această rundă; data lor este decizia autorului și nu a fost schimbată.
+## Sources verified on 11.10.2026
+- DuckDuckGo AI Chat (duck.ai), free models with no account: TechRadar, "Duck.ai by DuckDuckGo review", 13 July 2026 (https://techradar.com/pro/duck-ai-review): Claude 4.5 Haiku, GPT-4o mini, GPT-5 mini, gpt-oss-120b, Llama 4 Scout, Mistral Small 3 24B. The models hard-coded in the app for DuckDuckGo (Claude 3 Haiku, Llama 3.1 70B, Mixtral 8x7B, o3-mini) may be retired; DuckDuckGo's API IDs cannot be verified without a network and were not changed (the app has "Check & update models" and the list of models that return 404).
+- Pollinations (text, no key, ~1 request/15 s anonymous, optional free key): https://free-llm.com/provider/pollinations-ai (page updated in October 2026).
+- The legal texts (version "v1.0 · 12 April 2026") were not modified in this round; their date is the author's decision and was not changed.
 
-## Istoric / Changelog
-- **1.1.0 — 2026-10-14:** verificare locală de date personale înainte de trimitere (`FFF.pii`), indicator „ce pleacă”, istoric local opțional căutabil (`FFF.search`), copie criptată `.fff.json` (`FFF.bundle`), etichetă de transparență; teste în `tests/fff-r8.test.mjs`.
-- 1.0.0 — 2026-10-12: versiunea și data ultimei actualizări sunt afișate în aplicație
-- **11 octombrie 2026 (runda 7)** — în panoul de chei API nota de securitate nu mai afișează literal `<strong>NOT</strong>` (etichetele HTML au fost scoase din textul în cele 7 limbi); antetul „🤖 Modele AI” din panoul lateral și insignele „N modele (cache/live)” se traduc acum la schimbarea limbii; etichetele de specificații ale modelelor („Cel mai rapid”, „Raționament”, „Programare” etc.) sunt traduse în EN/FR/IT/ES/PT/DE; ghidurile furnizorilor din Setări apar în engleză (nu în română) în limbile non-RO; CSP-ul păstrează hash-ul recalculat. Textele juridice nu au fost modificate. 0 erori, axe 0 violări la 1280×800 și 360×740.
-- **11 octombrie 2026 (a doua intervenție)** — cele 112 atribute `on*` inline (85 de handlere distincte) au fost înlocuite cu un dispecer delegat la nivel de `body`, iar CSP nu mai are `'unsafe-inline'` la `script-src` (hash `sha256`); paritatea de comportament a fost verificată automat pe 12 stări ale aplicației (peste 6.800 de evenimente declanșate pe versiunea veche și pe cea nouă, aceleași apeluri și argumente, 0 diferențe) și cu CSP activ (0 erori, 0 încălcări). Catalogul de modele se reconstruiește acum la schimbarea limbii (etichetele „rulează în browser”, „Local în browser”, grupele de raționament nu mai rămân în limba veche), ghidurile furnizorilor din Setări au traducere în engleză (în celelalte limbi rămân în română), eticheta și aria-label-urile widgetului de sprijin sunt traduse în cele 7 limbi, iar ofertele de credite de probă din ghidurile OpenAI/Anthropic sunt formulate ca variabile („verifică pe site”), nu ca promisiuni.
-- **11 octombrie 2026** — ecranul de bun venit se regenerează la schimbarea limbii (înainte rămânea în română într-o interfață engleză/franceză etc.); bannerul nu mai enumeră modele perisabile (GPT-4, Llama 70B, DeepSeek R1…); ghidul DuckDuckGo este datat și cu avertisment despre modele retrase; notă datată în „Explorează” despre planuri gratuite schimbătoare; mesaj clar „ești offline” (7 limbi) în loc de eroare de rețea când alegi un model care are nevoie de internet; pe 360 px nu mai apar depășiri orizontale (bara de sus, pagina Legal).
-- Accesibilitate: conținutul este în `main` (inclusiv pagina Legal), titlu `h1` ascuns vizual, ordinea titlurilor corectată, widgetul de sprijin are rol `complementary`; axe-core: 0 violări la 1280×800 și 360×740 pe paginile Chat, Explorează, Sfaturi și Legal. Cele 113 atribute `onclick`/`onchange` inline au rămas (CSP-ul permite `'unsafe-inline'`; refactorizarea lor ar fi riscantă fără teste de regresie extinse). Aplicația nu are număr de versiune.
+## History / Changelog
+- **1.1.0 — 2026-10-14:** local check for personal data before sending (`FFF.pii`), "what leaves" indicator, optional searchable local history (`FFF.search`), encrypted `.fff.json` copy (`FFF.bundle`), transparency label; tests in `tests/fff-r8.test.mjs`.
+- 1.0.0 — 2026-10-12: the version and the date of the last update are shown in the app
+- **11 October 2026 (round 7)** — in the API-keys panel the security note no longer displays the literal `<strong>NOT</strong>` (the HTML tags were removed from the text in the 7 languages); the "🤖 AI Models" header in the side panel and the "N models (cache/live)" badges are now translated when the language changes; the models' specification labels ("Fastest", "Reasoning", "Programming", etc.) are translated into EN/FR/IT/ES/PT/DE; the providers' guides in Settings appear in English (not in Romanian) in the non-RO languages; the CSP keeps the recalculated hash. The legal texts were not modified. 0 errors, axe 0 violations at 1280×800 and 360×740.
+- **11 October 2026 (second intervention)** — the 112 inline `on*` attributes (85 distinct handlers) were replaced with a delegated dispatcher at `body` level, and the CSP no longer has `'unsafe-inline'` in `script-src` (`sha256` hash); behavioural parity was verified automatically on 12 states of the app (over 6,800 events fired on the old and the new version, the same calls and arguments, 0 differences) and with CSP active (0 errors, 0 violations). The model catalogue is now rebuilt when the language changes (the labels "runs in the browser", "Local in browser", the reasoning groups no longer stay in the old language), the providers' guides in Settings have an English translation (in the other languages they remain in Romanian), the label and the aria-labels of the support widget are translated into the 7 languages, and the trial-credit offers in the OpenAI/Anthropic guides are worded as variables ("check the site"), not as promises.
+- **11 October 2026** — the welcome screen is regenerated when the language changes (before, it stayed in Romanian in an English/French etc. interface); the banner no longer lists perishable models (GPT-4, Llama 70B, DeepSeek R1…); the DuckDuckGo guide is dated and carries a warning about retired models; a dated note in "Explore" about changing free plans; a clear "you are offline" message (7 languages) instead of a network error when you choose a model that needs internet; on 360 px there are no more horizontal overflows (top bar, Legal page).
+- Accessibility: the content is in `main` (including the Legal page), a visually hidden `h1` heading, the heading order corrected, the support widget has the `complementary` role; axe-core: 0 violations at 1280×800 and 360×740 on the Chat, Explore, Tips and Legal pages. The 113 inline `onclick`/`onchange` attributes remained (the CSP allows `'unsafe-inline'`; refactoring them would be risky without extensive regression tests). The app has no version number.
