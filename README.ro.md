@@ -84,9 +84,9 @@ Audit: 2026-10-10 (rundă 2: 2026-10-11) — `fetchPollModels()` este acum opt-i
 
 Alexio — Alexandru-Ionuț Chiuță, contact: alexio@trom.tf. Aplicația este oferită în spiritul mișcării trade-free TROM (trom.tf); sprijinul voluntar este opțional.
 
-## English summary
+## Rezumat
 
-AI Liber is a single-file HTML chat front-end for free no-account AI services, bring-your-own-key APIs, local Ollama/LM Studio servers and an in-browser WebLLM model, plus a directory of free AI tools, a quiz and prompt ideas. 7 UI languages. Keys are kept in localStorage (AES-GCM obfuscated, not strong encryption). Chat requires internet access to the chosen provider. MIT licence.
+AI Liber este o interfață de chat într-un singur fișier HTML pentru servicii AI gratuite fără cont, API-uri cu cheia proprie, servere locale Ollama/LM Studio și un model WebLLM în browser, plus un director de instrumente AI gratuite, un test și idei de prompturi. 7 limbi de interfață. Cheile se păstrează în localStorage (ofuscate AES-GCM, nu criptare puternică). Chatul necesită acces la internet către furnizorul ales. Licență MIT.
 
 ## Surse verificate la 11.10.2026
 - DuckDuckGo AI Chat (duck.ai), modele gratuite fără cont: TechRadar, „Duck.ai by DuckDuckGo review”, 13 iulie 2026 (https://techradar.com/pro/duck-ai-review): Claude 4.5 Haiku, GPT-4o mini, GPT-5 mini, gpt-oss-120b, Llama 4 Scout, Mistral Small 3 24B. Modelele hardcodate în aplicație pentru DuckDuckGo (Claude 3 Haiku, Llama 3.1 70B, Mixtral 8x7B, o3-mini) pot fi retrase; ID-urile API ale DuckDuckGo nu pot fi verificate fără rețea și nu au fost schimbate (aplicația are „Verifică & actualizează modele” și lista de modele care dau 404).
