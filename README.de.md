@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · **Deutsch** · [Magyar](README.hu.md)
 
-**Version:** 1.3.0 · **Zuletzt aktualisiert:** 2026-10-19
+**Version:** 1.4.0 · **Zuletzt aktualisiert:** 2026-10-19
 
 Chatten Sie mit kostenlosen KI-Modellen oder mit Ihren eigenen API-Schlüsseln, dazu ein Leitfaden zu den besten kostenlosen KIs, in einer einzigen HTML-Datei.
 
