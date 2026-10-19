@@ -140,13 +140,13 @@
     "ailib_pollauto",
     "ailib_sbw"
   ],
-  "sizeBytes": 896907,
-  "sha256": "9dd391b3a9864f42d76de73618e667a31bb8cd06e5499f58555f51cfef64f1d2",
+  "sizeBytes": 897489,
+  "sha256": "49ac24e23ae8f9113dba23d0f36eb9cc544e2322fcd10c757d22e925667bffac",
   "csp": {
     "present": true,
     "directives": {
       "default-src": "'self'",
-      "script-src": "'self' 'wasm-unsafe-eval' https://esm.run https://cdn.jsdelivr.net sha256×4",
+      "script-src": "'self' 'wasm-unsafe-eval' https://esm.run https://cdn.jsdelivr.net sha256×3",
       "style-src": "'self' 'unsafe-inline' https://cdn.jsdelivr.net",
       "font-src": "'self' https://cdn.jsdelivr.net data:",
       "img-src": "'self' data: blob:",
@@ -185,7 +185,7 @@
     ]
   },
   "kit": {
-    "version": "1.0.0",
+    "version": "1.1.1",
     "modules": [
       "core",
       "label",
