@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · **Português** · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versão:** 1.4.0 · **Última atualização:** 2026-10-19
+**Versão:** 1.4.1 · **Última atualização:** 2026-10-19
 
 Converse com modelos de inteligência artificial gratuitos ou com as suas próprias chaves API, além de um guia das melhores IA gratuitas, num único ficheiro HTML.
 
