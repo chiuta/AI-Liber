@@ -4,6 +4,8 @@
 
 **Versiune:** 1.4.1 · **Ultima actualizare:** 2026-10-19
 
+Limbile interfeței: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
+
 Chat cu modele de inteligență artificială gratuite sau cu cheile tale API, plus un ghid al celor mai bune AI-uri gratuite, într-un singur fișier HTML.
 
 **Live:** https://chiuta.github.io/AI-Liber/
@@ -23,10 +25,10 @@ AI Liber este o aplicație single-file (`index.html`) care oferă o interfață 
 - Suport pentru servere locale Ollama (`localhost:11434`) și LM Studio (`localhost:1234`) și pentru un model local în browser (WebLLM).
 - Catalog „Cele mai bune AI-uri gratuite”, filtrabil pe categorii (Chat, Cercetare, Imagini, Video AI, Media, Cod, Scriere, Productivitate, Creativ) și pe „Fără cont” / „Local (browser)”.
 - Panou inferior cu „⚡ Idei rapide” (prompturi), „🧠 Quiz AI” și „⌨️ Shortcuts”.
-- Interfață în 7 limbi: română, engleză, franceză, germană, spaniolă, portugheză, italiană.
+- Interfață în 8 limbi: română, engleză, franceză, germană, spaniolă, portugheză, italiană, maghiară.
 - Texte de confidențialitate (GDPR), termeni și informații despre cookie-uri/stocare locală, în fiecare limbă.
 
-## Funcții noi (1.1.0)
+## Funcții de confidențialitate (din 1.1.0)
 
 - **Verificare locală de date personale înainte de trimitere** (`FFF.pii`): când mesajul urmează să plece către un serviciu extern (Pollinations, DuckDuckGo, AI Horde, API-uri cu cheie), aplicația caută local e-mailuri, telefoane, IBAN (mod 97), CNP (cifră de control), carduri (Luhn), IP, chei/token-uri. Dacă găsește ceva, nu trimite nimic până alegi: „Maschează bifatele și continuă”, „Continuă fără mascare” sau „Anulează” (textul rămâne în câmp). Se poate opri din bara laterală (preferința se păstrează). Pentru modelele locale (WebLLM, Ollama, LM Studio) nu se afișează dialogul, fiindcă textul nu părăsește calculatorul.
 - **Indicator „ce pleacă din acest dispozitiv”** lângă selectorul de model: „Local: mesajele rămân în browser” (WebLLM), „Local: mesajele merg doar la serverul de pe acest calculator” (Ollama/LM Studio) sau „Mesajele pleacă spre <gazdă>” (servicii externe). La WebLLM, indicatorul precizează că fișierele modelului se descarcă din rețea la prima folosire, dar textul tău nu pleacă.
@@ -42,7 +44,7 @@ AI Liber este o aplicație single-file (`index.html`) care oferă o interfață 
 
 ## Manual de utilizare
 
-1. Deschide aplicația și alege limba din selectorul de limbă (Română, English, Français, Deutsch, Español, Português, Italiano).
+1. Deschide aplicația și alege limba din selectorul de limbă (Română, English, Français, Deutsch, Español, Português, Italiano, Magyar).
 2. Alege un model din listă. Modelele marcate „Fără cont” nu cer cheie.
 3. Pentru un furnizor cu cheie: apasă „⚙️ Configurează chei API”, introdu cheia pentru furnizorul dorit și închide fereastra.
 4. Scrie mesajul în câmpul de text și apasă Enter sau „➤ Trimite”. Shift+Enter inserează un rând nou.
@@ -56,7 +58,7 @@ AI Liber este o aplicație single-file (`index.html`) care oferă o interfață 
 Aplicația **nu este strict offline**: chatul funcționează doar prin contactarea serviciilor alese de tine.
 
 - **Persistența cheilor API:** cheile se criptează (AES-GCM) cu un secret aleator păstrat în `sessionStorage`; în practică ele supraviețuiesc reîncărcării aceleiași file, dar **nu și unei file noi sau repornirii browserului** (secretul se pierde, cheile cifrate rămân nereadabile în `localStorage`), deci trebuie reintroduse. Verificat prin test (reîncărcare: cheia rămâne; filă nouă: gol).
-- **Stocare locală (localStorage):** limba (`ailib_lang`), chei API obscurizate (`aik_enc_*`, `aik_*`) cu o sare (`ailib_ksalt`), o listă locală de modele care au dat eroare 404 (`ailib_404`), o preferință de interfață (`ailib_sbw`), opțiunea de actualizare automată a listei de modele (`ailib_pollauto`, doar dacă o bifezi). În `sessionStorage`: un secret de sesiune (`ailib_ssec`).
+- **Stocare locală (localStorage):** limba (`ailib_lang`), chei API obscurizate (`aik_enc_*`, `aik_*`) cu o sare (`ailib_ksalt`), o listă locală de modele care au dat eroare 404 (`ailib_404`), o preferință de interfață (`ailib_sbw`), opțiunea de actualizare automată a listei de modele (`ailib_pollauto`, doar dacă o bifezi). În `sessionStorage`: un secret de sesiune (`ailib_ssec`). Plus preferința pentru verificarea datelor personale (`ailib_piiguard`) și, doar dacă bifezi opțiunea, istoricul local (`ailib_hist`, `ailib_conv`).
 - **La încărcarea paginii:** nu se trimite nicio cerere automată către Pollinations. Lista live de modele (`https://text.pollinations.ai/models`) se cere doar dacă apeși „Reîncarcă modelele Pollinations” / „Verifică & actualizează modele” sau bifezi explicit, în bara laterală, „Actualizează automat lista la pornire” (opt-in, implicit oprit; preferința se păstrează în `ailib_pollauto`). Până atunci se folosește catalogul local din pagină. Când un răspuns conține formule (`$…$`), KaTeX este încărcat de pe `cdn.jsdelivr.net` (versiune fixată, cu verificare de integritate SRI).
 - **Gazde terțe contactate, doar după o acțiune a ta (trimiterea unui mesaj, reîncărcarea listei, activarea WebLLM):** `text.pollinations.ai`, `auth.pollinations.ai` (Pollinations); `duckduckgo.com` (DuckDuckGo AI Chat); `aihorde.net` (AI Horde); `api.openai.com`, `api.anthropic.com`, `generativelanguage.googleapis.com`, `api.perplexity.ai` și alte API-uri ale furnizorilor, doar dacă folosești cheia respectivă; `esm.run` (încărcarea WebLLM `@mlc-ai/web-llm@0.2.84`, doar când activezi modelul în browser) și, în funcție de model, descărcarea ponderilor de la gazdele WebLLM.
 - Mesajele tale sunt trimise furnizorului ales; politicile lor se aplică. Cheile sunt trimise doar furnizorului căruia îi aparțin.
@@ -86,7 +88,7 @@ Alexio — Alexandru-Ionuț Chiuță, contact: alexio@trom.tf. Aplicația este o
 
 ## Rezumat
 
-AI Liber este o interfață de chat într-un singur fișier HTML pentru servicii AI gratuite fără cont, API-uri cu cheia proprie, servere locale Ollama/LM Studio și un model WebLLM în browser, plus un director de instrumente AI gratuite, un test și idei de prompturi. 7 limbi de interfață. Cheile se păstrează în localStorage (ofuscate AES-GCM, nu criptare puternică). Chatul necesită acces la internet către furnizorul ales. Licență MIT.
+AI Liber este o interfață de chat într-un singur fișier HTML pentru servicii AI gratuite fără cont, API-uri cu cheia proprie, servere locale Ollama/LM Studio și un model WebLLM în browser, plus un director de instrumente AI gratuite, un test și idei de prompturi. 8 limbi de interfață. Cheile se păstrează în localStorage (ofuscate AES-GCM, nu criptare puternică). Chatul necesită acces la internet către furnizorul ales. Licență MIT.
 
 ## Surse verificate la 11.10.2026
 - DuckDuckGo AI Chat (duck.ai), modele gratuite fără cont: TechRadar, „Duck.ai by DuckDuckGo review”, 13 iulie 2026 (https://techradar.com/pro/duck-ai-review): Claude 4.5 Haiku, GPT-4o mini, GPT-5 mini, gpt-oss-120b, Llama 4 Scout, Mistral Small 3 24B. Modelele hardcodate în aplicație pentru DuckDuckGo (Claude 3 Haiku, Llama 3.1 70B, Mixtral 8x7B, o3-mini) pot fi retrase; ID-urile API ale DuckDuckGo nu pot fi verificate fără rețea și nu au fost schimbate (aplicația are „Verifică & actualizează modele” și lista de modele care dau 404).
@@ -94,6 +96,7 @@ AI Liber este o interfață de chat într-un singur fișier HTML pentru servicii
 - Textele juridice (versiunea „v1.0 · 12 aprilie 2026”) nu au fost modificate în această rundă; data lor este decizia autorului și nu a fost schimbată.
 
 ## Istoric / Changelog
+- **1.4.1 — 2026-10-19:** verificarea datelor personale înainte de trimitere, indicatorul „ce pleacă” și istoricul local opțional descrise mai sus (introduse în 1.1.0) sunt prezente în versiunea curentă: fuseseră eliminate din greșeală într-o curățare anterioară și au fost reimplementate cu același comportament și teste noi (`tests/fff-r8.test.mjs`). Interfața (inclusiv descrierile modelelor) este disponibilă în 8 limbi, inclusiv maghiara.
 - **1.1.0 — 2026-10-14:** verificare locală de date personale înainte de trimitere (`FFF.pii`), indicator „ce pleacă”, istoric local opțional căutabil (`FFF.search`), copie criptată `.fff.json` (`FFF.bundle`), etichetă de transparență; teste în `tests/fff-r8.test.mjs`.
 - 1.0.0 — 2026-10-12: versiunea și data ultimei actualizări sunt afișate în aplicație
 - **11 octombrie 2026 (runda 7)** — în panoul de chei API nota de securitate nu mai afișează literal `<strong>NOT</strong>` (etichetele HTML au fost scoase din textul în cele 7 limbi); antetul „🤖 Modele AI” din panoul lateral și insignele „N modele (cache/live)” se traduc acum la schimbarea limbii; etichetele de specificații ale modelelor („Cel mai rapid”, „Raționament”, „Programare” etc.) sunt traduse în EN/FR/IT/ES/PT/DE; ghidurile furnizorilor din Setări apar în engleză (nu în română) în limbile non-RO; CSP-ul păstrează hash-ul recalculat. Textele juridice nu au fost modificate. 0 erori, axe 0 violări la 1280×800 și 360×740.

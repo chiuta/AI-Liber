@@ -4,6 +4,8 @@
 
 **Verzió:** 1.4.1 · **Utolsó frissítés:** 2026-10-19
 
+A felület nyelvei: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
+
 Csevegj ingyenes mesterséges intelligencia modellekkel vagy a saját API-kulcsaiddal, emellett útmutató a legjobb ingyenes MI-khez, egyetlen HTML-fájlban.
 
 **Online alkalmazás:** https://chiuta.github.io/AI-Liber/
@@ -23,10 +25,10 @@ Az AI Liber egyfájlos alkalmazás (`index.html`), amely egyetlen csevegőfelül
 - Támogatás a helyi Ollama (`localhost:11434`) és LM Studio (`localhost:1234`) szerverekhez, valamint egy helyi, böngészőbeli modellhez (WebLLM).
 - „A legjobb ingyenes MI-k” katalógus, kategóriák (Csevegés, Kutatás, Képek, MI-videó, Média, Kód, Írás, Termelékenység, Kreatív) és „Fiók nélkül” / „Helyi (böngésző)” szerint szűrhető.
 - Alsó panel a „⚡ Gyors ötletek” (promptok), a „🧠 MI-kvíz” és a „⌨️ Gyorsbillentyűk” elemekkel.
-- Felület 7 nyelven: román, angol, francia, német, spanyol, portugál, olasz.
+- Felület 8 nyelven: román, angol, francia, német, spanyol, portugál, olasz, magyar.
 - Adatvédelmi szövegek (GDPR), feltételek és tájékoztató a sütikről/helyi tárolásról, minden nyelven.
 
-## Új funkciók (1.1.0)
+## Adatvédelmi funkciók (az 1.1.0 óta)
 
 - **Személyes adatok helyi ellenőrzése küldés előtt** (`FFF.pii`): amikor az üzenet külső szolgáltatáshoz készül elmenni (Pollinations, DuckDuckGo, AI Horde, kulcsos API-k), az alkalmazás helyben keres e-mail-címeket, telefonszámokat, IBAN-t (mod 97), CNP-t (ellenőrző számjegy), kártyákat (Luhn), IP-címeket, kulcsokat/tokeneket. Ha talál valamit, semmit sem küld, amíg nem választasz: „A bejelöltek elfedése és folytatás”, „Folytatás elfedés nélkül” vagy „Mégse” (a szöveg a mezőben marad). Az oldalsávból kikapcsolható (a beállítás megmarad). A helyi modelleknél (WebLLM, Ollama, LM Studio) a párbeszédablak nem jelenik meg, mert a szöveg nem hagyja el a számítógépet.
 - **„Mi hagyja el ezt az eszközt” jelző** a modellválasztó mellett: „Helyi: az üzenetek a böngészőben maradnak” (WebLLM), „Helyi: az üzenetek csak az ezen a számítógépen lévő szerverhez mennek” (Ollama/LM Studio) vagy „Az üzenetek ide mennek: <hoszt>” (külső szolgáltatások). A WebLLM esetében a jelző pontosítja, hogy a modellfájlok az első használatkor hálózatról töltődnek le, de a szöveged nem megy el.
@@ -42,7 +44,7 @@ Az AI Liber egyfájlos alkalmazás (`index.html`), amely egyetlen csevegőfelül
 
 ## Használati útmutató
 
-1. Nyisd meg az alkalmazást, és válaszd ki a nyelvet a nyelvválasztóból (Română, English, Français, Deutsch, Español, Português, Italiano).
+1. Nyisd meg az alkalmazást, és válaszd ki a nyelvet a nyelvválasztóból (Română, English, Français, Deutsch, Español, Português, Italiano, Magyar).
 2. Válassz egy modellt a listából. A „Fiók nélkül” jelölésű modellek nem kérnek kulcsot.
 3. Kulcsot igénylő szolgáltatónál: nyomd meg a „⚙️ API-kulcsok beállítása” gombot, add meg a kívánt szolgáltató kulcsát, és zárd be az ablakot.
 4. Írd be az üzenetet a szövegmezőbe, és nyomd meg az Entert vagy a „➤ Küldés” gombot. A Shift+Enter új sort szúr be.
@@ -56,7 +58,7 @@ Az AI Liber egyfájlos alkalmazás (`index.html`), amely egyetlen csevegőfelül
 Az alkalmazás **nem szigorúan offline**: a csevegés csak az általad választott szolgáltatások megkeresésével működik.
 
 - **Az API-kulcsok megőrzése:** a kulcsok titkosítva vannak (AES-GCM) egy véletlenszerű titokkal, amely a `sessionStorage`-ban van; a gyakorlatban túlélik ugyanannak a lapnak az újratöltését, de **az új lapot vagy a böngésző újraindítását nem** (a titok elvész, a titkosított kulcsok olvashatatlanok maradnak a `localStorage`-ban), ezért újra be kell írni őket. Teszttel ellenőrizve (újratöltés: a kulcs megmarad; új lap: üres).
-- **Helyi tárolás (localStorage):** a nyelv (`ailib_lang`), az elfedett API-kulcsok (`aik_enc_*`, `aik_*`) egy sóval (`ailib_ksalt`), a 404-es hibát adó modellek helyi listája (`ailib_404`), egy felületi beállítás (`ailib_sbw`), a modelllista automatikus frissítésének lehetősége (`ailib_pollauto`, csak ha bejelölöd). A `sessionStorage`-ban: egy munkamenet-titok (`ailib_ssec`).
+- **Helyi tárolás (localStorage):** a nyelv (`ailib_lang`), az elfedett API-kulcsok (`aik_enc_*`, `aik_*`) egy sóval (`ailib_ksalt`), a 404-es hibát adó modellek helyi listája (`ailib_404`), egy felületi beállítás (`ailib_sbw`), a modelllista automatikus frissítésének lehetősége (`ailib_pollauto`, csak ha bejelölöd). A `sessionStorage`-ban: egy munkamenet-titok (`ailib_ssec`). Valamint a személyes adatok ellenőrzésének beállítása (`ailib_piiguard`) és – csak ha bejelölöd az opciót – a helyi előzmények (`ailib_hist`, `ailib_conv`).
 - **Az oldal betöltésekor:** nem megy automatikus kérés a Pollinations felé. Az élő modelllistát (`https://text.pollinations.ai/models`) csak akkor kéri le, ha megnyomod az „A Pollinations modellek újratöltése” / „Modellek ellenőrzése és frissítése” gombot, vagy kifejezetten bejelölöd az oldalsávban az „A lista automatikus frissítése indításkor” opciót (opt-in, alapértelmezés szerint kikapcsolva; a beállítás az `ailib_pollauto` kulcsban marad). Addig az oldalban lévő helyi katalógust használja. Ha egy válasz képleteket (`$…$`) tartalmaz, a KaTeX a `cdn.jsdelivr.net` címről töltődik be (rögzített verzió, SRI integritás-ellenőrzéssel).
 - **Harmadik felek hosztjai, amelyeket csak egy műveleted után keres meg (üzenet küldése, a lista újratöltése, a WebLLM bekapcsolása):** `text.pollinations.ai`, `auth.pollinations.ai` (Pollinations); `duckduckgo.com` (DuckDuckGo AI Chat); `aihorde.net` (AI Horde); `api.openai.com`, `api.anthropic.com`, `generativelanguage.googleapis.com`, `api.perplexity.ai` és más szolgáltatók API-jai, csak ha az adott kulcsot használod; `esm.run` (a WebLLM `@mlc-ai/web-llm@0.2.84` betöltése, csak ha bekapcsolod a böngészőbeli modellt) és a modelltől függően a súlyok letöltése a WebLLM hosztjairól.
 - Az üzeneteid a választott szolgáltatóhoz kerülnek; az ő szabályzataik érvényesek. A kulcsok csak ahhoz a szolgáltatóhoz kerülnek, amelyhez tartoznak.
@@ -86,7 +88,7 @@ Alexio — Alexandru-Ionuț Chiuță, kapcsolat: alexio@trom.tf. Az alkalmazás 
 
 ## Összefoglaló
 
-Az AI Liber egy egyfájlos HTML csevegőfelület ingyenes, fiók nélküli MI-szolgáltatásokhoz, saját kulcsos API-khoz, helyi Ollama/LM Studio szerverekhez és böngészőbeli WebLLM modellhez, valamint ingyenes MI-eszközök jegyzékével, kvízzel és prompt-ötletekkel. 7 nyelvű felület. A kulcsok a localStorage-ban vannak (AES-GCM-mel elfedve, nem erős titkosítás). A csevegéshez internet-hozzáférés kell a választott szolgáltatóhoz. MIT licenc.
+Az AI Liber egy egyfájlos HTML csevegőfelület ingyenes, fiók nélküli MI-szolgáltatásokhoz, saját kulcsos API-khoz, helyi Ollama/LM Studio szerverekhez és böngészőbeli WebLLM modellhez, valamint ingyenes MI-eszközök jegyzékével, kvízzel és prompt-ötletekkel. 8 nyelvű felület. A kulcsok a localStorage-ban vannak (AES-GCM-mel elfedve, nem erős titkosítás). A csevegéshez internet-hozzáférés kell a választott szolgáltatóhoz. MIT licenc.
 
 ## 2026. 10. 11-én ellenőrzött források
 - DuckDuckGo AI Chat (duck.ai), ingyenes modellek fiók nélkül: TechRadar, „Duck.ai by DuckDuckGo review”, 2026. július 13. (https://techradar.com/pro/duck-ai-review): Claude 4.5 Haiku, GPT-4o mini, GPT-5 mini, gpt-oss-120b, Llama 4 Scout, Mistral Small 3 24B. Az alkalmazásba a DuckDuckGóhoz beégetett modellek (Claude 3 Haiku, Llama 3.1 70B, Mixtral 8x7B, o3-mini) megszűnhetnek; a DuckDuckGo API-azonosítói hálózat nélkül nem ellenőrizhetők, és nem változtak (az alkalmazásban van „Modellek ellenőrzése és frissítése” és a 404-et adó modellek listája).
@@ -94,6 +96,7 @@ Az AI Liber egy egyfájlos HTML csevegőfelület ingyenes, fiók nélküli MI-sz
 - A jogi szövegek („v1.0 · 2026. április 12.” verzió) ebben a körben nem módosultak; a dátumuk a szerző döntése, és nem változott.
 
 ## Előzmények / Változásnapló
+- **1.4.1 — 2026-10-19:** a fentebb leírt, küldés előtti személyesadat-ellenőrzés, a „mi megy el” jelző és az opcionális helyi előzmények (az 1.1.0-ban bevezetve) megvannak a jelenlegi verzióban: egy korábbi takarításkor tévedésből eltávolították őket, és azonos viselkedéssel, új tesztekkel (`tests/fff-r8.test.mjs`) újra megvalósítottuk őket. A felület (a modellleírásokkal együtt) 8 nyelven érhető el, magyarul is.
 - **1.1.0 — 2026-10-14:** személyes adatok helyi ellenőrzése küldés előtt (`FFF.pii`), „mi megy el” jelző, opcionális kereshető helyi előzmények (`FFF.search`), titkosított `.fff.json` másolat (`FFF.bundle`), átláthatósági címke; tesztek a `tests/fff-r8.test.mjs` fájlban.
 - 1.0.0 — 2026-10-12: a verzió és az utolsó frissítés dátuma megjelenik az alkalmazásban
 - **2026. október 11. (7. forduló)** — az API-kulcsok panelen a biztonsági megjegyzés már nem jeleníti meg szó szerint a `<strong>NOT</strong>` szöveget (a HTML-címkék el lettek távolítva a szövegből a 7 nyelven); az oldalpanel „🤖 MI-modellek” fejléce és az „N modell (cache/live)” jelvények mostantól nyelvváltáskor fordítódnak; a modellek specifikációs címkéi („Leggyorsabb”, „Következtetés”, „Programozás” stb.) le vannak fordítva EN/FR/IT/ES/PT/DE nyelvre; a szolgáltatói útmutatók a Beállításokban a nem RO nyelveken angolul (nem románul) jelennek meg; a CSP megtartja az újraszámolt ellenőrzőösszeget. A jogi szövegek nem módosultak. 0 hiba, axe 0 szabálysértés 1280×800 és 360×740 méretnél.

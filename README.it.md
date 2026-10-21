@@ -4,6 +4,8 @@
 
 **Versione:** 1.4.1 · **Ultimo aggiornamento:** 2026-10-19
 
+Lingue dell'interfaccia: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
+
 Chatta con modelli di intelligenza artificiale gratuiti o con le tue chiavi API, più una guida alle migliori IA gratuite, in un unico file HTML.
 
 **Applicazione online:** https://chiuta.github.io/AI-Liber/
@@ -23,10 +25,10 @@ AI Liber è un'applicazione in un unico file (`index.html`) che offre un'unica i
 - Supporto per i server locali Ollama (`localhost:11434`) e LM Studio (`localhost:1234`) e per un modello locale nel browser (WebLLM).
 - Catalogo «Le migliori IA gratuite», filtrabile per categorie (Chat, Ricerca, Immagini, Video IA, Media, Codice, Scrittura, Produttività, Creativo) e per «Senza account» / «Locale (browser)».
 - Pannello inferiore con «⚡ Idee rapide» (prompt), «🧠 Quiz IA» e «⌨️ Scorciatoie».
-- Interfaccia in 7 lingue: rumeno, inglese, francese, tedesco, spagnolo, portoghese, italiano.
+- Interfaccia in 8 lingue: rumeno, inglese, francese, tedesco, spagnolo, portoghese, italiano, ungherese.
 - Testi sulla riservatezza (GDPR), termini e informazioni sui cookie/archiviazione locale, in ogni lingua.
 
-## Nuove funzioni (1.1.0)
+## Funzioni per la privacy (dalla 1.1.0)
 
 - **Verifica locale dei dati personali prima dell'invio** (`FFF.pii`): quando il messaggio sta per partire verso un servizio esterno (Pollinations, DuckDuckGo, AI Horde, API con chiave), l'applicazione cerca in locale e-mail, telefoni, IBAN (mod 97), CNP (cifra di controllo), carte (Luhn), IP, chiavi/token. Se trova qualcosa, non invia nulla finché non scegli: «Maschera le voci selezionate e continua», «Continua senza mascherare» o «Annulla» (il testo resta nel campo). Si può disattivare dalla barra laterale (la preferenza viene conservata). Per i modelli locali (WebLLM, Ollama, LM Studio) la finestra di dialogo non viene mostrata, perché il testo non lascia il computer.
 - **Indicatore «cosa lascia questo dispositivo»** accanto al selettore del modello: «Locale: i messaggi restano nel browser» (WebLLM), «Locale: i messaggi vanno solo al server di questo computer» (Ollama/LM Studio) o «I messaggi partono verso <host>» (servizi esterni). Per WebLLM, l'indicatore precisa che i file del modello vengono scaricati dalla rete al primo utilizzo, ma il tuo testo non parte.
@@ -42,7 +44,7 @@ AI Liber è un'applicazione in un unico file (`index.html`) che offre un'unica i
 
 ## Guida all'uso
 
-1. Apri l'applicazione e scegli la lingua dal selettore di lingua (Română, English, Français, Deutsch, Español, Português, Italiano).
+1. Apri l'applicazione e scegli la lingua dal selettore di lingua (Română, English, Français, Deutsch, Español, Português, Italiano, Magyar).
 2. Scegli un modello dall'elenco. I modelli contrassegnati «Senza account» non richiedono una chiave.
 3. Per un provider con chiave: premi «⚙️ Configura le chiavi API», inserisci la chiave per il provider desiderato e chiudi la finestra.
 4. Scrivi il messaggio nel campo di testo e premi Invio o «➤ Invia». Maiusc+Invio inserisce una nuova riga.
@@ -56,7 +58,7 @@ AI Liber è un'applicazione in un unico file (`index.html`) che offre un'unica i
 L'applicazione **non è strettamente offline**: la chat funziona solo contattando i servizi che scegli.
 
 - **Persistenza delle chiavi API:** le chiavi vengono cifrate (AES-GCM) con un segreto casuale conservato in `sessionStorage`; in pratica sopravvivono al ricaricamento della stessa scheda, ma **non a una nuova scheda né al riavvio del browser** (il segreto si perde, le chiavi cifrate restano illeggibili in `localStorage`), quindi vanno reinserite. Verificato con un test (ricaricamento: la chiave resta; nuova scheda: vuoto).
-- **Archiviazione locale (localStorage):** la lingua (`ailib_lang`), le chiavi API offuscate (`aik_enc_*`, `aik_*`) con un sale (`ailib_ksalt`), un elenco locale dei modelli che hanno restituito un errore 404 (`ailib_404`), una preferenza di interfaccia (`ailib_sbw`), l'opzione di aggiornamento automatico dell'elenco dei modelli (`ailib_pollauto`, solo se la selezioni). In `sessionStorage`: un segreto di sessione (`ailib_ssec`).
+- **Archiviazione locale (localStorage):** la lingua (`ailib_lang`), le chiavi API offuscate (`aik_enc_*`, `aik_*`) con un sale (`ailib_ksalt`), un elenco locale dei modelli che hanno restituito un errore 404 (`ailib_404`), una preferenza di interfaccia (`ailib_sbw`), l'opzione di aggiornamento automatico dell'elenco dei modelli (`ailib_pollauto`, solo se la selezioni). In `sessionStorage`: un segreto di sessione (`ailib_ssec`). Inoltre la preferenza per la verifica dei dati personali (`ailib_piiguard`) e, solo se spunti l'opzione, la cronologia locale (`ailib_hist`, `ailib_conv`).
 - **Al caricamento della pagina:** non viene inviata alcuna richiesta automatica a Pollinations. L'elenco in tempo reale dei modelli (`https://text.pollinations.ai/models`) viene richiesto solo se premi «Ricarica i modelli Pollinations» / «Verifica & aggiorna i modelli» o se selezioni esplicitamente, nella barra laterale, «Aggiorna automaticamente l'elenco all'avvio» (opt-in, disattivato per impostazione predefinita; la preferenza viene conservata in `ailib_pollauto`). Fino ad allora si usa il catalogo locale nella pagina. Quando una risposta contiene formule (`$…$`), KaTeX viene caricato da `cdn.jsdelivr.net` (versione fissata, con verifica di integrità SRI).
 - **Host di terze parti contattati, solo dopo un'azione da parte tua (invio di un messaggio, ricaricamento dell'elenco, attivazione di WebLLM):** `text.pollinations.ai`, `auth.pollinations.ai` (Pollinations); `duckduckgo.com` (DuckDuckGo AI Chat); `aihorde.net` (AI Horde); `api.openai.com`, `api.anthropic.com`, `generativelanguage.googleapis.com`, `api.perplexity.ai` e altre API dei provider, solo se usi la rispettiva chiave; `esm.run` (caricamento di WebLLM `@mlc-ai/web-llm@0.2.84`, solo quando attivi il modello nel browser) e, a seconda del modello, lo scaricamento dei pesi dagli host di WebLLM.
 - I tuoi messaggi vengono inviati al provider scelto; si applicano le sue politiche. Le chiavi vengono inviate solo al provider a cui appartengono.
@@ -86,7 +88,7 @@ Alexio — Alexandru-Ionuț Chiuță, contatto: alexio@trom.tf. L'applicazione �
 
 ## Riepilogo
 
-AI Liber è un front-end di chat HTML in un unico file per servizi di IA gratuiti senza account, API con chiave propria, server locali Ollama/LM Studio e un modello WebLLM nel browser, più un elenco di strumenti di IA gratuiti, un quiz e idee di prompt. Interfaccia in 7 lingue. Le chiavi sono conservate in localStorage (offuscate con AES-GCM, non una cifratura robusta). La chat richiede l'accesso a internet verso il provider scelto. Licenza MIT.
+AI Liber è un front-end di chat HTML in un unico file per servizi di IA gratuiti senza account, API con chiave propria, server locali Ollama/LM Studio e un modello WebLLM nel browser, più un elenco di strumenti di IA gratuiti, un quiz e idee di prompt. Interfaccia in 8 lingue. Le chiavi sono conservate in localStorage (offuscate con AES-GCM, non una cifratura robusta). La chat richiede l'accesso a internet verso il provider scelto. Licenza MIT.
 
 ## Fonti verificate l'11.10.2026
 - DuckDuckGo AI Chat (duck.ai), modelli gratuiti senza account: TechRadar, «Duck.ai by DuckDuckGo review», 13 luglio 2026 (https://techradar.com/pro/duck-ai-review): Claude 4.5 Haiku, GPT-4o mini, GPT-5 mini, gpt-oss-120b, Llama 4 Scout, Mistral Small 3 24B. I modelli codificati nell'applicazione per DuckDuckGo (Claude 3 Haiku, Llama 3.1 70B, Mixtral 8x7B, o3-mini) potrebbero essere ritirati; gli ID API di DuckDuckGo non possono essere verificati senza rete e non sono stati modificati (l'applicazione ha «Verifica & aggiorna i modelli» e l'elenco dei modelli che danno 404).
@@ -94,6 +96,7 @@ AI Liber è un front-end di chat HTML in un unico file per servizi di IA gratuit
 - I testi legali (versione «v1.0 · 12 aprile 2026») non sono stati modificati in questo round; la loro data è una decisione dell'autore e non è stata cambiata.
 
 ## Cronologia / Changelog
+- **1.4.1 — 2026-10-19:** la verifica dei dati personali prima dell'invio, l'indicatore «cosa parte» e la cronologia locale facoltativa descritti sopra (introdotti nella 1.1.0) sono presenti nella versione attuale: erano stati rimossi per errore in una pulizia precedente e sono stati reimplementati con lo stesso comportamento e nuovi test (`tests/fff-r8.test.mjs`). L'interfaccia (comprese le descrizioni dei modelli) è disponibile in 8 lingue, ungherese incluso.
 - **1.1.0 — 2026-10-14:** verifica locale dei dati personali prima dell'invio (`FFF.pii`), indicatore «cosa parte», cronologia locale facoltativa con ricerca (`FFF.search`), copia cifrata `.fff.json` (`FFF.bundle`), etichetta di trasparenza; test in `tests/fff-r8.test.mjs`.
 - 1.0.0 — 2026-10-12: la versione e la data dell'ultimo aggiornamento sono mostrate nell'applicazione
 - **11 ottobre 2026 (round 7)** — nel pannello delle chiavi API la nota di sicurezza non mostra più letteralmente `<strong>NOT</strong>` (i tag HTML sono stati rimossi dal testo nelle 7 lingue); l'intestazione «🤖 Modelli IA» del pannello laterale e i badge «N modelli (cache/live)» si traducono ora al cambio di lingua; le etichette delle specifiche dei modelli («Il più veloce», «Ragionamento», «Programmazione» ecc.) sono tradotte in EN/FR/IT/ES/PT/DE; le guide dei provider nelle Impostazioni compaiono in inglese (non in rumeno) nelle lingue diverse dal RO; la CSP mantiene l'hash ricalcolato. I testi legali non sono stati modificati. 0 errori, axe 0 violazioni a 1280×800 e 360×740.
