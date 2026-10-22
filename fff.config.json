@@ -1,0 +1,5 @@
+{
+  "exceptions": [
+    {"rule": "i18n-parity", "reason": "Fals pozitiv: dicționarul T primește cele 61 de chei de audit (grp*, err*, tt*) la rulare, prin Object.assign (bloc „Chei i18n lipsă”), în toate cele 8 limbi; TAG_T are ca cheie textul sursă în română (nu are intrare ro); QUICK_PROMPTS are numele categoriilor localizate pe limbă. Paritatea a fost verificată la rulare."}
+  ]
+}

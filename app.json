@@ -2,7 +2,7 @@
   "schema": 1,
   "slug": "ai-liber",
   "name": "AI Liber — Inteligența artificială pentru toți",
-  "version": "1.4.8",
+  "version": "1.4.9",
   "updated": "2026-10-23",
   "description": "Chat cu Claude, GPT-4, Gemini, Llama, DeepSeek și 30+ modele — unele fără cont, unele cu cheie API gratuită.",
   "egress": [
@@ -114,16 +114,16 @@
     "WebGPU"
   ],
   "storageKeys": [
-    "aik_",
-    "aik_enc_",
-    "ailib_404",
-    "ailib_ksalt",
-    "ailib_lang",
-    "ailib_pollauto",
-    "ailib_sbw"
+    "ai-liber.404",
+    "ai-liber.aik.",
+    "ai-liber.aik.enc_",
+    "ai-liber.ksalt",
+    "ai-liber.lang",
+    "ai-liber.pollauto",
+    "ai-liber.sbw"
   ],
-  "sizeBytes": 1120812,
-  "sha256": "0da1d2f485a45dcc96f25f896413b2598b4d8d8d15b4e021e37e8fc46a6addb5",
+  "sizeBytes": 1123254,
+  "sha256": "5dc777e26704267cd12833171cfa18b37a17935ba6b92e305255d20fcfcc5163",
   "csp": {
     "present": true,
     "directives": {
@@ -181,5 +181,11 @@
       "search"
     ]
   },
-  "selfSerializing": false
+  "selfSerializing": false,
+  "exceptions": [
+    {
+      "rule": "i18n-parity",
+      "reason": "Fals pozitiv: dicționarul T primește cele 61 de chei de audit (grp*, err*, tt*) la rulare, prin Object.assign (bloc „Chei i18n lipsă”), în toate cele 8 limbi; TAG_T are ca cheie textul sursă în română (nu are intrare ro); QUICK_PROMPTS are numele categoriilor localizate pe limbă. Paritatea a fost verificată la rulare."
+    }
+  ]
 }

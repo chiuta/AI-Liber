@@ -2,7 +2,7 @@
 
 **English** · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Version:** 1.4.8 · **Last updated:** 2026-10-23
+**Version:** 1.4.9 · **Last updated:** 2026-10-23
 
 Interface languages: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -32,7 +32,7 @@ AI Liber is a single-file app (`index.html`) that offers one chat interface to s
 
 - **Local check for personal data before sending** (`FFF.pii`): when the message is about to go to an external service (Pollinations, DuckDuckGo, AI Horde, API-key services), the app looks locally for emails, phone numbers, IBANs (mod 97), CNPs (check digit), cards (Luhn), IPs, keys/tokens. If it finds something, it sends nothing until you choose: "Mask the ticked items and continue", "Continue without masking" or "Cancel" (the text stays in the field). It can be switched off from the sidebar (the preference is kept). For local models (WebLLM, Ollama, LM Studio) the dialog is not shown, because the text does not leave the computer.
 - **"What leaves this device" indicator** next to the model selector: "Local: messages stay in the browser" (WebLLM), "Local: messages go only to the server on this computer" (Ollama/LM Studio) or "Messages go to <host>" (external services). For WebLLM, the indicator specifies that the model files are downloaded from the network on first use, but your text does not leave.
-- **Optional local conversation history (off by default):** if you tick "Save conversations on this device", conversations are kept in `localStorage` (keys `ailib_conv`, `ailib_hist`), with personal data masked if you want (button "Search for personal data in the history"). The "🗂 Local history" panel has local search by meaning (`FFF.search`: BM25, diacritics, close forms, highlighted fragments), resuming a conversation in the chat, deletion per conversation, Markdown export.
+- **Optional local conversation history (off by default):** if you tick "Save conversations on this device", conversations are kept in `localStorage` (keys `ai-liber.conv`, `ai-liber.hist`), with personal data masked if you want (button "Search for personal data in the history"). The "🗂 Local history" panel has local search by meaning (`FFF.search`: BM25, diacritics, close forms, highlighted fragments), resuming a conversation in the chat, deletion per conversation, Markdown export.
 - **Encrypted copy of the history** through the transparency label (Export encrypted, password). The API keys and the session secret are **not** included in the copy (verified in a test).
 
 ### Limits
@@ -58,8 +58,8 @@ AI Liber is a single-file app (`index.html`) that offers one chat interface to s
 The app **is not strictly offline**: the chat works only by contacting the services you choose.
 
 - **API-key persistence:** the keys are encrypted (AES-GCM) with a random secret kept in `sessionStorage`; in practice they survive a reload of the same tab, but **not a new tab or a browser restart** (the secret is lost, the encrypted keys remain unreadable in `localStorage`), so they have to be re-entered. Verified by a test (reload: the key stays; new tab: empty).
-- **Local storage (localStorage):** the language (`ailib_lang`), obscured API keys (`aik_enc_*`, `aik_*`) with a salt (`ailib_ksalt`), a local list of models that returned a 404 error (`ailib_404`), an interface preference (`ailib_sbw`), the option to automatically update the model list (`ailib_pollauto`, only if you tick it). In `sessionStorage`: a session secret (`ailib_ssec`). Also: the personal-data check preference (`ailib_piiguard`) and, only if you tick the option, the local history (`ailib_hist`, `ailib_conv`).
-- **On page load:** no automatic request is sent to Pollinations. The live model list (`https://text.pollinations.ai/models`) is requested only if you press "Reload Pollinations models" / "Check & update models" or explicitly tick, in the sidebar, "Automatically update the list at startup" (opt-in, off by default; the preference is kept in `ailib_pollauto`). Until then the local catalogue in the page is used. When an answer contains formulas (`$…$`), KaTeX is loaded from `vendor/` (same origin, with SRI integrity check).
+- **Local storage (localStorage):** the language (`ai-liber.lang`), obscured API keys (`ai-liber.aik.enc_*`, `ai-liber.aik.*`) with a salt (`ai-liber.ksalt`), a local list of models that returned a 404 error (`ai-liber.404`), an interface preference (`ai-liber.sbw`), the option to automatically update the model list (`ai-liber.pollauto`, only if you tick it). In `sessionStorage`: a session secret (`ailib_ssec`). Also: the personal-data check preference (`ai-liber.piiguard`) and, only if you tick the option, the local history (`ai-liber.hist`, `ai-liber.conv`).
+- **On page load:** no automatic request is sent to Pollinations. The live model list (`https://text.pollinations.ai/models`) is requested only if you press "Reload Pollinations models" / "Check & update models" or explicitly tick, in the sidebar, "Automatically update the list at startup" (opt-in, off by default; the preference is kept in `ai-liber.pollauto`). Until then the local catalogue in the page is used. When an answer contains formulas (`$…$`), KaTeX is loaded from `vendor/` (same origin, with SRI integrity check).
 - **Third-party hosts contacted, only after an action of yours (sending a message, reloading the list, enabling WebLLM):** `text.pollinations.ai`, `auth.pollinations.ai` (Pollinations); `duckduckgo.com` (DuckDuckGo AI Chat); `aihorde.net` (AI Horde); `api.openai.com`, `api.anthropic.com`, `generativelanguage.googleapis.com`, `api.perplexity.ai` and other providers' APIs, only if you use the respective key; `raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/00fe7a40e57e5e8eb9fef87526a4bf28ad5846c0/` (the model library `.wasm`, pinned commit, verified by WebLLM with SHA-256 SRI; only when you enable the in-browser model) and `huggingface.co/mlc-ai/` (+ `*.huggingface.co`, `*.hf.co`) for the weights, which have no pinned hash. WebLLM itself (`@mlc-ai/web-llm@0.2.84`) is in `vendor/`, not on a CDN.
 - Your messages are sent to the chosen provider; their policies apply. The keys are sent only to the provider they belong to.
 - Files uploaded to the chat are processed locally in the browser (`vendor/mammoth.browser.min.js` for .docx, `vendor/pdfjs/` for PDF), but the extracted text reaches the chosen provider along with the message. The catalogues contain external links (navigation only, on click).
@@ -96,6 +96,11 @@ AI Liber is a single-file HTML chat front-end for free no-account AI services, b
 - The legal texts (version "v1.0 · 12 April 2026") were not modified in this round; their date is the author's decision and was not changed.
 
 ## History / Changelog
+
+### 1.4.9 — 2026-10-23
+- Storage keys now carry the app prefix (`ai-liber.*`); existing data (language, history, encrypted API keys, salt) is migrated automatically at startup, and old `.fff.json` copies can still be imported.
+- fff-kit 1.2.0: unprefixed-storage fixed
+- Quick prompts: the missing "Productivity" category was added in French, German, Spanish, Portuguese and Italian (language parity).
 
 ### 1.4.7 — 2026-10-22
 - Library loading no longer trusts a CDN: WebLLM 0.2.84 (and KaTeX 0.16.9) are in `vendor/` and loaded from the same origin; model libraries (`.wasm`) come from a pinned `binary-mlc-llm-libs` commit and are verified by SHA-256 SRI (refused on mismatch). The CSP no longer allows `esm.run`, `cdn.jsdelivr.net` or the whole of `raw.githubusercontent.com`.

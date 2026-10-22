@@ -16,7 +16,7 @@ async function open(opts={}){
   const p=await ctx.newPage(); const errs=[];
   p.on('pageerror',e=>errs.push('pageerror '+e.message)); p.on('console',m=>{ if(m.type()==='error'||/Content Security/i.test(m.text())) errs.push('console '+m.text()); });
   await p.addInitScript({content:fs.readFileSync(AXE,'utf8')}); // init scripts nu sunt supuse CSP
-  if(!opts.noConsent) await p.addInitScript(()=>{ try{ localStorage.setItem('ailib_ok_pollinations','1'); }catch(e){} }); // acordul pentru serviciul extern (1.4.5) e testat separat
+  if(!opts.noConsent) await p.addInitScript(()=>{ try{ localStorage.setItem('ai-liber.ok_pollinations','1'); }catch(e){} }); // acordul pentru serviciul extern (1.4.5) e testat separat
   if(opts.init) await p.addInitScript(opts.init);
   await p.goto(URL_); await p.waitForTimeout(opts.wait||3600);
   return {ctx,p,errs,reqs,bodies};
@@ -34,8 +34,8 @@ const PII_TXT='Scrie-i lui ion.popescu@example.com un mesaj. IBAN-ul meu: RO49AA
   ok(errs.length===0,'pornire fără erori/CSP: '+errs.join(' | '));
   ok(reqs.length===0,'0 cereri de rețea la pornire: '+reqs.join(','));
   ok(await p.evaluate(()=>document.documentElement.getAttribute('lang')!==null),'html[lang] prezent');
-  ok(await p.evaluate(()=>document.querySelector('meta[name=application-version]').content==='1.4.8'),'versiune 1.4.8 în meta');
-  ok((await p.textContent('#app-version')).includes('v 1.4.8 · 2026-10-23'),'text #app-version');
+  ok(await p.evaluate(()=>document.querySelector('meta[name=application-version]').content==='1.4.9'),'versiune 1.4.9 în meta');
+  ok((await p.textContent('#app-version')).includes('v 1.4.9 · 2026-10-23'),'text #app-version');
   const ov=await p.evaluate(()=>document.documentElement.scrollWidth-innerWidth); ok(ov<=0,'fără depășire orizontală 1280');
   await axe(p,'start 1280');
   // 2. indicator
@@ -55,9 +55,9 @@ const PII_TXT='Scrie-i lui ion.popescu@example.com un mesaj. IBAN-ul meu: RO49AA
   ok(/text\.pollinations\.ai/.test(await p.textContent('dialog.c5-dlg[open] .c5-body')),'dialog de acord numește gazda');
   ok(bodies.length===0,'nimic trimis înainte de acord');
   await p.click('dialog.c5-dlg[open] .c5-btn:not(.c5-pri):not(.c5-x)'); await p.waitForTimeout(400);
-  ok(bodies.length===0,'refuz: nimic trimis'); ok(await p.evaluate(()=>localStorage.getItem('ailib_ok_pollinations'))===null,'refuz: acord nesalvat');
+  ok(bodies.length===0,'refuz: nimic trimis'); ok(await p.evaluate(()=>localStorage.getItem('ai-liber.ok_pollinations'))===null,'refuz: acord nesalvat');
   await p.click('#csend'); await p.waitForSelector('dialog.c5-dlg[open]',{timeout:3000}); await p.click('dialog.c5-dlg[open] .c5-pri'); await p.waitForTimeout(900);
-  ok(bodies.length===1,'după acord: trimis o dată ('+bodies.length+')'); ok(await p.evaluate(()=>localStorage.getItem('ailib_ok_pollinations'))==='1','acord memorat');
+  ok(bodies.length===1,'după acord: trimis o dată ('+bodies.length+')'); ok(await p.evaluate(()=>localStorage.getItem('ai-liber.ok_pollinations'))==='1','acord memorat');
   await p.fill('#cta','Din nou'); await p.click('#csend'); await p.waitForTimeout(900); ok(bodies.length===2,'a doua trimitere fără dialog');
   ok(errs.length===0,'fără erori: '+errs.join('|'));
   await ctx.close(); }
@@ -88,10 +88,10 @@ const PII_TXT='Scrie-i lui ion.popescu@example.com un mesaj. IBAN-ul meu: RO49AA
   await p.click('dialog.fff-pii button:has-text("Anulează"), dialog.fff-pii button:has-text("Cancel")'); await p.waitForTimeout(500);
   ok(bodies.length===3,'anulare: nu se trimite nimic'); ok((await p.inputValue('#cta'))===txt,'anulare: textul rămâne în câmp');
   // dezactivat din bară
-  await p.evaluate(()=>{ localStorage.setItem('ailib_piiguard','0'); });
+  await p.evaluate(()=>{ localStorage.setItem('ai-liber.piiguard','0'); });
   await p.fill('#cta',txt); await p.click('#csend'); await p.waitForTimeout(800);
   ok(await p.locator('dialog.fff-pii').count()===0&&bodies.length===4,'cu verificarea oprită se trimite direct');
-  await p.evaluate(()=>{ localStorage.removeItem('ailib_piiguard'); });
+  await p.evaluate(()=>{ localStorage.removeItem('ai-liber.piiguard'); });
   // model local: nu se scanează
   await sel(p,'ollama'); await p.fill('#cta',txt); await p.click('#csend'); await p.waitForTimeout(600);
   ok(await p.locator('dialog.fff-pii').count()===0,'model local: fără dialog PII');
@@ -102,12 +102,12 @@ const PII_TXT='Scrie-i lui ion.popescu@example.com un mesaj. IBAN-ul meu: RO49AA
 { const {ctx,p,errs,bodies}=await open();
   await sel(p,'pollinations');
   await p.fill('#cta','Prima întrebare despre grădinărit și roșii'); await p.click('#csend'); await p.waitForTimeout(900);
-  ok(await p.evaluate(()=>localStorage.getItem('ailib_conv'))===null,'implicit nu se salvează nimic');
-  await p.check('#c5-hist'); ok(await p.evaluate(()=>localStorage.getItem('ailib_hist'))==='1','opțiunea se păstrează');
+  ok(await p.evaluate(()=>localStorage.getItem('ai-liber.conv'))===null,'implicit nu se salvează nimic');
+  await p.check('#c5-hist'); ok(await p.evaluate(()=>localStorage.getItem('ai-liber.hist'))==='1','opțiunea se păstrează');
   await p.click('#c5-topbtn'); await p.waitForSelector('dialog.c5-dlg[open]'); ok((await p.textContent('dialog.c5-dlg .c5-note')).length>10,'panou istoric deschis');
   await p.keyboard.press('Escape'); await p.waitForTimeout(150);
   await p.fill('#cta','A doua întrebare despre astronomie și planete'); await p.click('#csend'); await p.waitForTimeout(900);
-  let conv=await p.evaluate(()=>JSON.parse(localStorage.getItem('ailib_conv')||'[]')); ok(conv.length===1,'o conversație salvată: '+conv.length);
+  let conv=await p.evaluate(()=>JSON.parse(localStorage.getItem('ai-liber.conv')||'[]')); ok(conv.length===1,'o conversație salvată: '+conv.length);
   ok(conv[0]&&conv[0].m.length===4,'conține 4 mesaje (2 întrebări + 2 răspunsuri): '+(conv[0]&&conv[0].m.length));
   await p.click('#c5-topbtn'); await p.waitForSelector('dialog.c5-dlg[open]'); await axe(p,'istoric'); 
   // căutare cu diacritice/morfologie
@@ -126,25 +126,25 @@ const PII_TXT='Scrie-i lui ion.popescu@example.com un mesaj. IBAN-ul meu: RO49AA
   ok(await p.locator('#cmsgs .msg.usr').count()===2,'conversația e reîncărcată în chat (2 mesaje utilizator)');
   ok(await p.evaluate(()=>hist.length)===4,'istoricul intern a fost restaurat');
   // PII în istoric
-  await p.evaluate(()=>{ const l=JSON.parse(localStorage.getItem('ailib_conv')); l[0].m.push(['u','scrie la test.user@example.org']); localStorage.setItem('ailib_conv',JSON.stringify(l)); });
+  await p.evaluate(()=>{ const l=JSON.parse(localStorage.getItem('ai-liber.conv')); l[0].m.push(['u','scrie la test.user@example.org']); localStorage.setItem('ai-liber.conv',JSON.stringify(l)); });
   await p.click('#c5-topbtn'); await p.waitForSelector('dialog.c5-dlg[open]');
   await p.click('dialog.c5-dlg button:has-text("personal data in history"), dialog.c5-dlg button:has-text("date personale în istoric")');
   await p.waitForSelector('dialog.c5-dlg:has(button:has-text("Da")), dialog.c5-dlg:has(button:has-text("Yes"))');
   await p.click('dialog.c5-dlg button.c5-pri'); await p.waitForTimeout(600);
-  ok(!(await p.evaluate(()=>localStorage.getItem('ailib_conv'))).includes('test.user@example.org'),'datele personale din istoric au fost mascate');
+  ok(!(await p.evaluate(()=>localStorage.getItem('ai-liber.conv'))).includes('test.user@example.org'),'datele personale din istoric au fost mascate');
   await p.keyboard.press('Escape');
   // copie fără chei API
-  await p.evaluate(()=>{ localStorage.setItem('aik_enc_openai','SECRETBLOB'); localStorage.setItem('ailib_ksalt','SALT'); localStorage.setItem('aik_openai','sk-live-secret'); });
+  await p.evaluate(()=>{ localStorage.setItem('ai-liber.aik.enc_openai','SECRETBLOB'); localStorage.setItem('ai-liber.ksalt','SALT'); localStorage.setItem('ai-liber.aik.openai','sk-live-secret'); });
   const bundle=await p.evaluate(()=>FFF.bundle.build()); const keys=Object.keys(bundle.data);
-  ok(keys.includes('ailib_conv')&&keys.includes('ailib_hist'),'copia conține istoricul: '+keys.join(','));
-  ok(!keys.some(k=>/^(aik_|sk_|ailib_ksalt)/.test(k)),'copia NU conține cheile API: '+keys.join(','));
+  ok(keys.includes('ai-liber.conv')&&keys.includes('ai-liber.hist'),'copia conține istoricul: '+keys.join(','));
+  ok(!keys.some(k=>/^(ai-liber\.aik\.|aik_|sk_|ai-liber\.ksalt)/.test(k)),'copia NU conține cheile API: '+keys.join(','));
   // criptat
   const [dl2]=await Promise.all([p.waitForEvent('download'),p.evaluate(()=>FFF.bundle.export({encrypt:true,password:'parola-de-test-1'}))]);
   const env=JSON.parse(fs.readFileSync(await dl2.path(),'utf8')); ok(env.format==='fff-bundle-enc'&&!JSON.stringify(env).includes('astronomie'),'copia criptată nu conține text clar');
   // ștergere
   await p.click('#c5-topbtn'); await p.waitForSelector('dialog.c5-dlg[open]');
   await p.click('dialog.c5-dlg li.c5-li summary'); await p.click('dialog.c5-dlg li.c5-li button:has-text("Delete"), dialog.c5-dlg li.c5-li button:has-text("Șterge")'); await p.waitForTimeout(500);
-  ok(await p.evaluate(()=>JSON.parse(localStorage.getItem('ailib_conv')||'[]').length)===0,'ștergerea unei conversații');
+  ok(await p.evaluate(()=>JSON.parse(localStorage.getItem('ai-liber.conv')||'[]').length)===0,'ștergerea unei conversații');
   ok(errs.filter(e=>!/Failed to fetch|net::|NetworkError/i.test(e)).length===0,'fără erori JS în istoric: '+errs.join('|'));
   await ctx.close(); }
 
@@ -188,10 +188,10 @@ const PII_TXT='Scrie-i lui ion.popescu@example.com un mesaj. IBAN-ul meu: RO49AA
 // 7. plafon de mărime: cele mai vechi conversații se șterg, cu mesaj
 { const {ctx,p,bodies}=await open();
   await sel(p,'pollinations'); await p.evaluate(()=>setLang('en'));
-  await p.evaluate(()=>{ const l=[]; for(let i=0;i<125;i++)l.push({id:'old'+i,t0:1e12+i,t1:1e12+i,model:'x',prov:'pollinations',m:[['u','întrebare '+i],['a','răspuns '+i]]}); localStorage.setItem('ailib_conv',JSON.stringify(l)); });
+  await p.evaluate(()=>{ const l=[]; for(let i=0;i<125;i++)l.push({id:'old'+i,t0:1e12+i,t1:1e12+i,model:'x',prov:'pollinations',m:[['u','întrebare '+i],['a','răspuns '+i]]}); localStorage.setItem('ai-liber.conv',JSON.stringify(l)); });
   await p.check('#c5-hist');
   await p.fill('#cta','Întrebare care depășește plafonul'); await p.click('#csend'); await p.waitForTimeout(1000);
-  const l=await p.evaluate(()=>JSON.parse(localStorage.getItem('ailib_conv')));
+  const l=await p.evaluate(()=>JSON.parse(localStorage.getItem('ai-liber.conv')));
   ok(l.length===120,'plafon 120 conversații: '+l.length); ok(l[0].m[0][1].includes('depășește'),'conversația nouă este prima');
   ok(!l.some(c=>c.id==='old124'),'cea mai veche a fost ștearsă');
   ok(/oldest conversations were removed/.test(await p.textContent('#c5-live')),'mesaj de plafon: '+await p.textContent('#c5-live'));
@@ -204,29 +204,29 @@ const PII_TXT='Scrie-i lui ion.popescu@example.com un mesaj. IBAN-ul meu: RO49AA
   await p.uncheck('#c5-pii'); await p.check('#c5-hist');
   await p.reload(); await p.waitForTimeout(2500);
   ok(!(await p.isChecked('#c5-pii'))&&await p.isChecked('#c5-hist'),'preferințele se păstrează după reîncărcare');
-  ok(await p.evaluate(()=>localStorage.getItem('ailib_piiguard')==='0'&&localStorage.getItem('ailib_hist')==='1'),'chei localStorage');
+  ok(await p.evaluate(()=>localStorage.getItem('ai-liber.piiguard')==='0'&&localStorage.getItem('ai-liber.hist')==='1'),'chei localStorage');
   await p.check('#c5-pii'); await p.uncheck('#c5-hist');
-  ok(await p.evaluate(()=>localStorage.getItem('ailib_piiguard')===null&&localStorage.getItem('ailib_hist')===null),'revenire la implicit');
+  ok(await p.evaluate(()=>localStorage.getItem('ai-liber.piiguard')===null&&localStorage.getItem('ai-liber.hist')===null),'revenire la implicit');
   await ctx.close(); }
 
 // 9. copia criptată: istoric DA, chei API / sare / secret de sesiune NU (decriptare reală în pagină)
 { const {ctx,p}=await open();
   await sel(p,'pollinations'); await p.check('#c5-hist');
   await p.fill('#cta','Întrebare despre pisici și câini'); await p.click('#csend'); await p.waitForTimeout(900);
-  const sec=await p.evaluate(()=>{ localStorage.setItem('aik_enc_openai','SECRETBLOB'); localStorage.setItem('aik_groq','sk-live-groq'); localStorage.setItem('ailib_ksalt','SALTVALUE'); return sessionStorage.getItem('ailib_ssec')||(sessionStorage.setItem('ailib_ssec','SESSSECRET'),'SESSSECRET'); });
+  const sec=await p.evaluate(()=>{ localStorage.setItem('ai-liber.aik.enc_openai','SECRETBLOB'); localStorage.setItem('ai-liber.aik.groq','sk-live-groq'); localStorage.setItem('ai-liber.ksalt','SALTVALUE'); return sessionStorage.getItem('ailib_ssec')||(sessionStorage.setItem('ailib_ssec','SESSSECRET'),'SESSSECRET'); });
   const [dl]=await Promise.all([p.waitForEvent('download'),p.evaluate(()=>FFF.bundle.export({encrypt:true,password:'parola-de-test-1'}))]);
   const env=JSON.parse(fs.readFileSync(await dl.path(),'utf8')); ok(env.format==='fff-bundle-enc','plic criptat');
   const plain=await p.evaluate(async(env)=>{ const b=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0)); const km=await crypto.subtle.importKey('raw',new TextEncoder().encode('parola-de-test-1'.normalize('NFC')),'PBKDF2',false,['deriveKey']);
     const k=await crypto.subtle.deriveKey({name:'PBKDF2',salt:b(env.salt),iterations:env.iter,hash:'SHA-256'},km,{name:'AES-GCM',length:256},false,['decrypt']);
     return new TextDecoder().decode(await crypto.subtle.decrypt({name:'AES-GCM',iv:b(env.iv),additionalData:new TextEncoder().encode('fff-bundle-enc|'+env.schema+'|'+env.app)},k,b(env.ct))); },env);
   const o=JSON.parse(plain), keys=Object.keys(o.data);
-  ok(keys.includes('ailib_conv')&&keys.includes('ailib_hist')&&o.data.ailib_conv.includes('pisici'),'copia criptată conține istoricul: '+keys.join(','));
-  ok(!keys.some(k=>/^(aik_|sk_|ailib_ksalt|ailib_ssec)/.test(k)),'copia criptată NU conține chei API/sare/secret: '+keys.join(','));
+  ok(keys.includes('ai-liber.conv')&&keys.includes('ai-liber.hist')&&o.data['ai-liber.conv'].includes('pisici'),'copia criptată conține istoricul: '+keys.join(','));
+  ok(!keys.some(k=>/^(ai-liber\.aik\.|aik_|sk_|ai-liber\.ksalt|ailib_ssec)/.test(k)),'copia criptată NU conține chei API/sare/secret: '+keys.join(','));
   ok(!/SECRETBLOB|sk-live-groq|SALTVALUE/.test(plain)&&!plain.includes(sec),'nicio valoare secretă în copia decriptată');
   const [d2]=await Promise.all([p.waitForEvent('download'),p.evaluate(()=>FFF.bundle.export())]); const t2=fs.readFileSync(await d2.path(),'utf8');
-  ok(t2.includes('ailib_conv')&&!/SECRETBLOB|sk-live-groq|SALTVALUE/.test(t2),'copia necriptată: istoric da, secrete nu');
+  ok(t2.includes('ai-liber.conv')&&!/SECRETBLOB|sk-live-groq|SALTVALUE/.test(t2),'copia necriptată: istoric da, secrete nu');
   // eticheta de transparență încă vede toate cheile (filtrul e doar pe copie)
-  ok(await p.evaluate(()=>FFF.store.indexKeys().includes('aik_groq')),'inventarul kitului vede în continuare cheile locale');
+  ok(await p.evaluate(()=>FFF.store.indexKeys().includes('ai-liber.aik.groq')),'inventarul kitului vede în continuare cheile locale');
   await ctx.close(); }
 
 // 10. rețea: cu dialog deschis / anulare nu pleacă nimic; model local nu scanează; nicio cerere în afara gazdei alese

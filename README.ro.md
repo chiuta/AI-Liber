@@ -2,7 +2,7 @@
 
 [English](README.md) · **Română** · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versiune:** 1.4.8 · **Ultima actualizare:** 2026-10-23
+**Versiune:** 1.4.9 · **Ultima actualizare:** 2026-10-23
 
 Limbile interfeței: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -32,7 +32,7 @@ AI Liber este o aplicație single-file (`index.html`) care oferă o interfață 
 
 - **Verificare locală de date personale înainte de trimitere** (`FFF.pii`): când mesajul urmează să plece către un serviciu extern (Pollinations, DuckDuckGo, AI Horde, API-uri cu cheie), aplicația caută local e-mailuri, telefoane, IBAN (mod 97), CNP (cifră de control), carduri (Luhn), IP, chei/token-uri. Dacă găsește ceva, nu trimite nimic până alegi: „Maschează bifatele și continuă”, „Continuă fără mascare” sau „Anulează” (textul rămâne în câmp). Se poate opri din bara laterală (preferința se păstrează). Pentru modelele locale (WebLLM, Ollama, LM Studio) nu se afișează dialogul, fiindcă textul nu părăsește calculatorul.
 - **Indicator „ce pleacă din acest dispozitiv”** lângă selectorul de model: „Local: mesajele rămân în browser” (WebLLM), „Local: mesajele merg doar la serverul de pe acest calculator” (Ollama/LM Studio) sau „Mesajele pleacă spre <gazdă>” (servicii externe). La WebLLM, indicatorul precizează că fișierele modelului se descarcă din rețea la prima folosire, dar textul tău nu pleacă.
-- **Istoric local de conversații, opțional (oprit implicit):** dacă bifezi „Salvează conversațiile pe acest dispozitiv”, conversațiile se păstrează în `localStorage` (cheile `ailib_conv`, `ailib_hist`), cu datele personale mascate dacă vrei (buton „Caută date personale în istoric”). Panoul „🗂 Istoric local” are căutare locală după sens (`FFF.search`: BM25, diacritice, forme apropiate, fragmente evidențiate), reluarea unei conversații în chat, ștergere pe conversație, export Markdown.
+- **Istoric local de conversații, opțional (oprit implicit):** dacă bifezi „Salvează conversațiile pe acest dispozitiv”, conversațiile se păstrează în `localStorage` (cheile `ai-liber.conv`, `ai-liber.hist`), cu datele personale mascate dacă vrei (buton „Caută date personale în istoric”). Panoul „🗂 Istoric local” are căutare locală după sens (`FFF.search`: BM25, diacritice, forme apropiate, fragmente evidențiate), reluarea unei conversații în chat, ștergere pe conversație, export Markdown.
 - **Copie criptată a istoricului** prin eticheta de transparență (Exportă criptat, parolă). Cheile API și secretul de sesiune **nu** intră în copie (verificat în test).
 
 ### Limite
@@ -58,8 +58,8 @@ AI Liber este o aplicație single-file (`index.html`) care oferă o interfață 
 Aplicația **nu este strict offline**: chatul funcționează doar prin contactarea serviciilor alese de tine.
 
 - **Persistența cheilor API:** cheile se criptează (AES-GCM) cu un secret aleator păstrat în `sessionStorage`; în practică ele supraviețuiesc reîncărcării aceleiași file, dar **nu și unei file noi sau repornirii browserului** (secretul se pierde, cheile cifrate rămân nereadabile în `localStorage`), deci trebuie reintroduse. Verificat prin test (reîncărcare: cheia rămâne; filă nouă: gol).
-- **Stocare locală (localStorage):** limba (`ailib_lang`), chei API obscurizate (`aik_enc_*`, `aik_*`) cu o sare (`ailib_ksalt`), o listă locală de modele care au dat eroare 404 (`ailib_404`), o preferință de interfață (`ailib_sbw`), opțiunea de actualizare automată a listei de modele (`ailib_pollauto`, doar dacă o bifezi). În `sessionStorage`: un secret de sesiune (`ailib_ssec`). Plus preferința pentru verificarea datelor personale (`ailib_piiguard`) și, doar dacă bifezi opțiunea, istoricul local (`ailib_hist`, `ailib_conv`).
-- **La încărcarea paginii:** nu se trimite nicio cerere automată către Pollinations. Lista live de modele (`https://text.pollinations.ai/models`) se cere doar dacă apeși „Reîncarcă modelele Pollinations” / „Verifică & actualizează modele” sau bifezi explicit, în bara laterală, „Actualizează automat lista la pornire” (opt-in, implicit oprit; preferința se păstrează în `ailib_pollauto`). Până atunci se folosește catalogul local din pagină. Când un răspuns conține formule (`$…$`), KaTeX este încărcat din `vendor/` (aceeași origine, cu verificare de integritate SRI).
+- **Stocare locală (localStorage):** limba (`ai-liber.lang`), chei API obscurizate (`ai-liber.aik.enc_*`, `ai-liber.aik.*`) cu o sare (`ai-liber.ksalt`), o listă locală de modele care au dat eroare 404 (`ai-liber.404`), o preferință de interfață (`ai-liber.sbw`), opțiunea de actualizare automată a listei de modele (`ai-liber.pollauto`, doar dacă o bifezi). În `sessionStorage`: un secret de sesiune (`ailib_ssec`). Plus preferința pentru verificarea datelor personale (`ai-liber.piiguard`) și, doar dacă bifezi opțiunea, istoricul local (`ai-liber.hist`, `ai-liber.conv`).
+- **La încărcarea paginii:** nu se trimite nicio cerere automată către Pollinations. Lista live de modele (`https://text.pollinations.ai/models`) se cere doar dacă apeși „Reîncarcă modelele Pollinations” / „Verifică & actualizează modele” sau bifezi explicit, în bara laterală, „Actualizează automat lista la pornire” (opt-in, implicit oprit; preferința se păstrează în `ai-liber.pollauto`). Până atunci se folosește catalogul local din pagină. Când un răspuns conține formule (`$…$`), KaTeX este încărcat din `vendor/` (aceeași origine, cu verificare de integritate SRI).
 - **Gazde terțe contactate, doar după o acțiune a ta (trimiterea unui mesaj, reîncărcarea listei, activarea WebLLM):** `text.pollinations.ai`, `auth.pollinations.ai` (Pollinations); `duckduckgo.com` (DuckDuckGo AI Chat); `aihorde.net` (AI Horde); `api.openai.com`, `api.anthropic.com`, `generativelanguage.googleapis.com`, `api.perplexity.ai` și alte API-uri ale furnizorilor, doar dacă folosești cheia respectivă; `raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/00fe7a40e57e5e8eb9fef87526a4bf28ad5846c0/` (biblioteca modelului `.wasm`, commit fixat, verificată de WebLLM prin SRI SHA-256; doar când activezi modelul în browser) și `huggingface.co/mlc-ai/` (+ `*.huggingface.co`, `*.hf.co`) pentru ponderi, care nu au hash fixat. WebLLM însuși (`@mlc-ai/web-llm@0.2.84`) este în `vendor/`, nu pe un CDN.
 - Mesajele tale sunt trimise furnizorului ales; politicile lor se aplică. Cheile sunt trimise doar furnizorului căruia îi aparțin.
 - Fișierele încărcate în chat sunt procesate local în browser (`vendor/mammoth.browser.min.js` pentru .docx, `vendor/pdfjs/` pentru PDF), dar textul extras ajunge la furnizorul ales odată cu mesajul. Cataloagele conțin linkuri externe (doar navigare, la click).
@@ -96,6 +96,11 @@ AI Liber este o interfață de chat într-un singur fișier HTML pentru servicii
 - Textele juridice (versiunea „v1.0 · 12 aprilie 2026”) nu au fost modificate în această rundă; data lor este decizia autorului și nu a fost schimbată.
 
 ## Istoric / Changelog
+
+### 1.4.9 — 2026-10-23
+- Cheile de stocare au acum prefixul aplicației (`ai-liber.*`); datele existente (limba, istoricul, cheile API criptate, sarea) se migrează automat la pornire, iar copiile vechi `.fff.json` se pot importa în continuare.
+- fff-kit 1.2.0: stocare fără prefix remediată
+- Sugestii rapide: categoria „Productivitate”, lipsă, a fost adăugată în franceză, germană, spaniolă, portugheză și italiană (paritate între limbi).
 
 ### 1.4.7 — 2026-10-22
 - Încărcarea bibliotecilor nu mai are încredere într-un CDN: WebLLM 0.2.84 (și KaTeX 0.16.9) sunt în `vendor/` și se încarcă din aceeași origine; bibliotecile de model (`.wasm`) vin de la un commit fixat din `binary-mlc-llm-libs` și sunt verificate prin SRI SHA-256 (refuzate la nepotrivire). CSP-ul nu mai permite `esm.run`, `cdn.jsdelivr.net` și nici întreg `raw.githubusercontent.com`.
