@@ -2,7 +2,7 @@
 
 **English** · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Version:** 1.4.1 · **Last updated:** 2026-10-19
+**Version:** 1.4.2 · **Last updated:** 2026-10-22
 
 Interface languages: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -96,6 +96,8 @@ AI Liber is a single-file HTML chat front-end for free no-account AI services, b
 - The legal texts (version "v1.0 · 12 April 2026") were not modified in this round; their date is the author's decision and was not changed.
 
 ## History / Changelog
+
+- **1.4.2 (22 October 2026):** The page title now follows the interface language; the model list labels and the Explore catalog are rebuilt in the saved language at startup (they used to stay Romanian after a reload); the model-check dialog text is translated.
 - **1.4.1 — 2026-10-19:** the personal-data check before sending, the "what leaves" indicator and the optional local history described above (introduced in 1.1.0) are present in the current version: they had been removed by mistake in an earlier cleanup and were reimplemented with the same behaviour and new tests (`tests/fff-r8.test.mjs`). The interface (including the descriptions of the models) is available in 8 languages, Hungarian included.
 - **1.1.0 — 2026-10-14:** local check for personal data before sending (`FFF.pii`), "what leaves" indicator, optional searchable local history (`FFF.search`), encrypted `.fff.json` copy (`FFF.bundle`), transparency label; tests in `tests/fff-r8.test.mjs`.
 - 1.0.0 — 2026-10-12: the version and the date of the last update are shown in the app

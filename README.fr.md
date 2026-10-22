@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · **Français** · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Version :** 1.4.1 · **Dernière mise à jour :** 2026-10-19
+**Version :** 1.4.2 · **Dernière mise à jour :** 2026-10-22
 
 Langues de l'interface : **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -96,6 +96,8 @@ AI Liber est une interface de chat HTML en un seul fichier pour des services d'I
 - Les textes juridiques (version « v1.0 · 12 avril 2026 ») n'ont pas été modifiés lors de ce tour ; leur date relève d'une décision de l'auteur et n'a pas été changée.
 
 ## Historique / Journal des modifications
+
+- **1.4.2 (22 octobre 2026) :** Le titre de la page suit désormais la langue de l'interface ; les étiquettes de la liste des modèles et le catalogue Explore sont reconstruits au démarrage dans la langue enregistrée (ils restaient en roumain après un rechargement) ; le texte de la boîte de vérification des modèles est traduit.
 - **1.4.1 — 2026-10-19 :** la vérification des données personnelles avant l'envoi, l'indicateur « ce qui part » et l'historique local facultatif décrits ci-dessus (introduits dans la 1.1.0) sont présents dans la version actuelle : ils avaient été supprimés par erreur lors d'un nettoyage antérieur et ont été réimplémentés avec le même comportement et de nouveaux tests (`tests/fff-r8.test.mjs`). L'interface (y compris les descriptions des modèles) est disponible en 8 langues, hongrois compris.
 - **1.1.0 — 2026-10-14 :** vérification locale des données personnelles avant l'envoi (`FFF.pii`), indicateur « ce qui part », historique local facultatif avec recherche (`FFF.search`), copie chiffrée `.fff.json` (`FFF.bundle`), étiquette de transparence ; tests dans `tests/fff-r8.test.mjs`.
 - 1.0.0 — 2026-10-12 : la version et la date de la dernière mise à jour sont affichées dans l'application

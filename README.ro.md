@@ -2,7 +2,7 @@
 
 [English](README.md) · **Română** · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versiune:** 1.4.1 · **Ultima actualizare:** 2026-10-19
+**Versiune:** 1.4.2 · **Ultima actualizare:** 2026-10-22
 
 Limbile interfeței: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -96,6 +96,8 @@ AI Liber este o interfață de chat într-un singur fișier HTML pentru servicii
 - Textele juridice (versiunea „v1.0 · 12 aprilie 2026”) nu au fost modificate în această rundă; data lor este decizia autorului și nu a fost schimbată.
 
 ## Istoric / Changelog
+
+- **1.4.2 (22 octombrie 2026):** Titlul paginii urmează acum limba interfeței; etichetele din lista de modele și catalogul Explore se reconstruiesc la pornire în limba salvată (rămâneau în română după reîncărcare); textul dialogului de verificare a modelelor este tradus.
 - **1.4.1 — 2026-10-19:** verificarea datelor personale înainte de trimitere, indicatorul „ce pleacă” și istoricul local opțional descrise mai sus (introduse în 1.1.0) sunt prezente în versiunea curentă: fuseseră eliminate din greșeală într-o curățare anterioară și au fost reimplementate cu același comportament și teste noi (`tests/fff-r8.test.mjs`). Interfața (inclusiv descrierile modelelor) este disponibilă în 8 limbi, inclusiv maghiara.
 - **1.1.0 — 2026-10-14:** verificare locală de date personale înainte de trimitere (`FFF.pii`), indicator „ce pleacă”, istoric local opțional căutabil (`FFF.search`), copie criptată `.fff.json` (`FFF.bundle`), etichetă de transparență; teste în `tests/fff-r8.test.mjs`.
 - 1.0.0 — 2026-10-12: versiunea și data ultimei actualizări sunt afișate în aplicație
