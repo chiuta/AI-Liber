@@ -2,7 +2,7 @@
 
 **English** · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Version:** 1.4.3 · **Last updated:** 2026-10-22
+**Version:** 1.4.4 · **Last updated:** 2026-10-22
 
 Interface languages: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -96,6 +96,8 @@ AI Liber is a single-file HTML chat front-end for free no-account AI services, b
 - The legal texts (version "v1.0 · 12 April 2026") were not modified in this round; their date is the author's decision and was not changed.
 
 ## History / Changelog
+
+- 1.4.4 — 2026-10-22: Consent dialog before the first message to an external keyless service (Pollinations, DuckDuckGo, AI Horde); the model-removal confirmation uses an in-page dialog instead of window.confirm; text ≥ 12 px and larger checkboxes on mobile.
 
 - 1.4.3 — 2026-10-22: **fix**: the AI Horde and local-model names (LM Studio, Ollama) and the AI Horde card in the explore grid now follow the selected language.
 - **1.4.2 (22 October 2026):** The page title now follows the interface language; the model list labels and the Explore catalog are rebuilt in the saved language at startup (they used to stay Romanian after a reload); the model-check dialog text is translated.

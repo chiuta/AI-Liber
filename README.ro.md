@@ -2,7 +2,7 @@
 
 [English](README.md) · **Română** · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versiune:** 1.4.3 · **Ultima actualizare:** 2026-10-22
+**Versiune:** 1.4.4 · **Ultima actualizare:** 2026-10-22
 
 Limbile interfeței: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -96,6 +96,8 @@ AI Liber este o interfață de chat într-un singur fișier HTML pentru servicii
 - Textele juridice (versiunea „v1.0 · 12 aprilie 2026”) nu au fost modificate în această rundă; data lor este decizia autorului și nu a fost schimbată.
 
 ## Istoric / Changelog
+
+- 1.4.4 — 2026-10-22: Dialog de acord înainte de primul mesaj către un serviciu extern fără cheie (Pollinations, DuckDuckGo, AI Horde); confirmarea eliminării modelelor folosește dialog propriu, nu window.confirm; text ≥ 12 px și casete de bifat mai mari pe mobil.
 
 - 1.4.3 — 2026-10-22: **remediere**: numele AI Horde și ale modelelor locale (LM Studio, Ollama), precum și cardul AI Horde din grila de explorare, urmează acum limba aleasă.
 - **1.4.2 (22 octombrie 2026):** Titlul paginii urmează acum limba interfeței; etichetele din lista de modele și catalogul Explore se reconstruiesc la pornire în limba salvată (rămâneau în română după reîncărcare); textul dialogului de verificare a modelelor este tradus.

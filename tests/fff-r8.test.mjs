@@ -16,6 +16,7 @@ async function open(opts={}){
   const p=await ctx.newPage(); const errs=[];
   p.on('pageerror',e=>errs.push('pageerror '+e.message)); p.on('console',m=>{ if(m.type()==='error'||/Content Security/i.test(m.text())) errs.push('console '+m.text()); });
   await p.addInitScript({content:fs.readFileSync(AXE,'utf8')}); // init scripts nu sunt supuse CSP
+  if(!opts.noConsent) await p.addInitScript(()=>{ try{ localStorage.setItem('ailib_ok_pollinations','1'); }catch(e){} }); // acordul pentru serviciul extern (1.4.4) e testat separat
   if(opts.init) await p.addInitScript(opts.init);
   await p.goto(URL_); await p.waitForTimeout(opts.wait||3600);
   return {ctx,p,errs,reqs,bodies};
@@ -33,8 +34,8 @@ const PII_TXT='Scrie-i lui ion.popescu@example.com un mesaj. IBAN-ul meu: RO49AA
   ok(errs.length===0,'pornire fără erori/CSP: '+errs.join(' | '));
   ok(reqs.length===0,'0 cereri de rețea la pornire: '+reqs.join(','));
   ok(await p.evaluate(()=>document.documentElement.getAttribute('lang')!==null),'html[lang] prezent');
-  ok(await p.evaluate(()=>document.querySelector('meta[name=application-version]').content==='1.4.2'),'versiune 1.4.2 în meta');
-  ok((await p.textContent('#app-version')).includes('v 1.4.2 · 2026-10-22'),'text #app-version');
+  ok(await p.evaluate(()=>document.querySelector('meta[name=application-version]').content==='1.4.4'),'versiune 1.4.4 în meta');
+  ok((await p.textContent('#app-version')).includes('v 1.4.4 · 2026-10-22'),'text #app-version');
   const ov=await p.evaluate(()=>document.documentElement.scrollWidth-innerWidth); ok(ov<=0,'fără depășire orizontală 1280');
   await axe(p,'start 1280');
   // 2. indicator
@@ -46,6 +47,19 @@ const PII_TXT='Scrie-i lui ion.popescu@example.com un mesaj. IBAN-ul meu: RO49AA
   await p.evaluate(()=>setLang('ro')); c=await p.textContent('#c5-chip'); ok(/Mesajele/.test(c),'chip tradus în ro: '+c);
   await p.evaluate(()=>setLang('de')); c=await p.textContent('#c5-chip'); ok(/Nachrichten/.test(c),'chip tradus în de: '+c);
   await p.evaluate(()=>setLang('en'));
+  await ctx.close(); }
+
+// 1b. acord înainte de prima trimitere către un serviciu extern fără cheie (1.4.4)
+{ const {ctx,p,errs,bodies}=await open({noConsent:true});
+  await sel(p,'pollinations'); await p.fill('#cta','Salut'); await p.click('#csend'); await p.waitForSelector('dialog.c5-dlg[open]',{timeout:3000});
+  ok(/text\.pollinations\.ai/.test(await p.textContent('dialog.c5-dlg[open] .c5-body')),'dialog de acord numește gazda');
+  ok(bodies.length===0,'nimic trimis înainte de acord');
+  await p.click('dialog.c5-dlg[open] .c5-btn:not(.c5-pri):not(.c5-x)'); await p.waitForTimeout(400);
+  ok(bodies.length===0,'refuz: nimic trimis'); ok(await p.evaluate(()=>localStorage.getItem('ailib_ok_pollinations'))===null,'refuz: acord nesalvat');
+  await p.click('#csend'); await p.waitForSelector('dialog.c5-dlg[open]',{timeout:3000}); await p.click('dialog.c5-dlg[open] .c5-pri'); await p.waitForTimeout(900);
+  ok(bodies.length===1,'după acord: trimis o dată ('+bodies.length+')'); ok(await p.evaluate(()=>localStorage.getItem('ailib_ok_pollinations'))==='1','acord memorat');
+  await p.fill('#cta','Din nou'); await p.click('#csend'); await p.waitForTimeout(900); ok(bodies.length===2,'a doua trimitere fără dialog');
+  ok(errs.length===0,'fără erori: '+errs.join('|'));
   await ctx.close(); }
 
 // 3. PII înainte de trimitere (mascare / continuare / anulare / curat / local)
