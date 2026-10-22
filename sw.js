@@ -1,6 +1,6 @@
 /* fff-pwa v1 · generat de fff-kit/pwa/pwa.mjs · fără cereri externe, fără importScripts */
 'use strict';
-var SLUG = "ai-liber", VERSION = "1.4.7";
+var SLUG = "ai-liber", VERSION = "1.4.8";
 var PREFIX = 'fff-' + SLUG + '-', CACHE = PREFIX + VERSION;   // versiunea nu conține '-', deci sufixul de după ultimul '-' e versiunea
 var SHELL = ['./manifest.webmanifest', './icon-192.png', './icon-512.png', './icon-maskable-512.png',
   /* biblioteci vendorizate sub 1,5 MB (offline după prima vizită); WebLLM (5,8 MB) intră în cache la prima folosire */

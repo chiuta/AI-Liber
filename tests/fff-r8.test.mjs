@@ -34,8 +34,8 @@ const PII_TXT='Scrie-i lui ion.popescu@example.com un mesaj. IBAN-ul meu: RO49AA
   ok(errs.length===0,'pornire fără erori/CSP: '+errs.join(' | '));
   ok(reqs.length===0,'0 cereri de rețea la pornire: '+reqs.join(','));
   ok(await p.evaluate(()=>document.documentElement.getAttribute('lang')!==null),'html[lang] prezent');
-  ok(await p.evaluate(()=>document.querySelector('meta[name=application-version]').content==='1.4.7'),'versiune 1.4.7 în meta');
-  ok((await p.textContent('#app-version')).includes('v 1.4.7 · 2026-10-22'),'text #app-version');
+  ok(await p.evaluate(()=>document.querySelector('meta[name=application-version]').content==='1.4.8'),'versiune 1.4.8 în meta');
+  ok((await p.textContent('#app-version')).includes('v 1.4.8 · 2026-10-23'),'text #app-version');
   const ov=await p.evaluate(()=>document.documentElement.scrollWidth-innerWidth); ok(ov<=0,'fără depășire orizontală 1280');
   await axe(p,'start 1280');
   // 2. indicator
