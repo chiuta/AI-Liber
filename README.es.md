@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · **Español** · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versión:** 1.4.2 · **Última actualización:** 2026-10-22
+**Versión:** 1.4.3 · **Última actualización:** 2026-10-22
 
 Idiomas de la interfaz: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -97,6 +97,7 @@ AI Liber es un front-end de chat HTML de un único archivo para servicios de IA 
 
 ## Historial / Registro de cambios
 
+- 1.4.3 — 2026-10-22: **corrección**: los nombres de AI Horde y de los modelos locales (LM Studio, Ollama) y la tarjeta de AI Horde en la cuadrícula de exploración siguen ahora el idioma elegido.
 - **1.4.2 (22 de octubre de 2026):** El título de la página ahora sigue el idioma de la interfaz; las etiquetas de la lista de modelos y el catálogo Explore se reconstruyen al iniciar en el idioma guardado (tras recargar se quedaban en rumano); el texto del cuadro de verificación de modelos está traducido.
 - **1.4.1 — 2026-10-19:** la comprobación de datos personales antes de enviar, el indicador «qué sale» y el historial local opcional descritos arriba (introducidos en la 1.1.0) están presentes en la versión actual: se habían eliminado por error en una limpieza anterior y se reimplementaron con el mismo comportamiento y pruebas nuevas (`tests/fff-r8.test.mjs`). La interfaz (incluidas las descripciones de los modelos) está disponible en 8 idiomas, húngaro incluido.
 - **1.1.0 — 2026-10-14:** comprobación local de datos personales antes de enviar (`FFF.pii`), indicador «qué sale», historial local opcional con búsqueda (`FFF.search`), copia cifrada `.fff.json` (`FFF.bundle`), etiqueta de transparencia; pruebas en `tests/fff-r8.test.mjs`.

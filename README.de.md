@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · **Deutsch** · [Magyar](README.hu.md)
 
-**Version:** 1.4.2 · **Zuletzt aktualisiert:** 2026-10-22
+**Version:** 1.4.3 · **Zuletzt aktualisiert:** 2026-10-22
 
 Oberflächensprachen: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -97,6 +97,7 @@ AI Liber ist ein HTML-Chat-Frontend in einer einzigen Datei für kostenlose KI-D
 
 ## Verlauf / Changelog
 
+- 1.4.3 — 2026-10-22: **Korrektur**: die Namen von AI Horde und der lokalen Modelle (LM Studio, Ollama) sowie die AI-Horde-Karte im Entdecken-Raster folgen jetzt der gewählten Sprache.
 - **1.4.2 (22. Oktober 2026):** Der Seitentitel folgt jetzt der Oberflächensprache; die Beschriftungen der Modellliste und der Explore-Katalog werden beim Start in der gespeicherten Sprache neu aufgebaut (nach einem Neuladen blieben sie rumänisch); der Text des Modellprüfungsdialogs ist übersetzt.
 - **1.4.1 — 2026-10-19:** die oben beschriebene Prüfung auf personenbezogene Daten vor dem Senden, die Anzeige „was abgeht“ und der optionale lokale Verlauf (eingeführt in 1.1.0) sind in der aktuellen Version vorhanden: Sie waren bei einer früheren Bereinigung versehentlich entfernt worden und wurden mit demselben Verhalten und neuen Tests (`tests/fff-r8.test.mjs`) neu implementiert. Die Oberfläche (einschließlich der Modellbeschreibungen) ist in 8 Sprachen verfügbar, Ungarisch eingeschlossen.
 - **1.1.0 — 2026-10-14:** lokale Prüfung auf personenbezogene Daten vor dem Senden (`FFF.pii`), Anzeige „was abgeht“, optionaler durchsuchbarer lokaler Verlauf (`FFF.search`), verschlüsselte `.fff.json`-Kopie (`FFF.bundle`), Transparenzetikett; Tests in `tests/fff-r8.test.mjs`.

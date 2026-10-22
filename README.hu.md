@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · **Magyar**
 
-**Verzió:** 1.4.2 · **Utolsó frissítés:** 2026-10-22
+**Verzió:** 1.4.3 · **Utolsó frissítés:** 2026-10-22
 
 A felület nyelvei: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -97,6 +97,7 @@ Az AI Liber egy egyfájlos HTML csevegőfelület ingyenes, fiók nélküli MI-sz
 
 ## Előzmények / Változásnapló
 
+- 1.4.3 — 2026-10-22: **javítás**: az AI Horde és a helyi modellek (LM Studio, Ollama) nevei, valamint az AI Horde kártya a felfedező rácsban mostantól a kiválasztott nyelvet követik.
 - **1.4.2 (2026. október 22.):** Az oldal címe mostantól a felület nyelvét követi; a modelllista címkéi és az Explore katalógus induláskor a mentett nyelven épülnek újra (újratöltés után románul maradtak); a modellellenőrző párbeszédablak szövege le van fordítva.
 - **1.4.1 — 2026-10-19:** a fentebb leírt, küldés előtti személyesadat-ellenőrzés, a „mi megy el” jelző és az opcionális helyi előzmények (az 1.1.0-ban bevezetve) megvannak a jelenlegi verzióban: egy korábbi takarításkor tévedésből eltávolították őket, és azonos viselkedéssel, új tesztekkel (`tests/fff-r8.test.mjs`) újra megvalósítottuk őket. A felület (a modellleírásokkal együtt) 8 nyelven érhető el, magyarul is.
 - **1.1.0 — 2026-10-14:** személyes adatok helyi ellenőrzése küldés előtt (`FFF.pii`), „mi megy el” jelző, opcionális kereshető helyi előzmények (`FFF.search`), titkosított `.fff.json` másolat (`FFF.bundle`), átláthatósági címke; tesztek a `tests/fff-r8.test.mjs` fájlban.
