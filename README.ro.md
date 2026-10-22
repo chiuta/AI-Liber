@@ -2,7 +2,7 @@
 
 [English](README.md) · **Română** · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versiune:** 1.4.5 · **Ultima actualizare:** 2026-10-22
+**Versiune:** 1.4.6 · **Ultima actualizare:** 2026-10-22
 
 Limbile interfeței: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -97,6 +97,7 @@ AI Liber este o interfață de chat într-un singur fișier HTML pentru servicii
 
 ## Istoric / Changelog
 
+- 1.4.6 — 2026-10-22: fff-kit 1.1.4: ținte tactile și text minim
 - 1.4.5 — 2026-10-22: fff-kit 1.1.2: PBKDF2 600 000 iterații, protecție anti-clickjacking
 - 1.4.4 — 2026-10-22: Dialog de acord înainte de primul mesaj către un serviciu extern fără cheie (Pollinations, DuckDuckGo, AI Horde); confirmarea eliminării modelelor folosește dialog propriu, nu window.confirm; text ≥ 12 px și casete de bifat mai mari pe mobil.
 

@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · **Deutsch** · [Magyar](README.hu.md)
 
-**Version:** 1.4.5 · **Zuletzt aktualisiert:** 2026-10-22
+**Version:** 1.4.6 · **Zuletzt aktualisiert:** 2026-10-22
 
 Oberflächensprachen: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -97,6 +97,7 @@ AI Liber ist ein HTML-Chat-Frontend in einer einzigen Datei für kostenlose KI-D
 
 ## Verlauf / Changelog
 
+- 1.4.6 — 2026-10-22: fff-kit 1.1.4: Touch-Ziele und Mindestschriftgröße
 - 1.4.5 — 2026-10-22: fff-kit 1.1.2: PBKDF2 mit 600.000 Iterationen, Schutz vor Clickjacking
 - 1.4.4 — 2026-10-22: Einwilligungsdialog vor der ersten Nachricht an einen externen Dienst ohne Schlüssel (Pollinations, DuckDuckGo, AI Horde); die Bestätigung beim Entfernen von Modellen nutzt einen eigenen Dialog statt window.confirm; Text ≥ 12 px und größere Kontrollkästchen auf dem Handy.
 

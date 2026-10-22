@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · **Español** · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versión:** 1.4.5 · **Última actualización:** 2026-10-22
+**Versión:** 1.4.6 · **Última actualización:** 2026-10-22
 
 Idiomas de la interfaz: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -97,6 +97,7 @@ AI Liber es un front-end de chat HTML de un único archivo para servicios de IA 
 
 ## Historial / Registro de cambios
 
+- 1.4.6 — 2026-10-22: fff-kit 1.1.4: objetivos táctiles y tamaño mínimo de texto
 - 1.4.5 — 2026-10-22: fff-kit 1.1.2: PBKDF2 600 000 iteraciones, protección anti-clickjacking
 - 1.4.4 — 2026-10-22: Diálogo de consentimiento antes del primer mensaje a un servicio externo sin clave (Pollinations, DuckDuckGo, AI Horde); la confirmación de eliminar modelos usa un diálogo propio en lugar de window.confirm; texto ≥ 12 px y casillas más grandes en móvil.
 
