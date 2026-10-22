@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · **Français** · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Version :** 1.4.4 · **Dernière mise à jour :** 2026-10-22
+**Version :** 1.4.5 · **Dernière mise à jour :** 2026-10-22
 
 Langues de l'interface : **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -97,6 +97,7 @@ AI Liber est une interface de chat HTML en un seul fichier pour des services d'I
 
 ## Historique / Journal des modifications
 
+- 1.4.5 — 2026-10-22 : fff-kit 1.1.2 : PBKDF2 600 000 itérations, protection anti-clickjacking
 - 1.4.4 — 2026-10-22 : Boîte de consentement avant le premier message vers un service externe sans clé (Pollinations, DuckDuckGo, AI Horde) ; la confirmation de suppression des modèles utilise une boîte intégrée au lieu de window.confirm ; texte ≥ 12 px et cases à cocher plus grandes sur mobile.
 
 - 1.4.3 — 2026-10-22: **correctif** : les noms d’AI Horde et des modèles locaux (LM Studio, Ollama) ainsi que la carte AI Horde de la grille d’exploration suivent désormais la langue choisie.

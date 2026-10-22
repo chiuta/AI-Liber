@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · **Magyar**
 
-**Verzió:** 1.4.4 · **Utolsó frissítés:** 2026-10-22
+**Verzió:** 1.4.5 · **Utolsó frissítés:** 2026-10-22
 
 A felület nyelvei: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -97,6 +97,7 @@ Az AI Liber egy egyfájlos HTML csevegőfelület ingyenes, fiók nélküli MI-sz
 
 ## Előzmények / Változásnapló
 
+- 1.4.5 — 2026-10-22: fff-kit 1.1.2: PBKDF2 600 000 iteráció, clickjacking elleni védelem
 - 1.4.4 — 2026-10-22: Hozzájárulási párbeszédpanel az első üzenet előtt egy külső, kulcs nélküli szolgáltatásnak (Pollinations, DuckDuckGo, AI Horde); a modellek eltávolításának megerősítése saját párbeszédpanelt használ a window.confirm helyett; legalább 12 px szöveg és nagyobb jelölőnégyzetek mobilon.
 
 - 1.4.3 — 2026-10-22: **javítás**: az AI Horde és a helyi modellek (LM Studio, Ollama) nevei, valamint az AI Horde kártya a felfedező rácsban mostantól a kiválasztott nyelvet követik.
