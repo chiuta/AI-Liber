@@ -2,7 +2,7 @@
 
 [English](README.md) · **Română** · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versiune:** 1.4.6 · **Ultima actualizare:** 2026-10-22
+**Versiune:** 1.4.7 · **Ultima actualizare:** 2026-10-22
 
 Limbile interfeței: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -59,11 +59,11 @@ Aplicația **nu este strict offline**: chatul funcționează doar prin contactar
 
 - **Persistența cheilor API:** cheile se criptează (AES-GCM) cu un secret aleator păstrat în `sessionStorage`; în practică ele supraviețuiesc reîncărcării aceleiași file, dar **nu și unei file noi sau repornirii browserului** (secretul se pierde, cheile cifrate rămân nereadabile în `localStorage`), deci trebuie reintroduse. Verificat prin test (reîncărcare: cheia rămâne; filă nouă: gol).
 - **Stocare locală (localStorage):** limba (`ailib_lang`), chei API obscurizate (`aik_enc_*`, `aik_*`) cu o sare (`ailib_ksalt`), o listă locală de modele care au dat eroare 404 (`ailib_404`), o preferință de interfață (`ailib_sbw`), opțiunea de actualizare automată a listei de modele (`ailib_pollauto`, doar dacă o bifezi). În `sessionStorage`: un secret de sesiune (`ailib_ssec`). Plus preferința pentru verificarea datelor personale (`ailib_piiguard`) și, doar dacă bifezi opțiunea, istoricul local (`ailib_hist`, `ailib_conv`).
-- **La încărcarea paginii:** nu se trimite nicio cerere automată către Pollinations. Lista live de modele (`https://text.pollinations.ai/models`) se cere doar dacă apeși „Reîncarcă modelele Pollinations” / „Verifică & actualizează modele” sau bifezi explicit, în bara laterală, „Actualizează automat lista la pornire” (opt-in, implicit oprit; preferința se păstrează în `ailib_pollauto`). Până atunci se folosește catalogul local din pagină. Când un răspuns conține formule (`$…$`), KaTeX este încărcat de pe `cdn.jsdelivr.net` (versiune fixată, cu verificare de integritate SRI).
-- **Gazde terțe contactate, doar după o acțiune a ta (trimiterea unui mesaj, reîncărcarea listei, activarea WebLLM):** `text.pollinations.ai`, `auth.pollinations.ai` (Pollinations); `duckduckgo.com` (DuckDuckGo AI Chat); `aihorde.net` (AI Horde); `api.openai.com`, `api.anthropic.com`, `generativelanguage.googleapis.com`, `api.perplexity.ai` și alte API-uri ale furnizorilor, doar dacă folosești cheia respectivă; `esm.run` (încărcarea WebLLM `@mlc-ai/web-llm@0.2.84`, doar când activezi modelul în browser) și, în funcție de model, descărcarea ponderilor de la gazdele WebLLM.
+- **La încărcarea paginii:** nu se trimite nicio cerere automată către Pollinations. Lista live de modele (`https://text.pollinations.ai/models`) se cere doar dacă apeși „Reîncarcă modelele Pollinations” / „Verifică & actualizează modele” sau bifezi explicit, în bara laterală, „Actualizează automat lista la pornire” (opt-in, implicit oprit; preferința se păstrează în `ailib_pollauto`). Până atunci se folosește catalogul local din pagină. Când un răspuns conține formule (`$…$`), KaTeX este încărcat din `vendor/` (aceeași origine, cu verificare de integritate SRI).
+- **Gazde terțe contactate, doar după o acțiune a ta (trimiterea unui mesaj, reîncărcarea listei, activarea WebLLM):** `text.pollinations.ai`, `auth.pollinations.ai` (Pollinations); `duckduckgo.com` (DuckDuckGo AI Chat); `aihorde.net` (AI Horde); `api.openai.com`, `api.anthropic.com`, `generativelanguage.googleapis.com`, `api.perplexity.ai` și alte API-uri ale furnizorilor, doar dacă folosești cheia respectivă; `raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/00fe7a40e57e5e8eb9fef87526a4bf28ad5846c0/` (biblioteca modelului `.wasm`, commit fixat, verificată de WebLLM prin SRI SHA-256; doar când activezi modelul în browser) și `huggingface.co/mlc-ai/` (+ `*.huggingface.co`, `*.hf.co`) pentru ponderi, care nu au hash fixat. WebLLM însuși (`@mlc-ai/web-llm@0.2.84`) este în `vendor/`, nu pe un CDN.
 - Mesajele tale sunt trimise furnizorului ales; politicile lor se aplică. Cheile sunt trimise doar furnizorului căruia îi aparțin.
 - Fișierele încărcate în chat sunt procesate local în browser (`vendor/mammoth.browser.min.js` pentru .docx, `vendor/pdfjs/` pentru PDF), dar textul extras ajunge la furnizorul ales odată cu mesajul. Cataloagele conțin linkuri externe (doar navigare, la click).
-- **CSP:** scriptul inline este permis doar prin hash `sha256` (fără `'unsafe-inline'` la `script-src`); evenimentele UI sunt tratate de un dispecer delegat (`data-onclick`, `data-onchange`, `data-oninput`, `data-onkeydown` + `data-arg`), fără atribute `on*` inline. **După orice modificare a scriptului, recalculează hash-ul din meta CSP.** Gazdele permise la `script-src` (`esm.run`, `cdn.jsdelivr.net`) rămân pentru WebLLM și KaTeX, încărcate doar la acțiunea ta.
+- **CSP:** scriptul inline este permis doar prin hash `sha256` (fără `'unsafe-inline'` la `script-src`); evenimentele UI sunt tratate de un dispecer delegat (`data-onclick`, `data-onchange`, `data-oninput`, `data-onkeydown` + `data-arg`), fără atribute `on*` inline. **După orice modificare a scriptului, recalculează hash-ul din meta CSP.** `script-src` permite doar `'self'` (plus hash-ul scriptului inline): WebLLM, KaTeX, pdf.js și mammoth se încarcă din `vendor/`; nicio gazdă de CDN nu este permisă. Vezi `NOTICE.md`.
 - Serverele locale (`localhost`) sunt contactate doar dacă le selectezi; din pagini HTTPS browserul poate bloca apelurile către `http://localhost` (mixed content).
 
 ## Limitări
@@ -96,6 +96,10 @@ AI Liber este o interfață de chat într-un singur fișier HTML pentru servicii
 - Textele juridice (versiunea „v1.0 · 12 aprilie 2026”) nu au fost modificate în această rundă; data lor este decizia autorului și nu a fost schimbată.
 
 ## Istoric / Changelog
+
+### 1.4.7 — 2026-10-22
+- Încărcarea bibliotecilor nu mai are încredere într-un CDN: WebLLM 0.2.84 (și KaTeX 0.16.9) sunt în `vendor/` și se încarcă din aceeași origine; bibliotecile de model (`.wasm`) vin de la un commit fixat din `binary-mlc-llm-libs` și sunt verificate prin SRI SHA-256 (refuzate la nepotrivire). CSP-ul nu mai permite `esm.run`, `cdn.jsdelivr.net` și nici întreg `raw.githubusercontent.com`.
+- ID-urile modelelor Gemma 2 corespund acum WebLLM 0.2.84 (`gemma-2-*-it-q4f16_1-MLC`). `NOTICE.md` nou. Dimensiune adăugată: ~6,4 MB.
 
 - 1.4.6 — 2026-10-22: fff-kit 1.1.4: ținte tactile și text minim
 - 1.4.5 — 2026-10-22: fff-kit 1.1.2: PBKDF2 600 000 iterații, protecție anti-clickjacking

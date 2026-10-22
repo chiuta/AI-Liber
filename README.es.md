@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · **Español** · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versión:** 1.4.6 · **Última actualización:** 2026-10-22
+**Versión:** 1.4.7 · **Última actualización:** 2026-10-22
 
 Idiomas de la interfaz: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -59,11 +59,11 @@ La aplicación **no funciona estrictamente sin conexión**: el chat solo funcion
 
 - **Persistencia de las claves API:** las claves se cifran (AES-GCM) con un secreto aleatorio guardado en `sessionStorage`; en la práctica sobreviven a la recarga de la misma pestaña, pero **no a una pestaña nueva ni al reinicio del navegador** (el secreto se pierde, las claves cifradas quedan ilegibles en `localStorage`), por lo que hay que volver a introducirlas. Verificado con una prueba (recarga: la clave permanece; pestaña nueva: vacío).
 - **Almacenamiento local (localStorage):** el idioma (`ailib_lang`), las claves API ofuscadas (`aik_enc_*`, `aik_*`) con una sal (`ailib_ksalt`), una lista local de modelos que devolvieron error 404 (`ailib_404`), una preferencia de interfaz (`ailib_sbw`), la opción de actualización automática de la lista de modelos (`ailib_pollauto`, solo si la marcas). En `sessionStorage`: un secreto de sesión (`ailib_ssec`). Además, la preferencia de comprobación de datos personales (`ailib_piiguard`) y, solo si marcas la opción, el historial local (`ailib_hist`, `ailib_conv`).
-- **Al cargar la página:** no se envía ninguna solicitud automática a Pollinations. La lista en vivo de modelos (`https://text.pollinations.ai/models`) solo se solicita si pulsas «Recargar los modelos de Pollinations» / «Comprobar y actualizar modelos» o marcas explícitamente, en la barra lateral, «Actualizar automáticamente la lista al iniciar» (opt-in, desactivado por defecto; la preferencia se guarda en `ailib_pollauto`). Hasta entonces se usa el catálogo local de la página. Cuando una respuesta contiene fórmulas (`$…$`), KaTeX se carga desde `cdn.jsdelivr.net` (versión fijada, con comprobación de integridad SRI).
-- **Hosts de terceros contactados, solo tras una acción tuya (enviar un mensaje, recargar la lista, activar WebLLM):** `text.pollinations.ai`, `auth.pollinations.ai` (Pollinations); `duckduckgo.com` (DuckDuckGo AI Chat); `aihorde.net` (AI Horde); `api.openai.com`, `api.anthropic.com`, `generativelanguage.googleapis.com`, `api.perplexity.ai` y otras API de proveedores, solo si usas la clave correspondiente; `esm.run` (carga de WebLLM `@mlc-ai/web-llm@0.2.84`, solo cuando activas el modelo en el navegador) y, según el modelo, la descarga de los pesos desde los hosts de WebLLM.
+- **Al cargar la página:** no se envía ninguna solicitud automática a Pollinations. La lista en vivo de modelos (`https://text.pollinations.ai/models`) solo se solicita si pulsas «Recargar los modelos de Pollinations» / «Comprobar y actualizar modelos» o marcas explícitamente, en la barra lateral, «Actualizar automáticamente la lista al iniciar» (opt-in, desactivado por defecto; la preferencia se guarda en `ailib_pollauto`). Hasta entonces se usa el catálogo local de la página. Cuando una respuesta contiene fórmulas (`$…$`), KaTeX se carga desde `vendor/` (mismo origen, con comprobación de integridad SRI).
+- **Hosts de terceros contactados, solo tras una acción tuya (enviar un mensaje, recargar la lista, activar WebLLM):** `text.pollinations.ai`, `auth.pollinations.ai` (Pollinations); `duckduckgo.com` (DuckDuckGo AI Chat); `aihorde.net` (AI Horde); `api.openai.com`, `api.anthropic.com`, `generativelanguage.googleapis.com`, `api.perplexity.ai` y otras API de proveedores, solo si usas la clave correspondiente; `raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/00fe7a40e57e5e8eb9fef87526a4bf28ad5846c0/` (la biblioteca del modelo `.wasm`, commit fijado, verificada por WebLLM con SRI SHA-256; solo cuando activas el modelo en el navegador) y `huggingface.co/mlc-ai/` (+ `*.huggingface.co`, `*.hf.co`) para los pesos, que no tienen hash fijado. WebLLM en sí (`@mlc-ai/web-llm@0.2.84`) está en `vendor/`, no en un CDN. Según el modelo, la descarga de los pesos desde los hosts de WebLLM.
 - Tus mensajes se envían al proveedor elegido; se aplican sus políticas. Las claves se envían únicamente al proveedor al que pertenecen.
 - Los archivos cargados en el chat se procesan en local en el navegador (`vendor/mammoth.browser.min.js` para .docx, `vendor/pdfjs/` para PDF), pero el texto extraído llega al proveedor elegido junto con el mensaje. Los catálogos contienen enlaces externos (solo navegación, al hacer clic).
-- **CSP:** el script en línea solo se permite mediante hash `sha256` (sin `'unsafe-inline'` en `script-src`); los eventos de la interfaz los gestiona un despachador delegado (`data-onclick`, `data-onchange`, `data-oninput`, `data-onkeydown` + `data-arg`), sin atributos `on*` en línea. **Tras cualquier cambio del script, recalcula el hash en la meta CSP.** Los hosts permitidos en `script-src` (`esm.run`, `cdn.jsdelivr.net`) siguen ahí para WebLLM y KaTeX, cargados solo por acción tuya.
+- **CSP:** el script en línea solo se permite mediante hash `sha256` (sin `'unsafe-inline'` en `script-src`); los eventos de la interfaz los gestiona un despachador delegado (`data-onclick`, `data-onchange`, `data-oninput`, `data-onkeydown` + `data-arg`), sin atributos `on*` en línea. **Tras cualquier cambio del script, recalcula el hash en la meta CSP.** `script-src` solo permite `'self'` (más el hash del script en línea): WebLLM, KaTeX, pdf.js y mammoth se cargan desde `vendor/`; no se permite ningún host de CDN. Véase `NOTICE.md`.
 - Los servidores locales (`localhost`) solo se contactan si los seleccionas; desde páginas HTTPS el navegador puede bloquear las llamadas a `http://localhost` (contenido mixto).
 
 ## Limitaciones
@@ -96,6 +96,10 @@ AI Liber es un front-end de chat HTML de un único archivo para servicios de IA 
 - Los textos jurídicos (versión «v1.0 · 12 de abril de 2026») no se modificaron en esta ronda; su fecha es decisión del autor y no se ha cambiado.
 
 ## Historial / Registro de cambios
+
+### 1.4.7 — 2026-10-22
+- La carga de bibliotecas ya no confía en un CDN: WebLLM 0.2.84 (y KaTeX 0.16.9) están en `vendor/` y se cargan desde el mismo origen; las bibliotecas de modelo (`.wasm`) vienen de un commit fijado de `binary-mlc-llm-libs` y se verifican con SRI SHA-256 (se rechazan si no coinciden). La CSP ya no permite `esm.run`, `cdn.jsdelivr.net` ni todo `raw.githubusercontent.com`.
+- Los id de los modelos Gemma 2 ahora coinciden con WebLLM 0.2.84 (`gemma-2-*-it-q4f16_1-MLC`). Nuevo `NOTICE.md`. Tamaño añadido: ~6,4 MB.
 
 - 1.4.6 — 2026-10-22: fff-kit 1.1.4: objetivos táctiles y tamaño mínimo de texto
 - 1.4.5 — 2026-10-22: fff-kit 1.1.2: PBKDF2 600 000 iteraciones, protección anti-clickjacking

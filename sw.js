@@ -1,8 +1,34 @@
 /* fff-pwa v1 · generat de fff-kit/pwa/pwa.mjs · fără cereri externe, fără importScripts */
 'use strict';
-var SLUG = "ai-liber", VERSION = "1.4.6";
+var SLUG = "ai-liber", VERSION = "1.4.7";
 var PREFIX = 'fff-' + SLUG + '-', CACHE = PREFIX + VERSION;   // versiunea nu conține '-', deci sufixul de după ultimul '-' e versiunea
-var SHELL = ['./manifest.webmanifest', './icon-192.png', './icon-512.png', './icon-maskable-512.png'];
+var SHELL = ['./manifest.webmanifest', './icon-192.png', './icon-512.png', './icon-maskable-512.png',
+  /* biblioteci vendorizate sub 1,5 MB (offline după prima vizită); WebLLM (5,8 MB) intră în cache la prima folosire */
+  './vendor/pdfjs/pdf.min.js',
+  './vendor/pdfjs/pdf.worker.min.js',
+  './vendor/mammoth.browser.min.js',
+  './vendor/katex@0.16.9/katex.min.js',
+  './vendor/katex@0.16.9/katex.min.css',
+  './vendor/katex@0.16.9/fonts/KaTeX_AMS-Regular.woff2',
+  './vendor/katex@0.16.9/fonts/KaTeX_Caligraphic-Bold.woff2',
+  './vendor/katex@0.16.9/fonts/KaTeX_Caligraphic-Regular.woff2',
+  './vendor/katex@0.16.9/fonts/KaTeX_Fraktur-Bold.woff2',
+  './vendor/katex@0.16.9/fonts/KaTeX_Fraktur-Regular.woff2',
+  './vendor/katex@0.16.9/fonts/KaTeX_Main-Bold.woff2',
+  './vendor/katex@0.16.9/fonts/KaTeX_Main-BoldItalic.woff2',
+  './vendor/katex@0.16.9/fonts/KaTeX_Main-Italic.woff2',
+  './vendor/katex@0.16.9/fonts/KaTeX_Main-Regular.woff2',
+  './vendor/katex@0.16.9/fonts/KaTeX_Math-BoldItalic.woff2',
+  './vendor/katex@0.16.9/fonts/KaTeX_Math-Italic.woff2',
+  './vendor/katex@0.16.9/fonts/KaTeX_SansSerif-Bold.woff2',
+  './vendor/katex@0.16.9/fonts/KaTeX_SansSerif-Italic.woff2',
+  './vendor/katex@0.16.9/fonts/KaTeX_SansSerif-Regular.woff2',
+  './vendor/katex@0.16.9/fonts/KaTeX_Script-Regular.woff2',
+  './vendor/katex@0.16.9/fonts/KaTeX_Size1-Regular.woff2',
+  './vendor/katex@0.16.9/fonts/KaTeX_Size2-Regular.woff2',
+  './vendor/katex@0.16.9/fonts/KaTeX_Size3-Regular.woff2',
+  './vendor/katex@0.16.9/fonts/KaTeX_Size4-Regular.woff2',
+  './vendor/katex@0.16.9/fonts/KaTeX_Typewriter-Regular.woff2'];
 
 self.addEventListener('install', function (e) {
   e.waitUntil((async function () {

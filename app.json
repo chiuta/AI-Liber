@@ -2,7 +2,7 @@
   "schema": 1,
   "slug": "ai-liber",
   "name": "AI Liber — Inteligența artificială pentru toți",
-  "version": "1.4.6",
+  "version": "1.4.7",
   "updated": "2026-10-22",
   "description": "Chat cu Claude, GPT-4, Gemini, Llama, DeepSeek și 30+ modele — unele fără cont, unele cu cheie API gratuită.",
   "egress": [
@@ -57,28 +57,10 @@
       ]
     },
     {
-      "host": "cdn.jsdelivr.net",
-      "via": [
-        "csp:connect-src",
-        "csp:font-src",
-        "csp:script-src",
-        "csp:style-src",
-        "src="
-      ]
-    },
-    {
       "host": "duckduckgo.com",
       "via": [
         "csp:connect-src",
         "fetch"
-      ]
-    },
-    {
-      "host": "esm.run",
-      "via": [
-        "csp:connect-src",
-        "csp:script-src",
-        "import()"
       ]
     },
     {
@@ -140,17 +122,17 @@
     "ailib_pollauto",
     "ailib_sbw"
   ],
-  "sizeBytes": 1088517,
-  "sha256": "770272deb8799254f255d9bf601111285d756fde1d963b04cb9b06390953c8ba",
+  "sizeBytes": 1091275,
+  "sha256": "367b3da0c5917b60d0f52ac9faa87481609158d60a1a146f53b5b49eb5edcce9",
   "csp": {
     "present": true,
     "directives": {
       "default-src": "'self'",
-      "script-src": "'self' 'wasm-unsafe-eval' https://esm.run https://cdn.jsdelivr.net sha256×4",
-      "style-src": "'self' 'unsafe-inline' https://cdn.jsdelivr.net",
-      "font-src": "'self' https://cdn.jsdelivr.net data:",
+      "script-src": "'self' 'wasm-unsafe-eval' sha256×4",
+      "style-src": "'self' 'unsafe-inline'",
+      "font-src": "'self' data:",
       "img-src": "'self' data: blob:",
-      "connect-src": "'self' https://text.pollinations.ai https://image.pollinations.ai https://duckduckgo.com https://api.anthropic.com https://api.openai.com https://generativelanguage.googleapis.com https://api.groq.com https://api.mistral.ai https://api.perplexity.ai https://openrouter.ai https://aihorde.net http://localhost:1234 http://localhost:11434 https://huggingface.co https://*.huggingface.co https://*.hf.co https://raw.githubusercontent.com https://cdn.jsdelivr.net https://esm.run",
+      "connect-src": "'self' https://text.pollinations.ai https://image.pollinations.ai https://duckduckgo.com https://api.anthropic.com https://api.openai.com https://generativelanguage.googleapis.com https://api.groq.com https://api.mistral.ai https://api.perplexity.ai https://openrouter.ai https://aihorde.net http://localhost:1234 http://localhost:11434 https://huggingface.co/mlc-ai/ https://*.huggingface.co https://*.hf.co https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/00fe7a40e57e5e8eb9fef87526a4bf28ad5846c0/",
       "worker-src": "'self' blob:",
       "object-src": "'none'",
       "base-uri": "'self'",
@@ -158,7 +140,7 @@
       "manifest-src": "'self'"
     },
     "scriptInline": "hash",
-    "connect": "'self' https://text.pollinations.ai https://image.pollinations.ai https://duckduckgo.com https://api.anthropic.com https://api.openai.com https://generativelanguage.googleapis.com https://api.groq.com https://api.mistral.ai https://api.perplexity.ai https://openrouter.ai https://aihorde.net http://localhost:1234 http://localhost:11434 https://huggingface.co https://*.huggingface.co https://*.hf.co https://raw.githubusercontent.com https://cdn.jsdelivr.net https://esm.run"
+    "connect": "'self' https://text.pollinations.ai https://image.pollinations.ai https://duckduckgo.com https://api.anthropic.com https://api.openai.com https://generativelanguage.googleapis.com https://api.groq.com https://api.mistral.ai https://api.perplexity.ai https://openrouter.ai https://aihorde.net http://localhost:1234 http://localhost:11434 https://huggingface.co/mlc-ai/ https://*.huggingface.co https://*.hf.co https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/00fe7a40e57e5e8eb9fef87526a4bf28ad5846c0/"
   },
   "features": {
     "export": true,
@@ -186,7 +168,7 @@
     ]
   },
   "kit": {
-    "version": "1.1.4",
+    "version": "1.2.0",
     "modules": [
       "core",
       "label",
