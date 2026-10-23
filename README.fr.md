@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · **Français** · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Version :** 1.4.9 · **Dernière mise à jour :** 2026-10-23
+**Version :** 1.4.10 · **Dernière mise à jour :** 2026-10-23
 
 Langues de l'interface : **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -96,6 +96,9 @@ AI Liber est une interface de chat HTML en un seul fichier pour des services d'I
 - Les textes juridiques (version « v1.0 · 12 avril 2026 ») n'ont pas été modifiés lors de ce tour ; leur date relève d'une décision de l'auteur et n'a pas été changée.
 
 ## Historique / Journal des modifications
+
+### 1.4.10 — 2026-10-23
+- **Fix**: a stored language such as `constructor` and a Pollinations model named `constructor`/`toString` no longer break the interface (invalid `<html lang>`, or a crash while building the model list); only own keys are accepted.
 
 ### 1.4.9 — 2026-10-23
 - Les clés de stockage portent désormais le préfixe de l'application (`ai-liber.*`) ; les données existantes (langue, historique, clés API chiffrées, sel) sont migrées automatiquement au démarrage, et les anciennes copies `.fff.json` restent importables.
