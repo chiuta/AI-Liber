@@ -34,8 +34,8 @@ const PII_TXT='Scrie-i lui ion.popescu@example.com un mesaj. IBAN-ul meu: RO49AA
   ok(errs.length===0,'pornire fără erori/CSP: '+errs.join(' | '));
   ok(reqs.length===0,'0 cereri de rețea la pornire: '+reqs.join(','));
   ok(await p.evaluate(()=>document.documentElement.getAttribute('lang')!==null),'html[lang] prezent');
-  ok(await p.evaluate(()=>document.querySelector('meta[name=application-version]').content==='1.4.9'),'versiune 1.4.9 în meta');
-  ok((await p.textContent('#app-version')).includes('v 1.4.9 · 2026-10-23'),'text #app-version');
+  ok(await p.evaluate(()=>document.querySelector('meta[name=application-version]').content==='1.4.10'),'versiune 1.4.10 în meta');
+  ok((await p.textContent('#app-version')).includes('v 1.4.10 · 2026-10-23'),'text #app-version');
   const ov=await p.evaluate(()=>document.documentElement.scrollWidth-innerWidth); ok(ov<=0,'fără depășire orizontală 1280');
   await axe(p,'start 1280');
   // 2. indicator
@@ -253,6 +253,20 @@ const PII_TXT='Scrie-i lui ion.popescu@example.com un mesaj. IBAN-ul meu: RO49AA
   await axe(p,'dialog PII 360');
   await p.click('dialog.fff-pii button:last-child'); await p.waitForTimeout(200);
   ok(await p.evaluate(()=>document.documentElement.scrollWidth-innerWidth)<=0,'fără depășire orizontală 360 (final)');
+  await ctx.close(); }
+
+// 1.4.10: chei de prototip (limbă salvată, nume de model din API) nu mai sunt luate drept chei valide
+for (const bad of ['constructor','toString','__proto__']) {
+  const {ctx,p,errs}=await open({init:'try{localStorage.setItem("ai-liber.lang","'+bad+'")}catch(e){}'});
+  const hl=await p.evaluate(()=>document.documentElement.lang);
+  ok(hl==='ro'||hl==='en',`limba salvată „${bad}” respinsă (html lang=${hl})`);
+  ok(errs.length===0,`limba „${bad}”: 0 erori: `+errs.join('|'));
+  await ctx.close();
+}
+{ const {ctx,p,errs}=await open();
+  const r=await p.evaluate(()=>['constructor','toString','__proto__','hasOwnProperty'].map(n=>{ try{ const m=buildPollModel(n); return Array.isArray(m.cats)&&typeof m.n==='string'&&typeof m.mk==='string'&&m.cats[0]==='instant'&&m.cats.indexOf('general')>0; }catch(e){ return 'THROW '+e.message; } }));
+  ok(r.every(x=>x===true),'buildPollModel cu nume de prototip: model valid, fără excepție: '+JSON.stringify(r));
+  ok(errs.length===0,'buildPollModel: 0 erori');
   await ctx.close(); }
 
 await browser.close();

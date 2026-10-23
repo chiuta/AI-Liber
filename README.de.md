@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · **Deutsch** · [Magyar](README.hu.md)
 
-**Version:** 1.4.9 · **Zuletzt aktualisiert:** 2026-10-23
+**Version:** 1.4.10 · **Zuletzt aktualisiert:** 2026-10-23
 
 Oberflächensprachen: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -96,6 +96,9 @@ AI Liber ist ein HTML-Chat-Frontend in einer einzigen Datei für kostenlose KI-D
 - Die Rechtstexte (Version „v1.0 · 12. April 2026“) wurden in dieser Runde nicht geändert; ihr Datum ist eine Entscheidung des Autors und wurde nicht geändert.
 
 ## Verlauf / Changelog
+
+### 1.4.10 — 2026-10-23
+- **Fix**: a stored language such as `constructor` and a Pollinations model named `constructor`/`toString` no longer break the interface (invalid `<html lang>`, or a crash while building the model list); only own keys are accepted.
 
 ### 1.4.9 — 2026-10-23
 - Die Speicherschlüssel tragen jetzt das App-Präfix (`ai-liber.*`); vorhandene Daten (Sprache, Verlauf, verschlüsselte API-Schlüssel, Salt) werden beim Start automatisch migriert, alte `.fff.json`-Kopien lassen sich weiterhin importieren.

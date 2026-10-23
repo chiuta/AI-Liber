@@ -2,7 +2,7 @@
 
 [English](README.md) · **Română** · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versiune:** 1.4.9 · **Ultima actualizare:** 2026-10-23
+**Versiune:** 1.4.10 · **Ultima actualizare:** 2026-10-23
 
 Limbile interfeței: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -96,6 +96,9 @@ AI Liber este o interfață de chat într-un singur fișier HTML pentru servicii
 - Textele juridice (versiunea „v1.0 · 12 aprilie 2026”) nu au fost modificate în această rundă; data lor este decizia autorului și nu a fost schimbată.
 
 ## Istoric / Changelog
+
+### 1.4.10 — 2026-10-23
+- **Corecție**: o limbă salvată precum `constructor` și un model Pollinations numit `constructor`/`toString` nu mai strică interfața (`<html lang>` invalid sau blocarea la construirea listei de modele); se acceptă doar chei proprii.
 
 ### 1.4.9 — 2026-10-23
 - Cheile de stocare au acum prefixul aplicației (`ai-liber.*`); datele existente (limba, istoricul, cheile API criptate, sarea) se migrează automat la pornire, iar copiile vechi `.fff.json` se pot importa în continuare.
