@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · **Magyar**
 
-**Verzió:** 1.4.10 · **Utolsó frissítés:** 2026-10-26
+**Verzió:** 2.0.0 · **Utolsó frissítés:** 2026-10-26
 
 A felület nyelvei: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -96,6 +96,9 @@ Az AI Liber egy egyfájlos HTML csevegőfelület ingyenes, fiók nélküli MI-sz
 - A jogi szövegek („v1.0 · 2026. április 12.” verzió) ebben a körben nem módosultak; a dátumuk a szerző döntése, és nem változott.
 
 ## Előzmények / Változásnapló
+
+### 2.0.0 — 2026-10-26
+- Új **Modell-labor** (🧪): ugyanaz a kérdés több modellnek egymás után, idők, karakter/s és (Chrome) JS-heap változás, modellenkénti adatvédelmi profil, helyi nyilvántartás, JSON/CSV export.
 
 ### 1.4.9 — 2026-10-23
 - A tárolókulcsok mostantól az alkalmazás előtagját viselik (`ai-liber.*`); a meglévő adatok (nyelv, előzmények, titkosított API-kulcsok, só) indításkor automatikusan átkerülnek, a régi `.fff.json` másolatok továbbra is importálhatók.

@@ -2,7 +2,7 @@
 
 [English](README.md) · **Română** · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versiune:** 1.4.10 · **Ultima actualizare:** 2026-10-26
+**Versiune:** 2.0.0 · **Ultima actualizare:** 2026-10-26
 
 Limbile interfeței: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -24,6 +24,7 @@ AI Liber este o aplicație single-file (`index.html`) care oferă o interfață 
 - Buton „Verifică & actualizează modele” pentru reîmprospătarea listei de modele.
 - Suport pentru servere locale Ollama (`localhost:11434`) și LM Studio (`localhost:1234`) și pentru un model local în browser (WebLLM).
 - Catalog „Cele mai bune AI-uri gratuite”, filtrabil pe categorii (Chat, Cercetare, Imagini, Video AI, Media, Cod, Scriere, Productivitate, Creativ) și pe „Fără cont” / „Local (browser)”.
+- **Laborator de modele** (2.0): aceeași întrebare către mai multe modele, cu timp/caractere pe secundă/heap JS măsurate local, profil de confidențialitate pe model, registru și export.
 - Panou inferior cu „⚡ Idei rapide” (prompturi), „🧠 Quiz AI” și „⌨️ Shortcuts”.
 - Interfață în 8 limbi: română, engleză, franceză, germană, spaniolă, portugheză, italiană, maghiară.
 - Texte de confidențialitate (GDPR), termeni și informații despre cookie-uri/stocare locală, în fiecare limbă.
@@ -96,6 +97,10 @@ AI Liber este o interfață de chat într-un singur fișier HTML pentru servicii
 - Textele juridice (versiunea „v1.0 · 12 aprilie 2026”) nu au fost modificate în această rundă; data lor este decizia autorului și nu a fost schimbată.
 
 ## Istoric / Changelog
+
+### 2.0.0 — 2026-10-26
+- **Laborator de modele** nou (🧪 în bara laterală și în bara de sus): trimiți aceeași întrebare mai multor modele, rând pe rând, și compari timpul până la primul token, timpul total, caracterele/s și (doar în Chrome) variația heap-ului JS, măsurate pe acest dispozitiv. Profil de confidențialitate pe model (rămâne în browser / doar serverul tău local / ce gazdă externă), registru local cu mediane pe model și răspunsurile alese de tine, export JSON/CSV.
+- Se aplică același acord pentru serviciile externe fără cheie și aceeași verificare de date personale ca în chat. Nu se măsoară memoria GPU/RAM a modelului (browserele nu o expun).
 
 ### 1.4.9 — 2026-10-23
 - Cheile de stocare au acum prefixul aplicației (`ai-liber.*`); datele existente (limba, istoricul, cheile API criptate, sarea) se migrează automat la pornire, iar copiile vechi `.fff.json` se pot importa în continuare.

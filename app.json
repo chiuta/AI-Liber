@@ -2,7 +2,7 @@
   "schema": 1,
   "slug": "ai-liber",
   "name": "AI Liber — Inteligența artificială pentru toți",
-  "version": "1.4.10",
+  "version": "2.0.0",
   "updated": "2026-10-26",
   "description": "Chat cu Claude, GPT-4, Gemini, Llama, DeepSeek și 30+ modele — unele fără cont, unele cu cheie API gratuită.",
   "egress": [
@@ -122,13 +122,13 @@
     "ai-liber.pollauto",
     "ai-liber.sbw"
   ],
-  "sizeBytes": 1123257,
-  "sha256": "e76a52365325bf7ff356d07a31fa4758f22ee2220d8916f706b00e7fbf5b7720",
+  "sizeBytes": 1170677,
+  "sha256": "569d78a9a045494e89f0c89b9c367dd13a31b0b40c3a406f3744610bd606c742",
   "csp": {
     "present": true,
     "directives": {
       "default-src": "'self'",
-      "script-src": "'self' 'wasm-unsafe-eval' sha256×4",
+      "script-src": "'self' 'wasm-unsafe-eval' sha256×5",
       "style-src": "'self' 'unsafe-inline'",
       "font-src": "'self' data:",
       "img-src": "'self' data: blob:",

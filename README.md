@@ -2,7 +2,7 @@
 
 **English** · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Version:** 1.4.10 · **Last updated:** 2026-10-26
+**Version:** 2.0.0 · **Last updated:** 2026-10-26
 
 Interface languages: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -96,6 +96,9 @@ AI Liber is a single-file HTML chat front-end for free no-account AI services, b
 - The legal texts (version "v1.0 · 12 April 2026") were not modified in this round; their date is the author's decision and was not changed.
 
 ## History / Changelog
+
+### 2.0.0 — 2026-10-26
+- New **Model lab** (🧪 in the sidebar and the top bar): send the same question to several models one after another and compare time to first token, total time, characters/s and (Chrome only) JS-heap change measured on this device; per-model privacy profile (stays in the browser / only your local server / which external host), local registry with per-model medians and your preferred answers, JSON/CSV export. The same consent for keyless external services and the same personal-data check as in chat apply. Not measured: GPU/RAM memory of the model (browsers do not expose it).
 
 ### 1.4.9 — 2026-10-23
 - Storage keys now carry the app prefix (`ai-liber.*`); existing data (language, history, encrypted API keys, salt) is migrated automatically at startup, and old `.fff.json` copies can still be imported.
