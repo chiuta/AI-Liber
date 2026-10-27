@@ -2,11 +2,11 @@
 
 [English](README.md) · **Română** · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versiune:** 2.1.0 · **Ultima actualizare:** 2026-10-27
+**Versiune:** 2.2.0 · **Ultima actualizare:** 2026-10-27
 
 Limbile interfeței: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
-**Stare:** stabilă (2.1.0). Criptarea opțională cu parolă a cheilor API este nouă și **nu a fost auditată de un terț**.
+**Stare:** stabilă (2.2.0). Criptarea opțională cu parolă a cheilor API este nouă și **nu a fost auditată de un terț**.
 **Offline:** parțial. Interfața și bibliotecile incluse se încarcă offline după prima vizită (service worker); orice răspuns de chat cere conexiune la furnizorul ales, cu excepția serverelor locale Ollama / LM Studio și a modelului WebLLM după ce a fost descărcat.
 
 Chat cu modele de inteligență artificială gratuite sau cu cheile tale API, plus un ghid al celor mai bune AI-uri gratuite, într-un singur fișier HTML.
@@ -78,6 +78,7 @@ Aplicația **nu este strict offline**: chatul funcționează doar prin contactar
 - La deschidere aplicația cere parola (poți închide dialogul; cheile rămân atunci indisponibile), iar cheile stau apoi doar în memorie. „Blochează acum” le scoate din memorie.
 - **Limite spuse deschis:** componenta e mică și **nu a fost auditată de un terț**; parola nu se poate recupera (dacă o uiți, reintroduci cheile); nu protejează împotriva unui script rău-intenționat sau a unei extensii care rulează în pagină cât timp cheile sunt deblocate; o parolă scurtă poate fi ghicită offline. Textele cardului există în română și engleză (celelalte limbi folosesc engleza).
 - Teste: `node tests/keyvault-core.test.mjs` (WebCrypto în Node: dus-întors, parolă greșită, alterare, iterații) și `node tests/keyvault-ui.test.mjs` (browser headless: activare, reîncărcare, deblocare, adăugare cheie, dezactivare).
+- Limbi: cardul și dialogurile există în toate cele 8 limbi ale interfeței (RO și EN scrise de mână; FR/IT/ES/PT/DE/HU sunt **traduceri automate, neverificate de vorbitori nativi**). Test: `node tests/keyvault-i18n.test.mjs`.
 
 ## AI Liber față de Nexus fără frontiere
 

@@ -2,11 +2,11 @@
 
 **English** · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Version:** 2.1.0 · **Last updated:** 2026-10-27
+**Version:** 2.2.0 · **Last updated:** 2026-10-27
 
 Interface languages: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
-**Status:** stable (2.1.0). The optional password encryption of API keys is new and **has not been audited by a third party**.
+**Status:** stable (2.2.0). The optional password encryption of API keys is new and **has not been audited by a third party**.
 
 **Offline:** partial. The interface and the bundled libraries load offline after the first visit (service worker); every chat answer needs a network connection to the chosen provider, except local Ollama / LM Studio servers and the WebLLM model once downloaded.
 
@@ -78,6 +78,7 @@ In the "⚙️ API keys" window there is a "Password protection" card. **Off by 
 - The app asks for the password when it opens (you can dismiss the dialog; the keys then stay unavailable) and the keys are then kept in memory only. "Lock now" drops them from memory.
 - **Honest limits:** the component is small and **has not been audited by a third party**; the password cannot be recovered (if you forget it, enter the keys again); it does not protect against a malicious script or browser extension running in the page while the keys are unlocked; a short password can be guessed offline. The interface text of the card exists in Romanian and English (other languages fall back to English).
 - Tests: `node tests/keyvault-core.test.mjs` (WebCrypto in Node: round trip, wrong password, tampering, iterations) and `node tests/keyvault-ui.test.mjs` (headless browser: turn on, reload, unlock, add a key, turn off).
+- Languages: the card and dialogs are available in all 8 interface languages (RO and EN written by hand; FR/IT/ES/PT/DE/HU are **machine translations, not verified by native speakers**). Test: `node tests/keyvault-i18n.test.mjs`.
 
 ## AI Liber vs. Nexus fără frontiere
 
