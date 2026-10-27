@@ -2,8 +2,8 @@
   "schema": 1,
   "slug": "ai-liber",
   "name": "AI Liber — Inteligența artificială pentru toți",
-  "version": "2.0.0",
-  "updated": "2026-10-26",
+  "version": "2.1.0",
+  "updated": "2026-10-27",
   "description": "Chat cu Claude, GPT-4, Gemini, Llama, DeepSeek și 30+ modele — unele fără cont, unele cu cheie API gratuită.",
   "egress": [
     {
@@ -117,6 +117,7 @@
     "ai-liber.404",
     "ai-liber.aik.",
     "ai-liber.aik.enc_",
+    "ai-liber.aik.vault",
     "ai-liber.ksalt",
     "ai-liber.lang",
     "ai-liber.pollauto",

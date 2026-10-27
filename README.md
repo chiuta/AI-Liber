@@ -2,9 +2,13 @@
 
 **English** · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Version:** 2.0.0 · **Last updated:** 2026-10-26
+**Version:** 2.1.0 · **Last updated:** 2026-10-27
 
 Interface languages: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
+
+**Status:** stable (2.1.0). The optional password encryption of API keys is new and **has not been audited by a third party**.
+
+**Offline:** partial. The interface and the bundled libraries load offline after the first visit (service worker); every chat answer needs a network connection to the chosen provider, except local Ollama / LM Studio servers and the WebLLM model once downloaded.
 
 Chat with free artificial-intelligence models or with your own API keys, plus a guide to the best free AIs, in a single HTML file.
 
@@ -65,6 +69,29 @@ The app **is not strictly offline**: the chat works only by contacting the servi
 - Files uploaded to the chat are processed locally in the browser (`vendor/mammoth.browser.min.js` for .docx, `vendor/pdfjs/` for PDF), but the extracted text reaches the chosen provider along with the message. The catalogues contain external links (navigation only, on click).
 - **CSP:** the inline script is allowed only by `sha256` hash (no `'unsafe-inline'` in `script-src`); UI events are handled by a delegated dispatcher (`data-onclick`, `data-onchange`, `data-oninput`, `data-onkeydown` + `data-arg`), with no inline `on*` attributes. **After any change to the script, recalculate the hash in the CSP meta.** `script-src` allows only `'self'` (plus the inline hash): WebLLM, KaTeX, pdf.js and mammoth are loaded from `vendor/`; no CDN host is allowed. See `NOTICE.md`.
 - Local servers (`localhost`) are contacted only if you select them; from HTTPS pages the browser may block calls to `http://localhost` (mixed content).
+
+## Password encryption for API keys (since 2.1.0, optional)
+
+In the "⚙️ API keys" window there is a "Password protection" card. **Off by default**: keys keep working exactly as before (obscured with AES-GCM, secret in `sessionStorage`).
+
+- When you turn it on, the paid-provider keys currently available in the session are encrypted with **AES-256-GCM**, with a key derived from your password through **PBKDF2-SHA256, 600,000 iterations and a random 16-byte salt**, and stored as one envelope in `ai-liber.aik.vault`. The old entries are deleted only after the envelope has been read back and decrypted successfully (migration without loss). "Turn off protection" does the reverse after you confirm the password.
+- The app asks for the password when it opens (you can dismiss the dialog; the keys then stay unavailable) and the keys are then kept in memory only. "Lock now" drops them from memory.
+- **Honest limits:** the component is small and **has not been audited by a third party**; the password cannot be recovered (if you forget it, enter the keys again); it does not protect against a malicious script or browser extension running in the page while the keys are unlocked; a short password can be guessed offline. The interface text of the card exists in Romanian and English (other languages fall back to English).
+- Tests: `node tests/keyvault-core.test.mjs` (WebCrypto in Node: round trip, wrong password, tampering, iterations) and `node tests/keyvault-ui.test.mjs` (headless browser: turn on, reload, unlock, add a key, turn off).
+
+## AI Liber vs. Nexus fără frontiere
+
+Both are single-file chat front-ends and they overlap in the "chat with your own API key" part; they are kept separate on purpose.
+
+| | AI Liber | Nexus fără frontiere |
+|---|---|---|
+| Aim | A gateway for everyone: free no-account models, a guide to free AIs, quiz, prompt ideas | A working tool for people who already have keys: agents, step flows, own agents |
+| No-account / free services | Yes (Pollinations, DuckDuckGo, AI Horde) | No: a key (or a local endpoint) is required |
+| In-browser model (WebLLM) and local Ollama / LM Studio | Yes | Local endpoints only via "Custom" |
+| Agents and agent flows | No | Yes |
+| Providers | OpenAI, Anthropic, Gemini, Groq, Mistral, OpenRouter, Perplexity and more | Anthropic, OpenAI, Google and "Custom" (OpenAI-compatible) |
+
+See also: https://chiuta.github.io/Nexus-fara-frontiere/
 
 ## Limitations
 

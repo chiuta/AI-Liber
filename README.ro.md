@@ -2,9 +2,12 @@
 
 [English](README.md) · **Română** · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versiune:** 2.0.0 · **Ultima actualizare:** 2026-10-26
+**Versiune:** 2.1.0 · **Ultima actualizare:** 2026-10-27
 
 Limbile interfeței: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
+
+**Stare:** stabilă (2.1.0). Criptarea opțională cu parolă a cheilor API este nouă și **nu a fost auditată de un terț**.
+**Offline:** parțial. Interfața și bibliotecile incluse se încarcă offline după prima vizită (service worker); orice răspuns de chat cere conexiune la furnizorul ales, cu excepția serverelor locale Ollama / LM Studio și a modelului WebLLM după ce a fost descărcat.
 
 Chat cu modele de inteligență artificială gratuite sau cu cheile tale API, plus un ghid al celor mai bune AI-uri gratuite, într-un singur fișier HTML.
 
@@ -66,6 +69,29 @@ Aplicația **nu este strict offline**: chatul funcționează doar prin contactar
 - Fișierele încărcate în chat sunt procesate local în browser (`vendor/mammoth.browser.min.js` pentru .docx, `vendor/pdfjs/` pentru PDF), dar textul extras ajunge la furnizorul ales odată cu mesajul. Cataloagele conțin linkuri externe (doar navigare, la click).
 - **CSP:** scriptul inline este permis doar prin hash `sha256` (fără `'unsafe-inline'` la `script-src`); evenimentele UI sunt tratate de un dispecer delegat (`data-onclick`, `data-onchange`, `data-oninput`, `data-onkeydown` + `data-arg`), fără atribute `on*` inline. **După orice modificare a scriptului, recalculează hash-ul din meta CSP.** `script-src` permite doar `'self'` (plus hash-ul scriptului inline): WebLLM, KaTeX, pdf.js și mammoth se încarcă din `vendor/`; nicio gazdă de CDN nu este permisă. Vezi `NOTICE.md`.
 - Serverele locale (`localhost`) sunt contactate doar dacă le selectezi; din pagini HTTPS browserul poate bloca apelurile către `http://localhost` (mixed content).
+
+## Criptare cu parolă a cheilor API (din 2.1.0, opțională)
+
+În fereastra „⚙️ Chei API” există un card „Protecție cu parolă”. **Implicit e oprită**: cheile funcționează exact ca înainte (obscurizate cu AES-GCM, secretul în `sessionStorage`).
+
+- Când o activezi, cheile furnizorilor cu cheie, disponibile în sesiunea curentă, sunt criptate cu **AES-256-GCM**, cu o cheie derivată din parola ta prin **PBKDF2-SHA256, 600 000 de iterații și sare aleatoare de 16 octeți**, și păstrate într-un singur plic în `ai-liber.aik.vault`. Intrările vechi se șterg abia după ce plicul a fost citit înapoi și decriptat cu succes (migrare fără pierdere). „Dezactivează protecția” face invers, după confirmarea parolei.
+- La deschidere aplicația cere parola (poți închide dialogul; cheile rămân atunci indisponibile), iar cheile stau apoi doar în memorie. „Blochează acum” le scoate din memorie.
+- **Limite spuse deschis:** componenta e mică și **nu a fost auditată de un terț**; parola nu se poate recupera (dacă o uiți, reintroduci cheile); nu protejează împotriva unui script rău-intenționat sau a unei extensii care rulează în pagină cât timp cheile sunt deblocate; o parolă scurtă poate fi ghicită offline. Textele cardului există în română și engleză (celelalte limbi folosesc engleza).
+- Teste: `node tests/keyvault-core.test.mjs` (WebCrypto în Node: dus-întors, parolă greșită, alterare, iterații) și `node tests/keyvault-ui.test.mjs` (browser headless: activare, reîncărcare, deblocare, adăugare cheie, dezactivare).
+
+## AI Liber față de Nexus fără frontiere
+
+Ambele sunt interfețe de chat single-file și se suprapun la partea „chat cu propria cheie API”; sunt ținute separat intenționat.
+
+| | AI Liber | Nexus fără frontiere |
+|---|---|---|
+| Scop | Poartă de intrare pentru oricine: modele gratuite fără cont, ghid de AI-uri gratuite, quiz, idei de prompturi | Unealtă de lucru pentru cine are deja chei: agenți, fluxuri de pași, agenți proprii |
+| Servicii gratuite / fără cont | Da (Pollinations, DuckDuckGo, AI Horde) | Nu: e nevoie de cheie (sau de un endpoint local) |
+| Model în browser (WebLLM) și Ollama / LM Studio local | Da | Doar endpointuri locale prin „Custom” |
+| Agenți și fluxuri de agenți | Nu | Da |
+| Furnizori | OpenAI, Anthropic, Gemini, Groq, Mistral, OpenRouter, Perplexity și altele | Anthropic, OpenAI, Google și „Custom” (compatibil OpenAI) |
+
+Vezi și: https://chiuta.github.io/Nexus-fara-frontiere/
 
 ## Limitări
 
