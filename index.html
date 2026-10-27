@@ -2498,7 +2498,7 @@
 <meta name="app-offline" content="parțial: interfața și vendor/ se încarcă offline după prima vizită; chatul cere rețea (excepții: Ollama/LM Studio locale, WebLLM după descărcarea modelului)">
 <meta name="last-updated" content="2026-10-27">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval' 'sha256-IJMWevsohRVnX6jwQsmLnGRMV2LC6h/d6lNoR1b1Q2k=' 'sha256-YO40Pa9U54kBXfBS8s7ySLVhwIuT7JC9cMSApha5DIk=' 'sha256-2U/g+in20dZj5Ru936jb2v+Ff3DVhV645pYFxa8pWCo=' 'sha256-Y0q85y6qb8NE4KK5d6wCiUF43QzDtUkso6WE2WOurxA=' 'sha256-Jzu+zytK/IqF3N+DYFR/K6xkPIFKpN5m73RnK4WRZ1g=' 'sha256-RTpfFKrzGbiyZvGpz4pjkrtMQZ3WHt8mPBIXRxP8LCQ='; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob:; connect-src 'self' https://text.pollinations.ai https://image.pollinations.ai https://duckduckgo.com https://api.anthropic.com https://api.openai.com https://generativelanguage.googleapis.com https://api.groq.com https://api.mistral.ai https://api.perplexity.ai https://openrouter.ai https://aihorde.net http://localhost:1234 http://localhost:11434 https://huggingface.co/mlc-ai/ https://*.huggingface.co https://*.hf.co https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/00fe7a40e57e5e8eb9fef87526a4bf28ad5846c0/; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'; manifest-src 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval' 'sha256-IJMWevsohRVnX6jwQsmLnGRMV2LC6h/d6lNoR1b1Q2k=' 'sha256-YO40Pa9U54kBXfBS8s7ySLVhwIuT7JC9cMSApha5DIk=' 'sha256-R0I2BFAmAoEMjEzDdNNlQKtaG1JAkkAM2/N9Fvh2hbM=' 'sha256-Y0q85y6qb8NE4KK5d6wCiUF43QzDtUkso6WE2WOurxA=' 'sha256-Jzu+zytK/IqF3N+DYFR/K6xkPIFKpN5m73RnK4WRZ1g=' 'sha256-RTpfFKrzGbiyZvGpz4pjkrtMQZ3WHt8mPBIXRxP8LCQ='; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob:; connect-src 'self' https://text.pollinations.ai https://image.pollinations.ai https://duckduckgo.com https://api.anthropic.com https://api.openai.com https://generativelanguage.googleapis.com https://api.groq.com https://api.mistral.ai https://api.perplexity.ai https://openrouter.ai https://aihorde.net http://localhost:1234 http://localhost:11434 https://huggingface.co/mlc-ai/ https://*.huggingface.co https://*.hf.co https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/00fe7a40e57e5e8eb9fef87526a4bf28ad5846c0/; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'; manifest-src 'self'">
 <title>AI Liber — Inteligența artificială pentru toți</title>
 <meta name="description" content="Chat cu Claude, GPT-4, Gemini, Llama, DeepSeek și 30+ modele — unele fără cont, unele cu cheie API gratuită.">
 <style>
@@ -3657,9 +3657,13 @@ dialog.c5-dlg::backdrop{background:rgba(0,0,0,.55)}
   Vault.prototype.exists = function () { try { return !!this.st.getItem(this.sk); } catch (e) { return false; } };
   Vault.prototype.unlocked = function () { return !!this.key; };
   Vault.prototype.lock = function () { this.key = null; this.salt = null; this.data = null; };
-  Vault.prototype.save = function () {
+  Vault.prototype.save = function () {   /* salvările sunt puse la coadă: ultima stare a lui data câștigă mereu */
     var me = this; if (!me.key) return Promise.reject(new Error('locked'));
-    return seal(me.key, me.salt, me.it, JSON.stringify(me.data)).then(function (blob) { me.st.setItem(me.sk, blob); return blob; });
+    me.q = (me.q || Promise.resolve()).catch(function () {}).then(function () {
+      if (!me.key) throw new Error('locked');
+      return seal(me.key, me.salt, me.it, JSON.stringify(me.data)).then(function (blob) { me.st.setItem(me.sk, blob); return blob; });
+    });
+    return me.q;
   };
   Vault.prototype.setup = function (pw, map) {
     var me = this, salt = g.crypto.getRandomValues(new Uint8Array(16));
