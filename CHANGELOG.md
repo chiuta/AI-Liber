@@ -1,5 +1,9 @@
 # Jurnal de modificări
 
+## 2.2.1 — 2026-10-31
+
+Doar interfață (accesibilitate pe telefon, 360×740): casetele de bifare mai mici de 24 px → 24 px (WCAG 2.5.8). Fără alte schimbări de comportament.
+
 ## 2.2.0 — 2026-10-27
 
 ### Adăugat
