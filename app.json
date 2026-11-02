@@ -122,8 +122,8 @@
     "ai-liber.pollauto",
     "ai-liber.sbw"
   ],
-  "sizeBytes": 1220176,
-  "sha256": "ea24430d6fc319a654f21883166dc315c64dda7e1ec17e1d508d2782bd44ce69",
+  "sizeBytes": 1220219,
+  "sha256": "afdadc2c3f1c78868019b430bb99077ac08bba24006ca45b3d2b1c8ec3021166",
   "csp": {
     "present": true,
     "directives": {
