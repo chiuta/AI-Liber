@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · **Deutsch** · [Magyar](README.hu.md)
 
-**Version:** 2.3.0 · **Zuletzt aktualisiert:** 2026-11-02
+**Version:** 2.3.1 · **Zuletzt aktualisiert:** 2026-11-02
 
 Oberflächensprachen: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -89,6 +89,16 @@ Alexio — Alexandru-Ionuț Chiuță, Kontakt: alexio@trom.tf. Die Anwendung wir
 ## Zusammenfassung
 
 AI Liber ist ein HTML-Chat-Frontend in einer einzigen Datei für kostenlose KI-Dienste ohne Konto, APIs mit eigenem Schlüssel, lokale Ollama-/LM-Studio-Server und ein WebLLM-Modell im Browser, dazu ein Verzeichnis kostenloser KI-Werkzeuge, ein Quiz und Prompt-Ideen. Oberfläche in 8 Sprachen. Schlüssel werden im localStorage gehalten (mit AES-GCM verschleiert, keine starke Verschlüsselung). Der Chat erfordert Internetzugang zum gewählten Anbieter. MIT-Lizenz.
+
+## Am 2.11.2026 geprüfte Quellen
+- Anthropic (https://platform.claude.com/docs/en/about-claude/models/overview und .../model-deprecations): `claude-sonnet-4-20250514` eingestellt (15. Juni 2026) -> `claude-sonnet-5-5`; `claude-opus-4-6` -> `claude-opus-5-5`; `claude-haiku-4-5-20251001` beibehalten (noch aktiv).
+- OpenAI (https://developers.openai.com/api/docs/deprecations): `o1-mini` am 27. Okt. 2025 eingestellt -> `gpt-5.6-sol` (der von OpenAI für o3-mini genannte Ersatz); `gpt-4o` und `gpt-4o-mini` beibehalten (Abschaltung für den 14. Jan. 2027 geplant).
+- Google (https://ai.google.dev/gemini-api/docs/deprecations): `gemini-2.0-flash` abgeschaltet (1. Juni 2026) -> `gemini-3.6-flash`; `gemini-1.5-pro` nicht mehr gelistet -> `gemini-3.8-flash`.
+- Groq (https://console.groq.com/docs/deprecations): `llama-3.3-70b-versatile` am 16. Aug. 2026 abgeschaltet -> `openai/gpt-oss-120b`; `mixtral-8x7b-32768` am 20. März 2025 abgeschaltet -> `qwen/qwen3.8-27b`.
+- Perplexity: `llama-3.1-sonar-large-128k-online` eingestellt -> `sonar-pro` (https://community.perplexity.ai/t/seeking-alternatives-for-llama-3-1-sonar-large-128k-online-after-february-22-2025/104).
+- DuckDuckGo AI Chat: Liste der kostenlosen Modelle nach https://duckduckgo.com/duckduckgo-help-pages/duckai/chat-models (App-Text aktualisiert); die fest eingebauten DuckDuckGo-API-IDs lassen sich nicht prüfen und blieben unverändert.
+- Werkzeugverzeichnis: Tome entfernt (Produkt am 30. Apr. 2025 eingestellt); Ollama -> https://ollama.com; kostenloses ChatGPT = Modell GPT Luna (Engadget, August 2026); Meta AI nutzt Muse Spark; Playground: 10 Bilder alle 3 Stunden, Domain playground.com.
+- Nicht geprüft: OpenRouter-„:free“-IDs, Pollinations-Katalog und -Limits (Quellen widersprechen sich), die meisten übrigen Verzeichniseinträge.
 
 ## Am 11.10.2026 geprüfte Quellen
 - DuckDuckGo AI Chat (duck.ai), kostenlose Modelle ohne Konto: TechRadar, „Duck.ai by DuckDuckGo review“, 13. Juli 2026 (https://techradar.com/pro/duck-ai-review): Claude 4.5 Haiku, GPT-4o mini, GPT-5 mini, gpt-oss-120b, Llama 4 Scout, Mistral Small 3 24B. Die in der Anwendung fest eingetragenen Modelle für DuckDuckGo (Claude 3 Haiku, Llama 3.1 70B, Mixtral 8x7B, o3-mini) können abgeschaltet werden; die API-IDs von DuckDuckGo lassen sich ohne Netzwerk nicht prüfen und wurden nicht geändert (die Anwendung hat „Modelle prüfen & aktualisieren“ und die Liste der Modelle, die 404 liefern).

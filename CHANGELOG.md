@@ -1,5 +1,14 @@
 # Jurnal de modificări
 
+## 2.3.1 — 2026-11-02
+
+Actualizare surse (2 noiembrie 2026), doar date; logica nu s-a modificat.
+
+- Modele cu cheie API: `claude-sonnet-4-20250514` (retras 15 iun. 2026) -> `claude-sonnet-5-5`; `claude-opus-4-6` -> `claude-opus-5-5`; `o1-mini` (retras) -> `gpt-5.6-sol`; `gemini-2.0-flash` (închis 1 iun. 2026) -> `gemini-3.6-flash`; `gemini-1.5-pro` -> `gemini-3.8-flash`; Groq: `llama-3.3-70b-versatile` (închis 16 aug. 2026) -> `openai/gpt-oss-120b`, `mixtral-8x7b-32768` (închis din 2025) -> `qwen/qwen3.8-27b`; Perplexity: `llama-3.1-sonar-large-128k-online` -> `sonar-pro`.
+- Ghidul DuckDuckGo: lista modelelor gratuite verificată la 2.11.2026 în pagina de ajutor DuckDuckGo (ID-urile API hardcodate pentru DuckDuckGo nu au putut fi verificate și nu s-au schimbat).
+- Director de instrumente: Tome eliminat (produs închis la 30 apr. 2025); Ollama -> ollama.com; ChatGPT gratuit = modelul GPT Luna; Meta AI = Muse Spark; Playground = 10 imagini la 3 ore (domeniul playground.com). Texte actualizate în toate cele 8 limbi.
+- Nota «verificat parțial» din director și secțiunea «Surse verificate» din README-uri (8 limbi) au primit data 2.11.2026.
+
 ## 2.3.0 — 2026-11-01
 
 - Corectat: adaptorul «Trimite la…» nu mai aruncă eroare când kitul FFF lipsește (gardian pe fiecare bloc; găsit de testul «fără kit» din CI).

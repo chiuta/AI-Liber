@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · **Magyar**
 
-**Verzió:** 2.3.0 · **Utolsó frissítés:** 2026-11-02
+**Verzió:** 2.3.1 · **Utolsó frissítés:** 2026-11-02
 
 A felület nyelvei: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -89,6 +89,16 @@ Alexio — Alexandru-Ionuț Chiuță, kapcsolat: alexio@trom.tf. Az alkalmazás 
 ## Összefoglaló
 
 Az AI Liber egy egyfájlos HTML csevegőfelület ingyenes, fiók nélküli MI-szolgáltatásokhoz, saját kulcsos API-khoz, helyi Ollama/LM Studio szerverekhez és böngészőbeli WebLLM modellhez, valamint ingyenes MI-eszközök jegyzékével, kvízzel és prompt-ötletekkel. 8 nyelvű felület. A kulcsok a localStorage-ban vannak (AES-GCM-mel elfedve, nem erős titkosítás). A csevegéshez internet-hozzáférés kell a választott szolgáltatóhoz. MIT licenc.
+
+## 2026. 11. 2-án ellenőrzött források
+- Anthropic (https://platform.claude.com/docs/en/about-claude/models/overview és .../model-deprecations): a `claude-sonnet-4-20250514` kivezetve (2026. június 15.) -> `claude-sonnet-5-5`; `claude-opus-4-6` -> `claude-opus-5-5`; a `claude-haiku-4-5-20251001` marad (még aktív).
+- OpenAI (https://developers.openai.com/api/docs/deprecations): az `o1-mini` 2025. okt. 27-én kivezetve -> `gpt-5.6-sol` (az OpenAI által az o3-mini helyett megnevezett utód); a `gpt-4o` és a `gpt-4o-mini` marad (leállítás 2027. jan. 14-re tervezve).
+- Google (https://ai.google.dev/gemini-api/docs/deprecations): a `gemini-2.0-flash` leállt (2026. június 1.) -> `gemini-3.6-flash`; a `gemini-1.5-pro` már nem szerepel -> `gemini-3.8-flash`.
+- Groq (https://console.groq.com/docs/deprecations): a `llama-3.3-70b-versatile` 2026. aug. 16-án leállt -> `openai/gpt-oss-120b`; a `mixtral-8x7b-32768` 2025. márc. 20-án leállt -> `qwen/qwen3.8-27b`.
+- Perplexity: a `llama-3.1-sonar-large-128k-online` megszűnt -> `sonar-pro` (https://community.perplexity.ai/t/seeking-alternatives-for-llama-3-1-sonar-large-128k-online-after-february-22-2025/104).
+- DuckDuckGo AI Chat: az ingyenes modellek listája innen: https://duckduckgo.com/duckduckgo-help-pages/duckai/chat-models (az alkalmazás szövege frissítve); az alkalmazásba kódolt DuckDuckGo API-azonosítók nem ellenőrizhetők, ezért változatlanok.
+- Eszköztár: a Tome eltávolítva (a termék 2025. ápr. 30-án megszűnt); Ollama -> https://ollama.com; az ingyenes ChatGPT = GPT Luna modell (Engadget, 2026. augusztus); a Meta AI a Muse Sparkot használja; Playground: 3 óránként 10 kép, a tartomány playground.com.
+- Nem ellenőrzött: az OpenRouter „:free” azonosítók, a Pollinations katalógusa és korlátai (a források ellentmondanak), az eszköztár legtöbb további bejegyzése.
 
 ## 2026. 10. 11-én ellenőrzött források
 - DuckDuckGo AI Chat (duck.ai), ingyenes modellek fiók nélkül: TechRadar, „Duck.ai by DuckDuckGo review”, 2026. július 13. (https://techradar.com/pro/duck-ai-review): Claude 4.5 Haiku, GPT-4o mini, GPT-5 mini, gpt-oss-120b, Llama 4 Scout, Mistral Small 3 24B. Az alkalmazásba a DuckDuckGóhoz beégetett modellek (Claude 3 Haiku, Llama 3.1 70B, Mixtral 8x7B, o3-mini) megszűnhetnek; a DuckDuckGo API-azonosítói hálózat nélkül nem ellenőrizhetők, és nem változtak (az alkalmazásban van „Modellek ellenőrzése és frissítése” és a 404-et adó modellek listája).
