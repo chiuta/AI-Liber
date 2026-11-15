@@ -111,6 +111,7 @@
     "serviceWorker",
     "localStorage",
     "Web Crypto",
+    "WebGL",
     "WebGPU",
     "BroadcastChannel"
   ],
@@ -123,13 +124,13 @@
     "ai-liber.pollauto",
     "ai-liber.sbw"
   ],
-  "sizeBytes": 1500559,
-  "sha256": "ec19669ea22a90566c13bc57dbb02fe9fcf7ab5c3a9a09b5de4e0fee607131d2",
+  "sizeBytes": 1552568,
+  "sha256": "ca97bcfc7df5a3d0ab99ad8e46f68ea3359e017ff165bffa89654a0f3c222ab5",
   "csp": {
     "present": true,
     "directives": {
       "default-src": "'self'",
-      "script-src": "'self' 'wasm-unsafe-eval' sha256×10",
+      "script-src": "'self' 'wasm-unsafe-eval' sha256×11",
       "style-src": "'self' 'unsafe-inline'",
       "font-src": "'self' data:",
       "img-src": "'self' data: blob:",
