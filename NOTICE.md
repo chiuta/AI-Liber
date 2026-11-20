@@ -8,13 +8,13 @@ Nicio bibliotecă nu se mai încarcă de pe un CDN: ce poate sta pe disc este î
 | Componentă | Fișier | Licență | SHA-256 |
 |---|---|---|---|
 | [WebLLM](https://github.com/mlc-ai/web-llm) 0.2.84 (`@mlc-ai/web-llm`), împachetat cu esbuild 0.28.2 (`--minify --format=esm --target=es2020`) din pachetul npm; include ~5,6 MB de WebAssembly (TVM runtime/tokenizator) codificat base64 | `vendor/web-llm@0.2.84/web-llm.min.js` | Apache-2.0 (`vendor/web-llm@0.2.84/LICENSE`) | `04ed20073fb2aecdedd3eb1d7d636dbde1e4839f13b7f85b852f3b76b260eb47` |
-| [KaTeX](https://katex.org/) 0.16.9 (JS) | `vendor/katex@0.16.9/katex.min.js` | MIT | `dc84b296ec3e884de093158f760fd9d45b6c7abe58b5381557f4e138f46a58ae` |
-| KaTeX 0.16.9 (CSS; fonturile `fonts/*.woff2` sunt cele din pachetul npm) | `vendor/katex@0.16.9/katex.min.css` | MIT | `505d5f829022bb7b4f24dfee0aa1141cd7bba67afe411d1240335f820960b5c3` |
+| [KaTeX](https://katex.org/) 0.16.47 (JS) | `vendor/katex@0.16.47/katex.min.js` | MIT | `a29d2961d3146de5949d78ac7c1a9d93ae54955bad22a6db4fbe836e88e8bf48` |
+| KaTeX 0.16.47 (CSS; fonturile `fonts/*.woff2` sunt cele din pachetul npm) | `vendor/katex@0.16.47/katex.min.css` | MIT | `0289a02cf451a44dd73add683a09644252363871ac11713a647b732cee8b1ee3` |
 | [pdf.js](https://mozilla.github.io/pdf.js/) | `vendor/pdfjs/pdf.min.js` | Apache-2.0 | `978fd1b2d134a98e98966186a97777bebf87d8e770dadab1ece3687e21a5aa6c` |
 | pdf.js (worker) | `vendor/pdfjs/pdf.worker.min.js` | Apache-2.0 | `38cde5311957b86bc3669f93e7d2566de333a90055ed6635bef60d9bf00e96f2` |
 | [mammoth.js](https://github.com/mwilliamson/mammoth.js) | `vendor/mammoth.browser.min.js` | BSD-2-Clause | `596ef52239e52d8ee3cee10b2ee4a72596abf900d0e4f468593f956e9f1809b0` |
 
-Fonturile KaTeX (`vendor/katex@0.16.9/fonts/*.woff2`) sunt doar în format woff2; licență SIL OFL 1.1 (vezi `vendor/katex@0.16.9/LICENSE`).
+Fonturile KaTeX (`vendor/katex@0.16.47/fonts/*.woff2`) sunt doar în format woff2; licență SIL OFL 1.1 (vezi `vendor/katex@0.16.47/LICENSE`).
 
 ## Descărcate la cerere, cu integritate verificată
 

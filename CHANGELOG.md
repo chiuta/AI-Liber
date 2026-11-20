@@ -1,5 +1,11 @@
 # Jurnal de modificări
 
+## 2.4.4 — 2026-11-20
+
+- KaTeX actualizat de la 0.16.9 la 0.16.47: noile fișiere (`katex.min.js`, `katex.min.css`, cele 20 de fonturi `woff2` și `LICENSE`) sunt în `vendor/katex@0.16.47/`, iar căile și sumele de control SRI din `index.html`, lista de precache din `sw.js` și rândurile din `NOTICE.md` (SHA-256) au fost puse în pas. Motiv: `npm audit` raportează pentru 0.16.9 șase avize (cinci moderate, unul scăzut: GHSA-3wc5-fcw2-2329, GHSA-f98w-7cxr-ff2h, GHSA-cvr6-37gx-v8wc, GHSA-cg87-wmx4-v546, GHSA-64fm-8hw2-v72w, GHSA-238p-pmpm-9mq7); pentru 0.16.47 rămâne doar unul scăzut (GHSA-238p-pmpm-9mq7, remediat abia în 0.18.2, care nu e adoptat). Opțiunea `trust` a KaTeX nu este activată în aplicație.
+- Verificat: fișierele 0.16.9 din depozit erau identice cu cele din pachetul oficial, iar cele noi provin din pachetul npm 0.16.47 (integritate verificată față de registru). Pe 42 de formule randate în Chrome cu ambele versiuni, 28 ies identice la nivel de pixel, iar 14 diferă cu sub-pixeli sau cel mult 5 px în înălțime, fără diferențe vizibile la inspecție. În pagina servită prin http, `loadKaTeX()` încarcă 0.16.47 cu SRI acceptat, formulele se randează, fonturile se încarcă din `vendor/`, o formulă greșită dă `katex-error` fără excepție, iar `\href{javascript:…}` nu produce legătură; captura paginii e identică la pixel cu cea de pe 0.16.9. Cele 5 teste ale aplicației trec.
+- Neverificat: exploatabilitatea avizelor în această aplicație (cu sarcinile de probă încercate nu s-a reprodus nicio blocare pe 0.16.9: ambele versiuni se opresc cu „Too many expansions”), rularea pe browsere vechi reale (Chrome 55, Firefox 52, Safari 10.1) și pe dispozitive reale.
+
 ## 2.4.3 — 2026-11-19
 
 - Cu stocarea blocată în browser (cookie-uri și date de site interzise, WebView fără stocare), aplicația pornește acum fără eroare: kitul 1.8.1 pune în loc o stocare în memorie, valabilă până la închiderea paginii (verificat pe pagina încărcată cu `localStorage` care aruncă `SecurityError`: același conținut ca în modul normal, fără erori)
