@@ -3,7 +3,7 @@
   "slug": "ai-liber",
   "name": "AI Liber — Inteligența artificială pentru toți",
   "version": "2.4.4",
-  "updated": "2026-11-20",
+  "updated": "2026-11-22",
   "description": "Chat cu Claude, GPT-4, Gemini, Llama, DeepSeek și 30+ modele — unele fără cont, unele cu cheie API gratuită.",
   "egress": [
     {
@@ -124,8 +124,8 @@
     "ai-liber.pollauto",
     "ai-liber.sbw"
   ],
-  "sizeBytes": 1689894,
-  "sha256": "cf482a50c1d23a378aac83f1da0a443582f2edff391dbe820640d6c99c4ac0a8",
+  "sizeBytes": 1689954,
+  "sha256": "9027abcc25c4f7fda235586677ed6b57b2ef95a1a2ba326f2983242a5b93faf5",
   "csp": {
     "present": true,
     "directives": {
@@ -139,7 +139,8 @@
       "object-src": "'none'",
       "base-uri": "'self'",
       "form-action": "'none'",
-      "manifest-src": "'self'"
+      "manifest-src": "'self'",
+      "upgrade-insecure-requests": "''"
     },
     "scriptInline": "hash",
     "connect": "'self' https://text.pollinations.ai https://image.pollinations.ai https://duckduckgo.com https://api.anthropic.com https://api.openai.com https://generativelanguage.googleapis.com https://api.groq.com https://api.mistral.ai https://api.perplexity.ai https://openrouter.ai https://aihorde.net http://localhost:1234 http://localhost:11434 https://huggingface.co/mlc-ai/ https://*.huggingface.co https://*.hf.co https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/00fe7a40e57e5e8eb9fef87526a4bf28ad5846c0/"
